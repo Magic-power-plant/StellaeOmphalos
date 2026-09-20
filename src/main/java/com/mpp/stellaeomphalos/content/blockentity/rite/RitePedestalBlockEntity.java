@@ -279,6 +279,13 @@ public final class RitePedestalBlockEntity extends LumenSinkBlockEntity
     }
 
     public void cycleCompleted() {
+        if (level instanceof ServerLevel server && owner != null) {
+            var player = server.getServer().getPlayerList().getPlayer(owner);
+            if (player != null)
+                net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(
+                        new com.mpp.stellaeomphalos.core.platform.ProgressMilestoneEvent(
+                                player, "rite", rite.recipeId(), rite.cycles()));
+        }
         if (level instanceof ServerLevel server && owner != null && !output.isEmpty()) {
             var player = server.getServer().getPlayerList().getPlayer(owner);
             if (player != null)

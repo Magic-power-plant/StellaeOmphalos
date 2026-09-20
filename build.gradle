@@ -65,6 +65,7 @@ minecraft {
         if (project.hasProperty('smokeTest')) {
             client {
                 property 'stellaeomphalos.smokeTest', 'true'
+                property 'stellaeomphalos.part5SmokeTest', project.hasProperty('part5SmokeTest').toString()
                 mods { "${mod_id}" { source sourceSets.gameTest } }
             }
         }
@@ -148,7 +149,10 @@ tasks.withType(AbstractArchiveTask).configureEach {
     preserveFileTimestamps = false
     reproducibleFileOrder = true
 }
-tasks.named('test', Test).configure { useJUnitPlatform() }
+tasks.named('test', Test).configure {
+    useJUnitPlatform()
+    systemProperty 'stellaeomphalos.testClasspath', sourceSets.test.runtimeClasspath.asPath
+}
 apply from: 'gradle/verification.gradle'
 
 // Opt-in integration fixture: the distributed mod retains only Forge and Minecraft dependencies.

@@ -229,6 +229,82 @@ public final class NetworkBootstrap {
                 StarfallNoticePayload.class,
                 StarfallNoticePayload.CODEC,
                 0);
+        registry.register(
+                39,
+                PayloadRegistry.Direction.TO_CLIENT,
+                PktStarRecord.class,
+                PktStarRecord.CODEC,
+                1);
+        registry.register(
+                40,
+                PayloadRegistry.Direction.TO_CLIENT,
+                PktStarRecordDelta.class,
+                PktStarRecordDelta.CODEC,
+                1);
+        registry.register(
+                41,
+                PayloadRegistry.Direction.TO_CLIENT,
+                PktShardRevealed.class,
+                PktShardRevealed.CODEC,
+                1);
+        registry.register(
+                42,
+                PayloadRegistry.Direction.TO_SERVER,
+                PktRevealShard.class,
+                PktRevealShard.CODEC,
+                1);
+        registry.register(
+                43, PayloadRegistry.Direction.TO_CLIENT, PktOpenCodex.class, PktOpenCodex.CODEC, 1);
+        registry.register(
+                44,
+                PayloadRegistry.Direction.TO_CLIENT,
+                PktCodexUnlock.class,
+                PktCodexUnlock.CODEC,
+                1);
+        registry.register(
+                45,
+                PayloadRegistry.Direction.TO_CLIENT,
+                PktMantleState.class,
+                PktMantleState.CODEC,
+                1);
+        registry.register(
+                46,
+                PayloadRegistry.Direction.TO_CLIENT,
+                PktCodexDefinitions.class,
+                PktCodexDefinitions.CODEC,
+                1);
+        registry.register(
+                47, PayloadRegistry.Direction.TO_SERVER, PktCodexRead.class, PktCodexRead.CODEC, 1);
+        registry.register(
+                48,
+                PayloadRegistry.Direction.TO_CLIENT,
+                PktReaderProjection.class,
+                PktReaderProjection.CODEC,
+                1);
+        registry.register(
+                49,
+                PayloadRegistry.Direction.TO_SERVER,
+                PktKnowledgeQuery.class,
+                PktKnowledgeQuery.CODEC,
+                1);
+        registry.register(
+                50,
+                PayloadRegistry.Direction.TO_CLIENT,
+                PktGaugeReadings.class,
+                PktGaugeReadings.CODEC,
+                1);
+        registry.register(
+                51,
+                PayloadRegistry.Direction.TO_SERVER,
+                PktBoonAction.class,
+                PktBoonAction.CODEC,
+                1);
+        registry.register(
+                52,
+                PayloadRegistry.Direction.TO_SERVER,
+                PktCodexPreview.class,
+                PktCodexPreview.CODEC,
+                1);
         bus.addListener(NetworkBootstrap::setup);
     }
 

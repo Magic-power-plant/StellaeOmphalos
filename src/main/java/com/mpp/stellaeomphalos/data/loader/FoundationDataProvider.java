@@ -14,6 +14,21 @@ import java.util.concurrent.CompletableFuture;
 public final class FoundationDataProvider implements DataProvider {
     private static final java.util.Map<String, String> CHINESE =
             java.util.Map.ofEntries(
+                    java.util.Map.entry("progression.shardPoolMode", "残片公共池模式"),
+                    java.util.Map.entry("progression.saveIntervalSeconds", "星录保存间隔（秒）"),
+                    java.util.Map.entry("mantle.rechargeTicks", "守护层恢复刻数"),
+                    java.util.Map.entry("mantle.maxStacks", "守护层数上限"),
+                    java.util.Map.entry("mantle.healing", "星披每刻治疗量"),
+                    java.util.Map.entry("mantle.fireReduction", "炉火伤害减免率"),
+                    java.util.Map.entry("mantle.retortScale", "报复伤害倍率"),
+                    java.util.Map.entry("mantle.retortTicks", "报复有效刻数"),
+                    java.util.Map.entry("mantle.stasisCooldown", "时钟星披冷却"),
+                    java.util.Map.entry("mantle.activationChance", "星披触发概率"),
+                    java.util.Map.entry("mantle.enableClientSideDetection", "启用本地星披侦查"),
+                    java.util.Map.entry("codex.focusThreshold", "星图聚焦阈值"),
+                    java.util.Map.entry("codex.branchThreshold", "星图研习支阈值"),
+                    java.util.Map.entry("codex.cloudFadeThreshold", "星云淡出阈值"),
+                    java.util.Map.entry("codex.nodeClickThreshold", "节点点击缩放阈值"),
                     java.util.Map.entry("structure.reverifyInterval", "结构复检间隔"),
                     java.util.Map.entry("ritual.positionBudget", "星仪每刻位置预算"),
                     java.util.Map.entry("ritual.offlineDropThreshold", "离线产物保留时间"),

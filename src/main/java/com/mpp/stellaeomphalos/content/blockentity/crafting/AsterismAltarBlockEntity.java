@@ -122,6 +122,9 @@ public final class AsterismAltarBlockEntity extends AbstractCraftingMachine {
                         .thenComparing(r -> r.getId().toString()));
         for (var candidate : candidates) {
             var recipe = (AsterismRecipe) candidate;
+            if (player instanceof net.minecraft.server.level.ServerPlayer p
+                    && !com.mpp.stellaeomphalos.core.platform.KnowledgeBridge.canCraft(
+                            p, recipe.getId())) continue;
             if (!recipe.matches(input(player.getUUID()), server) || !structure(recipe, server))
                 continue;
             var craft =

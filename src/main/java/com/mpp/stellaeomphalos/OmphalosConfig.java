@@ -12,6 +12,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /** Config events publish immutable snapshots; no callback touches a world. */
 public final class OmphalosConfig {
+    public enum ShardPoolMode {
+        INDEPENDENT,
+        PUBLIC_POOL
+    }
+
     public enum Retrogen {
         OFF,
         LOADED_ONLY,
@@ -92,6 +97,23 @@ public final class OmphalosConfig {
         SERVER.bool("ritual.allowTeamCollect", false);
         SERVER.bool("ritual.progressResetOnStall", false);
         SERVER.integer("ritual.offlineDropThreshold", 24000, 20, 2400000);
+        SERVER.values.put(
+                "progression.shardPoolMode",
+                SERVER.builder.defineEnum("progression.shardPoolMode", ShardPoolMode.INDEPENDENT));
+        SERVER.integer("progression.saveIntervalSeconds", 90, 5, 3600);
+        SERVER.integer("mantle.rechargeTicks", 200, 1, 24000);
+        SERVER.integer("mantle.maxStacks", 3, 1, 16);
+        SERVER.decimal("mantle.healing", 0.02, 0, 10);
+        SERVER.decimal("mantle.fireReduction", 0.6, 0, 1);
+        SERVER.decimal("mantle.retortScale", 0.5, 0, 4);
+        SERVER.integer("mantle.retortTicks", 200, 1, 24000);
+        SERVER.integer("mantle.stasisCooldown", 1200, 20, 24000);
+        SERVER.decimal("mantle.activationChance", 0.1, 0, 1);
+        CLIENT.bool("mantle.enableClientSideDetection", false);
+        CLIENT.decimal("codex.focusThreshold", 4, 2, 5);
+        CLIENT.decimal("codex.branchThreshold", 6, 5, 8);
+        CLIENT.decimal("codex.cloudFadeThreshold", 8.01, 8, 10);
+        CLIENT.decimal("codex.nodeClickThreshold", 0.7, 0.1, 1.2);
         COMMON.build();
         SERVER.build();
         CLIENT.build();

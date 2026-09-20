@@ -135,24 +135,30 @@ public final class CraftingContent {
                     ModItems.ENTRIES.declare(
                             name,
                             () ->
-                                    name.equals("crystal_sword")
-                                            ? new SwordItem(
-                                                    Tiers.DIAMOND, 3, -2.4F, new Item.Properties())
-                                            : new Item(
-                                                    new Item.Properties()
-                                                            .stacksTo(
-                                                                    name.contains("crystal")
-                                                                                    || name
-                                                                                            .contains(
-                                                                                                    "tool")
-                                                                                    || name
-                                                                                            .contains(
-                                                                                                    "wand")
-                                                                                    || name
-                                                                                            .contains(
-                                                                                                    "mantle")
-                                                                            ? 1
-                                                                            : 64))));
+                                    name.equals("star_mantle")
+                                            ? new com.mpp.stellaeomphalos.content.item
+                                                    .StarMantleItem()
+                                            : name.equals("crystal_sword")
+                                                    ? new SwordItem(
+                                                            Tiers.DIAMOND,
+                                                            3,
+                                                            -2.4F,
+                                                            new Item.Properties())
+                                                    : new Item(
+                                                            new Item.Properties()
+                                                                    .stacksTo(
+                                                                            name.contains("crystal")
+                                                                                            || name
+                                                                                                    .contains(
+                                                                                                            "tool")
+                                                                                            || name
+                                                                                                    .contains(
+                                                                                                            "wand")
+                                                                                            || name
+                                                                                                    .contains(
+                                                                                                            "mantle")
+                                                                                    ? 1
+                                                                                    : 64))));
         ModCreativeTabs.ENTRIES.declare(
                 "crafting",
                 () ->
