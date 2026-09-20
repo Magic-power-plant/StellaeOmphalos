@@ -1,0 +1,110 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "conditions": [
+        {
+          "block": "stellaeomphalos:asterism_altar",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "tier": "discovery"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "stellaeomphalos:asterism_altar_discovery"
+        }
+      ],
+      "rolls": 1
+    },
+    {
+      "conditions": [
+        {
+          "block": "stellaeomphalos:asterism_altar",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "tier": "resonance"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "stellaeomphalos:asterism_altar_resonance"
+        }
+      ],
+      "rolls": 1
+    },
+    {
+      "conditions": [
+        {
+          "block": "stellaeomphalos:asterism_altar",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "tier": "sign"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "stellaeomphalos:asterism_altar_sign"
+        }
+      ],
+      "rolls": 1
+    },
+    {
+      "conditions": [
+        {
+          "block": "stellaeomphalos:asterism_altar",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "tier": "trait"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "stellaeomphalos:asterism_altar_trait"
+        }
+      ],
+      "rolls": 1
+    },
+    {
+      "conditions": [
+        {
+          "block": "stellaeomphalos:asterism_altar",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "tier": "radiance"
+          }
+        },
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "stellaeomphalos:asterism_altar_radiance"
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}

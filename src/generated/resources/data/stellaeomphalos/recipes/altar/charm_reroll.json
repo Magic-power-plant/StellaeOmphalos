@@ -1,0 +1,32 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 250,
+  "grid": {
+    "key": {
+      "C": {
+        "item": "stellaeomphalos:enchant_charm"
+      },
+      "E": {
+        "item": "minecraft:lapis_lazuli"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 3200,
+  "result": {
+    "fallback": {
+      "item": "stellaeomphalos:enchant_charm"
+    },
+    "kind": "inherit",
+    "ops": [
+      {
+        "op": "stellaeomphalos:random_enchantment"
+      }
+    ]
+  },
+  "tier": "sign"
+}

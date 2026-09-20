@@ -1,0 +1,23 @@
+{
+  "type": "stellaeomphalos:light_proximity_crafting",
+  "key": {
+    "Q": {
+      "item": "minecraft:quartz"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "min_lumen": 20,
+  "pattern": [
+    " Q ",
+    " S ",
+    " S "
+  ],
+  "result": {
+    "item": "stellaeomphalos:illumination_wand",
+    "nbt": {
+      "WandColor": 16777215
+    }
+  }
+}

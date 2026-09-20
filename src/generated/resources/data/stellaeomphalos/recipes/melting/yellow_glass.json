@@ -1,0 +1,10 @@
+{
+  "type": "stellaeomphalos:melting",
+  "duration": 100,
+  "input": {
+    "block": "minecraft:yellow_stained_glass"
+  },
+  "result": {
+    "block": "minecraft:glass"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "stellaeomphalos:fluid_interaction",
+  "consume_chance_first": 0.5,
+  "first": {
+    "amount": 400,
+    "fluid": "stellaeomphalos:molten_lumen"
+  },
+  "result": {
+    "block": "minecraft:ice",
+    "kind": "block"
+  },
+  "second": {
+    "amount": 400,
+    "fluid": "minecraft:water"
+  },
+  "weight": 10
+}

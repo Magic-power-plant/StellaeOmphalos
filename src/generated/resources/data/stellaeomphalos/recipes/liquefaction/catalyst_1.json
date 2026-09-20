@@ -1,0 +1,12 @@
+{
+  "type": "stellaeomphalos:well_liquefaction",
+  "catalyst": {
+    "item": "minecraft:quartz"
+  },
+  "production_multiplier": 0.75,
+  "result_fluid": {
+    "amount": 1000,
+    "fluid": "stellaeomphalos:molten_lumen"
+  },
+  "shatter_multiplier": 3
+}

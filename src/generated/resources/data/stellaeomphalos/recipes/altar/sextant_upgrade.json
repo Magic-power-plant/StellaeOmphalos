@@ -1,0 +1,38 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 500,
+  "grid": {
+    "key": {
+      "C": {
+        "exclude_nbt": {
+          "Upgraded": true
+        },
+        "item": "stellaeomphalos:star_sextant"
+      },
+      "E": {
+        "item": "minecraft:ender_pearl"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 3200,
+  "result": {
+    "fallback": {
+      "item": "stellaeomphalos:star_sextant"
+    },
+    "kind": "inherit",
+    "ops": [
+      {
+        "key": "Upgraded",
+        "op": "stellaeomphalos:set_boolean",
+        "value": true
+      }
+    ],
+    "source_slot": "center"
+  },
+  "tier": "sign"
+}

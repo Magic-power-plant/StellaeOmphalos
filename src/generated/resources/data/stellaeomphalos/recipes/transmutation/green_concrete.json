@@ -1,0 +1,10 @@
+{
+  "type": "stellaeomphalos:light_transmutation",
+  "cost": 80,
+  "input": {
+    "block": "minecraft:green_concrete_powder"
+  },
+  "result": {
+    "block": "minecraft:green_concrete"
+  }
+}

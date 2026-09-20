@@ -46,6 +46,7 @@ minecraft {
             workingDirectory project.file('run')
 
             property 'forge.logging.markers', 'REGISTRIES'
+            property 'stellaeomphalos.projectRoot', project.projectDir.absolutePath
 
             property 'forge.logging.console.level', 'debug'
 
@@ -149,3 +150,21 @@ tasks.withType(AbstractArchiveTask).configureEach {
 }
 tasks.named('test', Test).configure { useJUnitPlatform() }
 apply from: 'gradle/verification.gradle'
+
+// Opt-in integration fixture: the distributed mod retains only Forge and Minecraft dependencies.
+if (project.hasProperty('craftTweakerTest')) {
+    repositories {
+        maven {
+            url = 'https://maven.blamejared.com'
+            content { includeGroup 'com.blamejared.crafttweaker'; includeGroup 'org.openzen.zencode' }
+        }
+    }
+    dependencies { runtimeOnly fg.deobf('com.blamejared.crafttweaker:CraftTweaker-forge-1.20.1:14.0.60') }
+    minecraft.runs.gameTestServer.workingDirectory project.file('build/part3-crafttweaker-run')
+    tasks.register('preparePart3CraftTweakerScripts', Copy) {
+        from 'docs/examples/part3/crafttweaker'
+        into 'build/part3-crafttweaker-run/scripts'
+        include '*.zs'
+    }
+    tasks.matching { it.name == 'prepareRunGameTestServer' }.configureEach { dependsOn 'preparePart3CraftTweakerScripts' }
+}

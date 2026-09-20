@@ -1,0 +1,12 @@
+{
+  "type": "stellaeomphalos:well_liquefaction",
+  "catalyst": {
+    "item": "minecraft:glowstone_dust"
+  },
+  "production_multiplier": 1.5,
+  "result_fluid": {
+    "amount": 1000,
+    "fluid": "stellaeomphalos:molten_lumen"
+  },
+  "shatter_multiplier": 6
+}

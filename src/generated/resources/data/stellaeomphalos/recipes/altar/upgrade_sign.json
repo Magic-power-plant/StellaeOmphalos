@@ -1,0 +1,29 @@
+{
+  "type": "stellaeomphalos:asterism_upgrade",
+  "duration": 1200,
+  "flags": [
+    "night_only",
+    "no_item_output"
+  ],
+  "from_tier": "resonance",
+  "grid": {
+    "key": {
+      "C": {
+        "item": "minecraft:diamond"
+      },
+      "E": {
+        "item": "minecraft:amethyst_shard"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 1400,
+  "result_display": {
+    "item": "stellaeomphalos:asterism_altar_sign"
+  },
+  "to_tier": "sign"
+}

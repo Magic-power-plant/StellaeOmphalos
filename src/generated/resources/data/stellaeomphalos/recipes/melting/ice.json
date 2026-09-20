@@ -1,0 +1,10 @@
+{
+  "type": "stellaeomphalos:melting",
+  "duration": 100,
+  "input": {
+    "block": "minecraft:ice"
+  },
+  "result": {
+    "block": "minecraft:water"
+  }
+}

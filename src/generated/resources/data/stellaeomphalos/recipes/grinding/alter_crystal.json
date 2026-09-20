@@ -1,0 +1,6 @@
+{
+  "type": "stellaeomphalos:grindwheel",
+  "alteration": "stellaeomphalos:crystal",
+  "chance": 1,
+  "hidden": true
+}

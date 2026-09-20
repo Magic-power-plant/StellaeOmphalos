@@ -1,0 +1,33 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 300,
+  "grid": {
+    "key": {
+      "C": {
+        "item": "stellaeomphalos:star_lens"
+      },
+      "E": {
+        "item": "minecraft:orange_dye"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 1400,
+  "result": {
+    "fallback": {
+      "item": "stellaeomphalos:star_lens"
+    },
+    "kind": "inherit",
+    "ops": [
+      {
+        "color": -15724528,
+        "op": "stellaeomphalos:set_lens_color"
+      }
+    ]
+  },
+  "tier": "resonance"
+}

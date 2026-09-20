@@ -1,0 +1,38 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 500,
+  "grid": {
+    "key": {
+      "C": {
+        "include_nbt": {
+          "Attuned": true
+        },
+        "item": "stellaeomphalos:resonant_crystal"
+      },
+      "E": {
+        "item": "minecraft:glass"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 3200,
+  "result": {
+    "kind": "static",
+    "ops": [
+      {
+        "op": "stellaeomphalos:preserve_nbt"
+      },
+      {
+        "op": "stellaeomphalos:copy_crystal_traits"
+      }
+    ],
+    "stack": {
+      "item": "stellaeomphalos:collector_crystal"
+    }
+  },
+  "tier": "sign"
+}

@@ -1,0 +1,34 @@
+{
+  "craft_finish": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "minecraft:block.enchantment_table.use"
+      }
+    ]
+  },
+  "craft_loop": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "minecraft:block.amethyst_block.resonate"
+      }
+    ]
+  },
+  "grindwheel_spin": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "minecraft:block.grindstone.use"
+      }
+    ]
+  },
+  "infusion_bubble": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "minecraft:block.bubble_column.bubble_pop"
+      }
+    ]
+  }
+}

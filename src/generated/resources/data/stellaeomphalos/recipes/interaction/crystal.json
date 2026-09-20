@@ -1,0 +1,17 @@
+{
+  "type": "stellaeomphalos:fluid_interaction",
+  "first": {
+    "amount": 400,
+    "fluid": "stellaeomphalos:molten_lumen"
+  },
+  "result": {
+    "item": "stellaeomphalos:raw_crystal",
+    "item_half_life": true,
+    "kind": "random_crystal"
+  },
+  "second": {
+    "amount": 1000,
+    "fluid": "minecraft:water"
+  },
+  "weight": 1
+}

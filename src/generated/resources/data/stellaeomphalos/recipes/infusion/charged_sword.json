@@ -1,0 +1,22 @@
+{
+  "type": "stellaeomphalos:lumen_infusion",
+  "duration": 200,
+  "input": {
+    "item": "stellaeomphalos:crystal_sword"
+  },
+  "result": {
+    "fallback": {
+      "item": "stellaeomphalos:crystal_sword"
+    },
+    "kind": "inherit",
+    "ops": [
+      {
+        "op": "stellaeomphalos:set_tool_traits"
+      },
+      {
+        "op": "stellaeomphalos:clear_revert_counter"
+      }
+    ],
+    "source_slot": "input"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "stellaeomphalos:grindwheel",
+  "bonus_chance": 0.25,
+  "chance": 2,
+  "input": {
+    "item": "minecraft:glowstone"
+  },
+  "result": {
+    "item": "minecraft:glowstone_dust"
+  }
+}

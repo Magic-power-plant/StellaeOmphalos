@@ -1,0 +1,28 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 300,
+  "grid": {
+    "key": {
+      "C": {
+        "amount": 400,
+        "fluid": "stellaeomphalos:molten_lumen"
+      },
+      "E": {
+        "item": "minecraft:quartz"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 1400,
+  "result": {
+    "kind": "static",
+    "stack": {
+      "item": "stellaeomphalos:ritual_base"
+    }
+  },
+  "tier": "resonance"
+}

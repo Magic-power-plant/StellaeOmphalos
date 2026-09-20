@@ -1,0 +1,11 @@
+{
+  "type": "stellaeomphalos:grindwheel",
+  "bonus_chance": 0.25,
+  "chance": 2,
+  "input": {
+    "item": "minecraft:bone"
+  },
+  "result": {
+    "item": "minecraft:bone_meal"
+  }
+}

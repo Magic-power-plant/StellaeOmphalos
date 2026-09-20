@@ -1,0 +1,27 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 100,
+  "grid": {
+    "key": {
+      "C": {
+        "item": "stellaeomphalos:raw_crystal"
+      },
+      "E": {
+        "item": "minecraft:diamond"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 700,
+  "result": {
+    "kind": "static",
+    "stack": {
+      "item": "stellaeomphalos:drill_head"
+    }
+  },
+  "tier": "discovery"
+}

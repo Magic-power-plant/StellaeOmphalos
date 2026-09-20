@@ -7,13 +7,12 @@ import com.mpp.stellaeomphalos.constellation.domain.DomainPositionEntries.Counte
 import com.mpp.stellaeomphalos.constellation.domain.DomainProperties;
 import com.mpp.stellaeomphalos.constellation.sign.MajorSign;
 import com.mpp.stellaeomphalos.network.toClient.PktDomainParticle;
-import javax.annotation.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.Blocks;
+
+import javax.annotation.Nullable;
 
 /**
  * fornax — crucible. Smelts cached blocks in place (cap 10, per-entry progress counter persisted in
@@ -22,7 +21,6 @@ import net.minecraft.world.level.block.Blocks;
  */
 public final class DomainEffectCrucible extends DomainPositionCache<CounterEntry> {
     private static final int CAP = 10;
-    private static final int BASE_SMELT_TICKS = 40;
 
     public DomainEffectCrucible(@Nullable MajorSign owner) {
         super(owner, CAP, pos -> true, CounterEntry::new);
@@ -37,18 +35,8 @@ public final class DomainEffectCrucible extends DomainPositionCache<CounterEntry
     protected boolean verify(ServerLevel level, BlockPos pos) {
         var state = level.getBlockState(pos);
         if (state.isAir()) return false;
-        return smeltResult(level, pos) != null;
-    }
-
-    @Nullable
-    private static ItemStack smeltResult(ServerLevel level, BlockPos pos) {
-        var stack = new ItemStack(level.getBlockState(pos).getBlock().asItem());
-        if (stack.isEmpty()) return null;
-        return level.getRecipeManager()
-                .getRecipeFor(RecipeType.SMELTING, new net.minecraft.world.SimpleContainer(stack), level)
-                .map(recipe -> recipe.getResultItem(level.registryAccess()))
-                .filter(result -> !result.isEmpty())
-                .orElse(null);
+        return com.mpp.stellaeomphalos.core.platform.WorldCraftingBridge.melting(level, state)
+                .isPresent();
     }
 
     @Override
@@ -63,31 +51,45 @@ public final class DomainEffectCrucible extends DomainPositionCache<CounterEntry
         if (!strengthGate(strength, level.random)) return false;
         int radius = (int) Math.max(1, Math.round(props.size()));
         if (size() == 0) findNewPosition(level, ctx.origin(), radius);
-        return props.corrupted() ? playCorrupted(ctx, props, radius) : playSmelt(ctx, props, radius);
+        return props.corrupted()
+                ? playCorrupted(ctx, props, radius)
+                : playSmelt(ctx, props, radius);
     }
 
     private boolean playSmelt(DomainContext ctx, DomainProperties props, int radius) {
         var level = ctx.level();
         var entry = randomByChance(level.random);
         if (entry == null || !level.hasChunkAt(entry.pos())) return false;
-        var result = smeltResult(level, entry.pos());
-        if (result == null) { prune(level); return false; }
-        int needed = (int) Math.max(1, Math.round(BASE_SMELT_TICKS / Math.max(props.effectAmplifier(), 0.25)));
+        var expected = level.getBlockState(entry.pos());
+        var operation =
+                com.mpp.stellaeomphalos.core.platform.WorldCraftingBridge.melting(level, expected);
+        if (operation.isEmpty()) {
+            prune(level);
+            return false;
+        }
+        int needed =
+                (int)
+                        Math.max(
+                                1,
+                                Math.round(
+                                        operation.get().duration()
+                                                / Math.max(props.effectAmplifier(), 0.25)));
         if (entry.increment() < needed) return false;
-        if (result.getItem() instanceof BlockItem blockItem)
-            level.setBlock(entry.pos(), blockItem.getBlock().defaultBlockState(), 3);
-        else {
-            level.destroyBlock(entry.pos(), false);
-            var drop = new net.minecraft.world.entity.item.ItemEntity(level,
-                    entry.pos().getX() + 0.5, entry.pos().getY() + 0.5, entry.pos().getZ() + 0.5, result.copy());
-            level.addFreshEntity(drop);
+        if (!operation.get().apply(level, entry.pos(), expected)) {
+            entry.reset();
+            return false;
         }
         entry.reset();
         prune(level);
         // Smelting merge: same tick + same type + same position collapse into one packet.
         if (DomainParticles.mergedThisTick(level, entry.pos(), PktDomainParticle.Types.CRUCIBLE))
-            DomainParticles.broadcast(level, entry.pos(), 96.0, PktDomainParticle.Types.CRUCIBLE,
-                    ctx.origin(), level.random.nextLong());
+            DomainParticles.broadcast(
+                    level,
+                    entry.pos(),
+                    96.0,
+                    PktDomainParticle.Types.CRUCIBLE,
+                    ctx.origin(),
+                    level.random.nextLong());
         return true;
     }
 
@@ -95,13 +97,26 @@ public final class DomainEffectCrucible extends DomainPositionCache<CounterEntry
         var level = ctx.level();
         var random = level.random;
         for (int attempt = 0; attempt < 8; attempt++) {
-            var target = ctx.origin().offset(random.nextInt(radius * 2 + 1) - radius,
-                    random.nextInt(radius * 2 + 1) - radius, random.nextInt(radius * 2 + 1) - radius);
+            var target =
+                    ctx.origin()
+                            .offset(
+                                    random.nextInt(radius * 2 + 1) - radius,
+                                    random.nextInt(radius * 2 + 1) - radius,
+                                    random.nextInt(radius * 2 + 1) - radius);
             if (!level.hasChunkAt(target) || level.isOutsideBuildHeight(target)) continue;
             var state = level.getBlockState(target);
-            if (state.is(Blocks.WATER)) { level.setBlock(target, Blocks.ICE.defaultBlockState(), 3); return true; }
-            if (state.is(Blocks.LAVA)) { level.setBlock(target, Blocks.OBSIDIAN.defaultBlockState(), 3); return true; }
-            if (state.is(Blocks.FIRE)) { level.removeBlock(target, false); return true; }
+            if (state.is(Blocks.WATER)) {
+                level.setBlock(target, Blocks.ICE.defaultBlockState(), 3);
+                return true;
+            }
+            if (state.is(Blocks.LAVA)) {
+                level.setBlock(target, Blocks.OBSIDIAN.defaultBlockState(), 3);
+                return true;
+            }
+            if (state.is(Blocks.FIRE)) {
+                level.removeBlock(target, false);
+                return true;
+            }
         }
         return false;
     }

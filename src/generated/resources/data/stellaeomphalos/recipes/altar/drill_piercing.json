@@ -1,0 +1,50 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 700,
+  "flags": [
+    "strict_match"
+  ],
+  "grid": {
+    "key": {
+      "C": {
+        "exclude_nbt": {
+          "Upgrades": [
+            "stellaeomphalos:piercing"
+          ]
+        },
+        "item": "stellaeomphalos:drill_head"
+      },
+      "E": {
+        "item": "minecraft:diamond"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 7500,
+  "relay": [
+    {
+      "bind_at": 0.25,
+      "index": 0,
+      "ingredient": {
+        "item": "minecraft:flint"
+      }
+    }
+  ],
+  "result": {
+    "fallback": {
+      "item": "stellaeomphalos:drill_head"
+    },
+    "kind": "inherit",
+    "ops": [
+      {
+        "op": "stellaeomphalos:unlock_upgrade",
+        "upgrade": "stellaeomphalos:piercing"
+      }
+    ]
+  },
+  "tier": "trait"
+}

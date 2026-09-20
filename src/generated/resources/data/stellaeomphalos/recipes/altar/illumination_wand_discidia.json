@@ -1,0 +1,40 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 500,
+  "focus_sign": "stellaeomphalos:discidia",
+  "grid": {
+    "key": {
+      "C": {
+        "absent_nbt": [
+          "SignId"
+        ],
+        "include_nbt": {
+          "WandColor": 16777215
+        },
+        "item": "stellaeomphalos:illumination_wand"
+      },
+      "E": {
+        "item": "minecraft:magenta_dye"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 3200,
+  "result": {
+    "kind": "static",
+    "ops": [
+      {
+        "op": "stellaeomphalos:set_sign",
+        "sign": "stellaeomphalos:discidia"
+      }
+    ],
+    "stack": {
+      "item": "stellaeomphalos:illumination_wand"
+    }
+  },
+  "tier": "sign"
+}

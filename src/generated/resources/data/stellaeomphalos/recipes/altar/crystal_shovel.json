@@ -1,0 +1,35 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 450,
+  "flags": [
+    "no_chain"
+  ],
+  "grid": {
+    "key": {
+      "C": {
+        "item": "minecraft:diamond_shovel"
+      },
+      "E": {
+        "item": "stellaeomphalos:raw_crystal"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 1400,
+  "result": {
+    "kind": "static",
+    "ops": [
+      {
+        "op": "stellaeomphalos:merge_crystal_traits"
+      }
+    ],
+    "stack": {
+      "item": "stellaeomphalos:crystal_shovel"
+    }
+  },
+  "tier": "resonance"
+}

@@ -1,0 +1,32 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 100,
+  "grid": {
+    "key": {
+      "C": {
+        "item": "stellaeomphalos:raw_crystal"
+      },
+      "E": {
+        "item": "minecraft:glass_pane"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 700,
+  "result": {
+    "kind": "static",
+    "ops": [
+      {
+        "op": "stellaeomphalos:copy_crystal_traits"
+      }
+    ],
+    "stack": {
+      "item": "stellaeomphalos:prism_lens"
+    }
+  },
+  "tier": "discovery"
+}

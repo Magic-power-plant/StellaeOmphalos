@@ -1,0 +1,33 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 300,
+  "grid": {
+    "key": {
+      "C": {
+        "item": "stellaeomphalos:raw_crystal"
+      },
+      "E": {
+        "item": "minecraft:white_dye"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 1400,
+  "result": {
+    "kind": "static",
+    "ops": [
+      {
+        "op": "stellaeomphalos:set_sign",
+        "sign": "stellaeomphalos:aevitas"
+      }
+    ],
+    "stack": {
+      "item": "stellaeomphalos:sign_focus"
+    }
+  },
+  "tier": "resonance"
+}

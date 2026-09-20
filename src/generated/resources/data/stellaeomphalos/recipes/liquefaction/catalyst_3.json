@@ -1,0 +1,12 @@
+{
+  "type": "stellaeomphalos:well_liquefaction",
+  "catalyst": {
+    "item": "stellaeomphalos:resonant_crystal"
+  },
+  "production_multiplier": 1.25,
+  "result_fluid": {
+    "amount": 1000,
+    "fluid": "stellaeomphalos:molten_lumen"
+  },
+  "shatter_multiplier": 5
+}
