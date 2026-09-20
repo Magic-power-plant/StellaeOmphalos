@@ -30,5 +30,59 @@
         "name": "minecraft:block.bubble_column.bubble_pop"
       }
     ]
+  },
+  "rite_output": {
+    "sounds": [
+      {
+        "name": "stellaeomphalos:rite_output",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.rite_output"
+  },
+  "ritual_loop": {
+    "sounds": [
+      {
+        "name": "stellaeomphalos:ritual_loop",
+        "stream": true
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.ritual_loop"
+  },
+  "ritual_start": {
+    "sounds": [
+      {
+        "name": "stellaeomphalos:ritual_start",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.ritual_start"
+  },
+  "spring_draw": {
+    "sounds": [
+      {
+        "name": "stellaeomphalos:spring_draw",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.spring_draw"
+  },
+  "structure_break": {
+    "sounds": [
+      {
+        "name": "stellaeomphalos:structure_break",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.structure_break"
+  },
+  "structure_formed": {
+    "sounds": [
+      {
+        "name": "stellaeomphalos:structure_formed",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.structure_formed"
   }
 }

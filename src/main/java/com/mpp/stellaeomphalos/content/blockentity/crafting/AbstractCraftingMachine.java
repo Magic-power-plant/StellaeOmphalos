@@ -24,7 +24,9 @@ import java.util.*;
 
 /** Owns inventory, output custody, capabilities and persistence for every crafting machine. */
 public abstract class AbstractCraftingMachine extends LumenSinkBlockEntity
-        implements MachineAccess, MenuProvider {
+        implements MachineAccess,
+                MenuProvider,
+                com.mpp.stellaeomphalos.structure.match.StructureDependent {
     protected final ItemStackHandler items;
     protected final ItemStackHandler focus =
             new ItemStackHandler(1) {
@@ -142,8 +144,49 @@ public abstract class AbstractCraftingMachine extends LumenSinkBlockEntity
                         <= 64;
     }
 
+    private com.mpp.stellaeomphalos.structure.match.StructureState frameState =
+            com.mpp.stellaeomphalos.structure.match.StructureState.INDETERMINATE;
+
+    public com.mpp.stellaeomphalos.structure.match.StructureState structureState() {
+        return frameState;
+    }
+
+    public boolean isFormed() {
+        return frameState.canProduce();
+    }
+
+    public void onStructureStateChanged(
+            com.mpp.stellaeomphalos.structure.match.StructureState next,
+            com.mpp.stellaeomphalos.structure.match.StructureState previous) {
+        frameState = next;
+        markClientDirty();
+    }
+
+    private java.util.Optional<net.minecraft.resources.ResourceLocation> frameId() {
+        String path =
+                machineKind().equals("lumen_infuser")
+                        ? "pattern_starlight_infuser"
+                        : machineKind().equals("asterism") && tier().requiresStructure()
+                                ? switch (tier()) {
+                                    case RESONANCE -> "pattern_altar_t2";
+                                    case SIGN -> "pattern_altar_t3";
+                                    default -> "pattern_altar_t4";
+                                }
+                                : null;
+        return java.util.Optional.ofNullable(path)
+                .map(p -> new net.minecraft.resources.ResourceLocation("stellaeomphalos", p));
+    }
+
     public final void serverTick() {
         if (!(level instanceof ServerLevel server)) return;
+        frameState =
+                frameId()
+                        .map(
+                                id ->
+                                        com.mpp.stellaeomphalos.structure.match
+                                                .StructureIntegrityHub.of(server)
+                                                .query(worldPosition, id))
+                        .orElse(com.mpp.stellaeomphalos.structure.match.StructureState.FORMED);
         tickMachine(server);
         if (server.getGameTime() - lastSync >= 10) {
             lastSync = server.getGameTime();
@@ -267,6 +310,7 @@ public abstract class AbstractCraftingMachine extends LumenSinkBlockEntity
     @Override
     protected void writeClientState(CompoundTag tag) {
         super.writeClientState(tag);
+        tag.putString("StructureState", frameState.name());
         tag.putString("Tier", tier().name());
         tag.put("PendingOutput", pending.save(new CompoundTag()));
         tag.put("Tank", tank.save());
@@ -276,6 +320,13 @@ public abstract class AbstractCraftingMachine extends LumenSinkBlockEntity
     @Override
     protected void readClientState(CompoundTag tag) {
         super.readClientState(tag);
+        try {
+            frameState =
+                    com.mpp.stellaeomphalos.structure.match.StructureState.valueOf(
+                            tag.getString("StructureState"));
+        } catch (IllegalArgumentException ignored) {
+            frameState = com.mpp.stellaeomphalos.structure.match.StructureState.INDETERMINATE;
+        }
         pending = ItemStack.of(tag.getCompound("PendingOutput"));
         if (tag.contains("Tank")) tank.restore(tag.getCompound("Tank"));
     }
@@ -307,6 +358,9 @@ public abstract class AbstractCraftingMachine extends LumenSinkBlockEntity
     }
 
     public void dropContents() {
+        if (level instanceof ServerLevel server)
+            com.mpp.stellaeomphalos.structure.match.StructureIntegrityHub.of(server)
+                    .release(worldPosition);
         if (level == null || level.isClientSide) return;
         for (int i = 0; i < items.getSlots(); i++) {
             net.minecraft.world.Containers.dropItemStack(

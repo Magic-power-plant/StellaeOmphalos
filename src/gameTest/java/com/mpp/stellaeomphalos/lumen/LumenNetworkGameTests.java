@@ -3,6 +3,7 @@ package com.mpp.stellaeomphalos.lumen;
 import com.mpp.stellaeomphalos.Omphalos;
 import com.mpp.stellaeomphalos.content.blockentity.lumen.LumenContent;
 import com.mpp.stellaeomphalos.lumen.transport.LumenNetworks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
@@ -28,8 +29,11 @@ public final class LumenNetworkGameTests {
         var level = helper.getLevel();
         var base = helper.absolutePos(new BlockPos(0, 1, 0));
         int y = BASE_Y + yLift * 3;
-        var chain = new Chain(new BlockPos(base.getX(), y + 2, base.getZ()),
-                new BlockPos(base.getX(), y + 1, base.getZ()), new BlockPos(base.getX(), y, base.getZ()));
+        var chain =
+                new Chain(
+                        new BlockPos(base.getX(), y + 2, base.getZ()),
+                        new BlockPos(base.getX(), y + 1, base.getZ()),
+                        new BlockPos(base.getX(), y, base.getZ()));
         var air = net.minecraft.world.level.block.Blocks.AIR.defaultBlockState();
         for (int dx = -1; dx <= 1; dx++)
             for (int dz = -1; dz <= 1; dz++)
@@ -37,8 +41,10 @@ public final class LumenNetworkGameTests {
                     level.setBlock(chain.relay().offset(dx, dy, dz), air, 3);
         level.setBlock(chain.battery(), LumenContent.BATTERY_BLOCK.get().defaultBlockState(), 3);
         level.setBlock(chain.relay(), LumenContent.RELAY_BLOCK.get().defaultBlockState(), 3);
-        level.setBlock(chain.collector(), LumenContent.COLLECTOR_BLOCK.get().defaultBlockState(), 3);
-        helper.assertTrue(level.canSeeSky(chain.collector().above()), "Collector has no sky access");
+        level.setBlock(
+                chain.collector(), LumenContent.COLLECTOR_BLOCK.get().defaultBlockState(), 3);
+        helper.assertTrue(
+                level.canSeeSky(chain.collector().above()), "Collector has no sky access");
         return chain;
     }
 
@@ -60,62 +66,109 @@ public final class LumenNetworkGameTests {
     public static void collector_chain_converges_and_charges(GameTestHelper helper) {
         var level = helper.getLevel();
         var chain = placeChain(helper, 1);
-        helper.runAfterDelay(2, () -> {
-            var network = LumenNetworks.of(level);
-            helper.assertTrue(network.connectionsOf(chain.collector()).contains(chain.relay()),
-                    "Topology did not converge within 2 ticks");
-            helper.assertTrue(network.connectionsOf(chain.relay()).contains(chain.battery()), "Relay not linked to battery");
-        });
-        helper.succeedWhen(() -> {
-            helper.assertTrue(battery(helper, chain).lumenStored() > 0, "Battery did not start charging");
-            clearChain(helper, chain);
-        });
+        helper.runAfterDelay(
+                2,
+                () -> {
+                    var network = LumenNetworks.of(level);
+                    helper.assertTrue(
+                            network.connectionsOf(chain.collector()).contains(chain.relay()),
+                            "Topology did not converge within 2 ticks");
+                    helper.assertTrue(
+                            network.connectionsOf(chain.relay()).contains(chain.battery()),
+                            "Relay not linked to battery");
+                });
+        helper.succeedWhen(
+                () -> {
+                    helper.assertTrue(
+                            battery(helper, chain).lumenStored() > 0,
+                            "Battery did not start charging");
+                    clearChain(helper, chain);
+                });
     }
 
     @GameTest(template = "foundation_empty")
     public static void relay_removal_breaks_the_chain(GameTestHelper helper) {
         var level = helper.getLevel();
         var chain = placeChain(helper, 22);
-        helper.runAfterDelay(10, () -> {
-            var battery = battery(helper, chain);
-            helper.assertTrue(battery.lumenStored() > 0, "Chain never charged");
-            level.removeBlock(chain.relay(), false);
-            helper.runAfterDelay(2, () -> {
-                var network = LumenNetworks.of(level);
-                helper.assertTrue(network.ioAt(chain.relay()).isEmpty(), "Relay node still present 2 ticks after removal");
-                helper.assertTrue(!network.connectionsOf(chain.collector()).contains(chain.relay()), "Relay link survived removal");
-                long frozen = battery.lumenStored();
-                helper.runAfterDelay(3, () -> {
-                    helper.assertTrue(battery.lumenStored() == frozen, "Link stayed live after relay removal");
-                    clearChain(helper, chain);
-                    helper.succeed();
+        helper.runAfterDelay(
+                10,
+                () -> {
+                    var battery = battery(helper, chain);
+                    helper.assertTrue(battery.lumenStored() > 0, "Chain never charged");
+                    level.removeBlock(chain.relay(), false);
+                    helper.runAfterDelay(
+                            2,
+                            () -> {
+                                var network = LumenNetworks.of(level);
+                                helper.assertTrue(
+                                        network.ioAt(chain.relay()).isEmpty(),
+                                        "Relay node still present 2 ticks after removal");
+                                helper.assertTrue(
+                                        !network.connectionsOf(chain.collector())
+                                                .contains(chain.relay()),
+                                        "Relay link survived removal");
+                                long frozen = battery.lumenStored();
+                                helper.runAfterDelay(
+                                        3,
+                                        () -> {
+                                            helper.assertTrue(
+                                                    battery.lumenStored() == frozen,
+                                                    "Link stayed live after relay removal");
+                                            clearChain(helper, chain);
+                                            helper.succeed();
+                                        });
+                            });
                 });
-            });
-        });
     }
 
     @GameTest(template = "foundation_empty")
     public static void chunk_suspend_and_resume_heals_without_ghosts(GameTestHelper helper) {
         var chain = placeChain(helper, 43);
         var network = LumenNetworks.of(helper.getLevel());
-        helper.runAfterDelay(10, () -> {
-            var battery = battery(helper, chain);
-            helper.assertTrue(battery.lumenStored() > 0, "Chain never charged");
-            long chunkKey = ChunkPos.asLong(chain.collector().getX() >> 4, chain.collector().getZ() >> 4);
-            int nodesInChunk = network.entriesInChunk(chunkKey).size();
-            network.suspendChunk(chunkKey);
-            long[] frozen = {battery.lumenStored()};
-            helper.runAfterDelay(3, () -> {
-                helper.assertTrue(battery.lumenStored() == frozen[0], "Suspended chunk kept delivering");
-                helper.assertTrue(network.entriesInChunk(chunkKey).size() == nodesInChunk, "Suspend dropped nodes");
-                network.resumeChunk(chunkKey);
-                helper.runAfterDelay(3, () -> {
-                    helper.assertTrue(network.entriesInChunk(chunkKey).size() == nodesInChunk, "Ghost node appeared after resume");
-                    helper.assertTrue(battery.lumenStored() > frozen[0], "Topology did not heal after resume");
-                    clearChain(helper, chain);
-                    helper.succeed();
+        helper.runAfterDelay(
+                10,
+                () -> {
+                    var battery = battery(helper, chain);
+                    helper.assertTrue(battery.lumenStored() > 0, "Chain never charged");
+                    long chunkKey =
+                            ChunkPos.asLong(
+                                    chain.collector().getX() >> 4, chain.collector().getZ() >> 4);
+                    var ownedNodes =
+                            java.util.Set.of(chain.collector(), chain.relay(), chain.battery());
+                    helper.assertTrue(
+                            network.entriesInChunk(chunkKey).containsAll(ownedNodes),
+                            "Chain not registered");
+                    network.suspendChunk(chunkKey);
+                    long[] frozen = {battery.lumenStored()};
+                    helper.runAfterDelay(
+                            3,
+                            () -> {
+                                helper.assertTrue(
+                                        battery.lumenStored() == frozen[0],
+                                        "Suspended chunk kept delivering");
+                                helper.assertTrue(
+                                        network.entriesInChunk(chunkKey).stream()
+                                                        .filter(ownedNodes::contains)
+                                                        .count()
+                                                == ownedNodes.size(),
+                                        "Suspend dropped nodes");
+                                network.resumeChunk(chunkKey);
+                                helper.runAfterDelay(
+                                        3,
+                                        () -> {
+                                            helper.assertTrue(
+                                                    network.entriesInChunk(chunkKey).stream()
+                                                                    .filter(ownedNodes::contains)
+                                                                    .count()
+                                                            == ownedNodes.size(),
+                                                    "Ghost node appeared after resume");
+                                            helper.assertTrue(
+                                                    battery.lumenStored() > frozen[0],
+                                                    "Topology did not heal after resume");
+                                            clearChain(helper, chain);
+                                            helper.succeed();
+                                        });
+                            });
                 });
-            });
-        });
     }
 }

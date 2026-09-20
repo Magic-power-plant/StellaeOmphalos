@@ -10,15 +10,18 @@ import com.mpp.stellaeomphalos.constellation.sign.MajorSign;
 import com.mpp.stellaeomphalos.lumen.transport.stasis.StasisFilter;
 import com.mpp.stellaeomphalos.lumen.transport.stasis.StasisService;
 import com.mpp.stellaeomphalos.network.toClient.PktDomainParticle;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import javax.annotation.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
+import javax.annotation.Nullable;
 
 /**
  * horologium — chronos. Manually ticks whitelisted block entities 5-7 extra times per tick under a
@@ -35,6 +38,7 @@ public final class DomainEffectChronos extends DomainPositionCache<SimplePosEntr
 
     /** Extra whitelist hook; default accepts any block entity exposing a ticker. */
     private static volatile java.util.function.Predicate<ResourceLocation> whitelist = id -> true;
+
     private static final Set<ResourceLocation> BLACKLIST = ConcurrentHashMap.newKeySet();
 
     public DomainEffectChronos(@Nullable MajorSign owner) {
@@ -46,12 +50,16 @@ public final class DomainEffectChronos extends DomainPositionCache<SimplePosEntr
         whitelist = java.util.Objects.requireNonNull(predicate);
     }
 
-    public static boolean blacklisted(ResourceLocation blockEntityType) { return BLACKLIST.contains(blockEntityType); }
+    public static boolean blacklisted(ResourceLocation blockEntityType) {
+        return BLACKLIST.contains(blockEntityType);
+    }
 
     @Override
     protected boolean verify(ServerLevel level, BlockPos pos) {
         var entity = level.getBlockEntity(pos);
-        if (entity == null) return false;
+        if (entity == null
+                || !com.mpp.stellaeomphalos.core.platform.WorldBehaviorBridge.tables()
+                        .canAccelerate(level, entity)) return false;
         var id = ForgeRegistries.BLOCK_ENTITY_TYPES.getKey(entity.getType());
         if (id == null || BLACKLIST.contains(id) || !whitelist.test(id)) return false;
         return tickerOf(level, entity) != null;
@@ -84,10 +92,18 @@ public final class DomainEffectChronos extends DomainPositionCache<SimplePosEntr
         while (System.nanoTime() < deadline) {
             var entry = randomByChance(level.random);
             if (entry == null) break;
-            if (!level.hasChunkAt(entry.pos())) { prune(level); continue; }
+            if (!level.hasChunkAt(entry.pos())) {
+                prune(level);
+                continue;
+            }
             var entity = level.getBlockEntity(entry.pos());
             BlockEntityTicker<BlockEntity> ticker = entity == null ? null : tickerOf(level, entity);
-            if (ticker == null) { prune(level); continue; }
+            if (ticker == null
+                    || !com.mpp.stellaeomphalos.core.platform.WorldBehaviorBridge.tables()
+                            .canAccelerate(level, entity)) {
+                prune(level);
+                continue;
+            }
             try {
                 for (int i = 0; i < extraTicks && System.nanoTime() < deadline; i++)
                     ticker.tick(level, entry.pos(), entity.getBlockState(), entity);
@@ -95,24 +111,38 @@ public final class DomainEffectChronos extends DomainPositionCache<SimplePosEntr
             } catch (RuntimeException exception) {
                 var id = ForgeRegistries.BLOCK_ENTITY_TYPES.getKey(entity.getType());
                 if (id != null) {
-                    BLACKLIST.add(id);
-                    LogUtils.getLogger().warn("Chronos blacklisted {} after ticker failure", id, exception);
+                    com.mpp.stellaeomphalos.core.platform.WorldBehaviorBridge.tables()
+                            .failedAcceleration(level, entity, exception);
+                    LogUtils.getLogger()
+                            .warn("Chronos blacklisted {} after ticker failure", id, exception);
                 }
                 prune(level);
             }
-            break;   // one position per invocation; the budget guards the inner loop
+            break; // one position per invocation; the budget guards the inner loop
         }
-        if (acted && DomainParticles.intervalPassed(level, ctx.origin(), PktDomainParticle.Types.CHRONOS, PARTICLE_INTERVAL))
-            DomainParticles.broadcast(level, ctx.origin(), 96.0, PktDomainParticle.Types.CHRONOS,
-                    null, level.random.nextLong());
+        if (acted
+                && DomainParticles.intervalPassed(
+                        level, ctx.origin(), PktDomainParticle.Types.CHRONOS, PARTICLE_INTERVAL))
+            DomainParticles.broadcast(
+                    level,
+                    ctx.origin(),
+                    96.0,
+                    PktDomainParticle.Types.CHRONOS,
+                    null,
+                    level.random.nextLong());
         return acted;
     }
 
     private boolean playCorrupted(DomainContext ctx, DomainProperties props) {
         var level = ctx.level();
         if (level.getGameTime() % STASIS_REAPPLY_INTERVAL != 0) return false;
-        return StasisService.get(level.getServer()).activate(level, ctx.origin(), props.size(),
-                new StasisFilter(StasisFilter.Mode.ALL_EXCEPT, owningPlayer(ctx), true),
-                STASIS_DURATION, owningPlayer(ctx));
+        return StasisService.get(level.getServer())
+                .activate(
+                        level,
+                        ctx.origin(),
+                        props.size(),
+                        new StasisFilter(StasisFilter.Mode.ALL_EXCEPT, owningPlayer(ctx), true),
+                        STASIS_DURATION,
+                        owningPlayer(ctx));
     }
 }

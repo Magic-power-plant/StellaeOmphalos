@@ -949,6 +949,7 @@ public final class CraftingDataProvider implements DataProvider {
                         sounds.put(
                                 id,
                                 Map.of("sounds", List.of(Map.of("name", event, "type", "event")))));
+        FoundationDataProvider.soundEntries().forEach(sounds::put);
         save(cache, futures, "assets/stellaeomphalos/sounds.json", json(sounds));
         return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
     }

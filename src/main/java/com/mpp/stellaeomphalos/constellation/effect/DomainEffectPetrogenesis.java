@@ -7,8 +7,7 @@ import com.mpp.stellaeomphalos.constellation.domain.DomainPositionEntries.Simple
 import com.mpp.stellaeomphalos.constellation.domain.DomainProperties;
 import com.mpp.stellaeomphalos.constellation.sign.MajorSign;
 import com.mpp.stellaeomphalos.network.toClient.PktDomainParticle;
-import java.util.List;
-import javax.annotation.Nullable;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
@@ -17,6 +16,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
+import javax.annotation.Nullable;
+
 /**
  * mineralis — petrogenesis. Converts cached replaceable blocks into ores; the cache cap is
  * deliberately 2 to keep conversion slow (anti farming). Corrupted: paves stone/ore under the feet
@@ -24,16 +25,6 @@ import net.minecraft.world.phys.AABB;
  */
 public final class DomainEffectPetrogenesis extends DomainPositionCache<SimplePosEntry> {
     private static final int CAP = 2;
-
-    private record WeightedOre(Block block, int weight) {}
-    private static final List<WeightedOre> ORES = List.of(
-            new WeightedOre(Blocks.COAL_ORE, 40),
-            new WeightedOre(Blocks.IRON_ORE, 25),
-            new WeightedOre(Blocks.COPPER_ORE, 15),
-            new WeightedOre(Blocks.GOLD_ORE, 10),
-            new WeightedOre(Blocks.REDSTONE_ORE, 6),
-            new WeightedOre(Blocks.LAPIS_ORE, 3),
-            new WeightedOre(Blocks.DIAMOND_ORE, 1));
 
     public DomainEffectPetrogenesis(@Nullable MajorSign owner) {
         super(owner, CAP, pos -> true, SimplePosEntry::new);
@@ -49,13 +40,10 @@ public final class DomainEffectPetrogenesis extends DomainPositionCache<SimplePo
     }
 
     private static Block rollOre(net.minecraft.util.RandomSource random) {
-        int total = ORES.stream().mapToInt(WeightedOre::weight).sum();
-        int roll = random.nextInt(total);
-        for (var ore : ORES) {
-            roll -= ore.weight();
-            if (roll < 0) return ore.block();
-        }
-        return ORES.get(0).block();
+        var state =
+                com.mpp.stellaeomphalos.core.platform.WorldBehaviorBridge.tables()
+                        .ore(random, "mineral");
+        return state == null ? Blocks.STONE : state.getBlock();
     }
 
     @Override
@@ -73,12 +61,21 @@ public final class DomainEffectPetrogenesis extends DomainPositionCache<SimplePo
         if (size() < CAP) findNewPosition(level, ctx.origin(), radius);
         var entry = randomByChance(level.random);
         if (entry == null || !level.hasChunkAt(entry.pos())) return false;
-        if (!verify(level, entry.pos())) { prune(level); return false; }
+        if (!verify(level, entry.pos())) {
+            prune(level);
+            return false;
+        }
         level.setBlock(entry.pos(), rollOre(level.random).defaultBlockState(), 3);
         prune(level);
-        if (DomainParticles.mergedThisTick(level, entry.pos(), PktDomainParticle.Types.PETROGENESIS))
-            DomainParticles.broadcast(level, entry.pos(), 96.0, PktDomainParticle.Types.PETROGENESIS,
-                    ctx.origin(), level.random.nextLong());
+        if (DomainParticles.mergedThisTick(
+                level, entry.pos(), PktDomainParticle.Types.PETROGENESIS))
+            DomainParticles.broadcast(
+                    level,
+                    entry.pos(),
+                    96.0,
+                    PktDomainParticle.Types.PETROGENESIS,
+                    ctx.origin(),
+                    level.random.nextLong());
         return true;
     }
 
@@ -86,12 +83,17 @@ public final class DomainEffectPetrogenesis extends DomainPositionCache<SimplePo
         var level = ctx.level();
         var box = new AABB(ctx.origin()).inflate(props.size());
         boolean acted = false;
-        for (var entity : level.getEntitiesOfClass(LivingEntity.class, box)) {
+        for (var entity :
+                com.mpp.stellaeomphalos.constellation.domain.DomainWorkBudget.entities(
+                        level, LivingEntity.class, box)) {
             var below = entity.blockPosition().below();
             if (!level.hasChunkAt(below) || level.isOutsideBuildHeight(below)) continue;
             if (!replaceable(level.getBlockState(below))) continue;
-            level.setBlock(below, (level.random.nextFloat() < 0.1F ? rollOre(level.random) : Blocks.STONE)
-                    .defaultBlockState(), 3);
+            level.setBlock(
+                    below,
+                    (level.random.nextFloat() < 0.1F ? rollOre(level.random) : Blocks.STONE)
+                            .defaultBlockState(),
+                    3);
             acted = true;
         }
         return acted;

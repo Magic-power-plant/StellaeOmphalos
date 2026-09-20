@@ -47,6 +47,7 @@ public final class CraftingBootstrap {
                                     RecipeBaseline::new,
                                     "stellaeomphalos_recipe_baseline");
             hub = new RecipeHub(active.getRecipeManager(), baseline, RecipeCatalog::parse);
+            hub.registerScript(WorldRecipeTables::replay);
             hub.registerScript(api -> RecipeScriptBridge.replay(active, api));
             hub.reload(active.getRecipeManager());
         }

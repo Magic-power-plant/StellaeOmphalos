@@ -14,6 +14,14 @@ import java.util.concurrent.CompletableFuture;
 public final class FoundationDataProvider implements DataProvider {
     private static final java.util.Map<String, String> CHINESE =
             java.util.Map.ofEntries(
+                    java.util.Map.entry("structure.reverifyInterval", "结构复检间隔"),
+                    java.util.Map.entry("ritual.positionBudget", "星仪每刻位置预算"),
+                    java.util.Map.entry("ritual.offlineDropThreshold", "离线产物保留时间"),
+                    java.util.Map.entry("ritual.progressResetOnStall", "暂停时重置星仪进度"),
+                    java.util.Map.entry("ritual.allowTeamCollect", "允许队友收取产物"),
+                    java.util.Map.entry("worldgen.retrogenChunks", "每刻补生成区块上限"),
+                    java.util.Map.entry("worldgen.retrogenMillis", "每刻补生成毫秒上限"),
+                    java.util.Map.entry("worldgen.springPumpRate", "泉脉每刻抽取量"),
                     java.util.Map.entry("worldgen.enabled", "\u542f\u7528\u4e16\u754c\u751f\u6210"),
                     java.util.Map.entry(
                             "worldgen.retrogen", "\u65e7\u533a\u5757\u8865\u751f\u6210"),
@@ -132,6 +140,17 @@ public final class FoundationDataProvider implements DataProvider {
 
     public static void language(String key, String english, String chinese) {
         EXTRA_LANGUAGES.put(key, new String[] {english, chinese});
+    }
+
+    private static final java.util.Map<String, com.google.gson.JsonObject> EXTRA_SOUNDS =
+            new java.util.LinkedHashMap<>();
+
+    public static void sound(String id, com.google.gson.JsonObject value) {
+        EXTRA_SOUNDS.put(id, value.deepCopy());
+    }
+
+    public static java.util.Map<String, com.google.gson.JsonObject> soundEntries() {
+        return java.util.Map.copyOf(EXTRA_SOUNDS);
     }
 
     private final PackOutput output;

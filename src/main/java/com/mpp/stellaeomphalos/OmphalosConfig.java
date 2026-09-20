@@ -84,6 +84,14 @@ public final class OmphalosConfig {
         CLIENT.bool("render.skySignOverlay", true);
         CLIENT.decimal("sound.masterScale", 1, 0, 1);
         CLIENT.bool("codex.animations", true);
+        SERVER.integer("structure.reverifyInterval", 600, 1, 24000);
+        SERVER.integer("ritual.positionBudget", 4096, 256, 65536);
+        SERVER.integer("worldgen.retrogenChunks", 2, 1, 32);
+        SERVER.integer("worldgen.retrogenMillis", 3, 1, 50);
+        SERVER.integer("worldgen.springPumpRate", 200, 1, 1000);
+        SERVER.bool("ritual.allowTeamCollect", false);
+        SERVER.bool("ritual.progressResetOnStall", false);
+        SERVER.integer("ritual.offlineDropThreshold", 24000, 20, 2400000);
         COMMON.build();
         SERVER.build();
         CLIENT.build();

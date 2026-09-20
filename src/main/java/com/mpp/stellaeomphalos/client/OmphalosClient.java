@@ -71,6 +71,7 @@ public final class OmphalosClient {
                     com.mpp.stellaeomphalos.client.boon.BoonMirror.attach();
                     com.mpp.stellaeomphalos.client.effect.DomainParticleMirror.attach();
                     com.mpp.stellaeomphalos.client.effect.CraftingMirror.attach();
+                    com.mpp.stellaeomphalos.client.structure.StructureMirror.attach();
                     com.mpp.stellaeomphalos.client.render.MoltenLumenClientSetup
                             .registerExtensions();
                     MinecraftForge.EVENT_BUS.addListener(OmphalosClient::tick);

@@ -1,10 +1,13 @@
 package com.mpp.stellaeomphalos.constellation.domain;
 
 import com.mpp.stellaeomphalos.constellation.sign.MajorSign;
+
+import net.minecraft.util.RandomSource;
+
 import java.util.UUID;
 import java.util.function.Function;
+
 import javax.annotation.Nullable;
-import net.minecraft.util.RandomSource;
 
 /**
  * Contract of one constellation domain effect. Implementations run world mutations on the server
@@ -23,11 +26,21 @@ public abstract class DomainEffect {
     protected final @Nullable MajorSign owner;
     private static volatile Function<DomainOrigin, DomainOrigin> relayResolver = origin -> origin;
 
-    protected DomainEffect(@Nullable MajorSign owner) { this.owner = owner; }
+    protected DomainEffect(@Nullable MajorSign owner) {
+        this.owner = owner;
+    }
 
     public abstract boolean play(DomainContext ctx, float strength, DomainProperties props);
+
     public abstract DomainProperties provideProperties(int mirrorCount);
-    public void playClient(DomainContext ctx) { }
+
+    public void playClient(DomainContext ctx) {}
+
+    public void suspend(DomainContext ctx) {}
+
+    public void detach(DomainContext ctx) {
+        suspend(ctx);
+    }
 
     /** Resolves relay links; null-safe, never returns null. */
     protected DomainOrigin resolveOrigin(DomainContext ctx) {
@@ -36,7 +49,9 @@ public abstract class DomainEffect {
     }
 
     /** Backtracks the owning player of the driving pedestal; null when ownerless. */
-    protected @Nullable UUID owningPlayer(DomainContext ctx) { return ctx.owningPlayer(); }
+    protected @Nullable UUID owningPlayer(DomainContext ctx) {
+        return ctx.owningPlayer();
+    }
 
     /** Uniform throttle for strength < 1: execute this tick with probability {@code strength}. */
     protected static boolean strengthGate(float strength, RandomSource random) {
