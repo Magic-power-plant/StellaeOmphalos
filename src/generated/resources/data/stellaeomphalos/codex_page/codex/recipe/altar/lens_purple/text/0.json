@@ -1,0 +1,17 @@
+{
+  "body": "codex.stellaeomphalos.recipe.altar.lens_purple.body",
+  "kind": "text",
+  "layout": "",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "reference": "",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.recipe.altar.lens_purple.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "ATTUNEMENT"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "body": "",
+  "kind": "recipe",
+  "layout": "BASIC_CRAFT",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "recipe_id": "stellaeomphalos:world/aquamarine_sand_ore",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.recipe.world.aquamarine_sand_ore.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "BASIC_CRAFT"
+  }
+}

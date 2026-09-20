@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "stellaeomphalos:stone_set_pillar",
+    "stellaeomphalos:dark_stone_set_pillar",
+    "stellaeomphalos:infused_wood_set_pillar"
+  ]
+}

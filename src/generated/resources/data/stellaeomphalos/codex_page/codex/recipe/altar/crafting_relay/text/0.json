@@ -1,0 +1,17 @@
+{
+  "body": "codex.stellaeomphalos.recipe.altar.crafting_relay.body",
+  "kind": "text",
+  "layout": "",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "reference": "",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.recipe.altar.crafting_relay.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "DISCOVERY"
+  }
+}

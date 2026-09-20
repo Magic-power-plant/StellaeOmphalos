@@ -1,0 +1,41 @@
+{
+  "amplifier_slots": {
+    "inner": {
+      "max": 8,
+      "min": 0,
+      "tiers": [
+        "stellaeomphalos:crude",
+        "stellaeomphalos:polished",
+        "stellaeomphalos:resonant",
+        "stellaeomphalos:attuned"
+      ]
+    }
+  },
+  "base_intensity": 0.35,
+  "crystal": {
+    "min_purity": 25,
+    "min_size": 100,
+    "tuned_to": "stellaeomphalos:fornax"
+  },
+  "cycle_ticks": 1200,
+  "effect_params": {
+    "radius": 6
+  },
+  "effects": [
+    "stellaeomphalos:fornax"
+  ],
+  "lumen_per_cycle": 450,
+  "outputs": [
+    {
+      "item": "minecraft:glowstone_dust",
+      "max": 6,
+      "min": 2,
+      "weight": 1
+    }
+  ],
+  "passive_lumen_threshold": 200,
+  "requires_sign_risen": true,
+  "requires_structure_intact": true,
+  "sign": "stellaeomphalos:fornax",
+  "tick_interval": 20
+}

@@ -1,0 +1,11 @@
+{
+  "type": "stellaeomphalos:glow_flower",
+  "config": {
+    "to_place": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "stellaeomphalos:gem_crystal"
+      }
+    }
+  }
+}

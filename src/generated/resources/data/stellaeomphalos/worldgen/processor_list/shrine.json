@@ -1,0 +1,10 @@
+{
+  "processors": [
+    {
+      "processor_type": "stellaeomphalos:placeholder",
+      "replacement": {
+        "Name": "stellaeomphalos:stone_set_bricks"
+      }
+    }
+  ]
+}

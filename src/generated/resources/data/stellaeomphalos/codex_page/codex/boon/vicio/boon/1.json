@@ -1,0 +1,17 @@
+{
+  "body": "",
+  "boon": "stellaeomphalos:vicio/root",
+  "kind": "boon",
+  "layout": "ATTUNEMENT",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.boon.vicio.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "ATTUNEMENT"
+  }
+}

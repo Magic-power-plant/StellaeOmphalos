@@ -1,0 +1,21 @@
+{
+  "format": 1,
+  "include": "stellaeomphalos:pattern_rite_pedestal",
+  "layers": [
+    {
+      "cells": [
+        [
+          0,
+          3,
+          "link"
+        ]
+      ],
+      "y": 0
+    }
+  ],
+  "palette": {
+    "link": {
+      "block": "stellaeomphalos:rite_link"
+    }
+  }
+}

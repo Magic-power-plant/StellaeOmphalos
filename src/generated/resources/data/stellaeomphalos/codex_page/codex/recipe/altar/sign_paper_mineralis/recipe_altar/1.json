@@ -1,0 +1,17 @@
+{
+  "body": "",
+  "kind": "recipe_altar",
+  "layout": "CONSTELLATION",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "recipe_id": "stellaeomphalos:altar/sign_paper_mineralis",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.recipe.altar.sign_paper_mineralis.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "CONSTELLATION"
+  }
+}

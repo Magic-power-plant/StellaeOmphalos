@@ -1,0 +1,17 @@
+{
+  "body": "codex.stellaeomphalos.recipe.melting.light_gray_glass.body",
+  "kind": "text",
+  "layout": "",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "reference": "",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.recipe.melting.light_gray_glass.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "DISCOVERY"
+  }
+}

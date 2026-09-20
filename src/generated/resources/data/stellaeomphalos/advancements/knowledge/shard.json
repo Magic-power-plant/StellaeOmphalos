@@ -1,0 +1,10 @@
+{
+  "criteria": {
+    "milestone": {
+      "conditions": {
+        "count": 1
+      },
+      "trigger": "stellaeomphalos:shard_milestone"
+    }
+  }
+}

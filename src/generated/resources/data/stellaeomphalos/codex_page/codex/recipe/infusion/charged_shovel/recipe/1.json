@@ -1,0 +1,17 @@
+{
+  "body": "",
+  "kind": "recipe",
+  "layout": "DISCOVERY",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "recipe_id": "stellaeomphalos:infusion/charged_shovel",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.recipe.infusion.charged_shovel.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "DISCOVERY"
+  }
+}

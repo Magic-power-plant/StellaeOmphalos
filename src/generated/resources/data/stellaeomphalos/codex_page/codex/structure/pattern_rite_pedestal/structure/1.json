@@ -1,0 +1,17 @@
+{
+  "blueprint": "stellaeomphalos:pattern_rite_pedestal",
+  "body": "",
+  "kind": "structure",
+  "layout": "ATTUNEMENT",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "sliceable": true,
+  "title": "codex.stellaeomphalos.structure.pattern_rite_pedestal.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "ATTUNEMENT"
+  }
+}

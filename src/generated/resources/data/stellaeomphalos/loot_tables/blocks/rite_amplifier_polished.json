@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "stellaeomphalos:rite_amplifier_polished"
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}

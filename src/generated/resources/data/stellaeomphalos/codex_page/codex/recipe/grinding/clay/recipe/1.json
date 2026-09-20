@@ -1,0 +1,17 @@
+{
+  "body": "",
+  "kind": "recipe",
+  "layout": "DISCOVERY",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "recipe_id": "stellaeomphalos:grinding/clay",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.recipe.grinding.clay.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "DISCOVERY"
+  }
+}

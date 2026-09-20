@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "stellaeomphalos:rite_pedestal",
+    "stellaeomphalos:bore_core",
+    "stellaeomphalos:mineral_regenerator"
+  ]
+}

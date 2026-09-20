@@ -1,0 +1,17 @@
+{
+  "body": "",
+  "kind": "recipe",
+  "layout": "BASIC_CRAFT",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "recipe_id": "stellaeomphalos:world/infused_wood_set_runed",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.recipe.world.infused_wood_set_runed.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "BASIC_CRAFT"
+  }
+}

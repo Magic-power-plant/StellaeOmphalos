@@ -1,0 +1,277 @@
+{
+  "format": 1,
+  "layers": [
+    {
+      "fill": [
+        -4,
+        -4,
+        4,
+        4
+      ],
+      "with": "bricks",
+      "y": -2
+    },
+    {
+      "fill": [
+        -3,
+        -3,
+        3,
+        3
+      ],
+      "with": "dark",
+      "y": -1
+    },
+    {
+      "cells": [
+        [
+          -4,
+          -4,
+          "runed"
+        ],
+        [
+          -4,
+          4,
+          "runed"
+        ],
+        [
+          4,
+          -4,
+          "runed"
+        ],
+        [
+          4,
+          4,
+          "runed"
+        ]
+      ],
+      "y": -1
+    },
+    {
+      "cells": [
+        [
+          -4,
+          -4,
+          "pillar"
+        ],
+        [
+          -4,
+          4,
+          "pillar"
+        ],
+        [
+          4,
+          -4,
+          "pillar"
+        ],
+        [
+          4,
+          4,
+          "pillar"
+        ]
+      ],
+      "y": 0
+    },
+    {
+      "cells": [
+        [
+          -4,
+          -4,
+          "pillar"
+        ],
+        [
+          -4,
+          4,
+          "pillar"
+        ],
+        [
+          4,
+          -4,
+          "pillar"
+        ],
+        [
+          4,
+          4,
+          "pillar"
+        ]
+      ],
+      "y": 1
+    },
+    {
+      "cells": [
+        [
+          -4,
+          -4,
+          "cap"
+        ],
+        [
+          -4,
+          4,
+          "cap"
+        ],
+        [
+          4,
+          -4,
+          "cap"
+        ],
+        [
+          4,
+          4,
+          "cap"
+        ]
+      ],
+      "y": 2
+    },
+    {
+      "cells": [
+        [
+          -4,
+          -4,
+          "bricks"
+        ],
+        [
+          -3,
+          -4,
+          "bricks"
+        ],
+        [
+          -5,
+          -4,
+          "bricks"
+        ],
+        [
+          -4,
+          -3,
+          "bricks"
+        ],
+        [
+          -4,
+          -5,
+          "bricks"
+        ],
+        [
+          -4,
+          4,
+          "bricks"
+        ],
+        [
+          -3,
+          4,
+          "bricks"
+        ],
+        [
+          -5,
+          4,
+          "bricks"
+        ],
+        [
+          -4,
+          5,
+          "bricks"
+        ],
+        [
+          -4,
+          3,
+          "bricks"
+        ],
+        [
+          4,
+          -4,
+          "bricks"
+        ],
+        [
+          5,
+          -4,
+          "bricks"
+        ],
+        [
+          3,
+          -4,
+          "bricks"
+        ],
+        [
+          4,
+          -3,
+          "bricks"
+        ],
+        [
+          4,
+          -5,
+          "bricks"
+        ],
+        [
+          4,
+          4,
+          "bricks"
+        ],
+        [
+          5,
+          4,
+          "bricks"
+        ],
+        [
+          3,
+          4,
+          "bricks"
+        ],
+        [
+          4,
+          5,
+          "bricks"
+        ],
+        [
+          4,
+          3,
+          "bricks"
+        ]
+      ],
+      "y": -2
+    },
+    {
+      "cells": [
+        [
+          0,
+          0,
+          "core"
+        ]
+      ],
+      "y": 0
+    }
+  ],
+  "mirrorable": true,
+  "palette": {
+    "air": {
+      "air": true
+    },
+    "arch": {
+      "block": "stellaeomphalos:stone_set_arch"
+    },
+    "bricks": {
+      "block": "stellaeomphalos:stone_set_bricks"
+    },
+    "cap": {
+      "block": "stellaeomphalos:stone_set_chiseled"
+    },
+    "core": {
+      "tag": "stellaeomphalos:altar_core"
+    },
+    "dark": {
+      "block": "stellaeomphalos:dark_stone_set"
+    },
+    "pillar": {
+      "tag": "stellaeomphalos:stone_pillars"
+    },
+    "raw": {
+      "block": "stellaeomphalos:stone_set"
+    },
+    "runed": {
+      "block": "stellaeomphalos:stone_set_runed"
+    }
+  },
+  "unique": [
+    [
+      0,
+      0,
+      0
+    ]
+  ]
+}

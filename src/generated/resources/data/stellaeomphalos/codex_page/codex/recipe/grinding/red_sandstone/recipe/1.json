@@ -1,0 +1,17 @@
+{
+  "body": "",
+  "kind": "recipe",
+  "layout": "DISCOVERY",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "recipe_id": "stellaeomphalos:grinding/red_sandstone",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.recipe.grinding.red_sandstone.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "DISCOVERY"
+  }
+}

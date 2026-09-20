@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "stellaeomphalos:block/gate_core"
+    }
+  }
+}

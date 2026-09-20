@@ -1,0 +1,17 @@
+{
+  "body": "",
+  "kind": "blank",
+  "layout": "DISCOVERY",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "reference": "",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.layout.blank.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "DISCOVERY"
+  }
+}

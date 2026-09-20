@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "stellaeomphalos:block/infused_wood_set",
+    "side": "stellaeomphalos:block/infused_wood_set_pillar"
+  }
+}

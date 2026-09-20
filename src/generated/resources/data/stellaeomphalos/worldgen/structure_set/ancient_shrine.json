@@ -1,0 +1,15 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 726340,
+    "separation": 12,
+    "spacing": 34,
+    "spread_type": "triangular"
+  },
+  "structures": [
+    {
+      "structure": "stellaeomphalos:ancient_shrine",
+      "weight": 1
+    }
+  ]
+}

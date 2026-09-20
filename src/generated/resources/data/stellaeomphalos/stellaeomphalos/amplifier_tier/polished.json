@@ -1,0 +1,7 @@
+{
+  "consumes_on_cycle": false,
+  "lumen_upkeep_per_tick": 1,
+  "max_per_slot": 4,
+  "multiplier": 1.25,
+  "rank": 1
+}

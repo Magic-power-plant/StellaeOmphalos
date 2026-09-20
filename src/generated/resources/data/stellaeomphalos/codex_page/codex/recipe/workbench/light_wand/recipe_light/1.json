@@ -1,0 +1,17 @@
+{
+  "body": "",
+  "kind": "recipe_light",
+  "layout": "DISCOVERY",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "recipe_id": "stellaeomphalos:workbench/light_wand",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.recipe.workbench.light_wand.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "DISCOVERY"
+  }
+}

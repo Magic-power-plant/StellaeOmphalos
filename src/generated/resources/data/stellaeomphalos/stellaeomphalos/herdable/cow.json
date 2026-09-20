@@ -1,0 +1,6 @@
+{
+  "entity": "minecraft:cow",
+  "loot_table": "minecraft:entities/cow",
+  "luck_bonus": 0,
+  "priority": 10
+}

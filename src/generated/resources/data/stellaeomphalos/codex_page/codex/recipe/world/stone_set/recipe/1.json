@@ -1,0 +1,17 @@
+{
+  "body": "",
+  "kind": "recipe",
+  "layout": "BASIC_CRAFT",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "recipe_id": "stellaeomphalos:world/stone_set",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.recipe.world.stone_set.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "BASIC_CRAFT"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "body": "codex.stellaeomphalos.recipe.world.bore_head_stone.body",
+  "kind": "text",
+  "layout": "",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "reference": "",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.recipe.world.bore_head_stone.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "BASIC_CRAFT"
+  }
+}

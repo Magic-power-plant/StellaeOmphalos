@@ -1,0 +1,17 @@
+{
+  "body": "",
+  "kind": "celestial",
+  "layout": "ATTUNEMENT",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "sign": "stellaeomphalos:pelotrio",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.sign.pelotrio.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "ATTUNEMENT"
+  }
+}

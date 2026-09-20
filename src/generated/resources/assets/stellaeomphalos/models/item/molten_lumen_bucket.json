@@ -1,0 +1,6 @@
+{
+  "parent": "forge:item/bucket",
+  "flip_gas": false,
+  "fluid": "stellaeomphalos:molten_lumen",
+  "loader": "forge:fluid_container"
+}

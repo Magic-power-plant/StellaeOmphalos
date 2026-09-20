@@ -1,0 +1,9 @@
+{
+  "type": "stellaeomphalos:temple",
+  "biomes": "#stellaeomphalos:has_structure/small_ruin",
+  "depth": 0,
+  "spawn_overrides": {},
+  "step": "surface_structures",
+  "template": "stellaeomphalos:small_ruin",
+  "terrain_adaptation": "none"
+}

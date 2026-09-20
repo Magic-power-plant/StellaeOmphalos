@@ -1,0 +1,138 @@
+{
+  "format": 1,
+  "include": "stellaeomphalos:pattern_altar_t3",
+  "layers": [
+    {
+      "pattern": "ring",
+      "radius": 6,
+      "with": "bricks",
+      "y": -2
+    },
+    {
+      "cells": [
+        [
+          -6,
+          -6,
+          "pillar"
+        ],
+        [
+          -6,
+          6,
+          "pillar"
+        ],
+        [
+          6,
+          -6,
+          "pillar"
+        ],
+        [
+          6,
+          6,
+          "pillar"
+        ]
+      ],
+      "y": 0
+    },
+    {
+      "cells": [
+        [
+          -6,
+          -6,
+          "pillar"
+        ],
+        [
+          -6,
+          6,
+          "pillar"
+        ],
+        [
+          6,
+          -6,
+          "pillar"
+        ],
+        [
+          6,
+          6,
+          "pillar"
+        ]
+      ],
+      "y": 1
+    },
+    {
+      "cells": [
+        [
+          -6,
+          -6,
+          "pillar"
+        ],
+        [
+          -6,
+          6,
+          "pillar"
+        ],
+        [
+          6,
+          -6,
+          "pillar"
+        ],
+        [
+          6,
+          6,
+          "pillar"
+        ]
+      ],
+      "y": 2
+    },
+    {
+      "cells": [
+        [
+          -6,
+          -6,
+          "cap"
+        ],
+        [
+          -6,
+          6,
+          "cap"
+        ],
+        [
+          6,
+          -6,
+          "cap"
+        ],
+        [
+          6,
+          6,
+          "cap"
+        ]
+      ],
+      "y": 3
+    }
+  ],
+  "palette": {
+    "air": {
+      "air": true
+    },
+    "arch": {
+      "block": "stellaeomphalos:stone_set_arch"
+    },
+    "bricks": {
+      "block": "stellaeomphalos:stone_set_bricks"
+    },
+    "cap": {
+      "block": "stellaeomphalos:stone_set_chiseled"
+    },
+    "dark": {
+      "block": "stellaeomphalos:dark_stone_set"
+    },
+    "pillar": {
+      "tag": "stellaeomphalos:stone_pillars"
+    },
+    "raw": {
+      "block": "stellaeomphalos:stone_set"
+    },
+    "runed": {
+      "block": "stellaeomphalos:stone_set_runed"
+    }
+  }
+}

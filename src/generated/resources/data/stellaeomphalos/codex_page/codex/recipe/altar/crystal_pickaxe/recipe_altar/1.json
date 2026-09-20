@@ -1,0 +1,17 @@
+{
+  "body": "",
+  "kind": "recipe_altar",
+  "layout": "ATTUNEMENT",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "recipe_id": "stellaeomphalos:altar/crystal_pickaxe",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.recipe.altar.crystal_pickaxe.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "ATTUNEMENT"
+  }
+}

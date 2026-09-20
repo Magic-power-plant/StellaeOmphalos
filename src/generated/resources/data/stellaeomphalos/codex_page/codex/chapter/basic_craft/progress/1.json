@@ -1,0 +1,17 @@
+{
+  "body": "",
+  "kind": "progress",
+  "layout": "BASIC_CRAFT",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "reference": "",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.chapter.basic_craft.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "BASIC_CRAFT"
+  }
+}

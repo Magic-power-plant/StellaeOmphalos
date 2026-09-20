@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "milestone": {
+      "conditions": {},
+      "trigger": "stellaeomphalos:resonance_milestone"
+    }
+  }
+}

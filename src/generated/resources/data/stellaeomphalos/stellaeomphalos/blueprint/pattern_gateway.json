@@ -1,0 +1,87 @@
+{
+  "format": 1,
+  "layers": [
+    {
+      "fill": [
+        -3,
+        -3,
+        3,
+        3
+      ],
+      "with": "bricks",
+      "y": -1
+    },
+    {
+      "cells": [
+        [
+          0,
+          0,
+          "core"
+        ]
+      ],
+      "y": 0
+    }
+  ],
+  "mirrorable": true,
+  "palette": {
+    "air": {
+      "air": true
+    },
+    "arch": {
+      "block": "stellaeomphalos:stone_set_arch"
+    },
+    "bricks": {
+      "block": "stellaeomphalos:stone_set_bricks"
+    },
+    "cap": {
+      "block": "stellaeomphalos:stone_set_chiseled"
+    },
+    "core": {
+      "block": "stellaeomphalos:gate_core"
+    },
+    "dark": {
+      "block": "stellaeomphalos:dark_stone_set"
+    },
+    "pillar": {
+      "tag": "stellaeomphalos:stone_pillars"
+    },
+    "raw": {
+      "block": "stellaeomphalos:stone_set"
+    },
+    "runed": {
+      "block": "stellaeomphalos:stone_set_runed"
+    }
+  },
+  "placeholder_areas": [
+    {
+      "from": [
+        -3,
+        -1,
+        -3
+      ],
+      "name": "trim",
+      "to": [
+        3,
+        -1,
+        3
+      ]
+    }
+  ],
+  "placeholders": {
+    "trim": [
+      {
+        "tag": "stellaeomphalos:stone_set_all"
+      },
+      {
+        "tag": "minecraft:base_stone_overworld"
+      }
+    ]
+  },
+  "unique": [
+    [
+      0,
+      0,
+      0
+    ]
+  ]
+}

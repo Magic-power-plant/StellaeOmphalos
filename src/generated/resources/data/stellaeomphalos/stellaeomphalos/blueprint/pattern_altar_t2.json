@@ -1,0 +1,168 @@
+{
+  "format": 1,
+  "layers": [
+    {
+      "fill": [
+        -3,
+        -3,
+        3,
+        3
+      ],
+      "with": "dark",
+      "y": -1
+    },
+    {
+      "pattern": "ring",
+      "radius": 3,
+      "with": "arch",
+      "y": -1
+    },
+    {
+      "cells": [
+        [
+          -3,
+          -3,
+          "cap"
+        ],
+        [
+          -3,
+          3,
+          "cap"
+        ],
+        [
+          3,
+          -3,
+          "cap"
+        ],
+        [
+          3,
+          3,
+          "cap"
+        ]
+      ],
+      "y": -1
+    },
+    {
+      "cells": [
+        [
+          -3,
+          -3,
+          "pillar"
+        ],
+        [
+          -3,
+          3,
+          "pillar"
+        ],
+        [
+          3,
+          -3,
+          "pillar"
+        ],
+        [
+          3,
+          3,
+          "pillar"
+        ]
+      ],
+      "y": 0
+    },
+    {
+      "cells": [
+        [
+          -3,
+          -3,
+          "pillar"
+        ],
+        [
+          -3,
+          3,
+          "pillar"
+        ],
+        [
+          3,
+          -3,
+          "pillar"
+        ],
+        [
+          3,
+          3,
+          "pillar"
+        ]
+      ],
+      "y": 1
+    },
+    {
+      "cells": [
+        [
+          -3,
+          -3,
+          "cap"
+        ],
+        [
+          -3,
+          3,
+          "cap"
+        ],
+        [
+          3,
+          -3,
+          "cap"
+        ],
+        [
+          3,
+          3,
+          "cap"
+        ]
+      ],
+      "y": 2
+    },
+    {
+      "cells": [
+        [
+          0,
+          0,
+          "core"
+        ]
+      ],
+      "y": 0
+    }
+  ],
+  "mirrorable": true,
+  "palette": {
+    "air": {
+      "air": true
+    },
+    "arch": {
+      "block": "stellaeomphalos:stone_set_arch"
+    },
+    "bricks": {
+      "block": "stellaeomphalos:stone_set_bricks"
+    },
+    "cap": {
+      "block": "stellaeomphalos:stone_set_chiseled"
+    },
+    "core": {
+      "tag": "stellaeomphalos:altar_core"
+    },
+    "dark": {
+      "block": "stellaeomphalos:dark_stone_set"
+    },
+    "pillar": {
+      "tag": "stellaeomphalos:stone_pillars"
+    },
+    "raw": {
+      "block": "stellaeomphalos:stone_set"
+    },
+    "runed": {
+      "block": "stellaeomphalos:stone_set_runed"
+    }
+  },
+  "unique": [
+    [
+      0,
+      0,
+      0
+    ]
+  ]
+}

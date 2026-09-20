@@ -1,0 +1,15 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 726344,
+    "separation": 5,
+    "spacing": 14,
+    "spread_type": "triangular"
+  },
+  "structures": [
+    {
+      "structure": "stellaeomphalos:small_ruin",
+      "weight": 1
+    }
+  ]
+}

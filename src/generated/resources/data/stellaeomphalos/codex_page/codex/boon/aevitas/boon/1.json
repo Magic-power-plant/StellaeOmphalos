@@ -1,0 +1,17 @@
+{
+  "body": "",
+  "boon": "stellaeomphalos:aevitas/root",
+  "kind": "boon",
+  "layout": "ATTUNEMENT",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.boon.aevitas.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "ATTUNEMENT"
+  }
+}

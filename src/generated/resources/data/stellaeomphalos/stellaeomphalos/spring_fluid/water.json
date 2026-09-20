@@ -1,0 +1,7 @@
+{
+  "extra_random_mb": 6000,
+  "fluid": "minecraft:water",
+  "guaranteed_mb": 14000,
+  "temperature_class": "COLD",
+  "weight": 100
+}

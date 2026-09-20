@@ -1,0 +1,65 @@
+{
+  "format": 1,
+  "layers": [
+    {
+      "fill": [
+        -2,
+        -2,
+        2,
+        2
+      ],
+      "with": "bricks",
+      "y": -1
+    },
+    {
+      "cells": [
+        [
+          0,
+          0,
+          "core"
+        ]
+      ],
+      "y": 0
+    }
+  ],
+  "mirrorable": true,
+  "palette": {
+    "air": {
+      "air": true
+    },
+    "arch": {
+      "block": "stellaeomphalos:stone_set_arch"
+    },
+    "bricks": {
+      "block": "stellaeomphalos:stone_set_bricks"
+    },
+    "cap": {
+      "block": "stellaeomphalos:stone_set_chiseled"
+    },
+    "core": {
+      "block": "stellaeomphalos:stone_set_runed"
+    },
+    "dark": {
+      "block": "stellaeomphalos:dark_stone_set"
+    },
+    "pillar": {
+      "tag": "stellaeomphalos:stone_pillars"
+    },
+    "raw": {
+      "block": "stellaeomphalos:stone_set"
+    },
+    "runed": {
+      "block": "stellaeomphalos:stone_set_runed"
+    }
+  },
+  "post": [
+    {
+      "type": "stellaeomphalos:decay",
+      "chance": 0.44999999999999996,
+      "match": {
+        "tag": "stellaeomphalos:stone_set_all"
+      }
+    }
+  ],
+  "unique": []
+}

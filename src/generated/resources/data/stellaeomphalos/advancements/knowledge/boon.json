@@ -1,0 +1,10 @@
+{
+  "criteria": {
+    "milestone": {
+      "conditions": {
+        "rank": 2
+      },
+      "trigger": "stellaeomphalos:boon_milestone"
+    }
+  }
+}

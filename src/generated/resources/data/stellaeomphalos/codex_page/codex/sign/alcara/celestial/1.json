@@ -1,0 +1,17 @@
+{
+  "body": "",
+  "kind": "celestial",
+  "layout": "ATTUNEMENT",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "sign": "stellaeomphalos:alcara",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.sign.alcara.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "ATTUNEMENT"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "body": "",
+  "boon": "stellaeomphalos:armara/root",
+  "kind": "boon",
+  "layout": "ATTUNEMENT",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.boon.armara.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "ATTUNEMENT"
+  }
+}
