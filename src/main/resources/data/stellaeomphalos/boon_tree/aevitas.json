@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "sign": "stellaeomphalos:aevitas",
+  "nodes": [
+    {
+      "id": "stellaeomphalos:aevitas/root",
+      "type": "root",
+      "x": 0,
+      "z": 0,
+      "exp_multiplier": 1.0
+    },
+    {
+      "id": "stellaeomphalos:aevitas/vitality",
+      "type": "major",
+      "x": 2,
+      "z": -1,
+      "modifiers": [
+        { "attr": "stellaeomphalos:max_health", "mode": "addition", "value": 4.0 }
+      ]
+    },
+    {
+      "id": "stellaeomphalos:aevitas/regeneration",
+      "type": "normal",
+      "x": 4,
+      "z": 0,
+      "modifiers": [
+        { "attr": "stellaeomphalos:life_recovery", "mode": "added_multiply", "value": 0.15 }
+      ]
+    },
+    {
+      "id": "stellaeomphalos:aevitas/verdant",
+      "type": "key",
+      "x": 3,
+      "z": 2,
+      "rule": { "min_level": 5 },
+      "modifiers": [
+        { "attr": "stellaeomphalos:beneficial_duration", "mode": "added_multiply", "value": 0.25 }
+      ]
+    }
+  ],
+  "edges": [
+    ["stellaeomphalos:aevitas/root", "stellaeomphalos:aevitas/vitality"],
+    ["stellaeomphalos:aevitas/vitality", "stellaeomphalos:aevitas/regeneration"],
+    ["stellaeomphalos:aevitas/vitality", "stellaeomphalos:aevitas/verdant"]
+  ]
+}

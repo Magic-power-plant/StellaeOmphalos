@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "sign": "stellaeomphalos:pelotrio",
+  "enchantments": [
+    { "enchantment": "minecraft:looting", "min_level": 1, "max_level": 3, "ignore_compatibility": false }
+  ],
+  "potions": [
+    { "effect": "minecraft:absorption", "min_level": 0, "max_level": 1 }
+  ]
+}

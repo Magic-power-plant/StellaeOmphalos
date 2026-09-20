@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "sign": "stellaeomphalos:octans",
+  "enchantments": [
+    { "enchantment": "minecraft:luck_of_the_sea", "min_level": 1, "max_level": 3, "ignore_compatibility": false },
+    { "enchantment": "minecraft:lure", "min_level": 1, "max_level": 3, "ignore_compatibility": false }
+  ],
+  "potions": [
+    { "effect": "minecraft:water_breathing", "min_level": 0, "max_level": 0 }
+  ]
+}

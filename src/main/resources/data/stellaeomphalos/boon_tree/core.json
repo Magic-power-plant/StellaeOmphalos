@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "nodes": [
+    {
+      "id": "stellaeomphalos:core/root",
+      "type": "core_root",
+      "x": 200,
+      "z": 0,
+      "modifiers": [
+        { "attr": "stellaeomphalos:max_health", "mode": "addition", "value": 2.0 }
+      ]
+    },
+    {
+      "id": "stellaeomphalos:core/stamina",
+      "type": "normal",
+      "x": 202,
+      "z": -1,
+      "modifiers": [
+        { "attr": "stellaeomphalos:life_recovery", "mode": "added_multiply", "value": 0.10 }
+      ]
+    },
+    {
+      "id": "stellaeomphalos:core/focus",
+      "type": "key",
+      "x": 202,
+      "z": 1,
+      "modifiers": [
+        { "attr": "stellaeomphalos:boon_potency", "mode": "addition", "value": 0.05 }
+      ]
+    }
+  ],
+  "edges": [
+    ["stellaeomphalos:core/root", "stellaeomphalos:core/stamina"],
+    ["stellaeomphalos:core/root", "stellaeomphalos:core/focus"]
+  ]
+}

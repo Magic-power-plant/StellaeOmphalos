@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "sign": "stellaeomphalos:evorsio",
+  "nodes": [
+    {
+      "id": "stellaeomphalos:evorsio/root",
+      "type": "root",
+      "x": 120,
+      "z": 0,
+      "exp_multiplier": 1.0
+    },
+    {
+      "id": "stellaeomphalos:evorsio/demolition",
+      "type": "major",
+      "x": 122,
+      "z": -1,
+      "modifiers": [
+        { "attr": "stellaeomphalos:harvest_speed", "mode": "added_multiply", "value": 0.25 }
+      ]
+    },
+    {
+      "id": "stellaeomphalos:evorsio/quarry",
+      "type": "normal",
+      "x": 124,
+      "z": 0,
+      "modifiers": [
+        { "attr": "stellaeomphalos:reach", "mode": "addition", "value": 0.5 }
+      ]
+    },
+    {
+      "id": "stellaeomphalos:evorsio/blast",
+      "type": "key",
+      "x": 123,
+      "z": 2,
+      "rule": { "min_level": 8 },
+      "modifiers": [
+        { "attr": "stellaeomphalos:crit_chance", "mode": "addition", "value": 3.0 }
+      ]
+    }
+  ],
+  "edges": [
+    ["stellaeomphalos:evorsio/root", "stellaeomphalos:evorsio/demolition"],
+    ["stellaeomphalos:evorsio/demolition", "stellaeomphalos:evorsio/quarry"],
+    ["stellaeomphalos:evorsio/demolition", "stellaeomphalos:evorsio/blast"]
+  ]
+}

@@ -40,6 +40,13 @@ public final class OmphalosClient {
             ClientSessionCleaner.register("fragment_assembler", OmphalosChannel::resetClient);
             ClientSessionCleaner.register("client_tasks", () -> { scheduler.close(); scheduler = scheduler(); });
             ClientSessionCleaner.register("session_metadata", () -> { announced = false; configVersion = 0; debugUntil = 0; });
+            com.mpp.stellaeomphalos.client.lumen.LumenLinkMirror.attachClient();
+            com.mpp.stellaeomphalos.client.sign.SignSkyMirror.attach();
+            com.mpp.stellaeomphalos.client.charge.ChargeMirror.attach();
+            com.mpp.stellaeomphalos.client.stasis.StasisMirror.attach();
+            com.mpp.stellaeomphalos.client.boon.BoonMirror.attach();
+            com.mpp.stellaeomphalos.client.effect.DomainParticleMirror.attach();
+            com.mpp.stellaeomphalos.client.render.MoltenLumenClientSetup.registerExtensions();
             MinecraftForge.EVENT_BUS.addListener(OmphalosClient::tick);
             MinecraftForge.EVENT_BUS.addListener(OmphalosClient::logout);
             MinecraftForge.EVENT_BUS.addListener(OmphalosClient::login);

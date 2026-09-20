@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "sign": "stellaeomphalos:vicio",
+  "enchantments": [
+    { "enchantment": "minecraft:feather_falling", "min_level": 1, "max_level": 4, "ignore_compatibility": false }
+  ],
+  "potions": [
+    { "effect": "minecraft:jump_boost", "min_level": 0, "max_level": 1 }
+  ]
+}

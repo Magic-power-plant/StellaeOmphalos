@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "sign": "stellaeomphalos:ulteria",
+  "enchantments": [
+    { "enchantment": "minecraft:power", "min_level": 1, "max_level": 3, "ignore_compatibility": false }
+  ],
+  "potions": []
+}

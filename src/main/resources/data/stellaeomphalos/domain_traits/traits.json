@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "traits": {
+    "gelu": {
+      "potency_scale": 0.15,
+      "size_scale": 3.5
+    },
+    "ulteria": {
+      "size_scale": 0.2,
+      "amplifier_scale": 4.0
+    },
+    "alcara": {
+      "size_scale": 2.0,
+      "amplifier_scale": 2.0,
+      "corrupted": true,
+      "fracture_lower_scale": 0.015,
+      "fracture_rate_scale": 50000.0
+    },
+    "vorux": {
+      "size_scale": 1.75,
+      "amplifier_scale": 2.0,
+      "fracture_lower_scale": 0.25,
+      "fracture_rate_scale": 3000.0
+    }
+  }
+}

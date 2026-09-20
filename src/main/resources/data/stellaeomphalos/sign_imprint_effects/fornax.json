@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "sign": "stellaeomphalos:fornax",
+  "enchantments": [
+    { "enchantment": "minecraft:fire_aspect", "min_level": 1, "max_level": 2, "ignore_compatibility": false }
+  ],
+  "potions": [
+    { "effect": "minecraft:fire_resistance", "min_level": 0, "max_level": 0 }
+  ]
+}

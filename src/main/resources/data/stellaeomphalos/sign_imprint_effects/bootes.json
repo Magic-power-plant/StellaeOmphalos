@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "sign": "stellaeomphalos:bootes",
+  "enchantments": [],
+  "potions": [
+    { "effect": "minecraft:saturation", "min_level": 0, "max_level": 0 }
+  ]
+}

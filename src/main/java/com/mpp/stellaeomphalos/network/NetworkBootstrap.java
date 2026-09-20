@@ -19,6 +19,21 @@ public final class NetworkBootstrap {
         registry.register(7, PayloadRegistry.Direction.TO_SERVER, PktNetworkDebugDumpRequest.class, PktNetworkDebugDumpRequest.CODEC, 0);
         registry.register(8, PayloadRegistry.Direction.TO_CLIENT, PktNetworkDebugDump.class, PktNetworkDebugDump.CODEC, 0);
         registry.register(9, PayloadRegistry.Direction.TO_CLIENT, PktMigrationReport.class, PktMigrationReport.CODEC, 0);
+        registry.register(10, PayloadRegistry.Direction.TO_CLIENT, PktChargeSync.class, PktChargeSync.CODEC, 0);
+        registry.register(11, PayloadRegistry.Direction.TO_SERVER, PktSkySeedRequest.class, PktSkySeedRequest.CODEC, 0);
+        registry.register(12, PayloadRegistry.Direction.TO_CLIENT, PktSkySeed.class, PktSkySeed.CODEC, 0);
+        registry.register(13, PayloadRegistry.Direction.TO_CLIENT, PktActiveSigns.class, PktActiveSigns.CODEC, 0);
+        registry.register(14, PayloadRegistry.Direction.TO_CLIENT, PktSignSkyLayout.class, PktSignSkyLayout.CODEC, 0);
+        registry.register(15, PayloadRegistry.Direction.TO_CLIENT, PktSignRename.class, PktSignRename.CODEC, 0);
+        registry.register(16, PayloadRegistry.Direction.TO_CLIENT, PktBoonTreeSync.class, PktBoonTreeSync.CODEC, 0);
+        registry.register(17, PayloadRegistry.Direction.TO_CLIENT, PktBoonDelta.class, PktBoonDelta.CODEC, 0);
+        registry.register(18, PayloadRegistry.Direction.TO_CLIENT, PktBoonExp.class, PktBoonExp.CODEC, 0);
+        registry.register(19, PayloadRegistry.Direction.TO_CLIENT, PktStasisZone.class, PktStasisZone.CODEC, 0);
+        registry.register(20, PayloadRegistry.Direction.TO_CLIENT, PktLumenNode.class, PktLumenNode.CODEC, 0);
+        registry.register(21, PayloadRegistry.Direction.TO_CLIENT, PktLumenDelta.class, PktLumenDelta.CODEC, 0);
+        registry.register(22, PayloadRegistry.Direction.TO_SERVER, PktLumenSinkQuery.class, PktLumenSinkQuery.CODEC, 0);
+        registry.register(23, PayloadRegistry.Direction.TO_SERVER, PktImprintEngrave.class, PktImprintEngrave.CODEC, 0);
+        registry.register(24, PayloadRegistry.Direction.TO_CLIENT, PktDomainParticle.class, PktDomainParticle.CODEC, 0);
         bus.addListener(NetworkBootstrap::setup);
     }
     private static void setup(FMLCommonSetupEvent event) { event.enqueueWork(OmphalosChannel::initialize); }

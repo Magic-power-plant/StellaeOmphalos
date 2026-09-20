@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "sign": "stellaeomphalos:discidia",
+  "enchantments": [
+    { "enchantment": "minecraft:sharpness", "min_level": 1, "max_level": 3, "ignore_compatibility": false }
+  ],
+  "potions": [
+    { "effect": "minecraft:strength", "min_level": 0, "max_level": 1 }
+  ]
+}

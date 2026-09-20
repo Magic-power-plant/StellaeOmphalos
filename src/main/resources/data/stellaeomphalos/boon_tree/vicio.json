@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "sign": "stellaeomphalos:vicio",
+  "nodes": [
+    {
+      "id": "stellaeomphalos:vicio/root",
+      "type": "root",
+      "x": 160,
+      "z": 0,
+      "exp_multiplier": 1.0
+    },
+    {
+      "id": "stellaeomphalos:vicio/swiftness",
+      "type": "major",
+      "x": 162,
+      "z": -1,
+      "modifiers": [
+        { "attr": "stellaeomphalos:movement_speed", "mode": "added_multiply", "value": 0.10 }
+      ]
+    },
+    {
+      "id": "stellaeomphalos:vicio/swimmer",
+      "type": "normal",
+      "x": 164,
+      "z": 0,
+      "modifiers": [
+        { "attr": "stellaeomphalos:swim_speed", "mode": "added_multiply", "value": 0.20 }
+      ]
+    },
+    {
+      "id": "stellaeomphalos:vicio/windstep",
+      "type": "socket",
+      "x": 163,
+      "z": 2,
+      "modifiers": [
+        { "attr": "stellaeomphalos:dodge", "mode": "addition", "value": 0.03 }
+      ]
+    },
+    {
+      "id": "stellaeomphalos:vicio/barrage",
+      "type": "normal",
+      "x": 161,
+      "z": 3,
+      "modifiers": [
+        { "attr": "stellaeomphalos:projectile_damage", "mode": "added_multiply", "value": 0.15 }
+      ],
+      "translators": [
+        { "type": "radius_scale", "x": 160, "z": 0, "radius": 5.0, "factor": 1.10 }
+      ]
+    }
+  ],
+  "edges": [
+    ["stellaeomphalos:vicio/root", "stellaeomphalos:vicio/swiftness"],
+    ["stellaeomphalos:vicio/swiftness", "stellaeomphalos:vicio/swimmer"],
+    ["stellaeomphalos:vicio/swiftness", "stellaeomphalos:vicio/windstep"],
+    ["stellaeomphalos:vicio/swiftness", "stellaeomphalos:vicio/barrage"]
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "sign": "stellaeomphalos:gelu",
+  "enchantments": [
+    { "enchantment": "minecraft:frost_walker", "min_level": 1, "max_level": 2, "ignore_compatibility": false }
+  ],
+  "potions": []
+}

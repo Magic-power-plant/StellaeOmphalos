@@ -1,0 +1,8 @@
+{
+  "format": "{onset}{body}{tail}",
+  "onset": ["Va", "Kor", "Thal", "Nym", "Ser", "Ori", "Lum", "Cae", "Ver", "Zeph", "Dra", "Myr"],
+  "body": ["ren", "dis", "mor", "ael", "ith", "oth", "une", "ara", "evi", "ola", "ess", "iro"],
+  "tail": ["ax", "is", "or", "um", "el", "yn", "ar", "os", "eth", "ia"],
+  "min_syllables": 2,
+  "max_syllables": 3
+}

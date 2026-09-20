@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "kind": "trait",
+  "color": 8014734,
+  "moon_phases": ["waning_3_4", "waning_1_2"],
+  "signature_items": ["minecraft:fermented_spider_eye", "minecraft:soul_sand"],
+  "stars": [
+    { "x": 10, "y": 10 },
+    { "x": 20, "y": 10 },
+    { "x": 20, "y": 20 },
+    { "x": 10, "y": 20 },
+    { "x": 15, "y": 15 }
+  ],
+  "lines": [
+    { "a": { "x": 10, "y": 10 }, "b": { "x": 20, "y": 10 } },
+    { "a": { "x": 20, "y": 10 }, "b": { "x": 20, "y": 20 } },
+    { "a": { "x": 20, "y": 20 }, "b": { "x": 15, "y": 15 } },
+    { "a": { "x": 10, "y": 20 }, "b": { "x": 15, "y": 15 } }
+  ]
+}

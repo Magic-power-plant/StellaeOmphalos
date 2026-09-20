@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "sign": "stellaeomphalos:discidia",
+  "nodes": [
+    {
+      "id": "stellaeomphalos:discidia/root",
+      "type": "root",
+      "x": 80,
+      "z": 0,
+      "exp_multiplier": 1.0
+    },
+    {
+      "id": "stellaeomphalos:discidia/carnage",
+      "type": "major",
+      "x": 82,
+      "z": -1,
+      "modifiers": [
+        { "attr": "stellaeomphalos:melee_damage", "mode": "added_multiply", "value": 0.15 }
+      ]
+    },
+    {
+      "id": "stellaeomphalos:discidia/nexus",
+      "type": "connector",
+      "x": 84,
+      "z": 0
+    },
+    {
+      "id": "stellaeomphalos:discidia/execution",
+      "type": "key",
+      "x": 86,
+      "z": -1,
+      "modifiers": [
+        { "attr": "stellaeomphalos:crit_damage", "mode": "added_multiply", "value": 0.5 }
+      ]
+    },
+    {
+      "id": "stellaeomphalos:discidia/rush",
+      "type": "normal",
+      "x": 86,
+      "z": 1,
+      "modifiers": [
+        { "attr": "stellaeomphalos:attack_speed", "mode": "added_multiply", "value": 0.10 }
+      ]
+    },
+    {
+      "id": "stellaeomphalos:discidia/arsenal",
+      "type": "socket",
+      "x": 83,
+      "z": -2,
+      "modifiers": [
+        { "attr": "stellaeomphalos:thorns", "mode": "addition", "value": 0.05 }
+      ]
+    }
+  ],
+  "edges": [
+    ["stellaeomphalos:discidia/root", "stellaeomphalos:discidia/carnage"],
+    ["stellaeomphalos:discidia/carnage", "stellaeomphalos:discidia/nexus"],
+    ["stellaeomphalos:discidia/nexus", "stellaeomphalos:discidia/execution"],
+    ["stellaeomphalos:discidia/nexus", "stellaeomphalos:discidia/rush"],
+    ["stellaeomphalos:discidia/carnage", "stellaeomphalos:discidia/arsenal"]
+  ]
+}

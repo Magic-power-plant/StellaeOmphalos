@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "sign": "stellaeomphalos:armara",
+  "nodes": [
+    {
+      "id": "stellaeomphalos:armara/root",
+      "type": "root",
+      "x": 40,
+      "z": 0,
+      "exp_multiplier": 1.0
+    },
+    {
+      "id": "stellaeomphalos:armara/bulwark",
+      "type": "major",
+      "x": 42,
+      "z": -1,
+      "modifiers": [
+        { "attr": "stellaeomphalos:armor", "mode": "addition", "value": 3.0 }
+      ]
+    },
+    {
+      "id": "stellaeomphalos:armara/ward",
+      "type": "normal",
+      "x": 44,
+      "z": 0,
+      "modifiers": [
+        { "attr": "stellaeomphalos:elemental_ward", "mode": "addition", "value": 0.05 }
+      ]
+    },
+    {
+      "id": "stellaeomphalos:armara/bastion",
+      "type": "socket",
+      "x": 43,
+      "z": 2,
+      "modifiers": [
+        { "attr": "stellaeomphalos:armor_toughness", "mode": "addition", "value": 1.0 }
+      ]
+    }
+  ],
+  "edges": [
+    ["stellaeomphalos:armara/root", "stellaeomphalos:armara/bulwark"],
+    ["stellaeomphalos:armara/bulwark", "stellaeomphalos:armara/ward"],
+    ["stellaeomphalos:armara/bulwark", "stellaeomphalos:armara/bastion"]
+  ]
+}
