@@ -123,6 +123,11 @@ public final class StarRecords implements KnowledgeAccess {
         return mutate(p, r -> r.read(id, route));
     }
 
+    @Override
+    public boolean clearRoute(ServerPlayer p) {
+        return mutate(p, StarRecord::clearRoute);
+    }
+
     public static boolean mutate(
             ServerPlayer player, java.util.function.Predicate<StarRecord> mutation) {
         boolean changed = mutation.test(get(player));

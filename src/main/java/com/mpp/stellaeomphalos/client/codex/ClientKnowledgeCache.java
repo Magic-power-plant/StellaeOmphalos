@@ -33,6 +33,7 @@ public final class ClientKnowledgeCache {
     private static long revision, epoch = -1;
     private static float hudFade;
     private static Boolean codexOverview;
+    private static String codexOverlay = "", codexOverlayTarget = "";
     private static String lastShard = "";
     private static net.minecraft.network.chat.Component notice = net.minecraft.network.chat.Component.empty();
     public static net.minecraft.network.chat.Component notice() { return notice; }
@@ -265,13 +266,23 @@ public final class ClientKnowledgeCache {
         return epoch;
     }
 
-    /** Live codex view state for this session; empty until the book is closed once. */
+    /** Live codex view state for this session; overview flag empty until the book is closed once. */
     public static Optional<Boolean> codexOverview() {
         return Optional.ofNullable(codexOverview);
     }
 
-    public static void codexOverview(boolean overview) {
+    public static String codexOverlay() {
+        return codexOverlay;
+    }
+
+    public static String codexOverlayTarget() {
+        return codexOverlayTarget;
+    }
+
+    public static void codexView(boolean overview, String overlay, String overlayTarget) {
         codexOverview = overview;
+        codexOverlay = overlay;
+        codexOverlayTarget = overlayTarget;
     }
 
     public static float hudFade() {
@@ -295,6 +306,8 @@ public final class ClientKnowledgeCache {
         epoch = -1;
         hudFade = 0;
         codexOverview = null;
+        codexOverlay = "";
+        codexOverlayTarget = "";
         lastShard = "";
         notice = net.minecraft.network.chat.Component.empty();
         NAVIGATOR.reset();

@@ -63,7 +63,7 @@ public final class PartFiveClientSmoke {
                             Math.min(
                                     (screen.width - 8F) / CodexLayout.WIDTH,
                                     (screen.height - 8F) / CodexLayout.HEIGHT));
-            int left = (int) ((screen.width / scale - CodexLayout.WIDTH) / 2),
+            int left = (int) ((screen.width / scale - CodexLayout.BOOK_WIDTH) / 2),
                     top = (int) ((screen.height / scale - CodexLayout.HEIGHT) / 2);
             // Two actual mouse events focus the first branch through the screen's hit-test path.
             screen.mouseClicked((left + 106) * scale, (top + 84) * scale, 0);

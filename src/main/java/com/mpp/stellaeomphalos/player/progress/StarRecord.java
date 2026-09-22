@@ -153,6 +153,12 @@ public class StarRecord extends AbstractStarRecord {
         return changed(true);
     }
 
+    public boolean clearRoute() {
+        if (!valid() || route.isEmpty()) return false;
+        route = "";
+        return changed(true);
+    }
+
     /** BoonProgress is the only live boon owner. This is its durable snapshot. */
     public boolean captureBoons(CompoundTag snapshot) {
         if (!valid()) return false;

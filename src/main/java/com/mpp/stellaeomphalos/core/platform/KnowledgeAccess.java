@@ -20,4 +20,6 @@ public interface KnowledgeAccess {
     boolean recordTarget(ServerPlayer player, ResourceLocation target);
 
     boolean readPage(ServerPlayer player, ResourceLocation page, String route);
+
+    boolean clearRoute(ServerPlayer player);
 }

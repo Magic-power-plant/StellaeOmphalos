@@ -67,7 +67,7 @@ public final class CodexScreen extends Screen {
                         Math.min(
                                 (width - 8F) / CodexLayout.WIDTH,
                                 (height - 8F) / CodexLayout.HEIGHT));
-        left = (int) ((width / uiScale - CodexLayout.WIDTH) / 2);
+        left = (int) ((width / uiScale - CodexLayout.BOOK_WIDTH) / 2);
         top = (int) ((height / uiScale - CodexLayout.HEIGHT) / 2);
         String previous = query == null ? "" : query.getValue();
         query =
@@ -102,18 +102,40 @@ public final class CodexScreen extends Screen {
     private void restoreView() {
         var view = ClientKnowledgeCache.codexOverview();
         if (view.isPresent()) {
-            if (view.get()) {
-                overview = true;
-                return;
+            if (view.get()) overview = true;
+            else {
+                var current = ClientKnowledgeCache.NAVIGATOR.current();
+                if (current.isPresent()) navigate(current.get(), false);
             }
-            var current = ClientKnowledgeCache.NAVIGATOR.current();
-            if (current.isPresent()) {
-                navigate(current.get(), false);
-                return;
-            }
+            restoreOverlay();
+            return;
         }
         CodexRoute.parse(ClientKnowledgeCache.record().lastRoute())
                 .ifPresent(r -> navigate(r, false));
+    }
+
+    /** Overlays are session-transient; they reopen only over the restored underlying view. */
+    private void restoreOverlay() {
+        String target = ClientKnowledgeCache.codexOverlayTarget();
+        switch (ClientKnowledgeCache.codexOverlay()) {
+            case "signs", "lore", "boons" -> openOverlay(ClientKnowledgeCache.codexOverlay());
+            case "search" -> {
+                branchFilter = "";
+                openOverlay("search");
+            }
+            case "gauges" -> {
+                OmphalosClient.sendDependent(new PktKnowledgeQuery("gauges"));
+                openOverlay("gauges");
+            }
+            case "sign" -> {
+                signFocus = ResourceLocation.tryParse(target);
+                openOverlay("sign");
+            }
+            case "shard" -> {
+                if (!target.isEmpty()) shard(target);
+            }
+            default -> {}
+        }
     }
 
     private GateContext context() {
@@ -464,7 +486,7 @@ public final class CodexScreen extends Screen {
     private void ribbon(String name) {
         switch (name) {
             case "study" -> {
-                overview = true;
+                showOverview();
                 closeOverlay();
             }
             case "signs" -> openOverlay("signs");
@@ -769,7 +791,14 @@ public final class CodexScreen extends Screen {
     }
 
     @Override public void onClose() {
-        ClientKnowledgeCache.codexOverview(overview);
+        String target =
+                overlay.equals("shard")
+                        ? shardId
+                        : overlay.equals("sign") && signFocus != null ? signFocus.toString() : "";
+        ClientKnowledgeCache.codexView(overview, overlay, target);
+        // Closing anywhere but a reading page means no page is current on the server either.
+        if (minecraft != null && minecraft.player != null && (overview || !overlay.isEmpty()))
+            OmphalosClient.sendDependent(new PktCodexRead(""));
         com.mpp.stellaeomphalos.client.sound.UiSounds.play("codex_close");super.onClose();
     }
     private void goBack() {
@@ -783,12 +812,20 @@ public final class CodexScreen extends Screen {
         }
         if (overview) return;
         if (ClientKnowledgeCache.NAVIGATOR.historySize() == 0) {
-            overview = true;
-            leftPage = null;
-            rightPage = null;
+            showOverview();
             return;
         }
         ClientKnowledgeCache.NAVIGATOR.back().ifPresent(r -> navigate(r, false));
+    }
+
+    /** Returning to the study overview clears the persisted reading route on the server. */
+    private void showOverview() {
+        if (overview) return;
+        overview = true;
+        leftPage = null;
+        rightPage = null;
+        if (minecraft != null && minecraft.player != null)
+            OmphalosClient.sendDependent(new PktCodexRead(""));
     }
     private void turn(int delta) {
         if(turnStarted!=0)return;
@@ -919,8 +956,13 @@ public final class CodexScreen extends Screen {
 
     @Override
     public boolean keyPressed(int key, int scan, int modifiers) {
-        if (key == 256 && !overlay.isEmpty()) {
-            goBack();
+        // A focused search box eats keys first so the inventory key can still be typed.
+        if (key != 256
+                && query != null
+                && query.canConsumeInput()
+                && query.keyPressed(key, scan, modifiers)) return true;
+        if (key == 256 || minecraft.options.keyInventory.matches(key, scan)) {
+            onClose();
             return true;
         }
         return super.keyPressed(key, scan, modifiers);

@@ -228,6 +228,8 @@ public final class KnowledgeProtocol {
 
     public static boolean read(ServerPlayer player, String encoded) {
         if (player instanceof FakePlayer) return false;
+        // An empty route means the reader returned to the study overview; no page is current.
+        if (encoded.isEmpty()) return StarRecords.ACCESS.clearRoute(player);
         var route = CodexRoute.parse(encoded);
         if (route.isEmpty()) return false;
         var node = KnowledgeCatalog.NODES.find(route.get().node());
