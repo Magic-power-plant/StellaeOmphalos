@@ -42,6 +42,7 @@ public final class CodexScreen extends Screen {
     private long turnStarted;
     private int pendingTurn;
     private String overlay = "", shardId = "", branchFilter = "", language = "";
+    private ResourceLocation signFocus;
     private StudyBranch focused;
     private EditBox query;
     private float uiScale = 1;
@@ -227,6 +228,13 @@ public final class CodexScreen extends Screen {
         pose.translate(left, top, 0);
         graphics.blit(TEXTURE, 0, 0, 393, 270, 0, 0, 393, 270, TEXTURE_SIZE, TEXTURE_SIZE);
         hits.clear();
+        graphics.blit(TEXTURE, 160, 0, 48, 304, 160, 289, 48, 304, TEXTURE_SIZE, TEXTURE_SIZE);
+        mark(graphics, "study", false, 32, 42, mx, my);
+        mark(graphics, "signs", false, 74, 42, mx, my);
+        mark(graphics, "search", false, 116, 44, mx, my);
+        mark(graphics, "boons", true, 32, 42, mx, my);
+        mark(graphics, "lore", true, 74, 42, mx, my);
+        mark(graphics, "milestones", true, 116, 44, mx, my);
         if (overview) drawOverview(graphics, mx, my);
         else {
             float scale=1;
@@ -239,24 +247,7 @@ public final class CodexScreen extends Screen {
             pose.pushPose();pose.translate(196,0,0);pose.scale(scale,1,1);pose.translate(-196,0,0);
             drawPages(graphics,mx,my);pose.popPose();
         }
-        graphics.blit(TEXTURE, 160, 0, 48, 304, 160, 289, 48, 304, TEXTURE_SIZE, TEXTURE_SIZE);
-        mark(graphics, "study", false, 32, mx, my);
-        mark(graphics, "signs", false, 80, mx, my);
-        mark(graphics, "boons", true, 32, mx, my);
-        mark(graphics, "lore", true, 80, mx, my);
-        button(
-                graphics,
-                5,
-                249,
-                47,
-                16,
-                label("back"),
-                () -> {
-                    if (!overlay.isEmpty()) closeOverlay();
-                    else ClientKnowledgeCache.NAVIGATOR.back().ifPresent(r -> navigate(r, false));
-                },
-                mx,
-                my);
+        button(graphics, 5, 249, 47, 16, label("back"), this::goBack, mx, my);
         button(
                 graphics,
                 54,
@@ -268,8 +259,6 @@ public final class CodexScreen extends Screen {
                 mx,
                 my);
         button(graphics, 331, 249, 57, 16, label("close"), this::onClose, mx, my);
-        button(graphics, 240, 249, 42, 16, label("search"), () -> ribbon("search"), mx, my);
-        button(graphics, 286, 249, 42, 16, label("milestones"), () -> ribbon("milestones"), mx, my);
         if (!overview && overlay.isEmpty()) {
             button(graphics, 155, 249, 24, 16, Component.literal("<"), () -> turn(-2), mx, my);
             button(graphics, 213, 249, 24, 16, Component.literal(">"), () -> turn(2), mx, my);
@@ -463,8 +452,8 @@ public final class CodexScreen extends Screen {
                 overview = true;
                 closeOverlay();
             }
-            case "signs" -> minecraft.setScreen(new com.mpp.stellaeomphalos.client.screen.CelestialScreen(this, com.mpp.stellaeomphalos.client.screen.CelestialScreen.Mode.SIGN_LIST));
-            case "boons" -> minecraft.setScreen(new com.mpp.stellaeomphalos.client.screen.BoonTreeScreen(this));
+            case "signs" -> openOverlay("signs");
+            case "boons" -> openOverlay("boons");
             case "lore" -> openOverlay("lore");
             case "milestones" -> {
                 OmphalosClient.sendDependent(new PktKnowledgeQuery("gauges"));
@@ -478,8 +467,13 @@ public final class CodexScreen extends Screen {
     }
 
     private void drawOverlay(GuiGraphics g, double mx, double my) {
-        // Remove underlying hit targets; closing the overlay preserves all underlying state.
-        hits.clear();
+        // Drop only the hit targets covered by the overlay; shell buttons and ribbons stay live.
+        hits.removeIf(
+                hit ->
+                        hit.x() < 379
+                                && hit.x() + hit.width() > 14
+                                && hit.y() < 239
+                                && hit.y() + hit.height() > 20);
         g.fill(14, 20, 379, 239, 0xffeee0bb);
         button(g, 330, 22, 46, 16, label("close"), this::closeOverlay, mx, my);
         if (overlay.equals("search")) {
@@ -600,6 +594,76 @@ public final class CodexScreen extends Screen {
                                         t.getDouble("Stacking")));
                 hits.add(new Hit(20, y, 335, 11, () -> {}, detail));
             }
+        } else if (overlay.equals("signs")) {
+            g.drawString(font, label("signs"), 24, 26, 0xff463351, false);
+            var ids = new TreeSet<ResourceLocation>(ClientKnowledgeCache.record().knownSigns());
+            ids.addAll(ClientKnowledgeCache.record().seenSigns());
+            int cell = 0;
+            for (var id : ids.stream().skip(scroll).limit(8).toList()) {
+                var sign = com.mpp.stellaeomphalos.client.sign.SignDefinitionMirror.byId(id);
+                if (sign == null) continue;
+                int x = 20 + (cell % 4) * 88, y = 42 + (cell / 4) * 94;
+                cell++;
+                g.fill(x + 1, y + 1, x + 83, y + 79, 0xffe2cfa2);
+                int extent = 66;
+                for (var line : sign.lines())
+                    com.mpp.stellaeomphalos.client.screen.CelestialScreen.line(
+                            g,
+                            x + 9 + line.a().x() * extent / 31,
+                            y + 6 + line.a().y() * extent / 31,
+                            x + 9 + line.b().x() * extent / 31,
+                            y + 6 + line.b().y() * extent / 31,
+                            0xff8a7ab8);
+                for (var point : sign.stars()) {
+                    int sx = x + 9 + point.x() * extent / 31, sy = y + 6 + point.y() * extent / 31;
+                    g.fill(sx - 1, sy - 1, sx + 2, sy + 2, 0xff584a80);
+                }
+                g.drawCenteredString(
+                        font,
+                        Component.literal(
+                                font.plainSubstrByWidth(sign.displayName().getString(), 80)),
+                        x + 42,
+                        y + 83,
+                        0xff463351);
+                hits.add(
+                        new Hit(
+                                x,
+                                y,
+                                84,
+                                92,
+                                () -> {
+                                    signFocus = id;
+                                    openOverlay("sign");
+                                },
+                                sign.displayName()));
+            }
+        } else if (overlay.equals("sign")) {
+            var sign =
+                    signFocus == null
+                            ? null
+                            : com.mpp.stellaeomphalos.client.sign.SignDefinitionMirror.byId(
+                                    signFocus);
+            if (sign == null) {
+                g.drawString(font, label("missing"), 24, 26, 0xff772222, false);
+            } else {
+                g.drawCenteredString(font, sign.displayName(), 196, 27, 0xff463351);
+                int size = 168;
+                int sx = 196 - size / 2, sy = 42;
+                g.fill(sx - 3, sy - 3, sx + size + 3, sy + size + 3, 0xff857397);
+                g.fill(sx, sy, sx + size, sy + size, 0xb8111827);
+                for (var point : sign.stars()) {
+                    int px = sx + point.x() * size / 31, py = sy + point.y() * size / 31;
+                    g.fill(px - 1, py - 1, px + 2, py + 2, 0xffdfedff);
+                }
+                for (var line : sign.lines())
+                    com.mpp.stellaeomphalos.client.screen.CelestialScreen.line(
+                            g,
+                            sx + line.a().x() * size / 31,
+                            sy + line.a().y() * size / 31,
+                            sx + line.b().x() * size / 31,
+                            sy + line.b().y() * size / 31,
+                            0xffa2bfe4);
+            }
         } else if (overlay.equals("boons")) {
             var boon = BoonMirror.view();
             g.drawString(
@@ -650,18 +714,29 @@ public final class CodexScreen extends Screen {
         }
     }
 
-    private void mark(GuiGraphics g, String name, boolean leftSide, int y, double mx, double my) {
+    private String activeMark() {
+        if (overlay.isEmpty()) return "study";
+        return switch (overlay) {
+            case "lore", "shard" -> "lore";
+            case "gauges" -> "milestones";
+            case "boons" -> "boons";
+            case "signs", "sign" -> "signs";
+            default -> "search";
+        };
+    }
+
+    private void mark(GuiGraphics g, String name, boolean leftSide, int y, int h, double mx, double my) {
+        if (name.equals(activeMark())) return;
         var hit =
                 new Hit(
                         leftSide ? -17 : 386, y + 16, leftSide ? 25 : 23, 22,
                         () -> ribbon(name), label(name));
         hits.add(hit);
-        boolean stretched =
-                hit.contains(mx, my) || (overview ? name.equals("study") : name.equals(overlay));
+        boolean stretched = hit.contains(mx, my);
         int w = stretched ? 66 : 34;
         int u = leftSide ? (stretched ? 542 : 622) : (stretched ? 448 : 400);
         int x = leftSide ? (stretched ? -49 : -17) : 376;
-        g.blit(TEXTURE, x, y, w, 48, u, y, w, 48, TEXTURE_SIZE, TEXTURE_SIZE);
+        g.blit(TEXTURE, x, y, w, h, u, y, w, h, TEXTURE_SIZE, TEXTURE_SIZE);
     }
 
     private void button(
@@ -687,6 +762,24 @@ public final class CodexScreen extends Screen {
 
     @Override public void onClose() {
         com.mpp.stellaeomphalos.client.sound.UiSounds.play("codex_close");super.onClose();
+    }
+    private void goBack() {
+        if (overlay.equals("sign")) {
+            openOverlay("signs");
+            return;
+        }
+        if (!overlay.isEmpty()) {
+            closeOverlay();
+            return;
+        }
+        if (overview) return;
+        if (ClientKnowledgeCache.NAVIGATOR.historySize() == 0) {
+            overview = true;
+            leftPage = null;
+            rightPage = null;
+            return;
+        }
+        ClientKnowledgeCache.NAVIGATOR.back().ifPresent(r -> navigate(r, false));
     }
     private void turn(int delta) {
         if(turnStarted!=0)return;
@@ -818,7 +911,7 @@ public final class CodexScreen extends Screen {
     @Override
     public boolean keyPressed(int key, int scan, int modifiers) {
         if (key == 256 && !overlay.isEmpty()) {
-            closeOverlay();
+            goBack();
             return true;
         }
         return super.keyPressed(key, scan, modifiers);

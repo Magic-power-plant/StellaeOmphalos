@@ -24,6 +24,7 @@ public final class Omphalos {
     public Omphalos() {
         var bus = FMLJavaModLoadingContext.get().getModEventBus();
         RegistryBootstrap.attach(bus);
+        com.mpp.stellaeomphalos.player.profile.PlayerProfileCapability.attach(bus);
         MoltenLumenBootstrap.attach(bus);
         LumenBootstrap.attach(bus);
         StasisBootstrap.attach(bus);

@@ -257,6 +257,14 @@ public final class RuntimeServices implements AutoCloseable {
         OmphalosChannel.send(player, new PktNetworkDebugDump(position, result));
     }
 
+    /** Starts the bounded diagnostic window for one authenticated player. */
+    public boolean beginNetworkDebug(ServerPlayer player, net.minecraft.core.BlockPos position) {
+        if (!player.hasPermissions(2) || !player.serverLevel().hasChunkAt(position)) return false;
+        debugSessions.put(player.getUUID(), scheduler.currentTick() + 400);
+        debug(player, position);
+        return true;
+    }
+
     private static void commands(net.minecraftforge.event.RegisterCommandsEvent event) {
         event.getDispatcher()
                 .register(

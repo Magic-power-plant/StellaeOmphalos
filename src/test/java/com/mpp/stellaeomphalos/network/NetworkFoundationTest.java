@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class NetworkFoundationTest {
     @Test void reassemblesOutOfOrderWithDuplicatesAndReleasesSession() {
-        byte[] expected = new byte[19001]; new Random(42).nextBytes(expected);
+        byte[] expected = new byte[30001]; new Random(42).nextBytes(expected);
         var parts = new ArrayList<>(ChunkedEnvelope.split(7, expected));
         Collections.reverse(parts);
         var assembler = new ChunkAssembler(); var player = UUID.randomUUID();
@@ -20,6 +20,15 @@ class NetworkFoundationTest {
         var complete = assembler.accept(player, parts.get(2), 3).orElseThrow();
         assertEquals(7, complete.payloadId()); assertArrayEquals(expected, complete.bytes());
         assertEquals(0, assembler.sessionCount());
+    }
+    @Test void networkBudgetHasGlobalAndIsolationStages() {
+        var budget = new NetworkBudget(); var player = UUID.randomUUID();
+        var policy = new NetworkBudget.Policy(1, 1, 1, 1, false);
+        assertTrue(budget.acquire(player, 1, policy, 0).accepted());
+        assertEquals(NetworkBudget.Action.DROP, budget.acquire(player, 1, policy, 0).action());
+        for (int i = 0; i < 8; i++) budget.acquire(player, 1, policy, 0);
+        assertEquals(NetworkBudget.Action.ISOLATE, budget.acquire(player, 1, policy, 0).action());
+        assertEquals(NetworkBudget.Action.DISCONNECT, budget.acquire(player, 1, policy, 0).action());
     }
     @Test void timeoutIsFixedAndCannotBeExtendedByDuplicates() {
         var part = ChunkedEnvelope.split(1, new byte[20000]).get(0);
@@ -34,7 +43,8 @@ class NetworkFoundationTest {
         var assembler = new ChunkAssembler(); var player = UUID.randomUUID();
         assembler.accept(player, parts.get(0), 0);
         assertThrows(IllegalArgumentException.class, () -> assembler.accept(player,
-                new ChunkedEnvelope(parts.get(0).session(), 3, 1, 2, 20000, new byte[8192]), 1));
+                new ChunkedEnvelope(parts.get(0).session(), 2, 1, 2, 20000,
+                        new byte[20000 - ChunkedEnvelope.CHUNK_SIZE]), 1));
         assertEquals(0, assembler.sessionCount());
     }
     @Test void rateLimitRefillsAndWarnsOncePerMinute() {

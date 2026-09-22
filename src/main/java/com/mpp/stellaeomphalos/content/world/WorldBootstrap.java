@@ -188,6 +188,8 @@ public final class WorldBootstrap {
             PLANS.remove(level);
             LOADED.removeIf(l -> l.level() == level);
             RiteScheduler.unload(level);
+            com.mpp.stellaeomphalos.core.util.world.BlockChangeBus.unload(level);
+            com.mpp.stellaeomphalos.data.loader.DimensionArchiveRoot.unload(level);
         }
     }
 
@@ -216,6 +218,7 @@ public final class WorldBootstrap {
     }
 
     private static void commands(RegisterCommandsEvent e) {
+        OmphalosCommands.register(e);
         BlueprintCommands.register(e);
         e.getDispatcher()
                 .register(

@@ -8,14 +8,14 @@ import java.util.UUID;
 /** Each peer owns at most one bounded, fixed-deadline reassembly session. */
 public final class ChunkAssembler {
     public record Completed(int payloadId, byte[] bytes) {}
-    private static final long TIMEOUT = 3000000000L;
+    public static final long TIMEOUT_NANOS = 3000000000L;
     private static final class Session {
         final ChunkedEnvelope header;
         final byte[][] chunks;
         final long deadline;
         int count;
         Session(ChunkedEnvelope header, long now) {
-            this.header = header; chunks = new byte[header.chunks()][]; deadline = now + TIMEOUT;
+            this.header = header; chunks = new byte[header.chunks()][]; deadline = now + TIMEOUT_NANOS;
         }
     }
     private final Map<UUID, Session> sessions = new HashMap<>();
@@ -23,7 +23,10 @@ public final class ChunkAssembler {
         expire(now);
         var active = sessions.computeIfAbsent(peer, ignored -> new Session(fragment, now));
         var header = active.header;
-        if (!header.session().equals(fragment.session())) throw new IllegalArgumentException("Concurrent fragment session");
+        if (!header.session().equals(fragment.session())) {
+            sessions.remove(peer);
+            throw new IllegalArgumentException("Concurrent fragment session");
+        }
         if (header.payloadId() != fragment.payloadId() || header.totalBytes() != fragment.totalBytes() || header.chunks() != fragment.chunks()) {
             sessions.remove(peer);
             throw new IllegalArgumentException("Inconsistent fragment metadata");

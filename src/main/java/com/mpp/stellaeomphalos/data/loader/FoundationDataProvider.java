@@ -262,6 +262,47 @@ public final class FoundationDataProvider implements DataProvider {
                 "command.boon_cooldown",
                 "Too fast, please wait",
                 "\u64cd\u4f5c\u8fc7\u4e8e\u9891\u7e41\uff0c\u8bf7\u7a0d\u5019");
+        raw(en, zh, "command.stellaeomphalos.invalid_subcommand", "Unknown subcommand: %s", "未知子命令：%s");
+        raw(en, zh, "command.stellaeomphalos.help.help", "Show command help", "显示命令帮助");
+        raw(en, zh, "command.stellaeomphalos.help.signs", "List or grant constellation discoveries", "查看或授予星象发现");
+        raw(en, zh, "command.stellaeomphalos.help.research", "Inspect or grant research groups", "查看或授予研究组");
+        raw(en, zh, "command.stellaeomphalos.help.progress", "Show player progression", "查看玩家进度");
+        raw(en, zh, "command.stellaeomphalos.help.reset", "Reset player progression", "重置玩家进度");
+        raw(en, zh, "command.stellaeomphalos.help.boons", "Inspect or modify boon progress", "查看或修改星眷进度");
+        raw(en, zh, "command.stellaeomphalos.help.attune", "Change the attuned sign", "更改共鸣星象");
+        raw(en, zh, "command.stellaeomphalos.help.build", "Place a registered structure blueprint", "放置已注册的结构蓝图");
+        raw(en, zh, "command.stellaeomphalos.help.maximize", "Maximize player progression", "最大化玩家进度");
+        raw(en, zh, "command.stellaeomphalos.help.network", "Open a network diagnostic window", "开启网络诊断窗口");
+        raw(en, zh, "command.stellaeomphalos.help.diagnose", "Inspect a server diagnostic source", "检查服务端诊断源");
+        raw(en, zh, "command.stellaeomphalos.help.profile", "Export, import, or inspect a player profile", "导出、导入或查看玩家档案");
+        raw(en, zh, "command.stellaeomphalos.help.migrate", "Run a migration verification task", "运行迁移验证任务");
+        raw(en, zh, "command.stellaeomphalos.signs.list", "%s knows: %s", "%s 已知星象：%s");
+        raw(en, zh, "command.stellaeomphalos.signs.granted", "Granted constellation discoveries to %s: %s", "已向 %s 授予 %s 个星象发现");
+        raw(en, zh, "command.stellaeomphalos.unknown_sign", "Unknown constellation: %s", "未知星象：%s");
+        raw(en, zh, "command.stellaeomphalos.unknown_research", "Unknown research group: %s", "未知研究组：%s");
+        raw(en, zh, "command.stellaeomphalos.research.all", "Granted new research groups to %s: %s (%s)", "已向 %s 授予 %s 个新研究组：%s");
+        raw(en, zh, "command.stellaeomphalos.research.granted", "Granted research group to %s: %s", "已向 %s 授予研究组 %s");
+        raw(en, zh, "command.stellaeomphalos.progress.next", "%s next level: %s (total experience %s)", "%s 下一级：%s（所需总经验 %s）");
+        raw(en, zh, "command.stellaeomphalos.progress.show", "%s: level %s, experience %s, free points %s, known signs %s", "%s：等级 %s，经验 %s，可用点数 %s，已知星象 %s");
+        raw(en, zh, "command.stellaeomphalos.reset.done", "Reset progression for %s", "已重置 %s 的进度");
+        raw(en, zh, "command.stellaeomphalos.boons.exp", "Granted boon experience to %s", "已向 %s 授予星眷经验");
+        raw(en, zh, "command.stellaeomphalos.boons.unlocked", "%s unlocked boons: %s (experience %s)", "%s 已解锁星眷：%s（经验 %s）");
+        raw(en, zh, "command.stellaeomphalos.boons.unlocked_count", "Unlocked boons for %s: %s", "已为 %s 解锁 %s 个星眷");
+        raw(en, zh, "command.stellaeomphalos.boons.sealed", "Sealed boon %s", "已封印星眷 %s");
+        raw(en, zh, "command.stellaeomphalos.attune.done", "%s is attuned to %s", "%s 已与 %s 共鸣");
+        raw(en, zh, "command.stellaeomphalos.build.reloaded", "Blueprint snapshot is already current; use /reload to reload data", "蓝图快照已是最新；请使用 /reload 重载数据");
+        raw(en, zh, "command.stellaeomphalos.build.no_target", "No registered blueprint: %s", "没有已注册的蓝图：%s");
+        raw(en, zh, "command.stellaeomphalos.build.placed", "Placed %s blocks, skipped %s, failed %s", "已放置 %s 个方块，跳过 %s，失败 %s");
+        raw(en, zh, "command.stellaeomphalos.maximize.done", "%s maximized at level %s", "%s 已最大化至等级 %s");
+        raw(en, zh, "command.stellaeomphalos.network.awaiting", "Network diagnostics started for %s", "已为 %s 开启网络诊断");
+        raw(en, zh, "command.stellaeomphalos.network.rejected", "The network diagnostic request was rejected", "网络诊断请求被拒绝");
+        raw(en, zh, "command.stellaeomphalos.diagnose.header", "%s diagnostic result: %s", "%s 诊断结果：%s");
+        raw(en, zh, "command.stellaeomphalos.profile.exported", "Exported profile for %s", "已导出 %s 的档案");
+        raw(en, zh, "command.stellaeomphalos.profile.imported", "Imported profile for %s", "已导入 %s 的档案");
+        raw(en, zh, "command.stellaeomphalos.profile.rejected", "The profile file was rejected", "档案文件被拒绝");
+        raw(en, zh, "command.stellaeomphalos.profile.force_required", "The snapshot belongs to another server or player; use --force to override", "快照属于其他服务器或玩家；使用 --force 才能覆盖");
+        raw(en, zh, "command.stellaeomphalos.profile.status", "%s profile: %s signs, %s research groups, %s boons", "%s 档案：%s 个星象，%s 个研究组，%s 个星眷");
+        raw(en, zh, "command.stellaeomphalos.migrate.result", "Migration task accepted: %s", "已接受迁移任务：%s");
         raw(
                 en,
                 zh,

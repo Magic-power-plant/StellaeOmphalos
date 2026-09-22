@@ -236,7 +236,7 @@ public final class CelestialScreen extends Screen {
 
     @Override
     public void render(GuiGraphics g, int mx, int my, float partial) {
-        renderBackground(g);
+        StarfieldBackdrop.render(g, width, height, mx, my);
         g.drawCenteredString(font, title, width / 2, 12, 0xe8d9b8);
         g.drawCenteredString(font, caption, width / 2, 30, 0xbddaff);
         if (mode == Mode.SIGN_LIST) {
@@ -245,11 +245,11 @@ public final class CelestialScreen extends Screen {
             return;
         }
         g.fill(left - 3, top - 3, left + size + 3, top + size + 3, feedbackTicks>0?0xffca5f70:0xff857397);
-        g.fill(left, top, left + size, top + size, 0xff101729);
+        g.fill(left, top, left + size, top + size, 0xb8111827);
         if (!observing() || usable())
             for (var p : canvas.stars()) {
                 int x = left + p.x() * size / 31, y = top + p.y() * size / 31;
-                g.fill(x - 2, y - 2, x + 3, y + 3, 0xffdfedff);
+                g.fill(x - 1, y - 1, x + 2, y + 2, 0xffdfedff);
             }
         var lines =
                 mode == Mode.SIGN_DETAIL || mode == Mode.SIGN_SCROLL || mode == Mode.LORE_SCROLL

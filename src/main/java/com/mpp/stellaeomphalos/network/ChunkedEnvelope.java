@@ -6,12 +6,13 @@ import java.util.UUID;
 
 public record ChunkedEnvelope(UUID session, int chunks, int index, int payloadId, int totalBytes, byte[] bytes) {
     public static final int THRESHOLD = 16 * 1024;
-    public static final int CHUNK_SIZE = 8 * 1024;
-    public static final int MAX_BYTES = 4 * 1024 * 1024;
+    public static final int CHUNK_SIZE = 12 * 1024;
+    public static final int MAX_BYTES = 512 * 1024;
+    public static final int MAX_CHUNKS = 48;
     public ChunkedEnvelope {
         java.util.Objects.requireNonNull(session);
         bytes = bytes.clone();
-        if (payloadId < 0 || totalBytes < 1 || totalBytes > MAX_BYTES || chunks < 1 || chunks > 512
+        if (payloadId < 0 || totalBytes < 1 || totalBytes > MAX_BYTES || chunks < 1 || chunks > MAX_CHUNKS
                 || chunks != (totalBytes + CHUNK_SIZE - 1) / CHUNK_SIZE || index < 0 || index >= chunks
                 || bytes.length != Math.min(CHUNK_SIZE, totalBytes - index * CHUNK_SIZE))
             throw new IllegalArgumentException("Invalid fragment header or length");
