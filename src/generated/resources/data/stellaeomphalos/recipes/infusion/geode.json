@@ -1,0 +1,24 @@
+{
+  "type": "stellaeomphalos:lumen_infusion",
+  "duration": 200,
+  "input": {
+    "item": "minecraft:amethyst_shard"
+  },
+  "result": {
+    "kind": "static",
+    "stack": {
+      "item": "stellaeomphalos:geode",
+      "nbt": {
+        "Attuned": true,
+        "CrystalTraits": {
+          "Collect": 50,
+          "Purity": 60,
+          "Size": 200
+        }
+      }
+    }
+  },
+  "solvent": {
+    "chance": 0.05
+  }
+}

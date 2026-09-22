@@ -1,0 +1,27 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 100,
+  "grid": {
+    "key": {
+      "C": {
+        "item": "minecraft:gold_ingot"
+      },
+      "E": {
+        "item": "minecraft:quartz"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 700,
+  "result": {
+    "kind": "static",
+    "stack": {
+      "item": "stellaeomphalos:chalice"
+    }
+  },
+  "tier": "discovery"
+}

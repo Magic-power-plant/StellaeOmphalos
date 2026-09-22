@@ -1,0 +1,11 @@
+{
+  "type": "stellaeomphalos:aquamarine_sand",
+  "config": {
+    "to_place": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "stellaeomphalos:aquamarine_sand"
+      }
+    }
+  }
+}

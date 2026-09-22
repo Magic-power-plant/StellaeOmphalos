@@ -1,0 +1,41 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 500,
+  "flags": [
+    "strict_match"
+  ],
+  "grid": {
+    "key": {
+      "C": {
+        "exclude_nbt": {
+          "Upgrades": [
+            "stellaeomphalos:precision"
+          ]
+        },
+        "item": "stellaeomphalos:sky_resonator"
+      },
+      "E": {
+        "item": "minecraft:quartz"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 3200,
+  "result": {
+    "fallback": {
+      "item": "stellaeomphalos:sky_resonator"
+    },
+    "kind": "inherit",
+    "ops": [
+      {
+        "op": "stellaeomphalos:unlock_upgrade",
+        "upgrade": "stellaeomphalos:precision"
+      }
+    ]
+  },
+  "tier": "sign"
+}

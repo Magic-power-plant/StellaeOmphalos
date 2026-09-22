@@ -1,0 +1,17 @@
+{
+  "body": "",
+  "kind": "recipe_altar",
+  "layout": "CONSTELLATION",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "recipe_id": "stellaeomphalos:altar/mantle_discidia",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.recipe.altar.mantle_discidia.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "CONSTELLATION"
+  }
+}

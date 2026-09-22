@@ -1,0 +1,32 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 600,
+  "grid": {
+    "key": {
+      "C": {
+        "item": "stellaeomphalos:geode"
+      },
+      "E": {
+        "item": "minecraft:enchanted_book"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 700,
+  "result": {
+    "kind": "static",
+    "ops": [
+      {
+        "op": "stellaeomphalos:random_enchantment"
+      }
+    ],
+    "stack": {
+      "item": "stellaeomphalos:warded_amulet"
+    }
+  },
+  "tier": "discovery"
+}

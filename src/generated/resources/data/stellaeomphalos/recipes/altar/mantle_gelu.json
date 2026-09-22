@@ -1,0 +1,37 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 500,
+  "focus_sign": "stellaeomphalos:gelu",
+  "grid": {
+    "key": {
+      "C": {
+        "exclude_nbt": {
+          "SignId": "stellaeomphalos:gelu"
+        },
+        "item": "stellaeomphalos:mantle"
+      },
+      "E": {
+        "item": "minecraft:brown_dye"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 3200,
+  "result": {
+    "fallback": {
+      "item": "stellaeomphalos:mantle"
+    },
+    "kind": "inherit",
+    "ops": [
+      {
+        "op": "stellaeomphalos:set_sign",
+        "sign": "stellaeomphalos:gelu"
+      }
+    ]
+  },
+  "tier": "sign"
+}

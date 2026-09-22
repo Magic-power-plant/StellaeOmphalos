@@ -1,0 +1,37 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 500,
+  "focus_sign": "stellaeomphalos:discidia",
+  "grid": {
+    "key": {
+      "C": {
+        "exclude_nbt": {
+          "SignId": "stellaeomphalos:discidia"
+        },
+        "item": "stellaeomphalos:mantle"
+      },
+      "E": {
+        "item": "minecraft:magenta_dye"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 3200,
+  "result": {
+    "fallback": {
+      "item": "stellaeomphalos:mantle"
+    },
+    "kind": "inherit",
+    "ops": [
+      {
+        "op": "stellaeomphalos:set_sign",
+        "sign": "stellaeomphalos:discidia"
+      }
+    ]
+  },
+  "tier": "sign"
+}

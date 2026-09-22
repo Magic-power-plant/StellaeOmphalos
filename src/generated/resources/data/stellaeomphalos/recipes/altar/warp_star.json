@@ -1,0 +1,27 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 100,
+  "grid": {
+    "key": {
+      "C": {
+        "item": "stellaeomphalos:geode"
+      },
+      "E": {
+        "item": "minecraft:ender_pearl"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 700,
+  "result": {
+    "kind": "static",
+    "stack": {
+      "item": "stellaeomphalos:warp_star"
+    }
+  },
+  "tier": "discovery"
+}

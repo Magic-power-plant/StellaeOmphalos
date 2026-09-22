@@ -1,0 +1,27 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 100,
+  "grid": {
+    "key": {
+      "C": {
+        "item": "stellaeomphalos:geode"
+      },
+      "E": {
+        "item": "minecraft:redstone"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 700,
+  "result": {
+    "kind": "static",
+    "stack": {
+      "item": "stellaeomphalos:sky_resonator"
+    }
+  },
+  "tier": "discovery"
+}

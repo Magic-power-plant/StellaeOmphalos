@@ -1,0 +1,34 @@
+{
+  "type": "stellaeomphalos:asterism_crafting",
+  "duration": 100,
+  "grid": {
+    "key": {
+      "C": {
+        "item": "stellaeomphalos:geode"
+      },
+      "E": {
+        "item": "minecraft:glass"
+      }
+    },
+    "pattern": [
+      " E ",
+      "ECE",
+      " E "
+    ]
+  },
+  "lumen": 700,
+  "result": {
+    "kind": "static",
+    "ops": [
+      {
+        "divisor": 80,
+        "min": 1,
+        "op": "stellaeomphalos:scale_count_by_traits"
+      }
+    ],
+    "stack": {
+      "item": "stellaeomphalos:lens_blank"
+    }
+  },
+  "tier": "discovery"
+}

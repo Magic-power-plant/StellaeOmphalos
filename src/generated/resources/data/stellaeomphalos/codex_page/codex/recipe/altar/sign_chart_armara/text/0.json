@@ -1,0 +1,17 @@
+{
+  "body": "codex.stellaeomphalos.recipe.altar.sign_chart_armara.body",
+  "kind": "text",
+  "layout": "",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "reference": "",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.recipe.altar.sign_chart_armara.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "CONSTELLATION"
+  }
+}
