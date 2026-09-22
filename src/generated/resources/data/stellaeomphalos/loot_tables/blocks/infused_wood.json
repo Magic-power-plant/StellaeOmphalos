@@ -1,0 +1,136 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stellaeomphalos:infused_wood",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variant": "raw"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "stellaeomphalos:infused_wood"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stellaeomphalos:infused_wood",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variant": "planks"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "stellaeomphalos:infused_wood_planks"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stellaeomphalos:infused_wood",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variant": "pillar"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "stellaeomphalos:infused_wood_pillar"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stellaeomphalos:infused_wood",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variant": "arch"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "stellaeomphalos:infused_wood_arch"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stellaeomphalos:infused_wood",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variant": "engraved"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "stellaeomphalos:infused_wood_engraved"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stellaeomphalos:infused_wood",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variant": "enriched"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "stellaeomphalos:infused_wood_enriched"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stellaeomphalos:infused_wood",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variant": "infused"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "stellaeomphalos:infused_wood_infused"
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}

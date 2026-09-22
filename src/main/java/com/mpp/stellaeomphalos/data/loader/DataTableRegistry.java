@@ -23,6 +23,9 @@ public final class DataTableRegistry {
     }
     public void publish(Map<ResourceLocation, Map<ResourceLocation, ?>> candidate, DataLoadReport result) {
         report = result.issues();
+        if (com.mpp.stellaeomphalos.OmphalosConfig.COMMON.flag("logging.dataTableVerbose"))
+            com.mojang.logging.LogUtils.getLogger().info("Data reload: {} tables, {} issues, accepted={}",
+                    candidate.size(), report.size(), !result.hasErrors());
         if (!result.hasErrors()) {
             var copy = new LinkedHashMap<ResourceLocation, Map<ResourceLocation, ?>>();
             candidate.forEach((key, values) -> copy.put(key, Map.copyOf(values)));

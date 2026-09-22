@@ -30,6 +30,17 @@ class KnowledgeContractsTest {
                 .getOrThrow(false, s -> fail(s));
     }
 
+    @Test void studyRegistryRejectsDuplicateIdentityAndCoordinates() {
+        KnowledgeCatalog.initialize();
+        var node = KnowledgeCatalog.NODES.all().iterator().next();
+        var registry = new StudyNodeRegistry(); registry.register(node);
+        assertThrows(IllegalArgumentException.class, () -> registry.register(node));
+        var colliding = new StudyNode(id("review_duplicate"), node.branch(), node.x(), node.y(), node.icon(),
+                node.prerequisites(), node.pages(), node.gate(), node.independent());
+        assertThrows(IllegalArgumentException.class, () -> registry.register(colliding));
+        assertEquals(1, registry.all().size());
+    }
+
     @Test
     void initialVisibilityContainsExactlyTheDiscoveryBranch() {
         KnowledgeCatalog.initialize();

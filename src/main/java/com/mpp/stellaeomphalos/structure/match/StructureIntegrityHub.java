@@ -22,6 +22,9 @@ public final class StructureIntegrityHub {
     private final Set<BlockPos> pending = new LinkedHashSet<>();
     private final Set<ChunkPos> dirty = new LinkedHashSet<>();
     private int epoch = -1, bulkDepth;
+    private final Map<BlockPos, OrientationSearch> orientationSearches = new HashMap<>();
+    private long searchTick = Long.MIN_VALUE;
+    private int searchBudget;
 
     private StructureIntegrityHub(ServerLevel level) {
         this.level = level;
@@ -60,6 +63,8 @@ public final class StructureIntegrityHub {
     }
 
     public void release(BlockPos origin) {
+        var search = orientationSearches.remove(origin);
+        if (search != null) search.close();
         var watch = watches.remove(origin);
         if (watch == null) return;
         for (var c : watch.chunks()) {
@@ -75,6 +80,8 @@ public final class StructureIntegrityHub {
     private void reconcile() {
         if (epoch == BlueprintRegistry.epoch()) return;
         epoch = BlueprintRegistry.epoch();
+        orientationSearches.values().forEach(OrientationSearch::close);
+        orientationSearches.clear();
         byChunk.clear();
         for (var w : watches.values()) {
             w.refresh();
@@ -92,8 +99,26 @@ public final class StructureIntegrityHub {
     }
 
     public StructureState query(BlockPos p, ResourceLocation id) {
-        var w = observe(p, id, PlacementTransform.NONE);
+        var w = watches.get(p);
+        if (w == null || !w.blueprintId().equals(id)) w = observe(p, id, PlacementTransform.NONE);
         flush();
+        if (!w.state().canProduce()) {
+            var blueprint = BlueprintRegistry.find(id).orElse(null);
+            if (blueprint != null) {
+                long now = level.getGameTime();
+                if (searchTick != now) {
+                    searchTick = now;
+                    searchBudget = OmphalosConfig.COMMON.integer("performance.structureMatchBudgetPerTick");
+                }
+                var search = orientationSearches.computeIfAbsent(p.immutable(), key -> new OrientationSearch(key, blueprint));
+                searchBudget -= search.advance(level, searchBudget);
+                if (search.result().isPresent()) {
+                    var transform = search.result().get();
+                    orientationSearches.remove(p); search.close();
+                    w = observe(p, id, transform); w.verify();
+                } else if (search.done() && now % 20 == 0) { orientationSearches.remove(p); search.close(); }
+            }
+        }
         w.publish();
         return w.state();
     }
@@ -182,7 +207,10 @@ public final class StructureIntegrityHub {
     private static void unload(LevelEvent.Unload e) {
         if (e.getLevel() instanceof ServerLevel s) {
             var h = LEVELS.remove(s);
-            if (h != null) h.watches.values().forEach(StructureWatch::close);
+            if (h != null) {
+                h.watches.values().forEach(StructureWatch::close);
+                h.orientationSearches.values().forEach(OrientationSearch::close);
+            }
         }
     }
 }

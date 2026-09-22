@@ -36,7 +36,11 @@ public final class Omphalos {
         ChargeBootstrap.attach(bus);
         OmphalosConfig.register(bus);
         com.mpp.stellaeomphalos.content.world.WorldBootstrap.attach(bus);
+        com.mpp.stellaeomphalos.content.effect.PartSixEffects.attach(bus);
+        com.mpp.stellaeomphalos.content.entity.p6.PartSixEntities.attach(bus);
+        com.mpp.stellaeomphalos.content.item.PartSixItems.attach(bus);
         com.mpp.stellaeomphalos.content.item.knowledge.KnowledgeBootstrap.attach(bus);
+        com.mpp.stellaeomphalos.content.particle.ClientVisualContent.initialize();
         NetworkBootstrap.attach(bus);
     }
 }

@@ -36,6 +36,8 @@ public final class LumenLinkMirror {
         OmphalosClient.handlers().register(PktLumenNode.class, (minecraft, packet) -> accept(packet));
         OmphalosClient.handlers().register(PktLumenDelta.class, (minecraft, packet) -> accept(packet));
         ClientSessionCleaner.register("lumen_link_mirror", LumenLinkMirror::clear);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.addListener(
+                (net.minecraftforge.client.event.ClientPlayerNetworkEvent.Clone event) -> clear());
     }
 
     private static boolean acceptSession(int sessionId) {

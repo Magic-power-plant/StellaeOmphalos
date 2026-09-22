@@ -13,7 +13,7 @@ public final class CraftingRelayBlockEntity extends AbstractCraftingMachine {
 
     @Override
     public String machineKind() {
-        return "crafting_relay";
+        return "beam_relay";
     }
 
     @Override

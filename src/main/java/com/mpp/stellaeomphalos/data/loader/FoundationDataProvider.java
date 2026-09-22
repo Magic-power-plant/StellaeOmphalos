@@ -30,9 +30,9 @@ public final class FoundationDataProvider implements DataProvider {
                     java.util.Map.entry("codex.cloudFadeThreshold", "星云淡出阈值"),
                     java.util.Map.entry("codex.nodeClickThreshold", "节点点击缩放阈值"),
                     java.util.Map.entry("structure.reverifyInterval", "结构复检间隔"),
-                    java.util.Map.entry("ritual.positionBudget", "星仪每刻位置预算"),
+                    java.util.Map.entry("ritual.positionBudget", "仪式每刻位置预算"),
                     java.util.Map.entry("ritual.offlineDropThreshold", "离线产物保留时间"),
-                    java.util.Map.entry("ritual.progressResetOnStall", "暂停时重置星仪进度"),
+                    java.util.Map.entry("ritual.progressResetOnStall", "暂停时重置仪式进度"),
                     java.util.Map.entry("ritual.allowTeamCollect", "允许队友收取产物"),
                     java.util.Map.entry("worldgen.retrogenChunks", "每刻补生成区块上限"),
                     java.util.Map.entry("worldgen.retrogenMillis", "每刻补生成毫秒上限"),
@@ -62,11 +62,29 @@ public final class FoundationDataProvider implements DataProvider {
                             "compat.enchantmentAmplification",
                             "\u9644\u9b54\u7b49\u7ea7\u589e\u5e45"),
                     java.util.Map.entry(
+                            "gameplay.blockRodHardnessLimit",
+                            "\u7f6e\u6362\u6756\u53ef\u66ff\u6362\u65b9\u5757\u786c\u5ea6\u95e8\u69db"),
+                    java.util.Map.entry(
+                            "amulet.chanceSecondRoll",
+                            "\u62a4\u7b26\u7b2c\u4e8c\u6b21\u63b7\u9ab0\u6982\u7387"),
+                    java.util.Map.entry(
+                            "amulet.chanceThirdRoll",
+                            "\u62a4\u7b26\u7b2c\u4e09\u6b21\u63b7\u9ab0\u6982\u7387"),
+                    java.util.Map.entry(
+                            "amulet.chanceExtraLevel",
+                            "\u62a4\u7b26\u989d\u5916\u7b49\u7ea7\u6982\u7387"),
+                    java.util.Map.entry(
+                            "amulet.chanceGlobalModifier",
+                            "\u62a4\u7b26\u5168\u5c40\u4fee\u6b63\u6982\u7387"),
+                    java.util.Map.entry(
+                            "amulet.chanceNewEnchantment",
+                            "\u62a4\u7b26\u65b0\u589e\u9644\u9b54\u6982\u7387"),
+                    java.util.Map.entry(
                             "logging.dataTableVerbose",
                             "\u6570\u636e\u8868\u8be6\u7ec6\u65e5\u5fd7"),
                     java.util.Map.entry(
                             "gameplay.lightProximityAltarRecipe",
-                            "\u661f\u575b\u90bb\u8fd1\u5149\u7167\u914d\u65b9"),
+                            "星之祭坛\u90bb\u8fd1\u5149\u7167\u914d\u65b9"),
                     java.util.Map.entry(
                             "gameplay.lightProximityWandRecipe",
                             "\u7b26\u6587\u6756\u90bb\u8fd1\u5149\u7167\u914d\u65b9"),
@@ -130,16 +148,16 @@ public final class FoundationDataProvider implements DataProvider {
                             "\u542f\u7528\u661f\u57df\u6548\u679c"),
                     java.util.Map.entry(
                             "gameplay.chargeRegenPerTick",
-                            "\u661f\u80fd\u6bcf\u523b\u56de\u590d\u57fa\u6570"),
+                            "充能每刻回复基数"),
                     java.util.Map.entry(
                             "gameplay.lumenFluidHotInteraction",
-                            "\u7194\u878d\u661f\u8f89\u70ed\u53cd\u5e94\u6a21\u5f0f"),
+                            "星流\u70ed\u53cd\u5e94\u6a21\u5f0f"),
                     java.util.Map.entry(
                             "gameplay.lumenFluidColdResultBlock",
-                            "\u7194\u878d\u661f\u8f89\u51b7\u53cd\u5e94\u7ed3\u679c\u65b9\u5757"),
+                            "星流\u51b7\u53cd\u5e94\u7ed3\u679c\u65b9\u5757"),
                     java.util.Map.entry(
                             "gameplay.lumenFluidHotResultBlock",
-                            "\u7194\u878d\u661f\u8f89\u70ed\u53cd\u5e94\u7ed3\u679c\u65b9\u5757"),
+                            "星流\u70ed\u53cd\u5e94\u7ed3\u679c\u65b9\u5757"),
                     java.util.Map.entry(
                             "render.maxEffectDistance", "\u7279\u6548\u6e32\u67d3\u8ddd\u79bb"),
                     java.util.Map.entry("render.gatewayShield", "\u661f\u95e8\u62a4\u76fe"),
@@ -249,19 +267,22 @@ public final class FoundationDataProvider implements DataProvider {
                 zh,
                 "block.stellaeomphalos.molten_lumen",
                 "Molten Lumen",
-                "\u7194\u878d\u661f\u8f89");
+                "星流");
         raw(
                 en,
                 zh,
                 "item.stellaeomphalos.molten_lumen_bucket",
                 "Molten Lumen Bucket",
-                "\u7194\u878d\u661f\u8f89\u6876");
-        raw(en, zh, "item.stellaeomphalos.geode_shard", "Geode Shard", "\u6676\u7c07\u788e\u7802");
+                "星流桶");
+        raw(en, zh, "item.stellaeomphalos.geode_shard", "Geode Shard", "片晶碎片");
+        // Part-6 §6.2.2.1：材料族补全的两个条目。
+        raw(en, zh, "item.stellaeomphalos.resonance_gem", "Resonance Gem", "共鸣宝石");
+        raw(en, zh, "item.stellaeomphalos.parchment", "Parchment", "羊皮纸");
         raw(en, zh, "block.stellaeomphalos.infused_log", "Infused Log", "\u704c\u6ce8\u539f\u6728");
         raw(
                 en,
                 zh,
-                "block.stellaeomphalos.lumen_collector",
+                "block.stellaeomphalos.collector",
                 "Lumen Collector",
                 "\u661f\u8f89\u6536\u96c6\u5668");
         raw(en, zh, "block.stellaeomphalos.lumen_relay", "Lumen Relay", "\u661f\u8f89\u4e2d\u7ee7");
@@ -282,19 +303,19 @@ public final class FoundationDataProvider implements DataProvider {
                 zh,
                 "fluid_type.stellaeomphalos.molten_lumen",
                 "Molten Lumen",
-                "\u7194\u878d\u661f\u8f89");
+                "星流");
         raw(
                 en,
                 zh,
                 "death.attack.stellaeomphalos.starlight",
                 "%1$s was struck down by starlight",
-                "%1$s \u88ab\u661f\u8f89\u51fb\u788e");
+                "%1$s 被星光击碎");
         raw(
                 en,
                 zh,
                 "death.attack.stellaeomphalos.starlight.player",
                 "%1$s was struck down by starlight whilst fighting %2$s",
-                "%1$s \u5728\u4e0e %2$s \u6218\u6597\u65f6\u88ab\u661f\u8f89\u51fb\u788e");
+                "%1$s \u5728\u4e0e %2$s \u6218\u6597\u65f6被星光击碎");
         raw(
                 en,
                 zh,
@@ -307,22 +328,22 @@ public final class FoundationDataProvider implements DataProvider {
                 "death.attack.stellaeomphalos.boon_thorns.player",
                 "%1$s was impaled on %2$s's starlit thorns",
                 "%1$s \u88ab %2$s \u7684\u661f\u8292\u8346\u68d8\u8d2f\u7a7f");
-        raw(en, zh, "sign.stellaeomphalos.aevitas", "Aevitas", "\u751f\u53d1\u5ea7");
-        raw(en, zh, "sign.stellaeomphalos.armara", "Armara", "\u536b\u620d\u5ea7");
-        raw(en, zh, "sign.stellaeomphalos.discidia", "Discidia", "\u5f81\u4f10\u5ea7");
-        raw(en, zh, "sign.stellaeomphalos.evorsio", "Evorsio", "\u5d29\u89e3\u5ea7");
-        raw(en, zh, "sign.stellaeomphalos.vicio", "Vicio", "\u98ce\u884c\u5ea7");
-        raw(en, zh, "sign.stellaeomphalos.bootes", "Bootes", "\u7267\u91ce\u5ea7");
-        raw(en, zh, "sign.stellaeomphalos.fornax", "Fornax", "\u7194\u7089\u5ea7");
-        raw(en, zh, "sign.stellaeomphalos.horologium", "Horologium", "\u66f4\u6f0f\u5ea7");
-        raw(en, zh, "sign.stellaeomphalos.lucerna", "Lucerna", "\u8f89\u5149\u5ea7");
-        raw(en, zh, "sign.stellaeomphalos.mineralis", "Mineralis", "\u77ff\u8109\u5ea7");
-        raw(en, zh, "sign.stellaeomphalos.octans", "Octans", "\u5782\u9493\u5ea7");
-        raw(en, zh, "sign.stellaeomphalos.pelotrio", "Pelotrio", "\u5b73\u751f\u5ea7");
-        raw(en, zh, "sign.stellaeomphalos.gelu", "Gelu", "\u51dd\u971c\u5ea7");
-        raw(en, zh, "sign.stellaeomphalos.ulteria", "Ulteria", "\u8fdc\u8292\u5ea7");
-        raw(en, zh, "sign.stellaeomphalos.alcara", "Alcara", "\u8680\u88c2\u5ea7");
-        raw(en, zh, "sign.stellaeomphalos.vorux", "Vorux", "\u9955\u566c\u5ea7");
+        raw(en, zh, "sign.stellaeomphalos.aevitas", "Aevitas", "生息座");
+        raw(en, zh, "sign.stellaeomphalos.armara", "Armara", "遁甲座");
+        raw(en, zh, "sign.stellaeomphalos.discidia", "Discidia", "攻烈座");
+        raw(en, zh, "sign.stellaeomphalos.evorsio", "Evorsio", "解离座");
+        raw(en, zh, "sign.stellaeomphalos.vicio", "Vicio", "虚御座");
+        raw(en, zh, "sign.stellaeomphalos.bootes", "Bootes", "牧夫座");
+        raw(en, zh, "sign.stellaeomphalos.fornax", "Fornax", "天炉座");
+        raw(en, zh, "sign.stellaeomphalos.horologium", "Horologium", "时钟座");
+        raw(en, zh, "sign.stellaeomphalos.lucerna", "Lucerna", "圣芒座");
+        raw(en, zh, "sign.stellaeomphalos.mineralis", "Mineralis", "矿溢座");
+        raw(en, zh, "sign.stellaeomphalos.octans", "Octans", "南极座");
+        raw(en, zh, "sign.stellaeomphalos.pelotrio", "Pelotrio", "唤生座");
+        raw(en, zh, "sign.stellaeomphalos.gelu", "Gelu", "霜冰座");
+        raw(en, zh, "sign.stellaeomphalos.ulteria", "Ulteria", "疏尘座");
+        raw(en, zh, "sign.stellaeomphalos.alcara", "Alcara", "振变座");
+        raw(en, zh, "sign.stellaeomphalos.vorux", "Vorux", "贪饕座");
         for (var section :
                 new OmphalosConfig.Section[] {
                     OmphalosConfig.COMMON, OmphalosConfig.SERVER, OmphalosConfig.CLIENT
@@ -343,9 +364,104 @@ public final class FoundationDataProvider implements DataProvider {
                                         label,
                                         key.equals("crafting.disabledFamilies")
                                                 ? "禁用的制作配方族"
-                                                : CHINESE.get(key));
+                                                : CHINESE.getOrDefault(key, label));
                             });
         }
+        raw(en, zh, "stellaeomphalos.visual.observe", "Observe the sky", "观测星空");
+        raw(en, zh, "stellaeomphalos.visual.next_sign", "Next constellation", "下一星象");
+        raw(en, zh, "stellaeomphalos.visual.no_signs", "No visible constellations", "当前没有可观测的星象");
+        raw(en, zh, "stellaeomphalos.visual.pattern_matched", "Pattern matched", "星图连线正确");
+        raw(en, zh, "stellaeomphalos.visual.sign_list", "Constellation atlas", "星象图鉴");
+        raw(en, zh, "stellaeomphalos.visual.sign_detail", "Constellation detail", "星象详情");
+        raw(en, zh, "stellaeomphalos.visual.observatory", "Observatory", "观星台");
+        raw(en, zh, "stellaeomphalos.visual.telescope", "Fixed telescope", "方块望远镜");
+        raw(en, zh, "stellaeomphalos.visual.hand_telescope", "Hand telescope", "手持望远镜");
+        raw(en, zh, "stellaeomphalos.visual.sign_scroll", "Constellation scroll", "星象卷轴");
+        raw(en, zh, "stellaeomphalos.visual.lore_scroll", "Lore scroll", "星识卷轴");
+        raw(en, zh, "subtitles.stellaeomphalos.altar_craft_complete", "Altar craft complete", "星坛合成完成");
+        raw(en, zh, "subtitles.stellaeomphalos.altar_craft_loop", "Altar craft loop", "星坛聚拢星辉");
+        raw(en, zh, "subtitles.stellaeomphalos.astrolabe_found", "Astrolabe found", "星盘找到目标");
+        raw(en, zh, "subtitles.stellaeomphalos.astrolabe_ping", "Astrolabe ping", "星盘标记目标");
+        raw(en, zh, "subtitles.stellaeomphalos.attunement", "Attunement", "共鸣回响");
+        raw(en, zh, "subtitles.stellaeomphalos.book_close", "Book close", "书本合拢");
+        raw(en, zh, "subtitles.stellaeomphalos.book_flip", "Book flip", "书页翻动");
+        raw(en, zh, "subtitles.stellaeomphalos.boon_seal_break", "Boon seal break", "星眷封印解除");
+        raw(en, zh, "subtitles.stellaeomphalos.boon_unlock", "Boon unlock", "星眷节点解锁");
+        raw(en, zh, "subtitles.stellaeomphalos.clip_switch", "Clip switch", "透镜卡扣切换");
+        raw(en, zh, "subtitles.stellaeomphalos.codex_close", "Codex close", "星典合拢");
+        raw(en, zh, "subtitles.stellaeomphalos.codex_open", "Codex open", "星典展开");
+        raw(en, zh, "subtitles.stellaeomphalos.codex_page_turn", "Codex page turn", "星典翻页");
+        raw(en, zh, "subtitles.stellaeomphalos.codex_search_type", "Codex search type", "星典检索");
+        raw(en, zh, "subtitles.stellaeomphalos.craft_finish", "Craft finish", "合成完成");
+        raw(en, zh, "subtitles.stellaeomphalos.craft_loop", "Craft loop", "合成持续");
+        raw(en, zh, "subtitles.stellaeomphalos.crystal_fracture", "Crystal fracture", "水晶碎裂");
+        raw(en, zh, "subtitles.stellaeomphalos.crystal_grow", "Crystal grow", "水晶生长");
+        raw(en, zh, "subtitles.stellaeomphalos.gateway_charge", "Gateway charge", "星门聚焦");
+        raw(en, zh, "subtitles.stellaeomphalos.gateway_teleport", "Gateway teleport", "星门传送");
+        raw(en, zh, "subtitles.stellaeomphalos.grindstone_complete", "Grindstone complete", "研磨完成");
+        raw(en, zh, "subtitles.stellaeomphalos.grindstone_grind_loop", "Grindstone grind loop", "砂轮研磨");
+        raw(en, zh, "subtitles.stellaeomphalos.infuser_craft_loop", "Infuser craft loop", "星辉注入");
+        raw(en, zh, "subtitles.stellaeomphalos.infusion_bubble", "Infusion bubble", "注魔气泡");
+        raw(en, zh, "subtitles.stellaeomphalos.lumen_collect_loop", "Lumen collect loop", "水晶汇集星光");
+        raw(en, zh, "subtitles.stellaeomphalos.mantle_activate", "Mantle activate", "星披激活");
+        raw(en, zh, "subtitles.stellaeomphalos.meteor_fall", "Meteor fall", "流星划过");
+        raw(en, zh, "subtitles.stellaeomphalos.meteor_impact", "Meteor impact", "流星落地");
+        raw(en, zh, "subtitles.stellaeomphalos.quern_spin", "Quern spin", "砂轮旋转");
+        raw(en, zh, "subtitles.stellaeomphalos.relay_link", "Relay link", "星辉线路连接");
+        raw(en, zh, "subtitles.stellaeomphalos.relay_unlink", "Relay unlink", "星辉线路断开");
+        raw(en, zh, "subtitles.stellaeomphalos.resonance_attune", "Resonance attune", "共鸣完成");
+        raw(en, zh, "subtitles.stellaeomphalos.rite_output", "Rite output", "星仪产物生成");
+        raw(en, zh, "subtitles.stellaeomphalos.ritual_end", "Ritual end", "星仪结束");
+        raw(en, zh, "subtitles.stellaeomphalos.ritual_fail", "Ritual fail", "星仪中断");
+        raw(en, zh, "subtitles.stellaeomphalos.ritual_loop", "Ritual loop", "星仪运转");
+        raw(en, zh, "subtitles.stellaeomphalos.ritual_start", "Ritual start", "星仪启动");
+        raw(en, zh, "subtitles.stellaeomphalos.shard_reveal", "Shard reveal", "星识残片揭示");
+        raw(en, zh, "subtitles.stellaeomphalos.sign_discover", "Sign discover", "星象被发现");
+        raw(en, zh, "subtitles.stellaeomphalos.spring_draw", "Spring draw", "泉眼抽取");
+        raw(en, zh, "subtitles.stellaeomphalos.structure_break", "Structure break", "星构破坏");
+        raw(en, zh, "subtitles.stellaeomphalos.structure_formed", "Structure formed", "星构成形");
+        raw(en, zh, "subtitles.stellaeomphalos.view_sequence_whoosh", "View sequence whoosh", "视角掠过");
+        raw(en, zh, "subtitles.stellaeomphalos.wand_augment_switch", "Wand augment switch", "符文杖切换增幅");
+        raw(en, zh, "subtitles.stellaeomphalos.well_liquid_loop", "Well liquid loop", "星辉井涌流");
+        raw(en, zh, "stellaeomphalos.visual.waiting", "Waiting for discovery confirmation", "等待星象发现确认");
+        raw(en, zh, "stellaeomphalos.visual.discovered", "Constellation discovered", "已发现星象");
+        raw(en, zh, "stellaeomphalos.visual.sky_unavailable", "A clear night sky and an upward view are required", "需要晴朗夜空；手持镜需抬头观测");
+        raw(en, zh, "stellaeomphalos.config.restart_required", "Reopen the world to apply these settings", "重新进入世界以应用这些设置");
+        raw(en, zh, "stellaeomphalos.visual.chart_burned", "The parchment burned; the glass is unchanged", "羊皮纸已烧毁，玻璃仍可继续雕刻");
+        raw(en, zh, "stellaeomphalos.visual.chart_complete", "The star glass has been engraved", "星图玻璃已完成雕刻");
+        raw(en, zh, "stellaeomphalos.visual.astrolabe", "Astrolabe targets", "星盘目标");
+        raw(en, zh, "stellaeomphalos.config.effects.enabled", "enabled", "特效总开关");
+        raw(en, zh, "stellaeomphalos.config.effects.budget", "budget", "特效轨数量上限");
+        raw(en, zh, "stellaeomphalos.config.effects.renderDistance", "renderDistance", "特效视距");
+        raw(en, zh, "stellaeomphalos.config.effects.beams", "beams", "星辉光束");
+        raw(en, zh, "stellaeomphalos.config.effects.arcs", "arcs", "闪电特效");
+        raw(en, zh, "stellaeomphalos.config.effects.composite", "composite", "复合球壳特效");
+        raw(en, zh, "stellaeomphalos.config.effects.orbits", "orbits", "环绕与时停光环");
+        raw(en, zh, "stellaeomphalos.config.particles.budget", "budget", "粒子数量上限");
+        raw(en, zh, "stellaeomphalos.config.particles.quality", "quality", "粒子画质");
+        raw(en, zh, "stellaeomphalos.config.particles.effectDistance", "effectDistance", "粒子视距");
+        raw(en, zh, "stellaeomphalos.config.render.beRendererDistance", "beRendererDistance", "机器渲染视距");
+        raw(en, zh, "stellaeomphalos.config.render.vanillaShaders", "vanillaShaders", "使用原版着色器");
+        raw(en, zh, "stellaeomphalos.config.sky.overlay", "overlay", "星空模式");
+        raw(en, zh, "stellaeomphalos.config.sky.respectForeign", "respectForeign", "兼容其他天空渲染");
+        raw(en, zh, "stellaeomphalos.config.sky.starLayers", "starLayers", "星点层数");
+        raw(en, zh, "stellaeomphalos.config.sky.meteorTrails", "meteorTrails", "流星拖尾");
+        raw(en, zh, "stellaeomphalos.config.view.sequences", "sequences", "允许视角演出");
+        raw(en, zh, "stellaeomphalos.config.palette.runtimeExtraction", "runtimeExtraction", "动态提取物品主色");
+        raw(en, zh, "stellaeomphalos.config.debug.showEffectStats", "showEffectStats", "显示特效统计");
+        raw(en, zh, "structure.stellaeomphalos.ancient_shrine", "Ancient Shrine", "远古神殿");
+        raw(en, zh, "structure.stellaeomphalos.small_shrine", "Small Shrine", "小型神龛");
+        raw(en, zh, "structure.stellaeomphalos.small_ruin", "Small Ruin", "小型遗迹");
+        raw(en, zh, "structure.stellaeomphalos.desert_shrine", "Desert Shrine", "沙漠神龛");
+        raw(en, zh, "structure.stellaeomphalos.treasure_shrine", "Treasure Shrine", "藏宝神龛");
+        raw(en, zh, "structure.stellaeomphalos.lumen_spring", "Lumen Spring", "星辉泉眼");
+        raw(en, zh, "stellaeomphalos.visual.gateway", "Celestial gateway", "天体星门");
+        raw(en, zh, "stellaeomphalos.visual.gateway_target", "Gateway at %s", "星门 %s");
+        raw(en, zh, "stellaeomphalos.visual.gateway_charge", "Focus and travel", "聚焦并传送");
+        raw(en, zh, "stellaeomphalos.visual.gateway_empty", "No other known gateways in this dimension", "当前维度尚无其他已登记星门");
+        raw(en, zh, "stellaeomphalos.config.view.captureTargets", "Capture gateway views", "保存星门景观预览");
+        raw(en,zh,"stellaeomphalos.visual.pattern_failed","The pattern was not accepted; try again","星图未通过，请重新连线");
+        raw(en,zh,"stellaeomphalos.config.render.staticMeshes","Cache crystal meshes","缓存水晶静态网格");
         EXTRA_LANGUAGES.forEach((key, pair) -> raw(en, zh, key, pair[0], pair[1]));
         var futures = new ArrayList<CompletableFuture<?>>();
         futures.add(

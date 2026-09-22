@@ -88,6 +88,11 @@ public final class LumenSpringBlockEntity extends BlockEntity {
                             if (accepted > 0) {
                                 requested.setAmount(vein.drain(accepted, true));
                                 tank.fill(requested, IFluidHandler.FluidAction.EXECUTE);
+                                if (server.getGameTime() % 80 == 0) {
+                                    var sound = net.minecraftforge.registries.ForgeRegistries.SOUND_EVENTS.getValue(
+                                            new net.minecraft.resources.ResourceLocation("stellaeomphalos", "spring_draw"));
+                                    if (sound != null) server.playSound(null, worldPosition, sound, net.minecraft.sounds.SoundSource.BLOCKS, .35F, 1);
+                                }
                             }
                         });
     }

@@ -55,6 +55,25 @@ class StarRecordIOTest {
     }
 
     @Test
+    void futureArchiveIsReadOnlyAndNeverRewritten(@TempDir Path dir) {
+        var files = new MemoryFiles();
+        var file = dir.resolve("future.dat");
+        var future = data(99); future.putInt("DataVersion", 99);
+        future.putString("FutureOnly", "preserved");
+        files.files.put(file, future.copy());
+        var notices = new ArrayList<String>();
+        var store = new StarRecordStore(future, new StarRecordIO(files), notices::add);
+        var id = UUID.randomUUID();
+        assertTrue(store.contains(id));
+        assertFalse(store.record(id).promote(com.mpp.stellaeomphalos.core.platform.StarTier.BRILLIANCE));
+        store.setDirty(); store.save(file.toFile());
+        assertEquals(future, files.files.get(file));
+        assertEquals(future, store.save(new CompoundTag()));
+        assertEquals(List.of("future_version"), notices);
+        assertEquals(1, files.files.size());
+    }
+
+    @Test
     void actualCompressedFilesRecoverLastKnownGoodBackup(@TempDir Path dir) throws Exception {
         var io = new StarRecordIO(StarRecordIO.DISK);
         var file = dir.resolve("records.dat");

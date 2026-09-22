@@ -78,9 +78,9 @@ public final class KnowledgeDataProvider implements DataProvider {
                         "book",
                         "lore_shard",
                         "amethyst_shard",
-                        "shard_capsule",
+                        "lore_capsule",
                         "ender_pearl",
-                        "insight_scroll",
+                        "lore_scroll",
                         "paper");
         icons.forEach(
                 (id, icon) -> {
@@ -126,18 +126,18 @@ public final class KnowledgeDataProvider implements DataProvider {
         write(
                 cache,
                 futures,
-                "data/stellaeomphalos/recipes/insight_scroll.json",
+                "data/stellaeomphalos/recipes/lore_scroll.json",
                 JsonParser.parseString(
                         """
-{"type":"minecraft:crafting_shaped","pattern":[" P ","PAP"," P "],"key":{"P":{"item":"minecraft:paper"},"A":{"item":"minecraft:amethyst_shard"}},"result":{"item":"stellaeomphalos:insight_scroll"}}
+{"type":"minecraft:crafting_shaped","pattern":[" P ","PAP"," P "],"key":{"P":{"item":"minecraft:paper"},"A":{"item":"minecraft:amethyst_shard"}},"result":{"item":"stellaeomphalos:lore_scroll"}}
 """));
         write(
                 cache,
                 futures,
-                "data/stellaeomphalos/recipes/shard_capsule.json",
+                "data/stellaeomphalos/recipes/lore_capsule.json",
                 JsonParser.parseString(
                         """
-{"type":"minecraft:crafting_shapeless","ingredients":[{"item":"minecraft:glass_bottle"},{"item":"minecraft:amethyst_shard"},{"item":"minecraft:glowstone_dust"}],"result":{"item":"stellaeomphalos:shard_capsule"}}
+{"type":"minecraft:crafting_shapeless","ingredients":[{"item":"minecraft:glass_bottle"},{"item":"minecraft:amethyst_shard"},{"item":"minecraft:glowstone_dust"}],"result":{"item":"stellaeomphalos:lore_capsule"}}
 """));
         for (String trigger : List.of("sign", "rite", "altar", "shard", "boon", "resonance")) {
             var advancement = new JsonObject();
@@ -150,6 +150,17 @@ public final class KnowledgeDataProvider implements DataProvider {
             criterion.add("conditions", conditions);
             criteria.add("milestone", criterion);
             advancement.add("criteria", criteria);
+            var display = new JsonObject();
+            var icon = new JsonObject(); icon.addProperty("item", "stellaeomphalos:codex");
+            display.add("icon", icon);
+            var title = new JsonObject(); title.addProperty("translate", "stellaeomphalos.milestone." + trigger);
+            var description = new JsonObject(); description.addProperty("translate", "stellaeomphalos.milestone.description");
+            display.add("title", title); display.add("description", description);
+            display.addProperty("frame", "task"); display.addProperty("show_toast", true);
+            display.addProperty("announce_to_chat", false); display.addProperty("hidden", false);
+            if (trigger.equals("sign")) display.addProperty("background", "minecraft:textures/gui/advancements/backgrounds/stone.png");
+            else advancement.addProperty("parent", "stellaeomphalos:knowledge/sign");
+            advancement.add("display", display);
             write(
                     cache,
                     futures,
@@ -169,10 +180,84 @@ public final class KnowledgeDataProvider implements DataProvider {
     }
 
     private static final String[][] TRANSLATIONS = {
+        {"stellaeomphalos.hud.direction.fine.0", "East", "东"},
+        {"stellaeomphalos.hud.direction.fine.1", "East-southeast", "东偏南"},
+        {"stellaeomphalos.hud.direction.fine.2", "Southeast", "东南"},
+        {"stellaeomphalos.hud.direction.fine.3", "South-southeast", "南偏东"},
+        {"stellaeomphalos.hud.direction.fine.4", "South", "南"},
+        {"stellaeomphalos.hud.direction.fine.5", "South-southwest", "南偏西"},
+        {"stellaeomphalos.hud.direction.fine.6", "Southwest", "西南"},
+        {"stellaeomphalos.hud.direction.fine.7", "West-southwest", "西偏南"},
+        {"stellaeomphalos.hud.direction.fine.8", "West", "西"},
+        {"stellaeomphalos.hud.direction.fine.9", "West-northwest", "西偏北"},
+        {"stellaeomphalos.hud.direction.fine.10", "Northwest", "西北"},
+        {"stellaeomphalos.hud.direction.fine.11", "North-northwest", "北偏西"},
+        {"stellaeomphalos.hud.direction.fine.12", "North", "北"},
+        {"stellaeomphalos.hud.direction.fine.13", "North-northeast", "北偏东"},
+        {"stellaeomphalos.hud.direction.fine.14", "Northeast", "东北"},
+        {"stellaeomphalos.hud.direction.fine.15", "East-northeast", "东偏北"},
+        {"effect.stellaeomphalos.bleeding", "Bleeding", "流血"},
+        {"stellaeomphalos.rite.progress_ticks", "Rite: %s (%s ticks)", "仪式：%s（%s tick）"},
+        {"stellaeomphalos.rite.state.scanning", "Scanning", "扫描"},
+        {"stellaeomphalos.rite.state.ready", "Ready", "就绪"},
+        {"stellaeomphalos.rite.state.interrupted", "Interrupted", "中断"},
+        {"stellaeomphalos.rite.state.locked", "Locked", "锁定"},
+        {"stellaeomphalos.imprint.title", "Starmap engraving", "星图铭刻"},
+        {"stellaeomphalos.imprint.clear", "Clear", "清空"},
+        {"stellaeomphalos.imprint.engrave", "Engrave", "铭刻"},
+        {"stellaeomphalos.imprint.no_signs", "No known signs", "尚无已知星象"},
+        {"stellaeomphalos.rite.hold_mode", "Output mode: %s", "产物模式：%s"},
+        {"stellaeomphalos.rite.hold.held", "Hold", "保留"},
+        {"stellaeomphalos.rite.hold.auto_inventory", "Deliver nearby", "近距离交付"},
+        {"stellaeomphalos.rite.hold.drop_on_full", "Drop when full", "满槽掉落"},
+        {"stellaeomphalos.astrolabe.unavailable", "No known target in range", "范围内没有已记录目标"},
+        {"stellaeomphalos.astrolabe.exact", "%s: %s", "%s：%s"},
+        {"stellaeomphalos.structure.status", "Structure: %s%%, degraded cells: %s", "星构：%s%%，降级单元：%s"},
+        {"stellaeomphalos.rite.status", "Rite: %s (%s%%)", "仪式：%s（%s%%）"},
+        {"stellaeomphalos.rite.output", "Produced %s x%s (cycle %s)", "已产出 %s ×%s（第 %s 周期）"},
+        {"stellaeomphalos.retrogen.status", "Retrogen: %s done, %s queued, %s skipped", "补生成：已完成 %s，待处理 %s，跳过 %s"},
+        {"stellaeomphalos.retrogen.done", "Retrogen finished: %s done, %s queued, %s skipped", "补生成完成：已完成 %s，待处理 %s，跳过 %s"},
+        {"stellaeomphalos.codex.unlocked", "Unlocked %s codex entries", "已解锁 %s 条星典条目"},
+        {"stellaeomphalos.hud.charge", "Charge: %s", "充能：%s"},
+        {"stellaeomphalos.hud.mantle", "Mantle guard: %s", "星披守护：%s"},
+        {"stellaeomphalos.hud.reader", "Living: %s / %s", "生物：%s／%s"},
+        {"stellaeomphalos.paste.unknown", "Unknown blueprint", "未知蓝图"},
+        {"stellaeomphalos.paste.result", "Placed %s, skipped %s, failed %s", "已放置 %s，跳过 %s，失败 %s"},
+        {"stellaeomphalos.record.future_version", "This archive requires a newer mod version; opened read-only.", "此星档案需要更新版本的模组，已按只读模式打开。"},
+        {"stellaeomphalos.milestone.description", "A discovery recorded in your celestial archive.", "一项新发现已记入星档案。"},
+        {"stellaeomphalos.milestone.sign", "Sign milestone", "初见星象"},
+        {"stellaeomphalos.milestone.rite", "Rite milestone", "仪式运转"},
+        {"stellaeomphalos.milestone.altar", "Altar milestone", "星之祭坛进阶"},
+        {"stellaeomphalos.milestone.shard", "Shard milestone", "星识初集"},
+        {"stellaeomphalos.milestone.boon", "Boon milestone", "星眷成长"},
+        {"stellaeomphalos.milestone.resonance", "Resonance milestone", "共鸣之证"},
+        {"stellaeomphalos.rite.state.idle", "Idle", "闲置"},
+        {"stellaeomphalos.rite.state.warmup", "Warmup", "预热"},
+        {"stellaeomphalos.rite.state.running", "Running", "运行"},
+        {"stellaeomphalos.rite.state.stalled", "Stalled", "停滞"},
+        {"stellaeomphalos.rite.state.finishing", "Finishing", "收尾"},
+        {"stellaeomphalos.rite.state.cooldown", "Cooldown", "冷却"},
+        {"stellaeomphalos.rite.state.stopped", "Stopped", "停止"},
+        {"stellaeomphalos.rite.state.aborted", "Aborted", "中止"},
+        {"stellaeomphalos.rite.state.suspended", "Suspended", "暂停"},
+        {"stellaeomphalos.rite.state.waiting", "Waiting", "等待"},
+        {"stellaeomphalos.rite.state.failed", "Failed", "失败"},
+        {"stellaeomphalos.rite.state.complete", "Complete", "完成"},
+        {"stellaeomphalos.hud.direction.0", "East", "东"},
+        {"stellaeomphalos.hud.direction.1", "Southeast", "东南"},
+        {"stellaeomphalos.hud.direction.2", "South", "南"},
+        {"stellaeomphalos.hud.direction.3", "Southwest", "西南"},
+        {"stellaeomphalos.hud.direction.4", "West", "西"},
+        {"stellaeomphalos.hud.direction.5", "Northwest", "西北"},
+        {"stellaeomphalos.hud.direction.6", "North", "北"},
+        {"stellaeomphalos.hud.direction.7", "Northeast", "东北"},
+        {"stellaeomphalos.hud.distance.near", "Near", "近"},
+        {"stellaeomphalos.hud.distance.mid", "Mid", "中"},
+        {"stellaeomphalos.hud.distance.far", "Far", "远"},
         {"item.stellaeomphalos.codex", "Celestial Codex", "星典"},
         {"item.stellaeomphalos.lore_shard", "Lore Shard", "星识残片"},
-        {"item.stellaeomphalos.shard_capsule", "Shard Capsule", "残片封壳"},
-        {"item.stellaeomphalos.insight_scroll", "Insight Scroll", "授识卷轴"},
+        {"item.stellaeomphalos.lore_capsule", "Shard Capsule", "残片封壳"},
+        {"item.stellaeomphalos.lore_scroll", "Insight Scroll", "授识卷轴"},
         {"itemGroup.stellaeomphalos.knowledge", "Celestial Knowledge", "星典与知识"},
         {"stellaeomphalos.codex.title", "Celestial Codex", "星典"},
         {"stellaeomphalos.codex.study", "Study", "研习"},

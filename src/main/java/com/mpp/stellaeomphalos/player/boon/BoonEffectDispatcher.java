@@ -98,7 +98,17 @@ public final class BoonEffectDispatcher {
                 .map(node -> new PktBoonTreeSync.Entry(node.id(), (short) node.gridX(), (short) node.gridZ(),
                         (byte) node.type().ordinal(), progress.hasNode(node.id())))
                 .toList();
-        SafeDispatch.send(player, new PktBoonTreeSync(sessionOf(player.getUUID()), BoonTree.BOON_TREE_VERSION, entries));
+        SafeDispatch.send(player, new PktBoonTreeSync(sessionOf(player.getUUID()), BoonTree.BOON_TREE_VERSION, entries, tree.renderEdges().stream().map(e->new PktBoonTreeSync.Edge(e.a(),e.b())).toList()));
+        for (var node : tree.nodes()) {
+            if (progress.isSealed(node.id())) sendDelta(player, node.id(), PktBoonDelta.ACTION_SEAL, new CompoundTag());
+            if (node instanceof com.mpp.stellaeomphalos.constellation.boon.SocketBoonNode socket && progress.hasNode(node.id())) {
+                var gem = socket.contained(progress.nodeData(node.id()));
+                if (!gem.isEmpty()) {
+                    var extra = new CompoundTag(); extra.put("Item", gem.save(new CompoundTag()));
+                    sendDelta(player, node.id(), PktBoonDelta.ACTION_SOCKET, extra);
+                }
+            }
+        }
     }
 
     private static int sessionOf(UUID playerId) {

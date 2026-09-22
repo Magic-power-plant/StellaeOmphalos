@@ -62,7 +62,7 @@ public final class MantleDispatcher {
         if (stack.isEmpty()
                 || !net.minecraft.core.registries.BuiltInRegistries.ITEM
                         .getKey(stack.getItem())
-                        .equals(new ResourceLocation("stellaeomphalos:star_mantle")))
+                        .equals(new ResourceLocation("stellaeomphalos:mantle")))
             return Optional.empty();
         var tag = stack.hasTag() ? stack.getTag() : new CompoundTag();
         var sign = ResourceLocation.tryParse(tag.getString("SignId"));

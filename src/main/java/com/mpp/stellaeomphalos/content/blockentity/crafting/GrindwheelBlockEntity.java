@@ -18,7 +18,7 @@ public final class GrindwheelBlockEntity extends AbstractCraftingMachine {
 
     @Override
     public String machineKind() {
-        return "grindwheel";
+        return "quern";
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class GrindwheelBlockEntity extends AbstractCraftingMachine {
         var input = new SimpleContainer(items.getStackInSlot(0).copy());
         var candidates =
                 CraftingBootstrap.hub(server.getServer())
-                        .byInput(CraftingBootstrap.id("grindwheel"), stacks())
+                        .byInput(CraftingBootstrap.id("quern"), stacks())
                         .stream()
                         .map(r -> (GrindwheelRecipe) r)
                         .filter(r -> r.matches(input, server))
@@ -40,7 +40,7 @@ public final class GrindwheelBlockEntity extends AbstractCraftingMachine {
         server.playSound(
                 null,
                 worldPosition,
-                CraftingContent.GRINDWHEEL_SPIN.get(),
+                com.mpp.stellaeomphalos.content.particle.ClientVisualContent.sound("grindstone_complete"),
                 net.minecraft.sounds.SoundSource.BLOCKS,
                 0.6F,
                 1F);

@@ -75,7 +75,8 @@ public final class PayloadRegistry {
         var type = type(id);
         if (type.direction() != direction || bytes.length > ChunkedEnvelope.MAX_BYTES)
             throw new IllegalArgumentException("Invalid payload direction or size");
-        if ((id == 26 || id == 27) && bytes.length > 8192)
+        if ((type.type() == com.mpp.stellaeomphalos.network.toClient.PreviewStartPayload.class
+                || type.type() == com.mpp.stellaeomphalos.network.toClient.PreviewDiffPayload.class) && bytes.length > 8192)
             throw new IllegalArgumentException("Preview exceeds 8 KiB");
         try {
             String json =

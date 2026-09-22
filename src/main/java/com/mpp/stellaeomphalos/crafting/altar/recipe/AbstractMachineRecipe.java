@@ -30,7 +30,7 @@ public abstract class AbstractMachineRecipe implements Recipe<Container>, Recipe
                         .hashUnencodedChars(this.json.toString())
                         .asLong();
         var output =
-                Set.of("asterism_crafting", "asterism_upgrade", "lumen_infusion", "grindwheel")
+                Set.of("asterism_crafting", "asterism_upgrade", "lumen_infusion", "quern")
                                 .contains(family)
                         ? RecipeJson.object(json, "result")
                         : new JsonObject();

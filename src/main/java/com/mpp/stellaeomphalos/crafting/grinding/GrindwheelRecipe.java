@@ -19,7 +19,7 @@ public final class GrindwheelRecipe extends AbstractMachineRecipe {
     private final double bonus;
 
     public GrindwheelRecipe(ResourceLocation id, JsonObject json) {
-        super(id, "grindwheel", json);
+        super(id, "quern", json);
         input = json.has("input") ? MaterialSpec.parse(json.get("input")) : null;
         alteration =
                 json.has("alteration") ? RecipeJson.id(json.get("alteration").getAsString()) : null;
@@ -37,7 +37,7 @@ public final class GrindwheelRecipe extends AbstractMachineRecipe {
                         1000000);
         bonus = RecipeJson.decimal(json, "bonus_chance", 0, 0, 1);
         if (alteration == null && result.empty())
-            throw new JsonParseException("Missing grindwheel result");
+            throw new JsonParseException("Missing quern result");
     }
 
     @Override

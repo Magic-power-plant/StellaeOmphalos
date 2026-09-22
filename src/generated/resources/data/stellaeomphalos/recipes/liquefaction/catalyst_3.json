@@ -1,7 +1,7 @@
 {
   "type": "stellaeomphalos:well_liquefaction",
   "catalyst": {
-    "item": "stellaeomphalos:resonant_crystal"
+    "item": "stellaeomphalos:resonant_geode"
   },
   "production_multiplier": 1.25,
   "result_fluid": {

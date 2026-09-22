@@ -20,6 +20,12 @@ public final class PartFiveClientSmoke {
 
     public static void tick(Minecraft mc, int tick) {
         if (tick == 50) {
+            var fluid = com.mpp.stellaeomphalos.lumen.fluid.MoltenLumenContent.TYPE.get();
+            var extension = net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions.of(fluid);
+            if (extension.getStillTexture() == null || extension.getFlowingTexture() == null
+                    || !extension.getStillTexture().equals(new ResourceLocation("minecraft", "block/water_still")))
+                throw new AssertionError("Fluid render properties were not installed during client setup");
+
             var record = new CompoundTag();
             record.putString("Tier", "BRILLIANCE");
             var branches = new ListTag();

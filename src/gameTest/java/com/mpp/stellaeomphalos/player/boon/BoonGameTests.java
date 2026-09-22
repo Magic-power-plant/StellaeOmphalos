@@ -113,7 +113,11 @@ public final class BoonGameTests {
             progress.unlock(player, VITALITY);
             helper.assertTrue(progress.unlock(player, SOCKET), "Socket node refused");
             helper.assertFalse(progress.socket(player, SOCKET, new ItemStack(Items.STONE)), "Non-gem must be rejected");
-            helper.assertTrue(progress.socket(player, SOCKET, new ItemStack(Items.EMERALD)), "Gem must be accepted");
+            player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, new ItemStack(Items.EMERALD, 2));
+            helper.assertTrue(com.mpp.stellaeomphalos.content.item.knowledge.KnowledgeProtocol.socketHeld(player, SOCKET), "Server-held gem accepted");
+            helper.assertTrue(player.getMainHandItem().getCount() == 1, "Exactly one gem consumed");
+            helper.assertFalse(com.mpp.stellaeomphalos.content.item.knowledge.KnowledgeProtocol.socketHeld(player, SOCKET), "Occupied socket refuses overwrite");
+            helper.assertTrue(player.getMainHandItem().getCount() == 1, "Rejected request consumes nothing");
             var node = (SocketBoonNode) BoonTree.get().node(SOCKET);
             helper.assertTrue(node.contained(progress.nodeData(SOCKET)).is(Items.EMERALD), "Gem was not socketed");
             // Fill every main inventory slot so the returned gem cannot fit.

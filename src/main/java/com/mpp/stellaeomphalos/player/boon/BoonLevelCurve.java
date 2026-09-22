@@ -14,8 +14,19 @@ public final class BoonLevelCurve {
     /** Total experience required to reach {@code level}; level 1 sits at 0. */
     public static long expForLevel(int level) {
         if (level < 1) throw new IllegalArgumentException("Levels start at 1");
-        long total = 0;
-        for (int i = 2; i <= level; i++) total += 150L + (long) Math.pow(2.0, (i / 2) + 3);
+        var policy = com.mpp.stellaeomphalos.data.loader.DataBootstrap.TABLES
+                .entries(com.mpp.stellaeomphalos.data.loader.DataBootstrap.BOON_XP)
+                .get(new net.minecraft.resources.ResourceLocation("stellaeomphalos", "default"));
+        var thresholds = policy != null && policy.enabled() ? policy.values() : java.util.List.<Integer>of();
+        if (level <= thresholds.size()) return thresholds.get(level - 1);
+        long total = thresholds.isEmpty() ? 0 : thresholds.get(thresholds.size() - 1);
+        for (int i = Math.max(2, thresholds.size() + 1); i <= level; i++) {
+            int exponent = i / 2 + 3;
+            if (exponent >= 63) return Long.MAX_VALUE;
+            long step = 150L + (1L << exponent);
+            if (step < 0 || Long.MAX_VALUE - total < step) return Long.MAX_VALUE;
+            total += step;
+        }
         return total;
     }
 

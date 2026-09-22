@@ -24,12 +24,8 @@ public final class AstrolabeItem extends Item {
                         new com.mpp.stellaeomphalos.network.toServer.SpringProbePayload(
                                 player.blockPosition().getX() >> 4,
                                 player.blockPosition().getZ() >> 4));
-            else
-                WorldProtocol.query(
-                        server,
-                        target == null
-                                ? new ResourceLocation("stellaeomphalos", "ancient_shrine")
-                                : target);
+            else com.mpp.stellaeomphalos.network.SafeDispatch.send(server,
+                    new com.mpp.stellaeomphalos.network.toClient.PktOpenObservation("astrolabe", java.util.Optional.empty()));
         }
         return InteractionResultHolder.sidedSuccess(stack, level.isClientSide);
     }

@@ -33,7 +33,10 @@ public final class ClientKnowledgeCache {
     private static long revision, epoch = -1;
     private static float hudFade;
     private static String lastShard = "";
-    private static CompoundTag signs = new CompoundTag();
+    private static net.minecraft.network.chat.Component notice = net.minecraft.network.chat.Component.empty();
+    public static net.minecraft.network.chat.Component notice() { return notice; }
+    public static CompoundTag mantle(UUID player) { return mantles.getOrDefault(player, new CompoundTag()).copy(); }
+    private static CompoundTag signs = new CompoundTag(), signIds = new CompoundTag();
 
     private ClientKnowledgeCache() {}
 
@@ -54,6 +57,8 @@ public final class ClientKnowledgeCache {
                     var next = new LinkedHashMap<ResourceLocation, CodexPage>();
                     var data = p.data();
                     for (var key : data.getAllKeys()) {
+                        if (key.equals("SignGeometry")) { com.mpp.stellaeomphalos.client.sign.SignDefinitionMirror.replace(data.getCompound(key));continue; }
+                        if (key.equals("SignIds")) { signIds = data.getCompound(key).copy(); continue; }
                         if (key.equals("Signs")) {
                             signs = data.getCompound(key).copy();
                             continue;
@@ -90,6 +95,9 @@ public final class ClientKnowledgeCache {
                 PktShardRevealed.class,
                 (mc, p) -> {
                     lastShard = p.shard();
+                    com.mpp.stellaeomphalos.client.sound.UiSounds.play("shard_reveal");
+                    notice = net.minecraft.network.chat.Component.translatable("stellaeomphalos.codex." +
+                            (p.result().equals("NEW") ? "new" : p.result().equals("DUPLICATE") ? "duplicate" : "rejected"));
                     hudFade = 1;
                     if (mc.player != null)
                         mc.player.displayClientMessage(
@@ -108,13 +116,14 @@ public final class ClientKnowledgeCache {
                 PktCodexUnlock.class,
                 (mc, p) -> {
                     hudFade = 1;
+                    notice = net.minecraft.network.chat.Component.translatable("stellaeomphalos.codex.unlocked", p.nodes().size());
                     SEARCH.clear();
                 });
         handlers.register(
                 PktMantleState.class,
                 (mc, p) -> {
                     try {
-                        if (mantles.size() < 256)
+                        if (mantles.size() < 256 || mantles.containsKey(UUID.fromString(p.player())))
                             mantles.put(UUID.fromString(p.player()), p.data());
                     } catch (IllegalArgumentException ignored) {
                     }
@@ -155,6 +164,7 @@ public final class ClientKnowledgeCache {
                             : 1;
                 });
         MantleVisuals.attach();
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.addListener(GameplayHud::render);
     }
 
     private static void clonePlayer(
@@ -202,6 +212,10 @@ public final class ClientKnowledgeCache {
 
     public static boolean ready() {
         return session != Integer.MIN_VALUE;
+    }
+
+    public static int signId(ResourceLocation id) {
+        return signIds.contains(id.toString()) ? signIds.getInt(id.toString()) : -1;
     }
 
     public static CompoundTag signs() {
@@ -255,11 +269,13 @@ public final class ClientKnowledgeCache {
     }
 
     public static void clear() {
+        com.mpp.stellaeomphalos.client.sign.SignDefinitionMirror.clear();
         state = new CompoundTag();
         gauges = new CompoundTag();
         projections = new CompoundTag();
         blueprints = new CompoundTag();
         signs = new CompoundTag();
+        signIds = new CompoundTag();
         record = KnowledgeSnapshot.empty();
         pages = Map.of();
         mantles.clear();
@@ -269,6 +285,7 @@ public final class ClientKnowledgeCache {
         epoch = -1;
         hudFade = 0;
         lastShard = "";
+        notice = net.minecraft.network.chat.Component.empty();
         NAVIGATOR.reset();
         CANVAS.reset();
         SEARCH.clear();

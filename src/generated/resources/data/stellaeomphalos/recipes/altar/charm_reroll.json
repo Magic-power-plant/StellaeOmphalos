@@ -4,7 +4,7 @@
   "grid": {
     "key": {
       "C": {
-        "item": "stellaeomphalos:enchant_charm"
+        "item": "stellaeomphalos:warded_amulet"
       },
       "E": {
         "item": "minecraft:lapis_lazuli"
@@ -19,7 +19,7 @@
   "lumen": 3200,
   "result": {
     "fallback": {
-      "item": "stellaeomphalos:enchant_charm"
+      "item": "stellaeomphalos:warded_amulet"
     },
     "kind": "inherit",
     "ops": [

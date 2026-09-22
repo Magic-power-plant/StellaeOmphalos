@@ -1,7 +1,7 @@
 package com.mpp.stellaeomphalos.network;
 
 public record ProtocolVersion(int major, int minor) {
-    public static final ProtocolVersion CURRENT = new ProtocolVersion(1, 1);
+    public static final ProtocolVersion CURRENT = new ProtocolVersion(1, 3);
 
     public ProtocolVersion {
         if (major < 0 || minor < 0) throw new IllegalArgumentException("Negative protocol version");

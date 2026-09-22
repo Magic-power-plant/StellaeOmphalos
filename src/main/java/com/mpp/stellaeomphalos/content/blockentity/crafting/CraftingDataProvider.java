@@ -107,15 +107,15 @@ public final class CraftingDataProvider implements DataProvider {
 
     public static Map<String, JsonObject> recipes() {
         var recipes = new TreeMap<String, JsonObject>();
-        String[] tiers = {"discovery", "resonance", "sign", "trait"};
-        int[] durations = {400, 1200, 2000};
-        for (int i = 0; i < 3; i++) {
+        String[] tiers = {"discovery", "resonance", "sign", "trait", "radiance"};
+        int[] durations = {400, 1200, 2000, 2800};
+        for (int i = 0; i < tiers.length - 1; i++) {
             var data =
                     altar(
                             tiers[i],
                             item("minecraft:diamond"),
                             item("minecraft:amethyst_shard"),
-                            "star_lens");
+                            "lens_blank");
             data.put("type", NS + "asterism_upgrade");
             data.remove("tier");
             data.remove("result");
@@ -143,13 +143,13 @@ public final class CraftingDataProvider implements DataProvider {
                                 "result",
                                 item("asterism_altar_discovery"))));
         recipes.put(
-                "altar/lumen_collector",
+                "altar/collector",
                 json(
                         altar(
                                 "discovery",
                                 item("minecraft:clock"),
-                                item("raw_crystal"),
-                                "lumen_collector")));
+                                item("geode"),
+                                "collector")));
         recipes.put(
                 "altar/lumen_relay",
                 json(
@@ -176,19 +176,19 @@ public final class CraftingDataProvider implements DataProvider {
                                 "lumen_flask")));
         String[] machines = {
             "lumen_infuser",
-            "grindwheel",
+            "quern",
             "lumen_well",
-            "lumen_chalice",
-            "crafting_relay",
+            "chalice",
+            "beam_relay",
             "light_transmuter"
         };
         for (String machine : machines) {
             String center =
                     switch (machine) {
                         case "lumen_infuser" -> "iron_ingot";
-                        case "grindwheel" -> "stick";
+                        case "quern" -> "stick";
                         case "lumen_well" -> "bucket";
-                        case "lumen_chalice" -> "gold_ingot";
+                        case "chalice" -> "gold_ingot";
                         case "light_transmuter" -> "glowstone_dust";
                         default -> "copper_ingot";
                     };
@@ -199,7 +199,7 @@ public final class CraftingDataProvider implements DataProvider {
                                     "discovery",
                                     item("minecraft:" + center),
                                     item(
-                                            machine.equals("grindwheel")
+                                            machine.equals("quern")
                                                     ? "minecraft:stone"
                                                     : "minecraft:quartz"),
                                     machine)));
@@ -209,8 +209,8 @@ public final class CraftingDataProvider implements DataProvider {
                     altar(
                             "resonance",
                             item("minecraft:diamond_" + tool),
-                            item("raw_crystal"),
-                            "crystal_" + tool);
+                            item("geode"),
+                            "geode_" + tool);
             data.put("duration", 450);
             data.put("flags", List.of("no_chain"));
             data.put(
@@ -219,17 +219,17 @@ public final class CraftingDataProvider implements DataProvider {
                             "kind",
                             "static",
                             "stack",
-                            item("crystal_" + tool),
+                            item("geode_" + tool),
                             "ops",
                             List.of(op("merge_crystal_traits"))));
-            recipes.put("altar/crystal_" + tool, json(data));
+            recipes.put("altar/geode_" + tool, json(data));
         }
         var raw =
                 altar(
                         "discovery",
                         item("minecraft:amethyst_shard"),
                         item("minecraft:quartz"),
-                        "raw_crystal");
+                        "geode");
         raw.put(
                 "result",
                 Map.of(
@@ -238,34 +238,34 @@ public final class CraftingDataProvider implements DataProvider {
                         "stack",
                         Map.of(
                                 "item",
-                                NS + "raw_crystal",
+                                NS + "geode",
                                 "nbt",
                                 Map.of(
                                         "CrystalTraits",
                                         Map.of("Size", 200, "Purity", 60, "Collect", 50)))));
-        recipes.put("altar/raw_crystal", json(raw));
+        recipes.put("altar/geode", json(raw));
         for (String basic :
                 List.of(
                         "star_sextant",
-                        "illumination_wand",
-                        "star_mantle",
-                        "conversion_star",
-                        "enchant_charm",
+                        "luminary_rod",
+                        "mantle",
+                        "warp_star",
+                        "warded_amulet",
                         "drill_head",
-                        "resonator",
-                        "star_lens",
+                        "sky_resonator",
+                        "lens_blank",
                         "prism_lens",
                         "ritual_base")) {
             String edge =
                     switch (basic) {
                         case "star_sextant" -> "iron_ingot";
-                        case "illumination_wand" -> "stick";
-                        case "star_mantle" -> "phantom_membrane";
-                        case "conversion_star" -> "ender_pearl";
-                        case "enchant_charm" -> "enchanted_book";
+                        case "luminary_rod" -> "stick";
+                        case "mantle" -> "phantom_membrane";
+                        case "warp_star" -> "ender_pearl";
+                        case "warded_amulet" -> "enchanted_book";
                         case "drill_head" -> "diamond";
-                        case "resonator" -> "redstone";
-                        case "star_lens" -> "glass";
+                        case "sky_resonator" -> "redstone";
+                        case "lens_blank" -> "glass";
                         case "prism_lens" -> "glass_pane";
                         default -> "quartz";
                     };
@@ -274,10 +274,10 @@ public final class CraftingDataProvider implements DataProvider {
                             basic.equals("ritual_base") ? "resonance" : "discovery",
                             basic.equals("ritual_base")
                                     ? Map.of("fluid", NS + "molten_lumen", "amount", 400)
-                                    : item("raw_crystal"),
+                                    : item("geode"),
                             item("minecraft:" + edge),
                             basic);
-            if (basic.equals("illumination_wand"))
+            if (basic.equals("luminary_rod"))
                 data.put(
                         "result",
                         Map.of(
@@ -285,7 +285,7 @@ public final class CraftingDataProvider implements DataProvider {
                                 "static",
                                 "stack",
                                 Map.of("item", NS + basic, "nbt", Map.of("WandColor", 16777215))));
-            if (basic.equals("enchant_charm")) {
+            if (basic.equals("warded_amulet")) {
                 data.put("duration", 600);
                 data.put(
                         "result",
@@ -297,7 +297,7 @@ public final class CraftingDataProvider implements DataProvider {
                                 "ops",
                                 List.of(op("random_enchantment"))));
             }
-            if (basic.equals("star_lens"))
+            if (basic.equals("lens_blank"))
                 data.put(
                         "result",
                         Map.of(
@@ -322,9 +322,9 @@ public final class CraftingDataProvider implements DataProvider {
         var reroll =
                 altar(
                         "sign",
-                        item("enchant_charm"),
+                        item("warded_amulet"),
                         item("minecraft:lapis_lazuli"),
-                        "enchant_charm");
+                        "warded_amulet");
         reroll.put("duration", 250);
         reroll.put(
                 "result",
@@ -332,7 +332,7 @@ public final class CraftingDataProvider implements DataProvider {
                         "kind",
                         "inherit",
                         "fallback",
-                        item("enchant_charm"),
+                        item("warded_amulet"),
                         "ops",
                         List.of(op("random_enchantment"))));
         recipes.put("altar/charm_reroll", json(reroll));
@@ -361,18 +361,18 @@ public final class CraftingDataProvider implements DataProvider {
         for (int i = 0; i < SIGNS.length; i++) {
             String sign = SIGNS[i], dye = "minecraft:" + COLORS[i] + "_dye";
             for (String output :
-                    List.of("sign_focus", "sign_paper", "illumination_wand", "star_mantle")) {
+                    List.of("sign_focus", "sign_chart", "luminary_rod", "mantle")) {
                 Object center =
                         output.equals("sign_focus")
-                                ? item("raw_crystal")
-                                : output.equals("sign_paper")
+                                ? item("geode")
+                                : output.equals("sign_chart")
                                         ? item("minecraft:paper")
                                         : Map.of(
                                                 "item",
                                                 NS + output,
                                                 "exclude_nbt",
                                                 Map.of("SignId", NS + sign));
-                if (output.equals("illumination_wand"))
+                if (output.equals("luminary_rod"))
                     center =
                             Map.of(
                                     "item",
@@ -387,7 +387,7 @@ public final class CraftingDataProvider implements DataProvider {
                                 center,
                                 item(dye),
                                 output);
-                if (output.equals("star_mantle"))
+                if (output.equals("mantle"))
                     data.put(
                             "result",
                             Map.of(
@@ -407,18 +407,18 @@ public final class CraftingDataProvider implements DataProvider {
                                     item(output),
                                     "ops",
                                     List.of(op("set_sign", "sign", NS + sign))));
-                if (!output.equals("sign_paper") && !output.equals("sign_focus"))
+                if (!output.equals("sign_chart") && !output.equals("sign_focus"))
                     data.put("focus_sign", NS + sign);
                 recipes.put("altar/" + output + "_" + sign, json(data));
             }
-            var lens = altar("resonance", item("star_lens"), item(dye), "star_lens");
+            var lens = altar("resonance", item("lens_blank"), item(dye), "lens_blank");
             lens.put(
                     "result",
                     Map.of(
                             "kind",
                             "inherit",
                             "fallback",
-                            item("star_lens"),
+                            item("lens_blank"),
                             "ops",
                             List.of(op("set_lens_color", "color", 0xFF000000 | i * 0x101010))));
             recipes.put("altar/lens_" + COLORS[i], json(lens));
@@ -493,14 +493,14 @@ public final class CraftingDataProvider implements DataProvider {
                             "sign",
                             Map.of(
                                     "item",
-                                    NS + "resonator",
+                                    NS + "sky_resonator",
                                     "exclude_nbt",
                                     Map.of("Upgrades", List.of(NS + upgrade))),
                             item(
                                     upgrade.equals("range")
                                             ? "minecraft:ender_pearl"
                                             : "minecraft:quartz"),
-                            "resonator");
+                            "sky_resonator");
             data.put("flags", List.of("strict_match"));
             data.put(
                     "result",
@@ -508,17 +508,17 @@ public final class CraftingDataProvider implements DataProvider {
                             "kind",
                             "inherit",
                             "fallback",
-                            item("resonator"),
+                            item("sky_resonator"),
                             "ops",
                             List.of(op("unlock_upgrade", "upgrade", NS + upgrade))));
-            recipes.put("altar/resonator_" + upgrade, json(data));
+            recipes.put("altar/sky_resonator_" + upgrade, json(data));
         }
         var collector =
                 altar(
                         "sign",
                         Map.of(
                                 "item",
-                                NS + "resonant_crystal",
+                                NS + "resonant_geode",
                                 "include_nbt",
                                 Map.of("Attuned", true)),
                         item("minecraft:glass"),
@@ -533,7 +533,7 @@ public final class CraftingDataProvider implements DataProvider {
                         "ops",
                         List.of(op("preserve_nbt"), op("copy_crystal_traits"))));
         recipes.put("altar/collector_crystal", json(collector));
-        for (String crystal : List.of("raw_crystal", "resonant_crystal"))
+        for (String crystal : List.of("geode", "resonant_geode"))
             recipes.put(
                     "infusion/" + crystal,
                     json(
@@ -542,13 +542,13 @@ public final class CraftingDataProvider implements DataProvider {
                                     NS + "lumen_infusion",
                                     "input",
                                     item(
-                                            crystal.equals("raw_crystal")
+                                            crystal.equals("geode")
                                                     ? "minecraft:amethyst_shard"
-                                                    : "raw_crystal"),
+                                                    : "geode"),
                                     "duration",
                                     200,
                                     "solvent",
-                                    Map.of("chance", crystal.equals("raw_crystal") ? 0.05 : 1.0),
+                                    Map.of("chance", crystal.equals("geode") ? 0.05 : 1.0),
                                     "result",
                                     Map.of(
                                             "kind",
@@ -573,7 +573,7 @@ public final class CraftingDataProvider implements DataProvider {
                                     "type",
                                     NS + "lumen_infusion",
                                     "input",
-                                    item("crystal_" + tool),
+                                    item("geode_" + tool),
                                     "duration",
                                     200,
                                     "result",
@@ -583,7 +583,7 @@ public final class CraftingDataProvider implements DataProvider {
                                             "source_slot",
                                             "input",
                                             "fallback",
-                                            item("crystal_" + tool),
+                                            item("geode_" + tool),
                                             "ops",
                                             List.of(
                                                     op("set_tool_traits"),
@@ -608,7 +608,7 @@ public final class CraftingDataProvider implements DataProvider {
                     json(
                             Map.of(
                                     "type",
-                                    NS + "grindwheel",
+                                    NS + "quern",
                                     "input",
                                     item("minecraft:" + pair[0]),
                                     "result",
@@ -623,7 +623,7 @@ public final class CraftingDataProvider implements DataProvider {
                     json(
                             Map.of(
                                     "type",
-                                    NS + "grindwheel",
+                                    NS + "quern",
                                     "alteration",
                                     NS + alteration,
                                     "hidden",
@@ -635,8 +635,8 @@ public final class CraftingDataProvider implements DataProvider {
                 List.of(
                         "minecraft:amethyst_shard",
                         "minecraft:quartz",
-                        NS + "raw_crystal",
-                        NS + "resonant_crystal",
+                        NS + "geode",
+                        NS + "resonant_geode",
                         "minecraft:glowstone_dust",
                         "minecraft:prismarine_crystals")) {
             recipes.put(
@@ -695,7 +695,7 @@ public final class CraftingDataProvider implements DataProvider {
                                         "kind",
                                         "random_crystal",
                                         "item",
-                                        NS + "raw_crystal",
+                                        NS + "geode",
                                         "item_half_life",
                                         true))));
         recipes.put(
@@ -723,7 +723,7 @@ public final class CraftingDataProvider implements DataProvider {
                                 "result",
                                 Map.of(
                                         "item",
-                                        NS + "illumination_wand",
+                                        NS + "luminary_rod",
                                         "nbt",
                                         Map.of("WandColor", 16777215)),
                                 "min_lumen",
@@ -747,10 +747,10 @@ public final class CraftingDataProvider implements DataProvider {
                 List.of(
                         "asterism_altar",
                         "lumen_infuser",
-                        "grindwheel",
+                        "quern",
                         "lumen_well",
-                        "lumen_chalice",
-                        "crafting_relay",
+                        "chalice",
+                        "beam_relay",
                         "light_transmuter")) {
             save(
                     cache,
@@ -800,7 +800,7 @@ public final class CraftingDataProvider implements DataProvider {
                                                                         "condition",
                                                                         "minecraft:survives_explosion")))))));
         }
-        for (String block : List.of("lumen_collector", "lumen_relay", "lumen_battery")) {
+        for (String block : List.of("collector", "lumen_relay", "lumen_battery")) {
             save(
                     cache,
                     futures,
@@ -817,7 +817,7 @@ public final class CraftingDataProvider implements DataProvider {
                                     "textures",
                                     Map.of(
                                             "all",
-                                            block.equals("lumen_collector")
+                                            block.equals("collector")
                                                     ? "minecraft:block/amethyst_block"
                                                     : block.equals("lumen_relay")
                                                             ? "minecraft:block/quartz_pillar"
@@ -887,10 +887,10 @@ public final class CraftingDataProvider implements DataProvider {
                             id.startsWith("asterism_altar_")
                                     || List.of(
                                                     "lumen_infuser",
-                                                    "grindwheel",
+                                                    "quern",
                                                     "lumen_well",
-                                                    "lumen_chalice",
-                                                    "crafting_relay",
+                                                    "chalice",
+                                                    "beam_relay",
                                                     "light_transmuter")
                                             .contains(id);
                     save(
@@ -942,7 +942,7 @@ public final class CraftingDataProvider implements DataProvider {
                         "minecraft:block.enchantment_table.use",
                         "infusion_bubble",
                         "minecraft:block.bubble_column.bubble_pop",
-                        "grindwheel_spin",
+                        "quern_spin",
                         "minecraft:block.grindstone.use");
         vanillaSounds.forEach(
                 (id, event) ->
@@ -950,6 +950,11 @@ public final class CraftingDataProvider implements DataProvider {
                                 id,
                                 Map.of("sounds", List.of(Map.of("name", event, "type", "event")))));
         FoundationDataProvider.soundEntries().forEach(sounds::put);
+        try (var input = java.util.Objects.requireNonNull(CraftingDataProvider.class.getResourceAsStream("/assets/stellaeomphalos/visual_sound_catalog.json"));
+                var reader = new java.io.InputStreamReader(input, java.nio.charset.StandardCharsets.UTF_8)) {
+            var catalog = com.google.gson.JsonParser.parseReader(reader).getAsJsonObject();
+            catalog.entrySet().forEach(entry -> sounds.put(entry.getKey(), entry.getValue()));
+        } catch (java.io.IOException error) { throw new java.io.UncheckedIOException(error); }
         save(cache, futures, "assets/stellaeomphalos/sounds.json", json(sounds));
         return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
     }
@@ -969,42 +974,42 @@ public final class CraftingDataProvider implements DataProvider {
                 "配方修改已回滚到数据包基线");
         FoundationDataProvider.language(
                 "itemGroup.stellaeomphalos.crafting", "Celestial Crafting", "星辉制作");
-        String[] names = {"发现", "共鸣", "星象", "特质", "璀璨"};
+        String[] names = {"闻识祭坛", "同鸣祭坛", "天宿祭坛", "逢异祭坛", "光耀祭坛"};
         int index = 0;
         for (var tier : com.mpp.stellaeomphalos.crafting.altar.recipe.AsterismTier.values()) {
             String key = "asterism_altar_" + tier.getSerializedName();
             FoundationDataProvider.language(
-                    "item.stellaeomphalos." + key, tier.name() + " Altar", names[index++] + "阶星坛");
+                    "item.stellaeomphalos." + key, tier.name() + " Altar", names[index++]);
         }
         var zh =
                 Map.ofEntries(
                         Map.entry("lumen_infuser", "星辉注魔器"),
-                        Map.entry("grindwheel", "星磨轮"),
+                        Map.entry("quern", "星磨轮"),
                         Map.entry("lumen_well", "星辉井"),
-                        Map.entry("lumen_chalice", "星辉盏"),
-                        Map.entry("crafting_relay", "制作中继"),
+                        Map.entry("chalice", "星辉盏"),
+                        Map.entry("beam_relay", "制作中继"),
                         Map.entry("light_transmuter", "光照嬗变核心"),
                         Map.entry("sign_focus", "星象聚焦晶"),
                         Map.entry("lumen_flask", "星辉瓶"),
-                        Map.entry("raw_crystal", "原生晶体"),
-                        Map.entry("resonant_crystal", "共鸣晶体"),
-                        Map.entry("star_lens", "星辉透镜"),
+                        Map.entry("geode", "原生水晶"),
+                        Map.entry("resonant_geode", "共鸣水晶"),
+                        Map.entry("lens_blank", "星辉透镜"),
                         Map.entry("prism_lens", "棱镜透镜"),
                         Map.entry("star_sextant", "星辉六分仪"),
-                        Map.entry("illumination_wand", "照明法杖"),
-                        Map.entry("star_mantle", "星披"),
-                        Map.entry("sign_paper", "星象纸"),
-                        Map.entry("conversion_star", "星辉转换星"),
-                        Map.entry("enchant_charm", "附魔护符"),
+                        Map.entry("luminary_rod", "符文杖"),
+                        Map.entry("mantle", "星披"),
+                        Map.entry("sign_chart", "星象纸"),
+                        Map.entry("warp_star", "星辉转换星"),
+                        Map.entry("warded_amulet", "附魔护符"),
                         Map.entry("drill_head", "钻孔头"),
-                        Map.entry("resonator", "谐振器"),
-                        Map.entry("ritual_base", "星仪基座材料"),
+                        Map.entry("sky_resonator", "读数器"),
+                        Map.entry("ritual_base", "仪式基材"),
                         Map.entry("charged_tool", "充能工具"),
-                        Map.entry("collector_crystal", "收集晶体"),
-                        Map.entry("crystal_pickaxe", "晶体镐"),
-                        Map.entry("crystal_axe", "晶体斧"),
-                        Map.entry("crystal_shovel", "晶体锹"),
-                        Map.entry("crystal_sword", "晶体剑"));
+                        Map.entry("collector_crystal", "收集水晶"),
+                        Map.entry("geode_pickaxe", "水晶镐"),
+                        Map.entry("geode_axe", "水晶斧"),
+                        Map.entry("geode_shovel", "水晶锹"),
+                        Map.entry("geode_sword", "水晶剑"));
         zh.forEach(
                 (id, name) -> {
                     String english =
@@ -1017,14 +1022,14 @@ public final class CraftingDataProvider implements DataProvider {
                             "container.stellaeomphalos." + id, english, name);
                 });
         FoundationDataProvider.language(
-                "block.stellaeomphalos.asterism_altar", "Asterism Altar", "星坛");
+                "block.stellaeomphalos.asterism_altar", "Asterism Altar", "星之祭坛");
         FoundationDataProvider.language(
-                "container.stellaeomphalos.asterism", "Asterism Altar", "星坛");
+                "container.stellaeomphalos.asterism", "Asterism Altar", "星之祭坛");
         FoundationDataProvider.language("stellaeomphalos.crafting.start", "Start", "开始");
         FoundationDataProvider.language("stellaeomphalos.crafting.abort", "Abort", "中止");
         FoundationDataProvider.language("stellaeomphalos.crafting.collect", "Collect", "取出");
         FoundationDataProvider.language(
-                "stellaeomphalos.crafting.energy", "Lumen: %s / %s", "星辉：%s / %s");
+                "stellaeomphalos.crafting.energy", "Lumen: %s / %s", "星能：%s / %s");
     }
 
     @Override

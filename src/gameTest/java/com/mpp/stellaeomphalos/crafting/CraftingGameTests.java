@@ -308,7 +308,7 @@ public final class CraftingGameTests {
         for (int i = 0; i < values.size(); i++) {
             var data =
                     json(
-                            "{\"type\":\"stellaeomphalos:grindwheel\",\"input\":{\"item\":\""
+                            "{\"type\":\"stellaeomphalos:quern\",\"input\":{\"item\":\""
                                     + net.minecraftforge.registries.ForgeRegistries.ITEMS.getKey(
                                             values.get(i))
                                     + "\"},\"result\":{\"item\":\"minecraft:diamond\"}}");
@@ -443,7 +443,7 @@ public final class CraftingGameTests {
 
     @GameTest(template = "foundation_empty", batch = "crafting")
     public static void all_result_operators_copy_traits_and_keep_input_immutable(GameTestHelper h) {
-        var source = new ItemStack(CraftingContent.ITEMS.get("raw_crystal").get());
+        var source = new ItemStack(CraftingContent.ITEMS.get("geode").get());
         var traits = new CompoundTag();
         traits.putInt("Size", 240);
         traits.putInt("Purity", 70);
@@ -453,7 +453,7 @@ public final class CraftingGameTests {
         var spec =
                 new ResultSpec(
                         json(
-                                "{\"kind\":\"static\",\"stack\":{\"item\":\"stellaeomphalos:star_lens\"},\"ops\":[{\"op\":\"stellaeomphalos:preserve_nbt\"},{\"op\":\"stellaeomphalos:copy_crystal_traits\"},{\"op\":\"stellaeomphalos:set_tool_traits\"},{\"op\":\"stellaeomphalos:merge_crystal_traits\"},{\"op\":\"stellaeomphalos:scale_count_by_traits\",\"divisor\":80},{\"op\":\"stellaeomphalos:set_boolean\",\"key\":\"Upgraded\"},{\"op\":\"stellaeomphalos:unlock_upgrade\",\"upgrade\":\"stellaeomphalos:precision\"},{\"op\":\"stellaeomphalos:set_sign\",\"sign\":\"stellaeomphalos:aevitas\"},{\"op\":\"stellaeomphalos:set_trait_sign\",\"sign\":\"stellaeomphalos:gelu\"},{\"op\":\"stellaeomphalos:set_lens_color\",\"color\":42},{\"op\":\"stellaeomphalos:clear_revert_counter\"}]}"));
+                                "{\"kind\":\"static\",\"stack\":{\"item\":\"stellaeomphalos:lens_blank\"},\"ops\":[{\"op\":\"stellaeomphalos:preserve_nbt\"},{\"op\":\"stellaeomphalos:copy_crystal_traits\"},{\"op\":\"stellaeomphalos:set_tool_traits\"},{\"op\":\"stellaeomphalos:merge_crystal_traits\"},{\"op\":\"stellaeomphalos:scale_count_by_traits\",\"divisor\":80},{\"op\":\"stellaeomphalos:set_boolean\",\"key\":\"Upgraded\"},{\"op\":\"stellaeomphalos:unlock_upgrade\",\"upgrade\":\"stellaeomphalos:precision\"},{\"op\":\"stellaeomphalos:set_sign\",\"sign\":\"stellaeomphalos:aevitas\"},{\"op\":\"stellaeomphalos:set_trait_sign\",\"sign\":\"stellaeomphalos:gelu\"},{\"op\":\"stellaeomphalos:set_lens_color\",\"color\":42},{\"op\":\"stellaeomphalos:clear_revert_counter\"}]}"));
         var result = spec.assemble(slot -> slot == 4 ? source : ItemStack.EMPTY);
         var tag = result.getTag();
         h.assertTrue(result.getCount() == 3, "Trait count");

@@ -47,6 +47,13 @@ public abstract class LumenSourceBlockEntity extends SkyboundLumenBlockEntity im
         return LumenMath.sourceOutput(data.baseOutput(), data.seesSky(), distribution, data.enhanced(), noise(level), proximity);
     }
 
+    public final void attune(Optional<ResourceLocation> sign) {
+        data = new LumenSourceData(providerId, data.baseOutput(), sign, data.autoLink(), data.seesSky(),
+                data.enhanced(), data.proximityFactor(), data.noiseFactor());
+        markClientDirty();
+        onNeighborChanged(level, worldPosition);
+    }
+
     private double noise(Level level) {
         if (noise < 0) {
             long seed = level instanceof ServerLevel server ? server.getSeed() : 0;
@@ -58,12 +65,21 @@ public abstract class LumenSourceBlockEntity extends SkyboundLumenBlockEntity im
 
     @Override
     protected void tickSkybound(boolean skyVisible) {
-        if (skyVisible != data.seesSky()) data = data.withSeesSky(skyVisible);
+        if (skyVisible != data.seesSky()) { data = data.withSeesSky(skyVisible); markClientDirty(); }
         if (!(level instanceof ServerLevel server) || !OmphalosConfig.SERVER.flag("gameplay.lumenEnabled")) return;
         if (provideLumen(server, server.getGameTime()) <= 0) return;
         var network = LumenNetworks.of(server);
         long budget = OmphalosConfig.COMMON.integer("performance.lumenRoutingStepsPerTick");
         for (var delivery : network.resolve(worldPosition, budget)) network.deliver(delivery);
+    }
+
+    @Override protected void writeClientState(CompoundTag tag) {
+        tag.putBoolean("SeesSky", data.seesSky());tag.putBoolean("Enhanced",data.enhanced());
+        data.sign().ifPresent(sign -> tag.putString("Sign",sign.toString()));
+    }
+    @Override protected void readClientState(CompoundTag tag) {
+        var sign=Optional.ofNullable(net.minecraft.resources.ResourceLocation.tryParse(tag.getString("Sign")));
+        data=new LumenSourceData(providerId,data.baseOutput(),sign,data.autoLink(),tag.getBoolean("SeesSky"),tag.getBoolean("Enhanced"),data.proximityFactor(),data.noiseFactor());
     }
 
     @Override

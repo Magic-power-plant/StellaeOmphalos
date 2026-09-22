@@ -58,6 +58,9 @@ public abstract class AbstractCraftingMachine extends LumenSinkBlockEntity
     private LazyOptional<IItemHandler> itemCapability;
     private LazyOptional<IFluidHandler> fluidCapability;
     private long lastSync;
+    private boolean lastVisualWorking;
+    private ItemStack clientDisplayItem=ItemStack.EMPTY;
+    public ItemStack visualItem(){return level!=null&&level.isClientSide?clientDisplayItem:items.getStackInSlot(0); }
 
     protected AbstractCraftingMachine(
             BlockEntityType<?> type, BlockPos pos, BlockState state, int slots) {
@@ -126,6 +129,11 @@ public abstract class AbstractCraftingMachine extends LumenSinkBlockEntity
         return pending.copy();
     }
 
+    private boolean clientWorking;
+    private float clientProgress;
+    public boolean visualWorking() { return level != null && level.isClientSide ? clientWorking : task != null && task.state() == com.mpp.stellaeomphalos.crafting.altar.recipe.CraftState.RUNNING; }
+    public float visualProgress() { return level != null && level.isClientSide ? clientProgress : task == null ? 0 : (float) task.progressFraction(); }
+
     public Optional<AbstractCraftTask> activeTask() {
         return Optional.ofNullable(task);
     }
@@ -188,7 +196,9 @@ public abstract class AbstractCraftingMachine extends LumenSinkBlockEntity
                                                 .query(worldPosition, id))
                         .orElse(com.mpp.stellaeomphalos.structure.match.StructureState.FORMED);
         tickMachine(server);
-        if (server.getGameTime() - lastSync >= 10) {
+        boolean working=visualWorking();
+        if (working!=lastVisualWorking || server.getGameTime() - lastSync >= 10) {
+            lastVisualWorking=working;
             lastSync = server.getGameTime();
             markClientDirty();
         }
@@ -285,6 +295,9 @@ public abstract class AbstractCraftingMachine extends LumenSinkBlockEntity
         tag.put("PendingOutput", pending.save(new CompoundTag()));
         tag.put("Tank", tank.save());
         if (task != null) tag.put("Craft", task.save());
+        tag.put("DisplayItem", items.getStackInSlot(0).save(new CompoundTag()));
+        tag.putBoolean("VisualWorking", visualWorking());
+        tag.putFloat("VisualProgress", visualProgress());
     }
 
     @Override
@@ -311,15 +324,20 @@ public abstract class AbstractCraftingMachine extends LumenSinkBlockEntity
     protected void writeClientState(CompoundTag tag) {
         super.writeClientState(tag);
         tag.putString("StructureState", frameState.name());
-        tag.putString("Tier", tier().name());
         tag.put("PendingOutput", pending.save(new CompoundTag()));
         tag.put("Tank", tank.save());
         if (task != null) tag.put("Craft", task.save());
+        tag.put("DisplayItem", items.getStackInSlot(0).save(new CompoundTag()));
+        tag.putBoolean("VisualWorking", visualWorking());
+        tag.putFloat("VisualProgress", visualProgress());
     }
 
     @Override
     protected void readClientState(CompoundTag tag) {
         super.readClientState(tag);
+        clientDisplayItem=ItemStack.of(tag.getCompound("DisplayItem"));
+        clientWorking = tag.getBoolean("VisualWorking");
+        clientProgress = tag.getFloat("VisualProgress");
         try {
             frameState =
                     com.mpp.stellaeomphalos.structure.match.StructureState.valueOf(
@@ -337,7 +355,7 @@ public abstract class AbstractCraftingMachine extends LumenSinkBlockEntity
             if (cap == ForgeCapabilities.ITEM_HANDLER) return itemCapability.cast();
             if (cap == ForgeCapabilities.FLUID_HANDLER
                     && (machineKind().equals("lumen_well")
-                            || machineKind().equals("lumen_chalice")))
+                            || machineKind().equals("chalice")))
                 return fluidCapability.cast();
         }
         return super.getCapability(cap, side);

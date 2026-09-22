@@ -5,7 +5,7 @@
     "fluid": "stellaeomphalos:molten_lumen"
   },
   "result": {
-    "item": "stellaeomphalos:raw_crystal",
+    "item": "stellaeomphalos:geode",
     "item_half_life": true,
     "kind": "random_crystal"
   },

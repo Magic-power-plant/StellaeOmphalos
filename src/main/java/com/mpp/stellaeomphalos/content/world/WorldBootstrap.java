@@ -40,8 +40,13 @@ public final class WorldBootstrap {
     public static void attach(IEventBus bus) {
         WorldContent.initialize();
         WorldGeneration.initialize();
+        com.mpp.stellaeomphalos.content.block.DecorContent.initialize();
+        com.mpp.stellaeomphalos.content.block.PartSixBlocks.initialize();
+        com.mpp.stellaeomphalos.content.item.PartSixItems.initialize();
+        com.mpp.stellaeomphalos.content.menu.PartSixMenus.initialize();
         bus.addListener(WorldCapabilities::register);
         bus.addListener(WorldDataProvider::gather);
+        bus.addListener(com.mpp.stellaeomphalos.content.block.DecorDataProvider::gather);
         var forge = MinecraftForge.EVENT_BUS;
         forge.addGenericListener(LevelChunk.class, WorldCapabilities::attach);
         forge.addListener(WorldBootstrap::reload);
@@ -141,7 +146,11 @@ public final class WorldBootstrap {
                                                         chunk.getPos().getMinBlockX() + x,
                                                         y,
                                                         chunk.getPos().getMinBlockZ() + z);
-                                        if (chunk.getBlockState(p).is(WorldContent.GEODE_ORE.get()))
+                                        var oreState = chunk.getBlockState(p);
+                                        // 只有 GEODE 变体进运行期晶簇索引（ASTRAL 是星辉矿）。
+                                        if (oreState.is(WorldContent.GEODE_ORE.get())
+                                                && !com.mpp.stellaeomphalos.content.block
+                                                        .GeodeOreBlock.isAstral(oreState))
                                             index.add(p);
                                     }
                             index.clean();
@@ -207,6 +216,7 @@ public final class WorldBootstrap {
     }
 
     private static void commands(RegisterCommandsEvent e) {
+        BlueprintCommands.register(e);
         e.getDispatcher()
                 .register(
                         Commands.literal(Omphalos.MODID)

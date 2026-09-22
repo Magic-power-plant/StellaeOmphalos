@@ -30,6 +30,8 @@ public final class ChargeMirror {
     public static void attach() {
         if (!ATTACHED.compareAndSet(false, true)) return;
         ClientSessionCleaner.register("charge_mirror", ChargeMirror::reset);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.addListener(
+                (net.minecraftforge.client.event.ClientPlayerNetworkEvent.Clone event) -> reset());
         OmphalosClient.handlers().register(PktChargeSync.class, (minecraft, packet) -> handle(packet));
     }
 }

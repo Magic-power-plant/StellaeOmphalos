@@ -3,18 +3,20 @@ package com.mpp.stellaeomphalos.client.effect;
 import com.mpp.stellaeomphalos.client.OmphalosClient;
 import com.mpp.stellaeomphalos.client.event.ClientSessionCleaner;
 import com.mpp.stellaeomphalos.network.toClient.PktDomainParticle;
+
+import net.minecraft.core.BlockPos;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
-import net.minecraft.core.BlockPos;
 
 /**
  * Client-side queue of domain particle requests (rendering data for Part-7; this part performs no
- * rendering). Parameters are stored verbatim and drained by the Part-7 consumer each frame.
- * Cleanup action ("domain_particle_mirror"): drop the queue and reset the session so late packets
- * from a previous session are discarded.
+ * rendering). Parameters are stored verbatim and drained by the Part-7 consumer each frame. Cleanup
+ * action ("domain_particle_mirror"): drop the queue and reset the session so late packets from a
+ * previous session are discarded.
  */
 public final class DomainParticleMirror {
     public record Request(int type, BlockPos pos, BlockPos target, long seed) {}
@@ -32,8 +34,12 @@ public final class DomainParticleMirror {
         session = packet.sessionId();
         synchronized (QUEUE) {
             while (QUEUE.size() >= CAP) QUEUE.pollFirst();
-            QUEUE.addLast(new Request(packet.type(), BlockPos.of(packet.pos()),
-                    packet.target().map(BlockPos::of).orElse(null), packet.seed()));
+            QUEUE.addLast(
+                    new Request(
+                            packet.type(),
+                            BlockPos.of(packet.pos()),
+                            packet.target().map(BlockPos::of).orElse(null),
+                            packet.seed()));
         }
     }
 
@@ -47,7 +53,9 @@ public final class DomainParticleMirror {
     }
 
     public static void reset() {
-        synchronized (QUEUE) { QUEUE.clear(); }
+        synchronized (QUEUE) {
+            QUEUE.clear();
+        }
         session = NO_SESSION;
     }
 
@@ -55,6 +63,7 @@ public final class DomainParticleMirror {
     public static void attach() {
         if (!ATTACHED.compareAndSet(false, true)) return;
         ClientSessionCleaner.register("domain_particle_mirror", DomainParticleMirror::reset);
-        OmphalosClient.handlers().register(PktDomainParticle.class, (minecraft, packet) -> handle(packet));
+        OmphalosClient.handlers()
+                .register(PktDomainParticle.class, (minecraft, packet) -> handle(packet));
     }
 }

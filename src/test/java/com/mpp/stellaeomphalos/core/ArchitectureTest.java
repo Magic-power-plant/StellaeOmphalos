@@ -55,7 +55,13 @@ class ArchitectureTest {
                 }, ClassReader.SKIP_DEBUG | ClassReader.SKIP_FRAMES);
                 String origin = reader.getClassName().substring(ROOT.length()).split("/")[0];
                 for (String ref : refs) {
-                    if (!origin.equals("client") && (ref.startsWith("net/minecraft/client/") || ref.startsWith(ROOT + "client/")))
+                    boolean fluidSignature = reader.getClassName().equals(ROOT + "lumen/fluid/MoltenLumenFluidType")
+                            && ref.equals("net/minecraftforge/client/extensions/common/IClientFluidTypeExtensions");
+                    boolean itemSignature = reader.getClassName().equals(ROOT + "content/item/ClientRenderedItem")
+                            && ref.equals("net/minecraftforge/client/extensions/common/IClientItemExtensions");
+                    if (!origin.equals("client") && !fluidSignature && !itemSignature && (ref.startsWith("net/minecraft/client/")
+                            || ref.startsWith("net/minecraftforge/client/") || ref.startsWith("com/mojang/blaze3d/")
+                            || ref.startsWith("org/lwjgl/") || ref.startsWith(ROOT + "client/")))
                         violations.add(reader.getClassName() + " -> " + ref);
                     if (ref.startsWith(ROOT)) {
                         String target = ref.substring(ROOT.length()).split("/")[0];

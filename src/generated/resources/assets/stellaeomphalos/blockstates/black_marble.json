@@ -1,0 +1,44 @@
+{
+  "variants": {
+    "variant=arch": {
+      "model": "stellaeomphalos:block/black_marble_arch"
+    },
+    "variant=bricks": {
+      "model": "stellaeomphalos:block/black_marble_bricks"
+    },
+    "variant=chiseled": {
+      "model": "stellaeomphalos:block/black_marble_chiseled"
+    },
+    "variant=engraved": {
+      "model": "stellaeomphalos:block/black_marble_engraved"
+    },
+    "variant=enriched": {
+      "model": "stellaeomphalos:block/black_marble"
+    },
+    "variant=infused": {
+      "model": "stellaeomphalos:block/black_marble"
+    },
+    "variant=pillar,top=false,bottom=false": {
+      "model": "stellaeomphalos:block/black_marble_pillar"
+    },
+    "variant=pillar,top=false,bottom=true": {
+      "model": "stellaeomphalos:block/black_marble_pillar"
+    },
+    "variant=pillar,top=true,bottom=false": {
+      "model": "stellaeomphalos:block/black_marble_pillar",
+      "x": 180
+    },
+    "variant=pillar,top=true,bottom=true": {
+      "model": "stellaeomphalos:block/black_marble_pillar"
+    },
+    "variant=planks": {
+      "model": "stellaeomphalos:block/black_marble"
+    },
+    "variant=raw": {
+      "model": "stellaeomphalos:block/black_marble"
+    },
+    "variant=runed": {
+      "model": "stellaeomphalos:block/black_marble_runed"
+    }
+  }
+}

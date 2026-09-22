@@ -45,6 +45,8 @@ public final class StarmapBootstrap {
         StarmapContent.initialize();
         var bus = MinecraftForge.EVENT_BUS;
         bus.addListener(StarmapBootstrap::onLivingDeath);
+        bus.addListener(StarmapBootstrap::equippedEffects);
+        bus.addListener((net.minecraftforge.event.server.ServerStoppingEvent event) -> ENGRAVE_COOLDOWN.clear());
         bus.addListener(StarmapBootstrap::onServerStarted);
         bus.addListener(StarmapBootstrap::dataReloaded);
     }
@@ -95,6 +97,18 @@ public final class StarmapBootstrap {
     }
 
     private static void onEngrave(ServerPlayer player, PktImprintEngrave packet) {
+        if (packet.sessionId() != com.mpp.stellaeomphalos.constellation.sign.SignSkyService.sessionId(player)
+                || !packet.dimension().equals(player.level().dimension().location())
+                || packet.slot() != player.getInventory().selected
+                || !player.serverLevel().hasChunkAt(packet.origin())
+                || player.distanceToSqr(net.minecraft.world.phys.Vec3.atCenterOf(packet.origin())) > 36
+                || !player.mayBuild() || !player.serverLevel().mayInteract(player, packet.origin())
+                || player instanceof net.minecraftforge.common.util.FakePlayer
+                || !net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(player.getOffhandItem().getItem())
+                        .equals(new ResourceLocation(Omphalos.MODID, "sign_chart"))
+                || player.getMainHandItem().getCount() != 1
+                || !net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(player.serverLevel().getBlockState(packet.origin()).getBlock())
+                        .equals(new ResourceLocation(Omphalos.MODID, "observatory"))) return;
         long now = player.serverLevel().getGameTime();
         ENGRAVE_COOLDOWN.expire(now);
         if (!ENGRAVE_COOLDOWN.acquire(player.getUUID(), ENGRAVE_ABILITY, now, ENGRAVE_COOLDOWN_TICKS)) return;
@@ -108,7 +122,8 @@ public final class StarmapBootstrap {
             } catch (RuntimeException unknown) {
                 return;
             }
-            if (sign == null) return;
+            if (sign == null || sign.stars().stream().anyMatch(point ->
+                    point.x() + stroke.gridX() >= StarPoint.GRID || point.y() + stroke.gridZ() >= StarPoint.GRID)) return;
             if (stroke.gridX() < 0 || stroke.gridX() > maxAnchor || stroke.gridZ() < 0 || stroke.gridZ() > maxAnchor) return;
             drawn.add(new SignDrawn(sign.id(), stroke.gridX(), stroke.gridZ()));
         }
@@ -121,6 +136,15 @@ public final class StarmapBootstrap {
         imprint.write(stack);
         imprint.applyEnchantments(stack, player.getRandom(), discovery);
         imprint.applyMobEffects(stack, player.getRandom());
+        if (!player.isCreative()) player.getOffhandItem().shrink(1);
+        player.getInventory().setChanged();
+    }
+
+    private static void equippedEffects(net.minecraftforge.event.TickEvent.PlayerTickEvent event) {
+        if (event.phase != net.minecraftforge.event.TickEvent.Phase.END
+                || event.player.level().isClientSide || event.player.tickCount % 20 != 0) return;
+        for (var slot : net.minecraft.world.entity.EquipmentSlot.values())
+            SignImprint.activateEffects(event.player.getItemBySlot(slot), event.player);
     }
 
     /** One-shot cheat death: cancel the death, heal to a sliver, consume the effect. */

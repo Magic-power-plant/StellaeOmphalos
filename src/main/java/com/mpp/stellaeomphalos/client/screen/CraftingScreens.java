@@ -28,7 +28,7 @@ public final class CraftingScreens {
                 () -> {
                     for (String kind :
                             java.util.List.of(
-                                    "asterism", "lumen_infuser", "grindwheel", "lumen_well"))
+                                    "asterism", "lumen_infuser", "quern", "lumen_well"))
                         MenuScreens.register(MachineMenus.type(kind), MachineScreen::new);
                     MenuScreens
                             .<net.minecraft.world.inventory.CraftingMenu, CraftingScreen>register(

@@ -1,50 +1,390 @@
 {
+  "altar_craft_complete": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/altar_craft_complete_0",
+        "stream": false
+      },
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/altar_craft_complete_1",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.altar_craft_complete"
+  },
+  "altar_craft_loop": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:machine/altar_craft_loop",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.altar_craft_loop"
+  },
+  "astrolabe_found": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/astrolabe_found",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.astrolabe_found"
+  },
+  "astrolabe_ping": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/astrolabe_ping",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.astrolabe_ping"
+  },
+  "attunement": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:machine/attunement",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.attunement"
+  },
+  "book_close": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/book_close",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.book_close"
+  },
+  "book_flip": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/book_flip",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.book_flip"
+  },
+  "boon_seal_break": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/boon_seal_break",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.boon_seal_break"
+  },
+  "boon_unlock": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/boon_unlock",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.boon_unlock"
+  },
+  "clip_switch": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/clip_switch",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.clip_switch"
+  },
+  "codex_close": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/codex_close",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.codex_close"
+  },
+  "codex_open": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/codex_open",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.codex_open"
+  },
+  "codex_page_turn": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/codex_page_turn",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.codex_page_turn"
+  },
+  "codex_search_type": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/codex_search_type",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.codex_search_type"
+  },
   "craft_finish": {
     "sounds": [
       {
-        "type": "event",
-        "name": "minecraft:block.enchantment_table.use"
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/craft_finish",
+        "stream": false
       }
-    ]
+    ],
+    "subtitle": "subtitles.stellaeomphalos.craft_finish"
   },
   "craft_loop": {
     "sounds": [
       {
-        "type": "event",
-        "name": "minecraft:block.amethyst_block.resonate"
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:machine/craft_loop",
+        "stream": false
       }
-    ]
+    ],
+    "subtitle": "subtitles.stellaeomphalos.craft_loop"
   },
-  "grindwheel_spin": {
+  "crystal_fracture": {
     "sounds": [
       {
-        "type": "event",
-        "name": "minecraft:block.grindstone.use"
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/crystal_fracture_0",
+        "stream": false
+      },
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/crystal_fracture_1",
+        "stream": false
+      },
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/crystal_fracture_2",
+        "stream": false
       }
-    ]
+    ],
+    "subtitle": "subtitles.stellaeomphalos.crystal_fracture"
+  },
+  "crystal_grow": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/crystal_grow_0",
+        "stream": false
+      },
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/crystal_grow_1",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.crystal_grow"
+  },
+  "gateway_charge": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:machine/gateway_charge",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.gateway_charge"
+  },
+  "gateway_teleport": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/gateway_teleport",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.gateway_teleport"
+  },
+  "grindstone_complete": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/grindstone_complete_0",
+        "stream": false
+      },
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/grindstone_complete_1",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.grindstone_complete"
+  },
+  "grindstone_grind_loop": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:machine/grindstone_grind_loop",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.grindstone_grind_loop"
+  },
+  "infuser_craft_loop": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:machine/infuser_craft_loop",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.infuser_craft_loop"
   },
   "infusion_bubble": {
     "sounds": [
       {
-        "type": "event",
-        "name": "minecraft:block.bubble_column.bubble_pop"
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/infusion_bubble",
+        "stream": false
       }
-    ]
+    ],
+    "subtitle": "subtitles.stellaeomphalos.infusion_bubble"
+  },
+  "lumen_collect_loop": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:machine/lumen_collect_loop",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.lumen_collect_loop"
+  },
+  "mantle_activate": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/mantle_activate",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.mantle_activate"
+  },
+  "meteor_fall": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:machine/meteor_fall",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.meteor_fall"
+  },
+  "meteor_impact": {
+    "sounds": [
+      {
+        "attenuation_distance": 64,
+        "name": "stellaeomphalos:event/meteor_impact_0",
+        "stream": false
+      },
+      {
+        "attenuation_distance": 64,
+        "name": "stellaeomphalos:event/meteor_impact_1",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.meteor_impact"
+  },
+  "quern_spin": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/quern_spin",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.quern_spin"
+  },
+  "relay_link": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/relay_link",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.relay_link"
+  },
+  "relay_unlink": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/relay_unlink",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.relay_unlink"
+  },
+  "resonance_attune": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/resonance_attune",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.resonance_attune"
   },
   "rite_output": {
     "sounds": [
       {
-        "name": "stellaeomphalos:rite_output",
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/rite_output",
         "stream": false
       }
     ],
     "subtitle": "subtitles.stellaeomphalos.rite_output"
   },
+  "ritual_end": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/ritual_end",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.ritual_end"
+  },
+  "ritual_fail": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/ritual_fail",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.ritual_fail"
+  },
   "ritual_loop": {
     "sounds": [
       {
-        "name": "stellaeomphalos:ritual_loop",
-        "stream": true
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:machine/ritual_loop",
+        "stream": false
       }
     ],
     "subtitle": "subtitles.stellaeomphalos.ritual_loop"
@@ -52,16 +392,43 @@
   "ritual_start": {
     "sounds": [
       {
-        "name": "stellaeomphalos:ritual_start",
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/ritual_start",
         "stream": false
       }
     ],
     "subtitle": "subtitles.stellaeomphalos.ritual_start"
   },
+  "shard_reveal": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/shard_reveal_0",
+        "stream": false
+      },
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/shard_reveal_1",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.shard_reveal"
+  },
+  "sign_discover": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/sign_discover",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.sign_discover"
+  },
   "spring_draw": {
     "sounds": [
       {
-        "name": "stellaeomphalos:spring_draw",
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/spring_draw",
         "stream": false
       }
     ],
@@ -70,7 +437,8 @@
   "structure_break": {
     "sounds": [
       {
-        "name": "stellaeomphalos:structure_break",
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/structure_break",
         "stream": false
       }
     ],
@@ -79,10 +447,41 @@
   "structure_formed": {
     "sounds": [
       {
-        "name": "stellaeomphalos:structure_formed",
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/structure_formed",
         "stream": false
       }
     ],
     "subtitle": "subtitles.stellaeomphalos.structure_formed"
+  },
+  "view_sequence_whoosh": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/view_sequence_whoosh",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.view_sequence_whoosh"
+  },
+  "wand_augment_switch": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:event/wand_augment_switch",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.wand_augment_switch"
+  },
+  "well_liquid_loop": {
+    "sounds": [
+      {
+        "attenuation_distance": 16,
+        "name": "stellaeomphalos:machine/well_liquid_loop",
+        "stream": false
+      }
+    ],
+    "subtitle": "subtitles.stellaeomphalos.well_liquid_loop"
   }
 }

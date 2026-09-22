@@ -112,7 +112,6 @@ public abstract class LumenSinkBlockEntity extends LumenNodeBlockEntity implemen
     protected void writeClientState(CompoundTag tag) {
         super.writeClientState(tag);
         tag.putLong("Stored", stored);
-        tag.putLong("Capacity", lumenCapacity());
     }
 
     @Override

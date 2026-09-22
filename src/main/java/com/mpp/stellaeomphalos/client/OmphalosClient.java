@@ -47,6 +47,7 @@ public final class OmphalosClient {
         event.enqueueWork(
                 () -> {
                     OmphalosChannel.setClientReceiver(OmphalosClient::receive);
+                    ClientSessionCleaner.register("part_seven_visuals", com.mpp.stellaeomphalos.client.event.ClientRenderEvents::clear);
                     ClientSessionCleaner.register("sync_gate", GATE::reset);
                     ClientSessionCleaner.register("dataset_mirrors", MIRRORS::clear);
                     ClientSessionCleaner.register(
@@ -79,6 +80,8 @@ public final class OmphalosClient {
                     MinecraftForge.EVENT_BUS.addListener(OmphalosClient::logout);
                     MinecraftForge.EVENT_BUS.addListener(OmphalosClient::login);
                     MinecraftForge.EVENT_BUS.addListener(OmphalosClient::debugClick);
+                    MinecraftForge.EVENT_BUS.addListener(OmphalosClient::sound);
+                    MinecraftForge.EVENT_BUS.addListener(com.mpp.stellaeomphalos.client.screen.ImprintScreen::interact);
                     ModLoadingContext.get()
                             .registerExtensionPoint(
                                     ConfigScreenHandler.ConfigScreenFactory.class,
@@ -87,6 +90,13 @@ public final class OmphalosClient {
                                                     (minecraft, parent) ->
                                                             new ConfigOverviewScreen(parent)));
                 });
+    }
+
+    private static void sound(net.minecraftforge.client.event.sound.SoundEvent.SoundSourceEvent event) {
+        if (event.getSound().getLocation().getNamespace().equals(Omphalos.MODID))
+            event.getChannel().setVolume((float) (Math.min(1, event.getSound().getVolume()
+                    * Minecraft.getInstance().options.getSoundSourceVolume(event.getSound().getSource()))
+                    * com.mpp.stellaeomphalos.OmphalosConfig.CLIENT.decimal("sound.masterScale")));
     }
 
     private static void login(ClientPlayerNetworkEvent.LoggingIn event) {
@@ -101,7 +111,7 @@ public final class OmphalosClient {
         if (event.phase != TickEvent.Phase.END) return;
         OmphalosChannel.tickClient();
         GATE.expire(System.nanoTime());
-        scheduler.advance(1024);
+        if (!Minecraft.getInstance().isPaused()) scheduler.advance(1024);
         var minecraft = Minecraft.getInstance();
         if (minecraft.player == null || minecraft.level == null) return;
         if (!announced) {

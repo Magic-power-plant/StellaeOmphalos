@@ -62,7 +62,8 @@ public final class DomainSpawnDeny {
     }
 
     static void onFinalizeSpawn(MobSpawnEvent.FinalizeSpawn event) {
-        if (event.getSpawnType() != MobSpawnType.NATURAL || event.isSpawnCancelled()) return;
+        if (event.isSpawnCancelled() || (event.getSpawnType() != MobSpawnType.NATURAL
+                && !com.mpp.stellaeomphalos.OmphalosConfig.SERVER.flag("gameplay.mobSpawnDenyAll"))) return;
         if (!(event.getLevel() instanceof ServerLevel level)) return;
         if (denies(level, event.getEntity().blockPosition())) event.setSpawnCancelled(true);
     }

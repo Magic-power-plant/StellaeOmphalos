@@ -63,6 +63,9 @@ public final class WorldProtocol {
 
     public static void register() {
         var handlers = RuntimeServices.current().handlers();
+        RuntimeServices.current().throttlePolicy(com.mpp.stellaeomphalos.network.toServer.PktGatewayTravel.class,58,2,.1);
+        handlers.register(com.mpp.stellaeomphalos.network.toServer.PktGatewayTravel.class,
+                (player,packet)->GateNetworkService.request(player,packet));
         handlers.register(AstrolabeQueryPayload.class, (p, m) -> query(p, m.targetId()));
         handlers.register(SpringProbePayload.class, WorldProtocol::probe);
         handlers.register(
@@ -136,10 +139,7 @@ public final class WorldProtocol {
                         precision,
                         0,
                         precision == 2 ? Optional.of(p) : Optional.empty()));
-        player.displayClientMessage(
-                Component.translatable(
-                        "stellaeomphalos.astrolabe.fix", target.toString(), quantized / 10.0, band),
-                true);
+
     }
 
     public static void probe(ServerPlayer player, SpringProbePayload p) {

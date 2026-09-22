@@ -2,11 +2,11 @@
   "type": "stellaeomphalos:lumen_infusion",
   "duration": 200,
   "input": {
-    "item": "stellaeomphalos:crystal_axe"
+    "item": "stellaeomphalos:geode_axe"
   },
   "result": {
     "fallback": {
-      "item": "stellaeomphalos:crystal_axe"
+      "item": "stellaeomphalos:geode_axe"
     },
     "kind": "inherit",
     "ops": [

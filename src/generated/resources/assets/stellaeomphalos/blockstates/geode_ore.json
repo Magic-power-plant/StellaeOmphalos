@@ -1,6 +1,9 @@
 {
   "variants": {
-    "": {
+    "variant=astral": {
+      "model": "stellaeomphalos:block/astral_ore"
+    },
+    "variant=geode": {
       "model": "stellaeomphalos:block/geode_ore"
     }
   }

@@ -29,7 +29,8 @@ public final class StructurePlacer {
         var data = blueprint.transformed(transform);
         var hub = StructureIntegrityHub.of(level);
         for (var p : data.blocks().keySet())
-            if (!level.hasChunkAt(origin.offset(p)))
+            if (!level.hasChunkAt(origin.offset(p)) || level.isOutsideBuildHeight(origin.offset(p))
+                    || !level.getWorldBorder().isWithinBounds(origin.offset(p)))
                 return new Result(0, data.blocks().size(), 0, Set.of());
         for (var watch : hub.watches())
             if (watch.authority() != null && !watch.origin().equals(origin))
@@ -42,7 +43,8 @@ public final class StructurePlacer {
         try (var scope = hub.beginBulk()) {
             for (var entry :
                     data.blocks().values().stream()
-                            .sorted(Comparator.comparingInt(p -> p.relative().getY()))
+                            .sorted(Comparator.<BlockPlacement, Boolean>comparing(p -> p.rule().example().isAir())
+                                    .thenComparingInt(p -> p.relative().getY()))
                             .toList()) {
                 var p = origin.offset(entry.relative());
                 var current = level.getBlockState(p);

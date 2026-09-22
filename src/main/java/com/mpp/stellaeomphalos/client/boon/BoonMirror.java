@@ -35,6 +35,8 @@ public final class BoonMirror {
 
     private static int session = NO_SESSION;
     private static int treeVersion;
+    private static java.util.List<com.mpp.stellaeomphalos.constellation.boon.BoonEdge> edges=java.util.List.of();
+    public static java.util.List<com.mpp.stellaeomphalos.constellation.boon.BoonEdge> edges(){return edges;}
     private static final Set<ResourceLocation> APPLIED = new LinkedHashSet<>();
     private static final Set<ResourceLocation> SEALED = new LinkedHashSet<>();
     private static final Map<ResourceLocation, ItemStack> SOCKETED = new HashMap<>();
@@ -62,6 +64,8 @@ public final class BoonMirror {
         session = packet.sessionId();
         treeVersion = packet.treeVersion();
         APPLIED.clear();
+        SEALED.clear();
+        SOCKETED.clear();
         BoonTreeLayout.clear();
         var bySign = new HashMap<ResourceLocation, java.util.List<BoonNodeLayout>>();
         for (var entry : packet.entries()) {
@@ -72,6 +76,9 @@ public final class BoonMirror {
                         .add(new BoonNodeLayout(entry.id(), entry.x(), entry.z(), entry.kind()));
         }
         bySign.forEach(BoonTreeLayout::applyId);
+        var ids=new java.util.HashSet<ResourceLocation>();for(var entry:packet.entries())ids.add(entry.id());
+        edges=packet.edges().stream().filter(e->!e.a().equals(e.b())&&ids.contains(e.a())&&ids.contains(e.b()))
+                .map(e->new com.mpp.stellaeomphalos.constellation.boon.BoonEdge(e.a(),e.b())).distinct().toList();
         rebuildView();
     }
 
@@ -94,6 +101,8 @@ public final class BoonMirror {
             default -> { return; }
         }
         rebuildView();
+        if (packet.action()==PktBoonDelta.ACTION_UNLOCK) com.mpp.stellaeomphalos.client.sound.UiSounds.play("boon_unlock");
+        if (packet.action()==PktBoonDelta.ACTION_UNSEAL) com.mpp.stellaeomphalos.client.sound.UiSounds.play("boon_seal_break");
     }
 
     public static void handle(PktBoonExp packet) {
@@ -114,7 +123,7 @@ public final class BoonMirror {
 
     public static void reset() {
         session = NO_SESSION;
-        treeVersion = 0;
+        treeVersion = 0;edges=java.util.List.of();
         APPLIED.clear();
         SEALED.clear();
         SOCKETED.clear();

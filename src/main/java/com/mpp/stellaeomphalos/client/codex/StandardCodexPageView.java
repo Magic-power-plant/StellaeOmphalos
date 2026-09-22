@@ -23,6 +23,8 @@ public final class StandardCodexPageView implements CodexPageView {
     private final CodexPageState state = new CodexPageState();
     private final List<ItemFrame> frames = new ArrayList<>();
     private int width, height;
+    private CodexTextLayout textLayout = new CodexTextLayout(List.of());
+    private Component title = Component.empty();
 
     public StandardCodexPageView(CodexPage page) {
         this.page = page;
@@ -41,33 +43,38 @@ public final class StandardCodexPageView implements CodexPageView {
     public void layout(int width, int height) {
         this.width = width;
         this.height = height;
-        var lines = new ArrayList<String>();
-        if (!page.body().isBlank())
-            for (var paragraph : I18n.get(page.body()).split("<NL>", -1)) {
-                Minecraft.getInstance()
-                        .font
-                        .getSplitter()
-                        .splitLines(paragraph, width - 10, net.minecraft.network.chat.Style.EMPTY)
-                        .forEach(line -> lines.add(line.getString()));
-                lines.add("");
-            }
-        state.layout(lines);
+        var font = Minecraft.getInstance().font;
+        title = Component.literal(font.plainSubstrByWidth(I18n.get(page.title()), width - 6));
+        textLayout =
+                CodexTextLayout.layout(
+                        font,
+                        page.body().isBlank() || !I18n.exists(page.body())
+                                ? Component.empty()
+                                : Component.translatable(page.body()),
+                        width - 10);
+        var plain = new ArrayList<String>();
+        for (var line : textLayout.lines()) {
+            var text = new StringBuilder();
+            line.accept(
+                    (index, style, point) -> {
+                        text.appendCodePoint(point);
+                        return true;
+                    });
+            plain.add(text.toString());
+        }
+        state.layout(plain);
     }
 
     public void draw(CodexDrawContext c, long tick) {
         frames.clear();
         state.frame();
         var mc = Minecraft.getInstance();
-        c.text(
-                Component.literal(mc.font.plainSubstrByWidth(I18n.get(page.title()), width - 6)),
-                3,
-                0,
-                0xff583e29);
-        int line = 18;
-        for (var text : state.lines()) {
-            if (line > height - 10) break;
-            c.text(Component.literal(text), 3, line, 0xff342c28);
-            line += 10;
+        c.text(title, 3, 0, 0xff583e29);
+        int textY = 18;
+        for (var text : textLayout.lines()) {
+            if (textY > height - 10) break;
+            c.graphics().drawString(mc.font, text, c.x() + 3, c.y() + textY, 0xff342c28, false);
+            textY += 10;
         }
         switch (page.kind()) {
             case RECIPE, RECIPE_LIGHT, RECIPE_ALTAR -> recipe(c, tick);

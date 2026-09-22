@@ -75,6 +75,7 @@ public record SignImprint(Map<ResourceLocation, Double> proportions, Map<Resourc
         if (random.nextInt(30) == 0)
             merged.merge(StarmapContent.DEATH_PROTECTION.get(), new Pending(StarmapContent.DEATH_PROTECTION.get(), 0, 4800),
                     (a, b) -> a.amplifier() >= b.amplifier() ? a : b);
+        stack.getOrCreateTagElement(TAG).remove("Effects");
         if (merged.isEmpty()) return;
         var list = new ListTag();
         for (var pending : merged.values()) {
@@ -85,6 +86,24 @@ public record SignImprint(Map<ResourceLocation, Double> proportions, Map<Resourc
             list.add(tag);
         }
         stack.getOrCreateTagElement(TAG).put("Effects", list);
+    }
+
+    /** Consume the stored dose once; re-equipping cannot refresh it or restore cheat death. */
+    public static boolean activateEffects(ItemStack stack, net.minecraft.world.entity.LivingEntity wearer) {
+        if (wearer.level().isClientSide || read(stack).isEmpty()) return false;
+        var tag = stack.getTagElement(TAG);
+        if (tag == null || !tag.contains("Effects", Tag.TAG_LIST)) return false;
+        var effects = tag.getList("Effects", Tag.TAG_COMPOUND).copy();
+        tag.remove("Effects");
+        for (int i = 0; i < Math.min(64, effects.size()); i++) {
+            var entry = effects.getCompound(i);
+            var id = ResourceLocation.tryParse(entry.getString("Id"));
+            var effect = id == null ? null : BuiltInRegistries.MOB_EFFECT.getOptional(id).orElse(null);
+            if (effect == null || entry.getInt("Duration") <= 0) continue;
+            wearer.addEffect(new net.minecraft.world.effect.MobEffectInstance(effect,
+                    Math.min(7200, entry.getInt("Duration")), Math.max(0, Math.min(255, entry.getInt("Amplifier")))));
+        }
+        return true;
     }
 
     public void write(ItemStack stack) {
@@ -124,7 +143,8 @@ public record SignImprint(Map<ResourceLocation, Double> proportions, Map<Resourc
             var entry = (CompoundTag) element;
             var sign = ResourceLocation.tryParse(entry.getString("Sign"));
             if (sign == null || !signKnown(sign)) continue;
-            proportions.put(sign, entry.getDouble("Ratio"));
+            double ratio = entry.getDouble("Ratio");
+            if (Double.isFinite(ratio)) proportions.put(sign, Math.max(0, Math.min(1, ratio)));
         }
         var points = new LinkedHashMap<ResourceLocation, List<StarPoint>>();
         for (var element : tag.getList("Points", Tag.TAG_COMPOUND)) {
@@ -133,7 +153,9 @@ public record SignImprint(Map<ResourceLocation, Double> proportions, Map<Resourc
             if (sign == null || !signKnown(sign)) continue;
             int[] flat = entry.getIntArray("Pts");
             var list = new java.util.ArrayList<StarPoint>();
-            for (int i = 0; i + 1 < flat.length; i += 2) list.add(new StarPoint(flat[i], flat[i + 1]));
+            for (int i = 0; i + 1 < flat.length && i < 4096; i += 2)
+                if (flat[i] >= 0 && flat[i] < StarPoint.GRID && flat[i + 1] >= 0 && flat[i + 1] < StarPoint.GRID)
+                    list.add(new StarPoint(flat[i], flat[i + 1]));
             points.put(sign, list);
         }
         return Optional.of(new SignImprint(proportions, points));

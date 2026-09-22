@@ -18,7 +18,7 @@ public final class LumenChaliceBlockEntity extends AbstractCraftingMachine {
 
     @Override
     public String machineKind() {
-        return "lumen_chalice";
+        return "chalice";
     }
 
     @Override

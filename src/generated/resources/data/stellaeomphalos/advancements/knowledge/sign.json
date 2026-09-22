@@ -4,5 +4,21 @@
       "conditions": {},
       "trigger": "stellaeomphalos:sign_milestone"
     }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
+    "description": {
+      "translate": "stellaeomphalos.milestone.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "stellaeomphalos:codex"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "stellaeomphalos.milestone.sign"
+    }
   }
 }

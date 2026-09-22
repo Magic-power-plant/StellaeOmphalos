@@ -1,5 +1,5 @@
 {
-  "type": "stellaeomphalos:grindwheel",
+  "type": "stellaeomphalos:quern",
   "alteration": "stellaeomphalos:hone",
   "chance": 40,
   "hidden": true

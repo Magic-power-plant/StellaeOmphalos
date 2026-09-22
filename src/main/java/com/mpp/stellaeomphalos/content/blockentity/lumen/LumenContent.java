@@ -31,11 +31,11 @@ public final class LumenContent {
     public static final long BATTERY_CAPACITY = 100000;
 
     public static final RegistrationGuard<CollectorBlock> COLLECTOR_BLOCK =
-            ModBlocks.ENTRIES.declare("lumen_collector", CollectorBlock::new);
+            ModBlocks.ENTRIES.declare("collector", CollectorBlock::new);
     public static final RegistrationGuard<BlockItem> COLLECTOR_ITEM =
-            ModItems.ENTRIES.declare("lumen_collector", () -> new BlockItem(COLLECTOR_BLOCK.get(), new Item.Properties()));
+            ModItems.ENTRIES.declare("collector", () -> new BlockItem(COLLECTOR_BLOCK.get(), new Item.Properties()));
     public static final RegistrationGuard<BlockEntityType<Collector>> COLLECTOR =
-            ModBlockEntities.ENTRIES.declare("lumen_collector",
+            ModBlockEntities.ENTRIES.declare("collector",
                     () -> BlockEntityType.Builder.of(Collector::new, COLLECTOR_BLOCK.get()).build(null));
 
     public static final RegistrationGuard<RelayBlock> RELAY_BLOCK =
@@ -65,6 +65,20 @@ public final class LumenContent {
     }
 
     public static final class CollectorBlock extends LumenNodeBlock {
+        @Override public net.minecraft.world.InteractionResult use(BlockState state, Level level, BlockPos pos,
+                net.minecraft.world.entity.player.Player player, net.minecraft.world.InteractionHand hand,
+                net.minecraft.world.phys.BlockHitResult hit) {
+            var held = player.getItemInHand(hand);
+            if (!(held.getItem() instanceof com.mpp.stellaeomphalos.crafting.altar.menu.SignFocusProvider focus))
+                return net.minecraft.world.InteractionResult.PASS;
+            if (!level.isClientSide && player.mayBuild() && level.mayInteract(player, pos)
+                    && level.getBlockEntity(pos) instanceof Collector collector) {
+                var sign = player.isShiftKeyDown() ? java.util.Optional.<ResourceLocation>empty() : focus.sign(held);
+                if (sign.isEmpty() || com.mpp.stellaeomphalos.constellation.sign.SignRegistry.byId(sign.get()) != null)
+                    collector.attune(sign);
+            }
+            return net.minecraft.world.InteractionResult.sidedSuccess(level.isClientSide);
+        }
         @Override public BlockEntity newBlockEntity(BlockPos pos, BlockState state) { return new Collector(pos, state); }
         @Override
         public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
@@ -87,7 +101,7 @@ public final class LumenContent {
     /** Demo source: produces while it sees the sky, neutral (sign-less) distribution channel. */
     public static final class Collector extends LumenSourceBlockEntity {
         public Collector(BlockPos pos, BlockState state) {
-            super(COLLECTOR.get(), pos, state, new ResourceLocation(Omphalos.MODID, "lumen_collector"), COLLECTOR_BASE_OUTPUT);
+            super(COLLECTOR.get(), pos, state, new ResourceLocation(Omphalos.MODID, "collector"), COLLECTOR_BASE_OUTPUT);
         }
     }
 

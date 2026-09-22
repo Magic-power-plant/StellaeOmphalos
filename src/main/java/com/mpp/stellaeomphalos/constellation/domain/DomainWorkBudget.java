@@ -15,7 +15,7 @@ public final class DomainWorkBudget implements AutoCloseable {
     private int remaining;
 
     private DomainWorkBudget(int quota) {
-        remaining = quota;
+        remaining = Math.min(quota, com.mpp.stellaeomphalos.OmphalosConfig.COMMON.integer("performance.maxScannedBlocksPerTick"));
         previous = ACTIVE.get();
         ACTIVE.set(this);
     }

@@ -29,7 +29,7 @@ public final class RecipeCatalog {
         declare("asterism_crafting", AsterismRecipe::new);
         declare("asterism_upgrade", AsterismUpgradeRecipe::new);
         declare("lumen_infusion", LumenInfusionRecipe::new);
-        declare("grindwheel", GrindwheelRecipe::new);
+        declare("quern", GrindwheelRecipe::new);
         declare("light_transmutation", LightTransmutationRecipe::new);
         declare("well_liquefaction", WellLiquefactionRecipe::new);
         declare("fluid_interaction", FluidInteractionRecipe::new);

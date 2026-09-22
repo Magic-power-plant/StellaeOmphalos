@@ -31,6 +31,8 @@ public final class OmphalosChannel {
     private static final ChunkAssembler CLIENT_ASSEMBLER = new ChunkAssembler();
     private static final NetworkThrottle INGRESS = new NetworkThrottle();
     private static final java.util.Map<UUID, ProtocolVersion> SERVER_PEER_VERSIONS = new java.util.HashMap<>();
+    private static final java.util.Map<UUID, java.util.ArrayDeque<OmphalosPayload>> PENDING = new java.util.HashMap<>();
+    private static final java.util.Map<UUID, java.util.Set<Integer>> DOWNGRADE_WARNED = new java.util.HashMap<>();
     private static Consumer<OmphalosPayload> clientReceiver = ignored -> {};
     private static BiConsumer<ServerPlayer, OmphalosPayload> serverReceiver = (player, payload) -> {};
     private OmphalosChannel() {}
@@ -47,13 +49,29 @@ public final class OmphalosChannel {
     public static void setClientReceiver(Consumer<OmphalosPayload> receiver) { clientReceiver = receiver; }
     public static void setServerReceiver(BiConsumer<ServerPlayer, OmphalosPayload> receiver) { serverReceiver = receiver; }
     public static void send(ServerPlayer player, OmphalosPayload payload) {
-        var remote = SERVER_PEER_VERSIONS.getOrDefault(player.getUUID(), new ProtocolVersion(1, 0));
-        if (PAYLOADS.type(payload).minimumMinor() > remote.minor()) return;
+        var type = PAYLOADS.type(payload);
+        var remote = SERVER_PEER_VERSIONS.get(player.getUUID());
+        if (remote == null && type.minimumMinor() > 0) {
+            var queue = PENDING.computeIfAbsent(player.getUUID(), ignored -> new java.util.ArrayDeque<>());
+            if (queue.size() >= 64) { queue.removeFirst(); LogUtils.getLogger().warn("Handshake payload queue full for {}", player.getUUID()); }
+            queue.addLast(payload);
+            return;
+        }
+        if (remote != null && type.minimumMinor() > remote.minor()) {
+            if (DOWNGRADE_WARNED.computeIfAbsent(player.getUUID(), ignored -> new java.util.HashSet<>()).add(type.id()))
+                LogUtils.getLogger().warn("Payload {} requires 1.{}, peer {} uses {}; feature unavailable",
+                        type.id(), type.minimumMinor(), player.getUUID(), remote);
+            return;
+        }
         frames(payload, PayloadRegistry.Direction.TO_CLIENT, frame -> CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), new ClientFrame(frame)));
     }
     public static void acceptPeerVersion(UUID player, ProtocolVersion version) {
         if (version.major() != ProtocolVersion.CURRENT.major()) throw new IllegalArgumentException("Incompatible peer protocol");
         SERVER_PEER_VERSIONS.put(player, version);
+        var pending = PENDING.remove(player);
+        var server = net.minecraftforge.server.ServerLifecycleHooks.getCurrentServer();
+        var recipient = server == null ? null : server.getPlayerList().getPlayer(player);
+        if (pending != null && recipient != null) pending.forEach(packet -> send(recipient, packet));
         if (version.minor() != ProtocolVersion.CURRENT.minor()) LogUtils.getLogger().warn("Peer {} uses protocol {}, local {}", player, version, ProtocolVersion.CURRENT);
     }
     public static void sendToServer(OmphalosPayload payload) {
@@ -122,9 +140,10 @@ public final class OmphalosChannel {
     public static void tickClient() { CLIENT_ASSEMBLER.expire(System.nanoTime()); }
     public static void disconnectServerPlayer(UUID player) {
         SERVER_PEER_VERSIONS.remove(player);
+        PENDING.remove(player); DOWNGRADE_WARNED.remove(player);
         SERVER_ASSEMBLER.remove(player);
         synchronized (INGRESS) { INGRESS.remove(player); }
     }
-    public static void resetServer() { SERVER_ASSEMBLER.clear(); SERVER_PEER_VERSIONS.clear(); synchronized (INGRESS) { INGRESS.clear(); } }
+    public static void resetServer() { PENDING.clear(); DOWNGRADE_WARNED.clear(); SERVER_ASSEMBLER.clear(); SERVER_PEER_VERSIONS.clear(); synchronized (INGRESS) { INGRESS.clear(); } }
     public static void resetClient() { CLIENT_ASSEMBLER.clear(); }
 }

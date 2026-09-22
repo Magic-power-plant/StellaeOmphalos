@@ -9,6 +9,7 @@ import net.minecraftforge.fluids.FluidType;
 
 public class MoltenLumenFluidType extends FluidType {
     private static volatile IClientFluidTypeExtensions clientExtensions;
+    private static Consumer<IClientFluidTypeExtensions> pendingClient;
 
     public MoltenLumenFluidType() {
         super(FluidType.Properties.create()
@@ -25,12 +26,16 @@ public class MoltenLumenFluidType extends FluidType {
                 .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY));
     }
 
-    /** Wired from client/render during client setup; lumen must not reference client classes at compile time. */
-    public static void setClientExtensions(IClientFluidTypeExtensions extensions) { clientExtensions = extensions; }
+    /** Forge's required common-side signature is the sole client-interface exception in this layer. */
+    public static synchronized void setClientExtensions(IClientFluidTypeExtensions extensions) {
+        clientExtensions = java.util.Objects.requireNonNull(extensions);
+        if (pendingClient != null) { pendingClient.accept(extensions); pendingClient = null; }
+    }
 
     @Override
-    public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+    public synchronized void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
         IClientFluidTypeExtensions extensions = clientExtensions;
         if (extensions != null) consumer.accept(extensions);
+        else pendingClient = consumer;
     }
 }

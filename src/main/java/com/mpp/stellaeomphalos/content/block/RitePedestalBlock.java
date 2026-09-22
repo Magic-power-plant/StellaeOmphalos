@@ -52,7 +52,8 @@ public final class RitePedestalBlock extends Block implements EntityBlock {
             BlockHitResult hit) {
         if (player instanceof ServerPlayer server
                 && l.getBlockEntity(p) instanceof RitePedestalBlockEntity be)
-            be.interact(server, hand, player.isShiftKeyDown() ? 1 : 0);
+            be.interact(server, hand, player.isShiftKeyDown()
+                    ? (player.getItemInHand(hand).is(net.minecraft.world.item.Items.STICK) ? 2 : 1) : 0);
         return InteractionResult.sidedSuccess(l.isClientSide);
     }
 

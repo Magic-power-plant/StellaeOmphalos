@@ -2,11 +2,11 @@
   "type": "stellaeomphalos:lumen_infusion",
   "duration": 200,
   "input": {
-    "item": "stellaeomphalos:crystal_sword"
+    "item": "stellaeomphalos:geode_sword"
   },
   "result": {
     "fallback": {
-      "item": "stellaeomphalos:crystal_sword"
+      "item": "stellaeomphalos:geode_sword"
     },
     "kind": "inherit",
     "ops": [

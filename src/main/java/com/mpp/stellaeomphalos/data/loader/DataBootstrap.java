@@ -21,6 +21,8 @@ public final class DataBootstrap {
     private static DataTable<PolicyEntry> policy(String path) {
         return TABLES.declare(new DataTable<>(new ResourceLocation(Omphalos.MODID, path), PolicyEntry.CODEC, (entries, report) -> {
             if (path.equals("boon_xp_curve")) entries.forEach((id, entry) -> {
+                if (!entry.values().isEmpty() && entry.values().get(0) != 0)
+                    report.error(id.toString(), "$.values[0]", "Level one must start at zero XP");
                 int previous = -1;
                 for (int i = 0; i < entry.values().size(); i++) {
                     int current = entry.values().get(i);

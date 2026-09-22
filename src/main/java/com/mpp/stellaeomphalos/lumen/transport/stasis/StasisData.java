@@ -41,7 +41,7 @@ public final class StasisData extends VersionedSavedData<StasisData.State> {
     public static StasisData get(ServerLevel level) {
         return level.getDataStorage().computeIfAbsent(tag -> {
             var data = new StasisData();
-            data.restore(tag, level.getGameTime());
+            data.restoreOrPreserve(tag, level.getGameTime());
             return data;
         }, StasisData::new, KEY);
     }

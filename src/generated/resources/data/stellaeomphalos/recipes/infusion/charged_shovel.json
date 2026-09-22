@@ -2,11 +2,11 @@
   "type": "stellaeomphalos:lumen_infusion",
   "duration": 200,
   "input": {
-    "item": "stellaeomphalos:crystal_shovel"
+    "item": "stellaeomphalos:geode_shovel"
   },
   "result": {
     "fallback": {
-      "item": "stellaeomphalos:crystal_shovel"
+      "item": "stellaeomphalos:geode_shovel"
     },
     "kind": "inherit",
     "ops": [

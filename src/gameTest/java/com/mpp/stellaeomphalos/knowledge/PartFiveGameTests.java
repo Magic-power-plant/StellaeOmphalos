@@ -47,7 +47,7 @@ public final class PartFiveGameTests {
                 KnowledgeCatalog.PAGES.pages().size() >= 300,
                 "At least 300 original page definitions");
         h.assertTrue(KnowledgeCatalog.SHARDS.all().size() == 110, "110 localized shards");
-        for (String name : List.of("codex", "lore_shard", "shard_capsule", "insight_scroll"))
+        for (String name : List.of("codex", "lore_shard", "lore_capsule", "lore_scroll"))
             h.assertTrue(
                     net.minecraft.core.registries.BuiltInRegistries.ITEM.containsKey(id(name)),
                     "Knowledge item " + name);
@@ -248,7 +248,7 @@ public final class PartFiveGameTests {
 
     @GameTest(template = "foundation_empty", batch = "part5")
     public static void mantle_codec_and_live_guardian_state_follow_the_stack(GameTestHelper h) {
-        var item = net.minecraft.core.registries.BuiltInRegistries.ITEM.get(id("star_mantle"));
+        var item = net.minecraft.core.registries.BuiltInRegistries.ITEM.get(id("mantle"));
         h.assertTrue(item instanceof ArmorItem, "Mantle is wearable chest armor");
         var stack = new ItemStack(item);
         stack.getOrCreateTag().putString("SignId", id("armara").toString());

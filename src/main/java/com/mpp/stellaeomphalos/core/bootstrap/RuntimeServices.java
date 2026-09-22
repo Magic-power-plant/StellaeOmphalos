@@ -56,9 +56,21 @@ public final class RuntimeServices implements AutoCloseable {
     private final Map<UUID, Long> awaitingReady = new HashMap<>();
     private final Set<UUID> ready = new HashSet<>();
     private int configRevision = -1;
+    private final com.mpp.stellaeomphalos.network.sync.ServerConfigDataset serverConfig =
+            new com.mpp.stellaeomphalos.network.sync.ServerConfigDataset();
 
     private RuntimeServices(MinecraftServer server) {
         this.server = server;
+        sync.register(serverConfig);
+        registerDiagnosticSource(new net.minecraft.resources.ResourceLocation("stellaeomphalos", "runtime"),
+                (player, position) -> {
+                    var data = new net.minecraft.nbt.CompoundTag();
+                    data.putInt("ReadyPlayers", ready.size());
+                    data.putInt("ConfigRevision", OmphalosConfig.serverRevision());
+                    data.putLong("ConfigDatasetVersion", serverConfig.version());
+                    data.putInt("DataLoadIssues", DataBootstrap.TABLES.report().size());
+                    return java.util.Optional.of(data);
+                });
     }
 
     public static RuntimeServices current() {
@@ -93,7 +105,9 @@ public final class RuntimeServices implements AutoCloseable {
 
     public void recordMigrationReport(String id, java.util.List<String> issues) {
         var report = new PktMigrationReport(id, issues);
-        migrationReports.put(report.reportId(), report.issues());
+        if (report.issues().equals(migrationReports.put(report.reportId(), report.issues()))) return;
+        server.getPlayerList().getPlayers().stream().filter(p -> ready.contains(p.getUUID()))
+                .forEach(p -> OmphalosChannel.send(p, report));
     }
 
     public static void attach() {
@@ -131,6 +145,8 @@ public final class RuntimeServices implements AutoCloseable {
         services.debugSessions
                 .values()
                 .removeIf(deadline -> services.scheduler.currentTick() >= deadline);
+        com.mpp.stellaeomphalos.data.loader.MigrationReports.drain().forEach(services::recordMigrationReport);
+        services.serverConfig.refresh();
         services.sync.flush(
                 services.server.getPlayerList().getPlayers().stream()
                         .filter(player -> services.ready.contains(player.getUUID()))
@@ -309,5 +325,6 @@ public final class RuntimeServices implements AutoCloseable {
         debugSessions.clear();
         diagnosticSources.clear();
         migrationReports.clear();
+        com.mpp.stellaeomphalos.data.loader.MigrationReports.drain();
     }
 }

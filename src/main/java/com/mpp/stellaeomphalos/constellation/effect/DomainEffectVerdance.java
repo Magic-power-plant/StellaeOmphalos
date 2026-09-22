@@ -60,6 +60,12 @@ public final class DomainEffectVerdance extends DomainPositionCache<SimplePosEnt
         }
         if (props.corrupted()) return playCorrupted(ctx, props, radius);
         int attempts = 0;
+        if (level.getGameTime() % 40 == 0)
+            for (var entity : com.mpp.stellaeomphalos.constellation.domain.DomainWorkBudget.entities(
+                    level, LivingEntity.class, new AABB(ctx.origin()).inflate(props.size()))) {
+                entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100, 0));
+                attempts++;
+            }
         for (int i = 0; i < MAX_GROW_ATTEMPTS; i++) {
             var entry = randomByChance(level.random);
             if (entry == null) break;
@@ -96,6 +102,8 @@ public final class DomainEffectVerdance extends DomainPositionCache<SimplePosEnt
         for (var entity :
                 com.mpp.stellaeomphalos.constellation.domain.DomainWorkBudget.entities(
                         level, LivingEntity.class, box)) {
+            entity.addEffect(new MobEffectInstance(com.mpp.stellaeomphalos.constellation.domain.DomainContent.BLEEDING.get(), 200, 0));
+            acted = true;
             entity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 200, 0));
             entity.addEffect(new MobEffectInstance(MobEffects.HUNGER, 200, 0));
             entity.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 200, 0));

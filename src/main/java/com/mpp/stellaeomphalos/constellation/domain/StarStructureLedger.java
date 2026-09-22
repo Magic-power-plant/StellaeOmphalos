@@ -40,7 +40,7 @@ public final class StarStructureLedger extends VersionedSavedData<StarStructureL
     public static StarStructureLedger get(ServerLevel level) {
         return level.getDataStorage().computeIfAbsent(tag -> {
             var ledger = new StarStructureLedger();
-            ledger.restore(tag, level.getGameTime());
+            ledger.restoreOrPreserve(tag, level.getGameTime());
             return ledger;
         }, StarStructureLedger::new, KEY);
     }

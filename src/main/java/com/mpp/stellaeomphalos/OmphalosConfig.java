@@ -12,6 +12,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /** Config events publish immutable snapshots; no callback touches a world. */
 public final class OmphalosConfig {
+    public enum ParticleQuality { OFF, LOW, NORMAL, HIGH }
+    public enum SkyMode { NONE, OVERLAY, REPLACE }
     public enum ShardPoolMode {
         INDEPENDENT,
         PUBLIC_POOL
@@ -22,6 +24,12 @@ public final class OmphalosConfig {
         LOADED_ONLY,
         NEW_CHUNKS
     }
+
+    private static final java.util.Set<String> RESERVED = java.util.Set.of(
+            "performance.maxSightlineLength", "performance.sightlineStepWidth",
+            "gameplay.lightProximityAltarRecipe", "gameplay.signPaperRarity", "gameplay.signPaperQuality",
+            "gameplay.mantleChaosResistance", "gameplay.weaponOilMultiplier", "gameplay.wandChainBreakChance");
+    public static boolean supported(String key) { return !RESERVED.contains(key); }
 
     public static final Section COMMON = new Section(ModConfig.Type.COMMON);
     public static final Section SERVER = new Section(ModConfig.Type.SERVER);
@@ -45,6 +53,12 @@ public final class OmphalosConfig {
         COMMON.integer("performance.lumenMaxHops", 32, 4, 128);
         COMMON.integer("performance.lumenProximityOpsPerTick", 32, 1, 1024);
         COMMON.bool("compat.enchantmentAmplification", true);
+        // Part-6 §6.4.4：护符掷骰概率全部可配置（原模组为类内常量）。
+        COMMON.decimal("amulet.chanceSecondRoll", 0.8, 0, 1);
+        COMMON.decimal("amulet.chanceThirdRoll", 0.25, 0, 1);
+        COMMON.decimal("amulet.chanceExtraLevel", 0.15, 0, 1);
+        COMMON.decimal("amulet.chanceGlobalModifier", 0.02, 0, 1);
+        COMMON.decimal("amulet.chanceNewEnchantment", 0.35, 0, 1);
         COMMON.bool("logging.dataTableVerbose", false);
         COMMON.values.put(
                 "crafting.disabledFamilies",
@@ -64,6 +78,8 @@ public final class OmphalosConfig {
         SERVER.decimal("gameplay.weaponOilMultiplier", 0.25, 0, 1);
         SERVER.bool("gameplay.mobSpawnDenyAll", false);
         SERVER.decimal("gameplay.wandChainBreakChance", 0.1, 0, 1);
+        // Part-6 §6.6.2：置换杖的可替换硬度门槛（基岩类恒放弃）。
+        SERVER.decimal("gameplay.blockRodHardnessLimit", 3.0, 0, 100);
         SERVER.integer("gameplay.inactivityThresholdMs", 300000, 1000, 3600000);
         SERVER.integer("progression.maxBoonLevel", 30, 1, 1000);
         SERVER.bool("gameplay.lumenEnabled", true);
@@ -114,6 +130,27 @@ public final class OmphalosConfig {
         CLIENT.decimal("codex.branchThreshold", 6, 5, 8);
         CLIENT.decimal("codex.cloudFadeThreshold", 8.01, 8, 10);
         CLIENT.decimal("codex.nodeClickThreshold", 0.7, 0.1, 1.2);
+        CLIENT.bool("effects.enabled", true);
+        CLIENT.integer("effects.budget", 512, 0, 4096);
+        CLIENT.integer("effects.renderDistance", 96, 16, 256);
+        CLIENT.bool("effects.beams", true);
+        CLIENT.bool("effects.arcs", true);
+        CLIENT.bool("effects.composite", true);
+        CLIENT.bool("effects.orbits", true);
+        CLIENT.integer("particles.budget", 2000, 0, 20000);
+        CLIENT.values.put("particles.quality", CLIENT.builder.defineEnum("particles.quality", ParticleQuality.NORMAL));
+        CLIENT.integer("particles.effectDistance", 96, 16, 256);
+        CLIENT.integer("render.beRendererDistance", 64, 16, 256);
+        CLIENT.bool("render.staticMeshes", true);
+        CLIENT.bool("render.vanillaShaders", false);
+        CLIENT.values.put("sky.overlay", CLIENT.builder.defineEnum("sky.overlay", SkyMode.OVERLAY));
+        CLIENT.bool("sky.respectForeign", true);
+        CLIENT.integer("sky.starLayers", 5, 1, 8);
+        CLIENT.bool("sky.meteorTrails", true);
+        CLIENT.bool("view.sequences", true);
+        CLIENT.bool("view.captureTargets", true);
+        CLIENT.bool("palette.runtimeExtraction", false);
+        CLIENT.bool("debug.showEffectStats", false);
         COMMON.build();
         SERVER.build();
         CLIENT.build();
@@ -204,6 +241,11 @@ public final class OmphalosConfig {
             return java.util.Set.copyOf(values.keySet());
         }
 
+        public boolean needsRestart(String key) {
+            ForgeConfigSpec.ValueSpec rule = spec.getSpec().get(java.util.Arrays.asList(key.split("\\.")));
+            return rule != null && rule.needsWorldRestart();
+        }
+
         public ForgeConfigSpec spec() {
             return spec;
         }
@@ -232,8 +274,20 @@ public final class OmphalosConfig {
                 if (!text.equals("true") && !text.equals("false"))
                     throw new IllegalArgumentException("Invalid boolean");
                 parsed = Boolean.valueOf(text);
-            } else if (sample instanceof Retrogen) parsed = Retrogen.valueOf(text);
-            else throw new IllegalArgumentException("Unsupported setting");
+            } else if (sample instanceof Enum<?> enumeration)
+                parsed = java.util.Arrays.stream(enumeration.getDeclaringClass().getEnumConstants())
+                        .filter(entry -> entry.name().equals(text)).findFirst()
+                        .orElseThrow(() -> new IllegalArgumentException("Invalid enum value"));
+            else if (sample instanceof java.util.List<?>) {
+                var array = com.google.gson.JsonParser.parseString(text).getAsJsonArray();
+                var entries = new java.util.ArrayList<String>();
+                for (var entry : array) {
+                    if (!entry.isJsonPrimitive() || !entry.getAsJsonPrimitive().isString())
+                        throw new IllegalArgumentException("Expected a JSON string list");
+                    entries.add(entry.getAsString());
+                }
+                parsed = java.util.List.copyOf(entries);
+            } else throw new IllegalArgumentException("Unsupported setting");
             ForgeConfigSpec.ValueSpec rule =
                     spec.getSpec().get(java.util.Arrays.asList(key.split("\\.")));
             if (!rule.test(parsed)) throw new IllegalArgumentException("Setting out of range");

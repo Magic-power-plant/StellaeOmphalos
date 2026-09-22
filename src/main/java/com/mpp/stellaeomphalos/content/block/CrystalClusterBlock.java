@@ -43,7 +43,8 @@ public final class CrystalClusterBlock extends Block {
     public void randomTick(BlockState s, ServerLevel level, BlockPos p, RandomSource random) {
         int stage = s.getValue(STAGE);
         if (stage >= 4) return;
-        boolean fast = level.getBlockState(p.below()).is(WorldContent.STAR_METAL_ORE.get());
+        // §6.6.1：下方为星辉矿（ASTRAL 变体）时加速生长。
+        boolean fast = GeodeOreBlock.isAstral(level.getBlockState(p.below()));
         if (random.nextInt(fast ? 2 : 6) != 0) return;
         var next = s.setValue(STAGE, stage + 1);
         if (gem) next = next.setValue(ASPECT, level.canSeeSky(p) ? (level.isNight() ? 2 : 1) : 0);

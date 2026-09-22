@@ -16,15 +16,17 @@ public final class WorldEntityRenderers {
     private WorldEntityRenderers() {}
 
     @SubscribeEvent
-    @SuppressWarnings("unchecked")
-    public static void register(EntityRenderersEvent.RegisterRenderers event) {
-        var type =
-                (net.minecraft.world.entity.EntityType<
-                                com.mpp.stellaeomphalos.content.entity.StarfallEntity>)
-                        net.minecraftforge.registries.ForgeRegistries.ENTITY_TYPES.getValue(
-                                WorldContent.STARFALL.id());
-        event.registerEntityRenderer(
-                java.util.Objects.requireNonNull(type),
-                net.minecraft.client.renderer.entity.NoopRenderer::new);
+    public static void colors(net.minecraftforge.client.event.RegisterColorHandlersEvent.Item event) {
+        var targets = new java.util.ArrayList<net.minecraft.world.item.Item>();
+        for (String id : java.util.List.of("lens_blank", "prism_lens", "luminary_rod")) {
+            var item = net.minecraftforge.registries.ForgeRegistries.ITEMS.getValue(
+                    new net.minecraft.resources.ResourceLocation(Omphalos.MODID, id));
+            if (item != null) targets.add(item);
+        }
+        if (!targets.isEmpty()) event.register((stack, layer) ->
+                layer == 0 && stack.hasTag() && stack.getTag().contains("LensColor")
+                        ? 0xFF000000 | stack.getTag().getInt("LensColor") : -1,
+                targets.toArray(net.minecraft.world.item.Item[]::new));
     }
+
 }

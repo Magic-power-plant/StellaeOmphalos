@@ -2,7 +2,7 @@
   "replace": false,
   "values": [
     "stellaeomphalos:rite_pedestal",
-    "stellaeomphalos:bore_core",
-    "stellaeomphalos:mineral_regenerator"
+    "stellaeomphalos:fountain",
+    "stellaeomphalos:ore_regenerator"
   ]
 }

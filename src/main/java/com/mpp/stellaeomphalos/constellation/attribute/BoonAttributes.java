@@ -8,7 +8,7 @@ public final class BoonAttributes {
     private static final String NAMESPACE = "stellaeomphalos";
 
     public static final BoonAttribute ELEMENTAL_WARD = register("elemental_ward", 0.0, BoonAttributeClamp.of(0.0, 0.60), false);
-    public static final BoonAttribute PROJECTILE_VELOCITY = register("projectile_velocity", 1.0, BoonAttributeClamp.of(0.5, 3.0), true);
+    public static final BoonAttribute PROJECTILE_VELOCITY = register("projectile_velocity", 1.0, BoonAttributeClamp.of(0.0, 3.0), true);
     public static final BoonAttribute HARVEST_SPEED = register("harvest_speed", 1.0, BoonAttributeClamp.of(0.0, 8.0), true);
     public static final BoonAttribute CRIT_CHANCE = register("crit_chance", 0.0, BoonAttributeClamp.of(0.0, 100.0), false);
     public static final BoonAttribute CRIT_DAMAGE = register("crit_damage", 1.0, BoonAttributeClamp.of(1.0, 6.0), true);

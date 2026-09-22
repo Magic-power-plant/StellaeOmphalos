@@ -1,41 +1,6 @@
 {
   "files": {
-    "assets/stellaeomphalos/blockstates/stone_set.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/stone_set"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/stone_set.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/stone_set"
-      }
-    },
-    "assets/stellaeomphalos/models/item/stone_set.json": {
-      "parent": "stellaeomphalos:block/stone_set"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/stone_set.json": {
-      "type": "minecraft:block",
-      "pools": [
-        {
-          "rolls": 1,
-          "entries": [
-            {
-              "type": "minecraft:item",
-              "name": "stellaeomphalos:stone_set",
-              "functions": [
-                {
-                  "function": "minecraft:explosion_decay"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    "data/stellaeomphalos/recipes/world/stone_set.json": {
+    "data/stellaeomphalos/recipes/world/marble.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -51,27 +16,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:stone_set",
+        "item": "stellaeomphalos:marble",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/stone_set_bricks.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/stone_set_bricks"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/stone_set_bricks.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/stone_set_bricks"
-      }
-    },
-    "assets/stellaeomphalos/models/item/stone_set_bricks.json": {
-      "parent": "stellaeomphalos:block/stone_set_bricks"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/stone_set_bricks.json": {
+    "data/stellaeomphalos/loot_tables/blocks/marble_bricks.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -79,7 +28,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:stone_set_bricks",
+              "name": "stellaeomphalos:marble_bricks",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -90,7 +39,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/stone_set_bricks.json": {
+    "data/stellaeomphalos/recipes/world/marble_bricks.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -106,27 +55,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:stone_set_bricks",
+        "item": "stellaeomphalos:marble_bricks",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/stone_set_pillar.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/stone_set_pillar"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/stone_set_pillar.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/stone_set_pillar"
-      }
-    },
-    "assets/stellaeomphalos/models/item/stone_set_pillar.json": {
-      "parent": "stellaeomphalos:block/stone_set_pillar"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/stone_set_pillar.json": {
+    "data/stellaeomphalos/loot_tables/blocks/marble_pillar.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -134,7 +67,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:stone_set_pillar",
+              "name": "stellaeomphalos:marble_pillar",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -145,7 +78,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/stone_set_pillar.json": {
+    "data/stellaeomphalos/recipes/world/marble_pillar.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -161,27 +94,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:stone_set_pillar",
+        "item": "stellaeomphalos:marble_pillar",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/stone_set_arch.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/stone_set_arch"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/stone_set_arch.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/stone_set_arch"
-      }
-    },
-    "assets/stellaeomphalos/models/item/stone_set_arch.json": {
-      "parent": "stellaeomphalos:block/stone_set_arch"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/stone_set_arch.json": {
+    "data/stellaeomphalos/loot_tables/blocks/marble_arch.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -189,7 +106,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:stone_set_arch",
+              "name": "stellaeomphalos:marble_arch",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -200,7 +117,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/stone_set_arch.json": {
+    "data/stellaeomphalos/recipes/world/marble_arch.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -216,27 +133,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:stone_set_arch",
+        "item": "stellaeomphalos:marble_arch",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/stone_set_chiseled.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/stone_set_chiseled"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/stone_set_chiseled.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/stone_set_chiseled"
-      }
-    },
-    "assets/stellaeomphalos/models/item/stone_set_chiseled.json": {
-      "parent": "stellaeomphalos:block/stone_set_chiseled"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/stone_set_chiseled.json": {
+    "data/stellaeomphalos/loot_tables/blocks/marble_chiseled.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -244,7 +145,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:stone_set_chiseled",
+              "name": "stellaeomphalos:marble_chiseled",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -255,7 +156,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/stone_set_chiseled.json": {
+    "data/stellaeomphalos/recipes/world/marble_chiseled.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -271,27 +172,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:stone_set_chiseled",
+        "item": "stellaeomphalos:marble_chiseled",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/stone_set_engraved.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/stone_set_engraved"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/stone_set_engraved.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/stone_set_engraved"
-      }
-    },
-    "assets/stellaeomphalos/models/item/stone_set_engraved.json": {
-      "parent": "stellaeomphalos:block/stone_set_engraved"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/stone_set_engraved.json": {
+    "data/stellaeomphalos/loot_tables/blocks/marble_engraved.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -299,7 +184,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:stone_set_engraved",
+              "name": "stellaeomphalos:marble_engraved",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -310,7 +195,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/stone_set_engraved.json": {
+    "data/stellaeomphalos/recipes/world/marble_engraved.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -326,27 +211,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:stone_set_engraved",
+        "item": "stellaeomphalos:marble_engraved",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/stone_set_runed.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/stone_set_runed"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/stone_set_runed.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/stone_set_runed"
-      }
-    },
-    "assets/stellaeomphalos/models/item/stone_set_runed.json": {
-      "parent": "stellaeomphalos:block/stone_set_runed"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/stone_set_runed.json": {
+    "data/stellaeomphalos/loot_tables/blocks/marble_runed.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -354,7 +223,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:stone_set_runed",
+              "name": "stellaeomphalos:marble_runed",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -365,7 +234,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/stone_set_runed.json": {
+    "data/stellaeomphalos/recipes/world/marble_runed.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -381,46 +250,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:stone_set_runed",
+        "item": "stellaeomphalos:marble_runed",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/dark_stone_set.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/dark_stone_set"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/dark_stone_set.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/dark_stone_set"
-      }
-    },
-    "assets/stellaeomphalos/models/item/dark_stone_set.json": {
-      "parent": "stellaeomphalos:block/dark_stone_set"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/dark_stone_set.json": {
-      "type": "minecraft:block",
-      "pools": [
-        {
-          "rolls": 1,
-          "entries": [
-            {
-              "type": "minecraft:item",
-              "name": "stellaeomphalos:dark_stone_set",
-              "functions": [
-                {
-                  "function": "minecraft:explosion_decay"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    "data/stellaeomphalos/recipes/world/dark_stone_set.json": {
+    "data/stellaeomphalos/recipes/world/black_marble.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -436,27 +270,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:dark_stone_set",
+        "item": "stellaeomphalos:black_marble",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/dark_stone_set_bricks.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/dark_stone_set_bricks"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/dark_stone_set_bricks.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/dark_stone_set_bricks"
-      }
-    },
-    "assets/stellaeomphalos/models/item/dark_stone_set_bricks.json": {
-      "parent": "stellaeomphalos:block/dark_stone_set_bricks"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/dark_stone_set_bricks.json": {
+    "data/stellaeomphalos/loot_tables/blocks/black_marble_bricks.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -464,7 +282,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:dark_stone_set_bricks",
+              "name": "stellaeomphalos:black_marble_bricks",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -475,7 +293,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/dark_stone_set_bricks.json": {
+    "data/stellaeomphalos/recipes/world/black_marble_bricks.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -491,27 +309,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:dark_stone_set_bricks",
+        "item": "stellaeomphalos:black_marble_bricks",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/dark_stone_set_pillar.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/dark_stone_set_pillar"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/dark_stone_set_pillar.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/dark_stone_set_pillar"
-      }
-    },
-    "assets/stellaeomphalos/models/item/dark_stone_set_pillar.json": {
-      "parent": "stellaeomphalos:block/dark_stone_set_pillar"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/dark_stone_set_pillar.json": {
+    "data/stellaeomphalos/loot_tables/blocks/black_marble_pillar.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -519,7 +321,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:dark_stone_set_pillar",
+              "name": "stellaeomphalos:black_marble_pillar",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -530,7 +332,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/dark_stone_set_pillar.json": {
+    "data/stellaeomphalos/recipes/world/black_marble_pillar.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -546,27 +348,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:dark_stone_set_pillar",
+        "item": "stellaeomphalos:black_marble_pillar",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/dark_stone_set_arch.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/dark_stone_set_arch"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/dark_stone_set_arch.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/dark_stone_set_arch"
-      }
-    },
-    "assets/stellaeomphalos/models/item/dark_stone_set_arch.json": {
-      "parent": "stellaeomphalos:block/dark_stone_set_arch"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/dark_stone_set_arch.json": {
+    "data/stellaeomphalos/loot_tables/blocks/black_marble_arch.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -574,7 +360,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:dark_stone_set_arch",
+              "name": "stellaeomphalos:black_marble_arch",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -585,7 +371,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/dark_stone_set_arch.json": {
+    "data/stellaeomphalos/recipes/world/black_marble_arch.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -601,27 +387,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:dark_stone_set_arch",
+        "item": "stellaeomphalos:black_marble_arch",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/dark_stone_set_chiseled.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/dark_stone_set_chiseled"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/dark_stone_set_chiseled.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/dark_stone_set_chiseled"
-      }
-    },
-    "assets/stellaeomphalos/models/item/dark_stone_set_chiseled.json": {
-      "parent": "stellaeomphalos:block/dark_stone_set_chiseled"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/dark_stone_set_chiseled.json": {
+    "data/stellaeomphalos/loot_tables/blocks/black_marble_chiseled.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -629,7 +399,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:dark_stone_set_chiseled",
+              "name": "stellaeomphalos:black_marble_chiseled",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -640,7 +410,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/dark_stone_set_chiseled.json": {
+    "data/stellaeomphalos/recipes/world/black_marble_chiseled.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -656,27 +426,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:dark_stone_set_chiseled",
+        "item": "stellaeomphalos:black_marble_chiseled",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/dark_stone_set_engraved.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/dark_stone_set_engraved"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/dark_stone_set_engraved.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/dark_stone_set_engraved"
-      }
-    },
-    "assets/stellaeomphalos/models/item/dark_stone_set_engraved.json": {
-      "parent": "stellaeomphalos:block/dark_stone_set_engraved"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/dark_stone_set_engraved.json": {
+    "data/stellaeomphalos/loot_tables/blocks/black_marble_engraved.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -684,7 +438,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:dark_stone_set_engraved",
+              "name": "stellaeomphalos:black_marble_engraved",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -695,7 +449,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/dark_stone_set_engraved.json": {
+    "data/stellaeomphalos/recipes/world/black_marble_engraved.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -711,27 +465,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:dark_stone_set_engraved",
+        "item": "stellaeomphalos:black_marble_engraved",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/dark_stone_set_runed.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/dark_stone_set_runed"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/dark_stone_set_runed.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/dark_stone_set_runed"
-      }
-    },
-    "assets/stellaeomphalos/models/item/dark_stone_set_runed.json": {
-      "parent": "stellaeomphalos:block/dark_stone_set_runed"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/dark_stone_set_runed.json": {
+    "data/stellaeomphalos/loot_tables/blocks/black_marble_runed.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -739,7 +477,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:dark_stone_set_runed",
+              "name": "stellaeomphalos:black_marble_runed",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -750,7 +488,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/dark_stone_set_runed.json": {
+    "data/stellaeomphalos/recipes/world/black_marble_runed.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -766,46 +504,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:dark_stone_set_runed",
+        "item": "stellaeomphalos:black_marble_runed",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/infused_wood_set.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/infused_wood_set"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/infused_wood_set.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/infused_wood_set"
-      }
-    },
-    "assets/stellaeomphalos/models/item/infused_wood_set.json": {
-      "parent": "stellaeomphalos:block/infused_wood_set"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/infused_wood_set.json": {
-      "type": "minecraft:block",
-      "pools": [
-        {
-          "rolls": 1,
-          "entries": [
-            {
-              "type": "minecraft:item",
-              "name": "stellaeomphalos:infused_wood_set",
-              "functions": [
-                {
-                  "function": "minecraft:explosion_decay"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    "data/stellaeomphalos/recipes/world/infused_wood_set.json": {
+    "data/stellaeomphalos/recipes/world/infused_wood.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -821,27 +524,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:infused_wood_set",
+        "item": "stellaeomphalos:infused_wood",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/infused_wood_set_bricks.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/infused_wood_set_bricks"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/infused_wood_set_bricks.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/infused_wood_set_bricks"
-      }
-    },
-    "assets/stellaeomphalos/models/item/infused_wood_set_bricks.json": {
-      "parent": "stellaeomphalos:block/infused_wood_set_bricks"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/infused_wood_set_bricks.json": {
+    "data/stellaeomphalos/loot_tables/blocks/infused_wood_planks.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -849,7 +536,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:infused_wood_set_bricks",
+              "name": "stellaeomphalos:infused_wood_planks",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -860,7 +547,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/infused_wood_set_bricks.json": {
+    "data/stellaeomphalos/recipes/world/infused_wood_planks.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -876,27 +563,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:infused_wood_set_bricks",
+        "item": "stellaeomphalos:infused_wood_planks",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/infused_wood_set_pillar.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/infused_wood_set_pillar"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/infused_wood_set_pillar.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/infused_wood_set_pillar"
-      }
-    },
-    "assets/stellaeomphalos/models/item/infused_wood_set_pillar.json": {
-      "parent": "stellaeomphalos:block/infused_wood_set_pillar"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/infused_wood_set_pillar.json": {
+    "data/stellaeomphalos/loot_tables/blocks/infused_wood_pillar.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -904,7 +575,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:infused_wood_set_pillar",
+              "name": "stellaeomphalos:infused_wood_pillar",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -915,7 +586,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/infused_wood_set_pillar.json": {
+    "data/stellaeomphalos/recipes/world/infused_wood_pillar.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -931,27 +602,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:infused_wood_set_pillar",
+        "item": "stellaeomphalos:infused_wood_pillar",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/infused_wood_set_arch.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/infused_wood_set_arch"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/infused_wood_set_arch.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/infused_wood_set_arch"
-      }
-    },
-    "assets/stellaeomphalos/models/item/infused_wood_set_arch.json": {
-      "parent": "stellaeomphalos:block/infused_wood_set_arch"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/infused_wood_set_arch.json": {
+    "data/stellaeomphalos/loot_tables/blocks/infused_wood_arch.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -959,7 +614,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:infused_wood_set_arch",
+              "name": "stellaeomphalos:infused_wood_arch",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -970,7 +625,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/infused_wood_set_arch.json": {
+    "data/stellaeomphalos/recipes/world/infused_wood_arch.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -986,27 +641,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:infused_wood_set_arch",
+        "item": "stellaeomphalos:infused_wood_arch",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/infused_wood_set_chiseled.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/infused_wood_set_chiseled"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/infused_wood_set_chiseled.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/infused_wood_set_chiseled"
-      }
-    },
-    "assets/stellaeomphalos/models/item/infused_wood_set_chiseled.json": {
-      "parent": "stellaeomphalos:block/infused_wood_set_chiseled"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/infused_wood_set_chiseled.json": {
+    "data/stellaeomphalos/loot_tables/blocks/infused_wood_enriched.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -1014,7 +653,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:infused_wood_set_chiseled",
+              "name": "stellaeomphalos:infused_wood_enriched",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -1025,7 +664,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/infused_wood_set_chiseled.json": {
+    "data/stellaeomphalos/recipes/world/infused_wood_enriched.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -1041,27 +680,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:infused_wood_set_chiseled",
+        "item": "stellaeomphalos:infused_wood_enriched",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/infused_wood_set_engraved.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/infused_wood_set_engraved"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/infused_wood_set_engraved.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/infused_wood_set_engraved"
-      }
-    },
-    "assets/stellaeomphalos/models/item/infused_wood_set_engraved.json": {
-      "parent": "stellaeomphalos:block/infused_wood_set_engraved"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/infused_wood_set_engraved.json": {
+    "data/stellaeomphalos/loot_tables/blocks/infused_wood_engraved.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -1069,7 +692,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:infused_wood_set_engraved",
+              "name": "stellaeomphalos:infused_wood_engraved",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -1080,7 +703,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/infused_wood_set_engraved.json": {
+    "data/stellaeomphalos/recipes/world/infused_wood_engraved.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -1096,27 +719,11 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:infused_wood_set_engraved",
+        "item": "stellaeomphalos:infused_wood_engraved",
         "count": 4
       }
     },
-    "assets/stellaeomphalos/blockstates/infused_wood_set_runed.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/infused_wood_set_runed"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/infused_wood_set_runed.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/infused_wood_set_runed"
-      }
-    },
-    "assets/stellaeomphalos/models/item/infused_wood_set_runed.json": {
-      "parent": "stellaeomphalos:block/infused_wood_set_runed"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/infused_wood_set_runed.json": {
+    "data/stellaeomphalos/loot_tables/blocks/infused_wood_infused.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -1124,7 +731,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:infused_wood_set_runed",
+              "name": "stellaeomphalos:infused_wood_infused",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -1135,7 +742,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/infused_wood_set_runed.json": {
+    "data/stellaeomphalos/recipes/world/infused_wood_infused.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -1151,14 +758,17 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:infused_wood_set_runed",
+        "item": "stellaeomphalos:infused_wood_infused",
         "count": 4
       }
     },
     "assets/stellaeomphalos/blockstates/geode_ore.json": {
       "variants": {
-        "": {
+        "variant=geode": {
           "model": "stellaeomphalos:block/geode_ore"
+        },
+        "variant=astral": {
+          "model": "stellaeomphalos:block/astral_ore"
         }
       }
     },
@@ -1172,28 +782,59 @@
       "parent": "stellaeomphalos:block/geode_ore"
     },
     "data/stellaeomphalos/loot_tables/blocks/geode_ore.json": {
-      "type": "minecraft:block",
       "pools": [
         {
-          "rolls": 1,
           "entries": [
             {
-              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "stellaeomphalos:geode_ore",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "variant": "geode"
+                  }
+                }
+              ],
               "name": "stellaeomphalos:geode_shard",
+              "type": "minecraft:item",
               "functions": [
                 {
                   "function": "minecraft:apply_bonus",
-                  "enchantment": "minecraft:fortune",
-                  "formula": "minecraft:ore_drops"
+                  "formula": "minecraft:ore_drops",
+                  "enchantment": "minecraft:fortune"
+                },
+                {
+                  "function": "minecraft:explosion_decay"
+                }
+              ]
+            },
+            {
+              "conditions": [
+                {
+                  "block": "stellaeomphalos:geode_ore",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "variant": "astral"
+                  }
+                }
+              ],
+              "name": "stellaeomphalos:geode_ore",
+              "type": "minecraft:item",
+              "functions": [
+                {
+                  "function": "minecraft:set_nbt",
+                  "tag": "{variant:\"astral\"}"
                 },
                 {
                   "function": "minecraft:explosion_decay"
                 }
               ]
             }
-          ]
+          ],
+          "rolls": 1
         }
-      ]
+      ],
+      "type": "minecraft:block"
     },
     "data/stellaeomphalos/recipes/world/geode_ore.json": {
       "type": "minecraft:crafting_shaped",
@@ -1215,78 +856,23 @@
         "count": 1
       }
     },
-    "assets/stellaeomphalos/blockstates/star_metal_ore.json": {
+    "assets/stellaeomphalos/blockstates/aquamarine_sand.json": {
       "variants": {
         "": {
-          "model": "stellaeomphalos:block/star_metal_ore"
+          "model": "stellaeomphalos:block/aquamarine_sand"
         }
       }
     },
-    "assets/stellaeomphalos/models/block/star_metal_ore.json": {
+    "assets/stellaeomphalos/models/block/aquamarine_sand.json": {
       "parent": "minecraft:block/cube_all",
       "textures": {
-        "all": "stellaeomphalos:block/star_metal_ore"
+        "all": "stellaeomphalos:block/aquamarine_sand"
       }
     },
-    "assets/stellaeomphalos/models/item/star_metal_ore.json": {
-      "parent": "stellaeomphalos:block/star_metal_ore"
+    "assets/stellaeomphalos/models/item/aquamarine_sand.json": {
+      "parent": "stellaeomphalos:block/aquamarine_sand"
     },
-    "data/stellaeomphalos/loot_tables/blocks/star_metal_ore.json": {
-      "type": "minecraft:block",
-      "pools": [
-        {
-          "rolls": 1,
-          "entries": [
-            {
-              "type": "minecraft:item",
-              "name": "stellaeomphalos:star_metal_ore",
-              "functions": [
-                {
-                  "function": "minecraft:explosion_decay"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    "data/stellaeomphalos/recipes/world/star_metal_ore.json": {
-      "type": "minecraft:crafting_shaped",
-      "pattern": [
-        " S ",
-        "SCS",
-        " S "
-      ],
-      "key": {
-        "S": {
-          "item": "minecraft:stone"
-        },
-        "C": {
-          "item": "minecraft:quartz"
-        }
-      },
-      "result": {
-        "item": "stellaeomphalos:star_metal_ore",
-        "count": 1
-      }
-    },
-    "assets/stellaeomphalos/blockstates/aquamarine_sand_ore.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/aquamarine_sand_ore"
-        }
-      }
-    },
-    "assets/stellaeomphalos/models/block/aquamarine_sand_ore.json": {
-      "parent": "minecraft:block/cube_all",
-      "textures": {
-        "all": "stellaeomphalos:block/aquamarine_sand_ore"
-      }
-    },
-    "assets/stellaeomphalos/models/item/aquamarine_sand_ore.json": {
-      "parent": "stellaeomphalos:block/aquamarine_sand_ore"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/aquamarine_sand_ore.json": {
+    "data/stellaeomphalos/loot_tables/blocks/aquamarine_sand.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -1310,7 +896,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/aquamarine_sand_ore.json": {
+    "data/stellaeomphalos/recipes/world/aquamarine_sand.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -1326,14 +912,14 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:aquamarine_sand_ore",
+        "item": "stellaeomphalos:aquamarine_sand",
         "count": 1
       }
     },
-    "assets/stellaeomphalos/models/block/astral_crystal_0.json": {
+    "assets/stellaeomphalos/models/block/sky_crystal_cluster_0.json": {
       "textures": {
-        "all": "stellaeomphalos:block/astral_crystal",
-        "particle": "stellaeomphalos:block/astral_crystal"
+        "all": "stellaeomphalos:block/sky_crystal_cluster",
+        "particle": "stellaeomphalos:block/sky_crystal_cluster"
       },
       "elements": [
         {
@@ -1370,10 +956,10 @@
         }
       ]
     },
-    "assets/stellaeomphalos/models/block/astral_crystal_1.json": {
+    "assets/stellaeomphalos/models/block/sky_crystal_cluster_1.json": {
       "textures": {
-        "all": "stellaeomphalos:block/astral_crystal",
-        "particle": "stellaeomphalos:block/astral_crystal"
+        "all": "stellaeomphalos:block/sky_crystal_cluster",
+        "particle": "stellaeomphalos:block/sky_crystal_cluster"
       },
       "elements": [
         {
@@ -1410,10 +996,10 @@
         }
       ]
     },
-    "assets/stellaeomphalos/models/block/astral_crystal_2.json": {
+    "assets/stellaeomphalos/models/block/sky_crystal_cluster_2.json": {
       "textures": {
-        "all": "stellaeomphalos:block/astral_crystal",
-        "particle": "stellaeomphalos:block/astral_crystal"
+        "all": "stellaeomphalos:block/sky_crystal_cluster",
+        "particle": "stellaeomphalos:block/sky_crystal_cluster"
       },
       "elements": [
         {
@@ -1450,10 +1036,10 @@
         }
       ]
     },
-    "assets/stellaeomphalos/models/block/astral_crystal_3.json": {
+    "assets/stellaeomphalos/models/block/sky_crystal_cluster_3.json": {
       "textures": {
-        "all": "stellaeomphalos:block/astral_crystal",
-        "particle": "stellaeomphalos:block/astral_crystal"
+        "all": "stellaeomphalos:block/sky_crystal_cluster",
+        "particle": "stellaeomphalos:block/sky_crystal_cluster"
       },
       "elements": [
         {
@@ -1490,10 +1076,10 @@
         }
       ]
     },
-    "assets/stellaeomphalos/models/block/astral_crystal_4.json": {
+    "assets/stellaeomphalos/models/block/sky_crystal_cluster_4.json": {
       "textures": {
-        "all": "stellaeomphalos:block/astral_crystal",
-        "particle": "stellaeomphalos:block/astral_crystal"
+        "all": "stellaeomphalos:block/sky_crystal_cluster",
+        "particle": "stellaeomphalos:block/sky_crystal_cluster"
       },
       "elements": [
         {
@@ -1530,65 +1116,65 @@
         }
       ]
     },
-    "assets/stellaeomphalos/blockstates/astral_crystal.json": {
+    "assets/stellaeomphalos/blockstates/sky_crystal_cluster.json": {
       "variants": {
         "stage=0,aspect=0": {
-          "model": "stellaeomphalos:block/astral_crystal_0"
+          "model": "stellaeomphalos:block/sky_crystal_cluster_0"
         },
         "stage=0,aspect=1": {
-          "model": "stellaeomphalos:block/astral_crystal_0"
+          "model": "stellaeomphalos:block/sky_crystal_cluster_0"
         },
         "stage=0,aspect=2": {
-          "model": "stellaeomphalos:block/astral_crystal_0"
+          "model": "stellaeomphalos:block/sky_crystal_cluster_0"
         },
         "stage=1,aspect=0": {
-          "model": "stellaeomphalos:block/astral_crystal_1"
+          "model": "stellaeomphalos:block/sky_crystal_cluster_1"
         },
         "stage=1,aspect=1": {
-          "model": "stellaeomphalos:block/astral_crystal_1"
+          "model": "stellaeomphalos:block/sky_crystal_cluster_1"
         },
         "stage=1,aspect=2": {
-          "model": "stellaeomphalos:block/astral_crystal_1"
+          "model": "stellaeomphalos:block/sky_crystal_cluster_1"
         },
         "stage=2,aspect=0": {
-          "model": "stellaeomphalos:block/astral_crystal_2"
+          "model": "stellaeomphalos:block/sky_crystal_cluster_2"
         },
         "stage=2,aspect=1": {
-          "model": "stellaeomphalos:block/astral_crystal_2"
+          "model": "stellaeomphalos:block/sky_crystal_cluster_2"
         },
         "stage=2,aspect=2": {
-          "model": "stellaeomphalos:block/astral_crystal_2"
+          "model": "stellaeomphalos:block/sky_crystal_cluster_2"
         },
         "stage=3,aspect=0": {
-          "model": "stellaeomphalos:block/astral_crystal_3"
+          "model": "stellaeomphalos:block/sky_crystal_cluster_3"
         },
         "stage=3,aspect=1": {
-          "model": "stellaeomphalos:block/astral_crystal_3"
+          "model": "stellaeomphalos:block/sky_crystal_cluster_3"
         },
         "stage=3,aspect=2": {
-          "model": "stellaeomphalos:block/astral_crystal_3"
+          "model": "stellaeomphalos:block/sky_crystal_cluster_3"
         },
         "stage=4,aspect=0": {
-          "model": "stellaeomphalos:block/astral_crystal_4"
+          "model": "stellaeomphalos:block/sky_crystal_cluster_4"
         },
         "stage=4,aspect=1": {
-          "model": "stellaeomphalos:block/astral_crystal_4"
+          "model": "stellaeomphalos:block/sky_crystal_cluster_4"
         },
         "stage=4,aspect=2": {
-          "model": "stellaeomphalos:block/astral_crystal_4"
+          "model": "stellaeomphalos:block/sky_crystal_cluster_4"
         }
       }
     },
-    "assets/stellaeomphalos/models/block/astral_crystal.json": {
+    "assets/stellaeomphalos/models/block/sky_crystal_cluster.json": {
       "parent": "minecraft:block/cube_all",
       "textures": {
-        "all": "stellaeomphalos:block/astral_crystal"
+        "all": "stellaeomphalos:block/sky_crystal_cluster"
       }
     },
-    "assets/stellaeomphalos/models/item/astral_crystal.json": {
-      "parent": "stellaeomphalos:block/astral_crystal"
+    "assets/stellaeomphalos/models/item/sky_crystal_cluster.json": {
+      "parent": "stellaeomphalos:block/sky_crystal_cluster"
     },
-    "data/stellaeomphalos/loot_tables/blocks/astral_crystal.json": {
+    "data/stellaeomphalos/loot_tables/blocks/sky_crystal_cluster.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -1596,7 +1182,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:astral_crystal_shard",
+              "name": "stellaeomphalos:star_dust",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -1607,7 +1193,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/astral_crystal.json": {
+    "data/stellaeomphalos/recipes/world/sky_crystal_cluster.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -1623,14 +1209,14 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:astral_crystal",
+        "item": "stellaeomphalos:sky_crystal_cluster",
         "count": 1
       }
     },
-    "assets/stellaeomphalos/models/block/gem_crystal_0.json": {
+    "assets/stellaeomphalos/models/block/prism_crystal_cluster_0.json": {
       "textures": {
-        "all": "stellaeomphalos:block/gem_crystal",
-        "particle": "stellaeomphalos:block/gem_crystal"
+        "all": "stellaeomphalos:block/prism_crystal_cluster",
+        "particle": "stellaeomphalos:block/prism_crystal_cluster"
       },
       "elements": [
         {
@@ -1667,10 +1253,10 @@
         }
       ]
     },
-    "assets/stellaeomphalos/models/block/gem_crystal_1.json": {
+    "assets/stellaeomphalos/models/block/prism_crystal_cluster_1.json": {
       "textures": {
-        "all": "stellaeomphalos:block/gem_crystal",
-        "particle": "stellaeomphalos:block/gem_crystal"
+        "all": "stellaeomphalos:block/prism_crystal_cluster",
+        "particle": "stellaeomphalos:block/prism_crystal_cluster"
       },
       "elements": [
         {
@@ -1707,10 +1293,10 @@
         }
       ]
     },
-    "assets/stellaeomphalos/models/block/gem_crystal_2.json": {
+    "assets/stellaeomphalos/models/block/prism_crystal_cluster_2.json": {
       "textures": {
-        "all": "stellaeomphalos:block/gem_crystal",
-        "particle": "stellaeomphalos:block/gem_crystal"
+        "all": "stellaeomphalos:block/prism_crystal_cluster",
+        "particle": "stellaeomphalos:block/prism_crystal_cluster"
       },
       "elements": [
         {
@@ -1747,10 +1333,10 @@
         }
       ]
     },
-    "assets/stellaeomphalos/models/block/gem_crystal_3.json": {
+    "assets/stellaeomphalos/models/block/prism_crystal_cluster_3.json": {
       "textures": {
-        "all": "stellaeomphalos:block/gem_crystal",
-        "particle": "stellaeomphalos:block/gem_crystal"
+        "all": "stellaeomphalos:block/prism_crystal_cluster",
+        "particle": "stellaeomphalos:block/prism_crystal_cluster"
       },
       "elements": [
         {
@@ -1787,10 +1373,10 @@
         }
       ]
     },
-    "assets/stellaeomphalos/models/block/gem_crystal_4.json": {
+    "assets/stellaeomphalos/models/block/prism_crystal_cluster_4.json": {
       "textures": {
-        "all": "stellaeomphalos:block/gem_crystal",
-        "particle": "stellaeomphalos:block/gem_crystal"
+        "all": "stellaeomphalos:block/prism_crystal_cluster",
+        "particle": "stellaeomphalos:block/prism_crystal_cluster"
       },
       "elements": [
         {
@@ -1827,65 +1413,65 @@
         }
       ]
     },
-    "assets/stellaeomphalos/blockstates/gem_crystal.json": {
+    "assets/stellaeomphalos/blockstates/prism_crystal_cluster.json": {
       "variants": {
         "stage=0,aspect=0": {
-          "model": "stellaeomphalos:block/gem_crystal_0"
+          "model": "stellaeomphalos:block/prism_crystal_cluster_0"
         },
         "stage=0,aspect=1": {
-          "model": "stellaeomphalos:block/gem_crystal_0"
+          "model": "stellaeomphalos:block/prism_crystal_cluster_0"
         },
         "stage=0,aspect=2": {
-          "model": "stellaeomphalos:block/gem_crystal_0"
+          "model": "stellaeomphalos:block/prism_crystal_cluster_0"
         },
         "stage=1,aspect=0": {
-          "model": "stellaeomphalos:block/gem_crystal_1"
+          "model": "stellaeomphalos:block/prism_crystal_cluster_1"
         },
         "stage=1,aspect=1": {
-          "model": "stellaeomphalos:block/gem_crystal_1"
+          "model": "stellaeomphalos:block/prism_crystal_cluster_1"
         },
         "stage=1,aspect=2": {
-          "model": "stellaeomphalos:block/gem_crystal_1"
+          "model": "stellaeomphalos:block/prism_crystal_cluster_1"
         },
         "stage=2,aspect=0": {
-          "model": "stellaeomphalos:block/gem_crystal_2"
+          "model": "stellaeomphalos:block/prism_crystal_cluster_2"
         },
         "stage=2,aspect=1": {
-          "model": "stellaeomphalos:block/gem_crystal_2"
+          "model": "stellaeomphalos:block/prism_crystal_cluster_2"
         },
         "stage=2,aspect=2": {
-          "model": "stellaeomphalos:block/gem_crystal_2"
+          "model": "stellaeomphalos:block/prism_crystal_cluster_2"
         },
         "stage=3,aspect=0": {
-          "model": "stellaeomphalos:block/gem_crystal_3"
+          "model": "stellaeomphalos:block/prism_crystal_cluster_3"
         },
         "stage=3,aspect=1": {
-          "model": "stellaeomphalos:block/gem_crystal_3"
+          "model": "stellaeomphalos:block/prism_crystal_cluster_3"
         },
         "stage=3,aspect=2": {
-          "model": "stellaeomphalos:block/gem_crystal_3"
+          "model": "stellaeomphalos:block/prism_crystal_cluster_3"
         },
         "stage=4,aspect=0": {
-          "model": "stellaeomphalos:block/gem_crystal_4"
+          "model": "stellaeomphalos:block/prism_crystal_cluster_4"
         },
         "stage=4,aspect=1": {
-          "model": "stellaeomphalos:block/gem_crystal_4"
+          "model": "stellaeomphalos:block/prism_crystal_cluster_4"
         },
         "stage=4,aspect=2": {
-          "model": "stellaeomphalos:block/gem_crystal_4"
+          "model": "stellaeomphalos:block/prism_crystal_cluster_4"
         }
       }
     },
-    "assets/stellaeomphalos/models/block/gem_crystal.json": {
+    "assets/stellaeomphalos/models/block/prism_crystal_cluster.json": {
       "parent": "minecraft:block/cube_all",
       "textures": {
-        "all": "stellaeomphalos:block/gem_crystal"
+        "all": "stellaeomphalos:block/prism_crystal_cluster"
       }
     },
-    "assets/stellaeomphalos/models/item/gem_crystal.json": {
-      "parent": "stellaeomphalos:block/gem_crystal"
+    "assets/stellaeomphalos/models/item/prism_crystal_cluster.json": {
+      "parent": "stellaeomphalos:block/prism_crystal_cluster"
     },
-    "data/stellaeomphalos/loot_tables/blocks/gem_crystal.json": {
+    "data/stellaeomphalos/loot_tables/blocks/prism_crystal_cluster.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -1893,7 +1479,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:gem_crystal_shard",
+              "name": "stellaeomphalos:prism_shard",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -1904,7 +1490,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/gem_crystal.json": {
+    "data/stellaeomphalos/recipes/world/prism_crystal_cluster.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -1920,27 +1506,27 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:gem_crystal",
+        "item": "stellaeomphalos:prism_crystal_cluster",
         "count": 1
       }
     },
-    "assets/stellaeomphalos/blockstates/glow_flower.json": {
+    "assets/stellaeomphalos/blockstates/glowbloom.json": {
       "variants": {
         "": {
-          "model": "stellaeomphalos:block/glow_flower"
+          "model": "stellaeomphalos:block/glowbloom"
         }
       }
     },
-    "assets/stellaeomphalos/models/block/glow_flower.json": {
+    "assets/stellaeomphalos/models/block/glowbloom.json": {
       "parent": "minecraft:block/cube_all",
       "textures": {
-        "all": "stellaeomphalos:block/glow_flower"
+        "all": "stellaeomphalos:block/glowbloom"
       }
     },
-    "assets/stellaeomphalos/models/item/glow_flower.json": {
-      "parent": "stellaeomphalos:block/glow_flower"
+    "assets/stellaeomphalos/models/item/glowbloom.json": {
+      "parent": "stellaeomphalos:block/glowbloom"
     },
-    "data/stellaeomphalos/loot_tables/blocks/glow_flower.json": {
+    "data/stellaeomphalos/loot_tables/blocks/glowbloom.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -1948,7 +1534,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:glow_flower",
+              "name": "stellaeomphalos:glowbloom",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -1959,7 +1545,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/glow_flower.json": {
+    "data/stellaeomphalos/recipes/world/glowbloom.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -1975,7 +1561,7 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:glow_flower",
+        "item": "stellaeomphalos:glowbloom",
         "count": 1
       }
     },
@@ -2325,69 +1911,50 @@
     "assets/stellaeomphalos/models/item/frame_shell.json": {
       "parent": "stellaeomphalos:block/frame_shell"
     },
-    "data/stellaeomphalos/loot_tables/blocks/frame_shell.json": {
-      "type": "minecraft:block",
-      "pools": []
-    },
-    "assets/stellaeomphalos/blockstates/ward_block.json": {
+    "assets/stellaeomphalos/blockstates/phase_barrier.json": {
       "variants": {
         "": {
-          "model": "stellaeomphalos:block/ward_block"
+          "model": "stellaeomphalos:block/phase_barrier"
         }
       }
     },
-    "assets/stellaeomphalos/models/block/ward_block.json": {
+    "assets/stellaeomphalos/models/block/phase_barrier.json": {
       "textures": {
         "particle": "minecraft:block/quartz_block_side"
       },
       "elements": []
     },
-    "assets/stellaeomphalos/models/item/ward_block.json": {
-      "parent": "stellaeomphalos:block/ward_block"
+    "assets/stellaeomphalos/models/item/phase_barrier.json": {
+      "parent": "stellaeomphalos:block/phase_barrier"
     },
-    "data/stellaeomphalos/loot_tables/blocks/ward_block.json": {
-      "type": "minecraft:block",
-      "pools": []
-    },
-    "assets/stellaeomphalos/blockstates/mimic_block.json": {
+    "assets/stellaeomphalos/blockstates/mirage_shell.json": {
       "variants": {
         "": {
-          "model": "stellaeomphalos:block/mimic_block"
+          "model": "stellaeomphalos:block/mirage_shell"
         }
       }
     },
-    "assets/stellaeomphalos/models/block/mimic_block.json": {
+    "assets/stellaeomphalos/models/block/mirage_shell.json": {
       "textures": {
-        "particle": "stellaeomphalos:block/mimic_block"
+        "particle": "stellaeomphalos:block/mirage_shell"
       },
       "elements": []
     },
-    "assets/stellaeomphalos/models/item/mimic_block.json": {
-      "parent": "stellaeomphalos:block/mimic_block"
+    "assets/stellaeomphalos/models/item/mirage_shell.json": {
+      "parent": "stellaeomphalos:block/mirage_shell"
     },
-    "data/stellaeomphalos/loot_tables/blocks/mimic_block.json": {
-      "type": "minecraft:block",
-      "pools": []
-    },
-    "assets/stellaeomphalos/blockstates/flare_light.json": {
+    "assets/stellaeomphalos/blockstates/glow_mote.json": {
       "variants": {
         "": {
-          "model": "stellaeomphalos:block/flare_light"
+          "model": "stellaeomphalos:block/glow_mote"
         }
       }
     },
-    "assets/stellaeomphalos/models/block/flare_light.json": {
+    "assets/stellaeomphalos/models/block/glow_mote.json": {
       "textures": {
         "particle": "minecraft:block/quartz_block_side"
       },
       "elements": []
-    },
-    "assets/stellaeomphalos/models/item/flare_light.json": {
-      "parent": "stellaeomphalos:block/flare_light"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/flare_light.json": {
-      "type": "minecraft:block",
-      "pools": []
     },
     "assets/stellaeomphalos/blockstates/gate_node.json": {
       "variants": {
@@ -2464,23 +2031,23 @@
         "count": 1
       }
     },
-    "assets/stellaeomphalos/blockstates/world_lamp.json": {
+    "assets/stellaeomphalos/blockstates/luminaire.json": {
       "variants": {
         "": {
-          "model": "stellaeomphalos:block/world_lamp"
+          "model": "stellaeomphalos:block/luminaire"
         }
       }
     },
-    "assets/stellaeomphalos/models/block/world_lamp.json": {
+    "assets/stellaeomphalos/models/block/luminaire.json": {
       "parent": "minecraft:block/cube_all",
       "textures": {
-        "all": "stellaeomphalos:block/world_lamp"
+        "all": "stellaeomphalos:block/luminaire"
       }
     },
-    "assets/stellaeomphalos/models/item/world_lamp.json": {
-      "parent": "stellaeomphalos:block/world_lamp"
+    "assets/stellaeomphalos/models/item/luminaire.json": {
+      "parent": "stellaeomphalos:block/luminaire"
     },
-    "data/stellaeomphalos/loot_tables/blocks/world_lamp.json": {
+    "data/stellaeomphalos/loot_tables/blocks/luminaire.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -2488,7 +2055,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:world_lamp",
+              "name": "stellaeomphalos:luminaire",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -2499,7 +2066,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/world_lamp.json": {
+    "data/stellaeomphalos/recipes/world/luminaire.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -2515,7 +2082,7 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:world_lamp",
+        "item": "stellaeomphalos:luminaire",
         "count": 1
       }
     },
@@ -2629,23 +2196,23 @@
         "count": 1
       }
     },
-    "assets/stellaeomphalos/blockstates/bore_core.json": {
+    "assets/stellaeomphalos/blockstates/fountain.json": {
       "variants": {
         "": {
-          "model": "stellaeomphalos:block/bore_core"
+          "model": "stellaeomphalos:block/fountain"
         }
       }
     },
-    "assets/stellaeomphalos/models/block/bore_core.json": {
+    "assets/stellaeomphalos/models/block/fountain.json": {
       "parent": "minecraft:block/cube_all",
       "textures": {
-        "all": "stellaeomphalos:block/bore_core"
+        "all": "stellaeomphalos:block/fountain"
       }
     },
-    "assets/stellaeomphalos/models/item/bore_core.json": {
-      "parent": "stellaeomphalos:block/bore_core"
+    "assets/stellaeomphalos/models/item/fountain.json": {
+      "parent": "stellaeomphalos:block/fountain"
     },
-    "data/stellaeomphalos/loot_tables/blocks/bore_core.json": {
+    "data/stellaeomphalos/loot_tables/blocks/fountain.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -2653,7 +2220,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:bore_core",
+              "name": "stellaeomphalos:fountain",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -2664,7 +2231,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/bore_core.json": {
+    "data/stellaeomphalos/recipes/world/fountain.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -2680,15 +2247,8 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:bore_core",
+        "item": "stellaeomphalos:fountain",
         "count": 1
-      }
-    },
-    "assets/stellaeomphalos/blockstates/bore_head_stone.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/bore_head_stone"
-        }
       }
     },
     "assets/stellaeomphalos/models/block/bore_head_stone.json": {
@@ -2699,25 +2259,6 @@
     },
     "assets/stellaeomphalos/models/item/bore_head_stone.json": {
       "parent": "stellaeomphalos:block/bore_head_stone"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/bore_head_stone.json": {
-      "type": "minecraft:block",
-      "pools": [
-        {
-          "rolls": 1,
-          "entries": [
-            {
-              "type": "minecraft:item",
-              "name": "stellaeomphalos:bore_head_stone",
-              "functions": [
-                {
-                  "function": "minecraft:explosion_decay"
-                }
-              ]
-            }
-          ]
-        }
-      ]
     },
     "data/stellaeomphalos/recipes/world/bore_head_stone.json": {
       "type": "minecraft:crafting_shaped",
@@ -2739,13 +2280,6 @@
         "count": 1
       }
     },
-    "assets/stellaeomphalos/blockstates/bore_head_iron.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/bore_head_iron"
-        }
-      }
-    },
     "assets/stellaeomphalos/models/block/bore_head_iron.json": {
       "parent": "minecraft:block/cube_all",
       "textures": {
@@ -2754,25 +2288,6 @@
     },
     "assets/stellaeomphalos/models/item/bore_head_iron.json": {
       "parent": "stellaeomphalos:block/bore_head_iron"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/bore_head_iron.json": {
-      "type": "minecraft:block",
-      "pools": [
-        {
-          "rolls": 1,
-          "entries": [
-            {
-              "type": "minecraft:item",
-              "name": "stellaeomphalos:bore_head_iron",
-              "functions": [
-                {
-                  "function": "minecraft:explosion_decay"
-                }
-              ]
-            }
-          ]
-        }
-      ]
     },
     "data/stellaeomphalos/recipes/world/bore_head_iron.json": {
       "type": "minecraft:crafting_shaped",
@@ -2794,13 +2309,6 @@
         "count": 1
       }
     },
-    "assets/stellaeomphalos/blockstates/bore_head_diamond.json": {
-      "variants": {
-        "": {
-          "model": "stellaeomphalos:block/bore_head_diamond"
-        }
-      }
-    },
     "assets/stellaeomphalos/models/block/bore_head_diamond.json": {
       "parent": "minecraft:block/cube_all",
       "textures": {
@@ -2809,25 +2317,6 @@
     },
     "assets/stellaeomphalos/models/item/bore_head_diamond.json": {
       "parent": "stellaeomphalos:block/bore_head_diamond"
-    },
-    "data/stellaeomphalos/loot_tables/blocks/bore_head_diamond.json": {
-      "type": "minecraft:block",
-      "pools": [
-        {
-          "rolls": 1,
-          "entries": [
-            {
-              "type": "minecraft:item",
-              "name": "stellaeomphalos:bore_head_diamond",
-              "functions": [
-                {
-                  "function": "minecraft:explosion_decay"
-                }
-              ]
-            }
-          ]
-        }
-      ]
     },
     "data/stellaeomphalos/recipes/world/bore_head_diamond.json": {
       "type": "minecraft:crafting_shaped",
@@ -2849,23 +2338,23 @@
         "count": 1
       }
     },
-    "assets/stellaeomphalos/blockstates/mineral_regenerator.json": {
+    "assets/stellaeomphalos/blockstates/ore_regenerator.json": {
       "variants": {
         "": {
-          "model": "stellaeomphalos:block/mineral_regenerator"
+          "model": "stellaeomphalos:block/ore_regenerator"
         }
       }
     },
-    "assets/stellaeomphalos/models/block/mineral_regenerator.json": {
+    "assets/stellaeomphalos/models/block/ore_regenerator.json": {
       "parent": "minecraft:block/cube_all",
       "textures": {
-        "all": "stellaeomphalos:block/mineral_regenerator"
+        "all": "stellaeomphalos:block/ore_regenerator"
       }
     },
-    "assets/stellaeomphalos/models/item/mineral_regenerator.json": {
-      "parent": "stellaeomphalos:block/mineral_regenerator"
+    "assets/stellaeomphalos/models/item/ore_regenerator.json": {
+      "parent": "stellaeomphalos:block/ore_regenerator"
     },
-    "data/stellaeomphalos/loot_tables/blocks/mineral_regenerator.json": {
+    "data/stellaeomphalos/loot_tables/blocks/ore_regenerator.json": {
       "type": "minecraft:block",
       "pools": [
         {
@@ -2873,7 +2362,7 @@
           "entries": [
             {
               "type": "minecraft:item",
-              "name": "stellaeomphalos:mineral_regenerator",
+              "name": "stellaeomphalos:ore_regenerator",
               "functions": [
                 {
                   "function": "minecraft:explosion_decay"
@@ -2884,7 +2373,7 @@
         }
       ]
     },
-    "data/stellaeomphalos/recipes/world/mineral_regenerator.json": {
+    "data/stellaeomphalos/recipes/world/ore_regenerator.json": {
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " S ",
@@ -2900,7 +2389,7 @@
         }
       },
       "result": {
-        "item": "stellaeomphalos:mineral_regenerator",
+        "item": "stellaeomphalos:ore_regenerator",
         "count": 1
       }
     },
@@ -2930,22 +2419,22 @@
         "layer0": "stellaeomphalos:item/aquamarine"
       }
     },
-    "assets/stellaeomphalos/models/item/star_metal_ingot.json": {
+    "assets/stellaeomphalos/models/item/astral_ingot.json": {
       "parent": "minecraft:item/generated",
       "textures": {
-        "layer0": "stellaeomphalos:item/star_metal_ingot"
+        "layer0": "stellaeomphalos:item/astral_ingot"
       }
     },
-    "assets/stellaeomphalos/models/item/astral_crystal_shard.json": {
+    "assets/stellaeomphalos/models/item/star_dust.json": {
       "parent": "minecraft:item/generated",
       "textures": {
-        "layer0": "stellaeomphalos:item/astral_crystal_shard"
+        "layer0": "stellaeomphalos:item/star_dust"
       }
     },
-    "assets/stellaeomphalos/models/item/gem_crystal_shard.json": {
+    "assets/stellaeomphalos/models/item/prism_shard.json": {
       "parent": "minecraft:item/generated",
       "textures": {
-        "layer0": "stellaeomphalos:item/gem_crystal_shard"
+        "layer0": "stellaeomphalos:item/prism_shard"
       }
     },
     "assets/stellaeomphalos/models/item/astrolabe.json": {
@@ -2954,23 +2443,12 @@
         "layer0": "stellaeomphalos:item/astrolabe"
       }
     },
-    "data/stellaeomphalos/tags/blocks/stone_set_all.json": {
+    "data/stellaeomphalos/tags/blocks/marble_all.json": {
       "replace": false,
       "values": [
-        "stellaeomphalos:stone_set",
-        "stellaeomphalos:stone_set_bricks",
-        "stellaeomphalos:stone_set_pillar",
-        "stellaeomphalos:stone_set_arch",
-        "stellaeomphalos:stone_set_chiseled",
-        "stellaeomphalos:stone_set_engraved",
-        "stellaeomphalos:stone_set_runed",
-        "stellaeomphalos:dark_stone_set",
-        "stellaeomphalos:dark_stone_set_bricks",
-        "stellaeomphalos:dark_stone_set_pillar",
-        "stellaeomphalos:dark_stone_set_arch",
-        "stellaeomphalos:dark_stone_set_chiseled",
-        "stellaeomphalos:dark_stone_set_engraved",
-        "stellaeomphalos:dark_stone_set_runed"
+        "stellaeomphalos:marble",
+        "stellaeomphalos:black_marble",
+        "stellaeomphalos:infused_wood"
       ]
     },
     "data/stellaeomphalos/tags/blocks/geode_host.json": {
@@ -2996,8 +2474,8 @@
       "replace": false,
       "values": [
         "stellaeomphalos:rite_pedestal",
-        "stellaeomphalos:bore_core",
-        "stellaeomphalos:mineral_regenerator"
+        "stellaeomphalos:fountain",
+        "stellaeomphalos:ore_regenerator"
       ]
     },
     "data/stellaeomphalos/tags/blocks/meltable.json": {
@@ -3007,40 +2485,30 @@
         "minecraft:sand"
       ]
     },
-    "data/stellaeomphalos/tags/blocks/mineable/pickaxe.json": {
-      "replace": false,
-      "values": []
-    },
     "data/minecraft/tags/blocks/mineable/pickaxe.json": {
       "replace": false,
       "values": [
-        "stellaeomphalos:stone_set",
-        "stellaeomphalos:stone_set_bricks",
-        "stellaeomphalos:stone_set_pillar",
-        "stellaeomphalos:stone_set_arch",
-        "stellaeomphalos:stone_set_chiseled",
-        "stellaeomphalos:stone_set_engraved",
-        "stellaeomphalos:stone_set_runed",
-        "stellaeomphalos:dark_stone_set",
-        "stellaeomphalos:dark_stone_set_bricks",
-        "stellaeomphalos:dark_stone_set_pillar",
-        "stellaeomphalos:dark_stone_set_arch",
-        "stellaeomphalos:dark_stone_set_chiseled",
-        "stellaeomphalos:dark_stone_set_engraved",
-        "stellaeomphalos:dark_stone_set_runed",
-        "stellaeomphalos:infused_wood_set",
-        "stellaeomphalos:infused_wood_set_bricks",
-        "stellaeomphalos:infused_wood_set_pillar",
-        "stellaeomphalos:infused_wood_set_arch",
-        "stellaeomphalos:infused_wood_set_chiseled",
-        "stellaeomphalos:infused_wood_set_engraved",
-        "stellaeomphalos:infused_wood_set_runed",
+        "stellaeomphalos:bore_head",
+        "stellaeomphalos:cosmetic_rock",
+        "stellaeomphalos:constellation_frame",
+        "stellaeomphalos:spyglass",
+        "stellaeomphalos:star_chart_table",
+        "stellaeomphalos:grove_beacon",
+        "stellaeomphalos:celestial_orrery",
+        "stellaeomphalos:beam_lens",
+        "stellaeomphalos:beam_prism",
+        "stellaeomphalos:resonance_altar",
+        "stellaeomphalos:marble",
+        "stellaeomphalos:black_marble",
+        "stellaeomphalos:infused_wood",
+        "stellaeomphalos:marble_slab",
+        "stellaeomphalos:marble_double_slab",
+        "stellaeomphalos:marble_stairs",
         "stellaeomphalos:geode_ore",
-        "stellaeomphalos:star_metal_ore",
-        "stellaeomphalos:aquamarine_sand_ore",
-        "stellaeomphalos:astral_crystal",
-        "stellaeomphalos:gem_crystal",
-        "stellaeomphalos:glow_flower",
+        "stellaeomphalos:aquamarine_sand",
+        "stellaeomphalos:sky_crystal_cluster",
+        "stellaeomphalos:prism_crystal_cluster",
+        "stellaeomphalos:glowbloom",
         "stellaeomphalos:rite_pedestal",
         "stellaeomphalos:lumen_spring",
         "stellaeomphalos:rite_amplifier_crude",
@@ -3048,14 +2516,15 @@
         "stellaeomphalos:rite_amplifier_resonant",
         "stellaeomphalos:rite_amplifier_attuned",
         "stellaeomphalos:gate_core",
-        "stellaeomphalos:world_lamp",
+        "stellaeomphalos:luminaire",
         "stellaeomphalos:rite_link",
         "stellaeomphalos:observatory",
-        "stellaeomphalos:bore_core",
-        "stellaeomphalos:bore_head_stone",
-        "stellaeomphalos:bore_head_iron",
-        "stellaeomphalos:bore_head_diamond",
-        "stellaeomphalos:mineral_regenerator"
+        "stellaeomphalos:fountain",
+        "stellaeomphalos:ore_regenerator",
+        "stellaeomphalos:frame_shell",
+        "stellaeomphalos:mirage_shell",
+        "stellaeomphalos:gate_node",
+        "stellaeomphalos:placeholder"
       ]
     },
     "data/stellaeomphalos/tags/blocks/plant_vegetation/flowers_yellow.json": {
@@ -3122,28 +2591,40 @@
       "format": 1,
       "palette": {
         "bricks": {
-          "block": "stellaeomphalos:stone_set_bricks"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "bricks"
+          }
         },
         "dark": {
-          "block": "stellaeomphalos:dark_stone_set"
+          "block": "stellaeomphalos:black_marble"
         },
         "pillar": {
           "tag": "stellaeomphalos:stone_pillars"
         },
         "cap": {
-          "block": "stellaeomphalos:stone_set_chiseled"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "chiseled"
+          }
         },
         "air": {
           "air": true
         },
         "raw": {
-          "block": "stellaeomphalos:stone_set"
+          "block": "stellaeomphalos:marble"
         },
         "arch": {
-          "block": "stellaeomphalos:stone_set_arch"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "arch"
+          }
         },
         "runed": {
-          "block": "stellaeomphalos:stone_set_runed"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "runed"
+          }
         },
         "core": {
           "tag": "stellaeomphalos:altar_core"
@@ -3290,28 +2771,40 @@
       "format": 1,
       "palette": {
         "bricks": {
-          "block": "stellaeomphalos:stone_set_bricks"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "bricks"
+          }
         },
         "dark": {
-          "block": "stellaeomphalos:dark_stone_set"
+          "block": "stellaeomphalos:black_marble"
         },
         "pillar": {
           "tag": "stellaeomphalos:stone_pillars"
         },
         "cap": {
-          "block": "stellaeomphalos:stone_set_chiseled"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "chiseled"
+          }
         },
         "air": {
           "air": true
         },
         "raw": {
-          "block": "stellaeomphalos:stone_set"
+          "block": "stellaeomphalos:marble"
         },
         "arch": {
-          "block": "stellaeomphalos:stone_set_arch"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "arch"
+          }
         },
         "runed": {
-          "block": "stellaeomphalos:stone_set_runed"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "runed"
+          }
         },
         "core": {
           "tag": "stellaeomphalos:altar_core"
@@ -3568,28 +3061,40 @@
       "include": "stellaeomphalos:pattern_altar_t3",
       "palette": {
         "bricks": {
-          "block": "stellaeomphalos:stone_set_bricks"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "bricks"
+          }
         },
         "dark": {
-          "block": "stellaeomphalos:dark_stone_set"
+          "block": "stellaeomphalos:black_marble"
         },
         "pillar": {
           "tag": "stellaeomphalos:stone_pillars"
         },
         "cap": {
-          "block": "stellaeomphalos:stone_set_chiseled"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "chiseled"
+          }
         },
         "air": {
           "air": true
         },
         "raw": {
-          "block": "stellaeomphalos:stone_set"
+          "block": "stellaeomphalos:marble"
         },
         "arch": {
-          "block": "stellaeomphalos:stone_set_arch"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "arch"
+          }
         },
         "runed": {
-          "block": "stellaeomphalos:stone_set_runed"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "runed"
+          }
         }
       },
       "layers": [
@@ -3711,28 +3216,40 @@
       "format": 1,
       "palette": {
         "bricks": {
-          "block": "stellaeomphalos:stone_set_bricks"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "bricks"
+          }
         },
         "dark": {
-          "block": "stellaeomphalos:dark_stone_set"
+          "block": "stellaeomphalos:black_marble"
         },
         "pillar": {
           "tag": "stellaeomphalos:stone_pillars"
         },
         "cap": {
-          "block": "stellaeomphalos:stone_set_chiseled"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "chiseled"
+          }
         },
         "air": {
           "air": true
         },
         "raw": {
-          "block": "stellaeomphalos:stone_set"
+          "block": "stellaeomphalos:marble"
         },
         "arch": {
-          "block": "stellaeomphalos:stone_set_arch"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "arch"
+          }
         },
         "runed": {
-          "block": "stellaeomphalos:stone_set_runed"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "runed"
+          }
         },
         "core": {
           "block": "stellaeomphalos:rite_pedestal"
@@ -3771,7 +3288,7 @@
       "placeholders": {
         "trim": [
           {
-            "tag": "stellaeomphalos:stone_set_all"
+            "tag": "stellaeomphalos:marble_all"
           },
           {
             "tag": "minecraft:base_stone_overworld"
@@ -3799,28 +3316,40 @@
       "format": 1,
       "palette": {
         "bricks": {
-          "block": "stellaeomphalos:stone_set_bricks"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "bricks"
+          }
         },
         "dark": {
-          "block": "stellaeomphalos:dark_stone_set"
+          "block": "stellaeomphalos:black_marble"
         },
         "pillar": {
           "tag": "stellaeomphalos:stone_pillars"
         },
         "cap": {
-          "block": "stellaeomphalos:stone_set_chiseled"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "chiseled"
+          }
         },
         "air": {
           "air": true
         },
         "raw": {
-          "block": "stellaeomphalos:stone_set"
+          "block": "stellaeomphalos:marble"
         },
         "arch": {
-          "block": "stellaeomphalos:stone_set_arch"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "arch"
+          }
         },
         "runed": {
-          "block": "stellaeomphalos:stone_set_runed"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "runed"
+          }
         },
         "core": {
           "block": "stellaeomphalos:rite_pedestal"
@@ -3859,7 +3388,7 @@
       "placeholders": {
         "trim": [
           {
-            "tag": "stellaeomphalos:stone_set_all"
+            "tag": "stellaeomphalos:marble_all"
           },
           {
             "tag": "minecraft:base_stone_overworld"
@@ -3900,28 +3429,40 @@
       "format": 1,
       "palette": {
         "bricks": {
-          "block": "stellaeomphalos:stone_set_bricks"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "bricks"
+          }
         },
         "dark": {
-          "block": "stellaeomphalos:dark_stone_set"
+          "block": "stellaeomphalos:black_marble"
         },
         "pillar": {
           "tag": "stellaeomphalos:stone_pillars"
         },
         "cap": {
-          "block": "stellaeomphalos:stone_set_chiseled"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "chiseled"
+          }
         },
         "air": {
           "air": true
         },
         "raw": {
-          "block": "stellaeomphalos:stone_set"
+          "block": "stellaeomphalos:marble"
         },
         "arch": {
-          "block": "stellaeomphalos:stone_set_arch"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "arch"
+          }
         },
         "runed": {
-          "block": "stellaeomphalos:stone_set_runed"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "runed"
+          }
         },
         "core": {
           "block": "stellaeomphalos:lumen_spring"
@@ -3960,7 +3501,7 @@
       "placeholders": {
         "trim": [
           {
-            "tag": "stellaeomphalos:stone_set_all"
+            "tag": "stellaeomphalos:marble_all"
           },
           {
             "tag": "minecraft:base_stone_overworld"
@@ -3987,28 +3528,40 @@
       "format": 1,
       "palette": {
         "bricks": {
-          "block": "stellaeomphalos:stone_set_bricks"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "bricks"
+          }
         },
         "dark": {
-          "block": "stellaeomphalos:dark_stone_set"
+          "block": "stellaeomphalos:black_marble"
         },
         "pillar": {
           "tag": "stellaeomphalos:stone_pillars"
         },
         "cap": {
-          "block": "stellaeomphalos:stone_set_chiseled"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "chiseled"
+          }
         },
         "air": {
           "air": true
         },
         "raw": {
-          "block": "stellaeomphalos:stone_set"
+          "block": "stellaeomphalos:marble"
         },
         "arch": {
-          "block": "stellaeomphalos:stone_set_arch"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "arch"
+          }
         },
         "runed": {
-          "block": "stellaeomphalos:stone_set_runed"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "runed"
+          }
         },
         "core": {
           "block": "stellaeomphalos:gate_core"
@@ -4047,7 +3600,7 @@
       "placeholders": {
         "trim": [
           {
-            "tag": "stellaeomphalos:stone_set_all"
+            "tag": "stellaeomphalos:marble_all"
           },
           {
             "tag": "minecraft:base_stone_overworld"
@@ -4074,28 +3627,40 @@
       "format": 1,
       "palette": {
         "bricks": {
-          "block": "stellaeomphalos:stone_set_bricks"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "bricks"
+          }
         },
         "dark": {
-          "block": "stellaeomphalos:dark_stone_set"
+          "block": "stellaeomphalos:black_marble"
         },
         "pillar": {
           "tag": "stellaeomphalos:stone_pillars"
         },
         "cap": {
-          "block": "stellaeomphalos:stone_set_chiseled"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "chiseled"
+          }
         },
         "air": {
           "air": true
         },
         "raw": {
-          "block": "stellaeomphalos:stone_set"
+          "block": "stellaeomphalos:marble"
         },
         "arch": {
-          "block": "stellaeomphalos:stone_set_arch"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "arch"
+          }
         },
         "runed": {
-          "block": "stellaeomphalos:stone_set_runed"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "runed"
+          }
         },
         "core": {
           "block": "stellaeomphalos:lumen_infuser"
@@ -4134,7 +3699,7 @@
       "placeholders": {
         "trim": [
           {
-            "tag": "stellaeomphalos:stone_set_all"
+            "tag": "stellaeomphalos:marble_all"
           },
           {
             "tag": "minecraft:base_stone_overworld"
@@ -4161,31 +3726,43 @@
       "format": 1,
       "palette": {
         "bricks": {
-          "block": "stellaeomphalos:stone_set_bricks"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "bricks"
+          }
         },
         "dark": {
-          "block": "stellaeomphalos:dark_stone_set"
+          "block": "stellaeomphalos:black_marble"
         },
         "pillar": {
           "tag": "stellaeomphalos:stone_pillars"
         },
         "cap": {
-          "block": "stellaeomphalos:stone_set_chiseled"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "chiseled"
+          }
         },
         "air": {
           "air": true
         },
         "raw": {
-          "block": "stellaeomphalos:stone_set"
+          "block": "stellaeomphalos:marble"
         },
         "arch": {
-          "block": "stellaeomphalos:stone_set_arch"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "arch"
+          }
         },
         "runed": {
-          "block": "stellaeomphalos:stone_set_runed"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "runed"
+          }
         },
         "core": {
-          "block": "stellaeomphalos:crafting_relay"
+          "block": "stellaeomphalos:beam_relay"
         }
       },
       "mirrorable": true,
@@ -4221,7 +3798,7 @@
       "placeholders": {
         "trim": [
           {
-            "tag": "stellaeomphalos:stone_set_all"
+            "tag": "stellaeomphalos:marble_all"
           },
           {
             "tag": "minecraft:base_stone_overworld"
@@ -4269,31 +3846,46 @@
       "format": 1,
       "palette": {
         "bricks": {
-          "block": "stellaeomphalos:stone_set_bricks"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "bricks"
+          }
         },
         "dark": {
-          "block": "stellaeomphalos:dark_stone_set"
+          "block": "stellaeomphalos:black_marble"
         },
         "pillar": {
           "tag": "stellaeomphalos:stone_pillars"
         },
         "cap": {
-          "block": "stellaeomphalos:stone_set_chiseled"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "chiseled"
+          }
         },
         "air": {
           "air": true
         },
         "raw": {
-          "block": "stellaeomphalos:stone_set"
+          "block": "stellaeomphalos:marble"
         },
         "arch": {
-          "block": "stellaeomphalos:stone_set_arch"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "arch"
+          }
         },
         "runed": {
-          "block": "stellaeomphalos:stone_set_runed"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "runed"
+          }
         },
         "core": {
-          "block": "stellaeomphalos:stone_set_runed"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "runed"
+          }
         }
       },
       "mirrorable": true,
@@ -4325,7 +3917,7 @@
           "type": "stellaeomphalos:decay",
           "chance": 0.15,
           "match": {
-            "tag": "stellaeomphalos:stone_set_all"
+            "tag": "stellaeomphalos:marble_all"
           }
         }
       ]
@@ -4334,31 +3926,46 @@
       "format": 1,
       "palette": {
         "bricks": {
-          "block": "stellaeomphalos:stone_set_bricks"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "bricks"
+          }
         },
         "dark": {
-          "block": "stellaeomphalos:dark_stone_set"
+          "block": "stellaeomphalos:black_marble"
         },
         "pillar": {
           "tag": "stellaeomphalos:stone_pillars"
         },
         "cap": {
-          "block": "stellaeomphalos:stone_set_chiseled"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "chiseled"
+          }
         },
         "air": {
           "air": true
         },
         "raw": {
-          "block": "stellaeomphalos:stone_set"
+          "block": "stellaeomphalos:marble"
         },
         "arch": {
-          "block": "stellaeomphalos:stone_set_arch"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "arch"
+          }
         },
         "runed": {
-          "block": "stellaeomphalos:stone_set_runed"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "runed"
+          }
         },
         "core": {
-          "block": "stellaeomphalos:stone_set_runed"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "runed"
+          }
         }
       },
       "mirrorable": true,
@@ -4390,7 +3997,7 @@
           "type": "stellaeomphalos:decay",
           "chance": 0.3,
           "match": {
-            "tag": "stellaeomphalos:stone_set_all"
+            "tag": "stellaeomphalos:marble_all"
           }
         }
       ]
@@ -4399,31 +4006,46 @@
       "format": 1,
       "palette": {
         "bricks": {
-          "block": "stellaeomphalos:stone_set_bricks"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "bricks"
+          }
         },
         "dark": {
-          "block": "stellaeomphalos:dark_stone_set"
+          "block": "stellaeomphalos:black_marble"
         },
         "pillar": {
           "tag": "stellaeomphalos:stone_pillars"
         },
         "cap": {
-          "block": "stellaeomphalos:stone_set_chiseled"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "chiseled"
+          }
         },
         "air": {
           "air": true
         },
         "raw": {
-          "block": "stellaeomphalos:stone_set"
+          "block": "stellaeomphalos:marble"
         },
         "arch": {
-          "block": "stellaeomphalos:stone_set_arch"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "arch"
+          }
         },
         "runed": {
-          "block": "stellaeomphalos:stone_set_runed"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "runed"
+          }
         },
         "core": {
-          "block": "stellaeomphalos:stone_set_runed"
+          "block": "stellaeomphalos:marble",
+          "properties": {
+            "variant": "runed"
+          }
         }
       },
       "mirrorable": true,
@@ -4455,7 +4077,7 @@
           "type": "stellaeomphalos:decay",
           "chance": 0.44999999999999996,
           "match": {
-            "tag": "stellaeomphalos:stone_set_all"
+            "tag": "stellaeomphalos:marble_all"
           }
         }
       ]
@@ -5204,38 +4826,6 @@
     "data/stellaeomphalos/stellaeomphalos/acceleration_policy/self.json": {
       "package_prefix": "com.mpp.stellaeomphalos.content.blockentity.rite"
     },
-    "data/stellaeomphalos/stellaeomphalos/meltable/sample.json": {
-      "type": "stellaeomphalos:melting",
-      "duration": 100,
-      "input": {
-        "block": "minecraft:black_stained_glass"
-      },
-      "result": {
-        "block": "minecraft:glass"
-      }
-    },
-    "data/stellaeomphalos/stellaeomphalos/liquefaction/sample.json": {
-      "type": "stellaeomphalos:well_liquefaction",
-      "catalyst": {
-        "item": "minecraft:amethyst_shard"
-      },
-      "production_multiplier": 0.5,
-      "result_fluid": {
-        "amount": 1000,
-        "fluid": "stellaeomphalos:molten_lumen"
-      },
-      "shatter_multiplier": 2
-    },
-    "data/stellaeomphalos/stellaeomphalos/transmutation/sample.json": {
-      "type": "stellaeomphalos:light_transmutation",
-      "cost": 80,
-      "input": {
-        "block": "minecraft:black_concrete_powder"
-      },
-      "result": {
-        "block": "minecraft:black_concrete"
-      }
-    },
     "data/stellaeomphalos/worldgen/configured_feature/geode_ore.json": {
       "type": "stellaeomphalos:geode_ore",
       "config": {
@@ -5281,51 +4871,6 @@
         }
       ]
     },
-    "data/stellaeomphalos/worldgen/configured_feature/star_metal_ore.json": {
-      "type": "minecraft:ore",
-      "config": {
-        "size": 4,
-        "discard_chance_on_air_exposure": 0,
-        "targets": [
-          {
-            "target": {
-              "predicate_type": "minecraft:tag_match",
-              "tag": "stellaeomphalos:geode_host"
-            },
-            "state": {
-              "Name": "stellaeomphalos:star_metal_ore"
-            }
-          }
-        ]
-      }
-    },
-    "data/stellaeomphalos/worldgen/placed_feature/star_metal_ore.json": {
-      "feature": "stellaeomphalos:star_metal_ore",
-      "placement": [
-        {
-          "type": "minecraft:rarity_filter",
-          "chance": 28
-        },
-        {
-          "type": "minecraft:in_square"
-        },
-        {
-          "type": "minecraft:height_range",
-          "height": {
-            "type": "minecraft:uniform",
-            "min_inclusive": {
-              "absolute": 8
-            },
-            "max_inclusive": {
-              "absolute": 40
-            }
-          }
-        },
-        {
-          "type": "minecraft:biome"
-        }
-      ]
-    },
     "data/stellaeomphalos/worldgen/configured_feature/marble_vein.json": {
       "type": "minecraft:ore",
       "config": {
@@ -5338,7 +4883,7 @@
               "tag": "stellaeomphalos:marble_replaceable"
             },
             "state": {
-              "Name": "stellaeomphalos:stone_set"
+              "Name": "stellaeomphalos:marble"
             }
           }
         ]
@@ -5371,19 +4916,19 @@
         }
       ]
     },
-    "data/stellaeomphalos/worldgen/configured_feature/aquamarine_sand_ore.json": {
+    "data/stellaeomphalos/worldgen/configured_feature/aquamarine_sand.json": {
       "type": "stellaeomphalos:aquamarine_sand",
       "config": {
         "to_place": {
           "type": "minecraft:simple_state_provider",
           "state": {
-            "Name": "stellaeomphalos:aquamarine_sand_ore"
+            "Name": "stellaeomphalos:aquamarine_sand"
           }
         }
       }
     },
-    "data/stellaeomphalos/worldgen/placed_feature/aquamarine_sand_ore.json": {
-      "feature": "stellaeomphalos:aquamarine_sand_ore",
+    "data/stellaeomphalos/worldgen/placed_feature/aquamarine_sand.json": {
+      "feature": "stellaeomphalos:aquamarine_sand",
       "placement": [
         {
           "type": "minecraft:count",
@@ -5412,19 +4957,19 @@
         }
       ]
     },
-    "data/stellaeomphalos/worldgen/configured_feature/glow_flower_patch.json": {
-      "type": "stellaeomphalos:glow_flower",
+    "data/stellaeomphalos/worldgen/configured_feature/glowbloom_patch.json": {
+      "type": "stellaeomphalos:glowbloom",
       "config": {
         "to_place": {
           "type": "minecraft:simple_state_provider",
           "state": {
-            "Name": "stellaeomphalos:glow_flower"
+            "Name": "stellaeomphalos:glowbloom"
           }
         }
       }
     },
-    "data/stellaeomphalos/worldgen/placed_feature/glow_flower_patch.json": {
-      "feature": "stellaeomphalos:glow_flower_patch",
+    "data/stellaeomphalos/worldgen/placed_feature/glowbloom_patch.json": {
+      "feature": "stellaeomphalos:glowbloom_patch",
       "placement": [
         {
           "type": "minecraft:rarity_filter",
@@ -5442,19 +4987,19 @@
         }
       ]
     },
-    "data/stellaeomphalos/worldgen/configured_feature/astral_crystal_patch.json": {
-      "type": "stellaeomphalos:glow_flower",
+    "data/stellaeomphalos/worldgen/configured_feature/sky_crystal_cluster_patch.json": {
+      "type": "stellaeomphalos:glowbloom",
       "config": {
         "to_place": {
           "type": "minecraft:simple_state_provider",
           "state": {
-            "Name": "stellaeomphalos:astral_crystal"
+            "Name": "stellaeomphalos:sky_crystal_cluster"
           }
         }
       }
     },
-    "data/stellaeomphalos/worldgen/placed_feature/astral_crystal_patch.json": {
-      "feature": "stellaeomphalos:astral_crystal_patch",
+    "data/stellaeomphalos/worldgen/placed_feature/sky_crystal_cluster_patch.json": {
+      "feature": "stellaeomphalos:sky_crystal_cluster_patch",
       "placement": [
         {
           "type": "minecraft:rarity_filter",
@@ -5472,19 +5017,19 @@
         }
       ]
     },
-    "data/stellaeomphalos/worldgen/configured_feature/gem_crystal_patch.json": {
-      "type": "stellaeomphalos:glow_flower",
+    "data/stellaeomphalos/worldgen/configured_feature/prism_crystal_cluster_patch.json": {
+      "type": "stellaeomphalos:glowbloom",
       "config": {
         "to_place": {
           "type": "minecraft:simple_state_provider",
           "state": {
-            "Name": "stellaeomphalos:gem_crystal"
+            "Name": "stellaeomphalos:prism_crystal_cluster"
           }
         }
       }
     },
-    "data/stellaeomphalos/worldgen/placed_feature/gem_crystal_patch.json": {
-      "feature": "stellaeomphalos:gem_crystal_patch",
+    "data/stellaeomphalos/worldgen/placed_feature/prism_crystal_cluster_patch.json": {
+      "feature": "stellaeomphalos:prism_crystal_cluster_patch",
       "placement": [
         {
           "type": "minecraft:rarity_filter",
@@ -5508,40 +5053,34 @@
       "features": "stellaeomphalos:geode_ore",
       "step": "underground_ores"
     },
-    "data/stellaeomphalos/forge/biome_modifier/star_metal_ore.json": {
-      "type": "forge:add_features",
-      "biomes": "#minecraft:is_overworld",
-      "features": "stellaeomphalos:star_metal_ore",
-      "step": "underground_ores"
-    },
     "data/stellaeomphalos/forge/biome_modifier/marble_vein.json": {
       "type": "forge:add_features",
       "biomes": "#minecraft:is_overworld",
       "features": "stellaeomphalos:marble_vein",
       "step": "underground_ores"
     },
-    "data/stellaeomphalos/forge/biome_modifier/aquamarine_sand_ore.json": {
+    "data/stellaeomphalos/forge/biome_modifier/aquamarine_sand.json": {
       "type": "forge:add_features",
       "biomes": "#minecraft:is_overworld",
-      "features": "stellaeomphalos:aquamarine_sand_ore",
+      "features": "stellaeomphalos:aquamarine_sand",
       "step": "underground_ores"
     },
-    "data/stellaeomphalos/forge/biome_modifier/glow_flower_patch.json": {
+    "data/stellaeomphalos/forge/biome_modifier/glowbloom_patch.json": {
       "type": "forge:add_features",
       "biomes": "#minecraft:is_overworld",
-      "features": "stellaeomphalos:glow_flower_patch",
+      "features": "stellaeomphalos:glowbloom_patch",
       "step": "vegetal_decoration"
     },
-    "data/stellaeomphalos/forge/biome_modifier/astral_crystal_patch.json": {
+    "data/stellaeomphalos/forge/biome_modifier/sky_crystal_cluster_patch.json": {
       "type": "forge:add_features",
       "biomes": "#minecraft:is_overworld",
-      "features": "stellaeomphalos:astral_crystal_patch",
+      "features": "stellaeomphalos:sky_crystal_cluster_patch",
       "step": "vegetal_decoration"
     },
-    "data/stellaeomphalos/forge/biome_modifier/gem_crystal_patch.json": {
+    "data/stellaeomphalos/forge/biome_modifier/prism_crystal_cluster_patch.json": {
       "type": "forge:add_features",
       "biomes": "#minecraft:is_overworld",
-      "features": "stellaeomphalos:gem_crystal_patch",
+      "features": "stellaeomphalos:prism_crystal_cluster_patch",
       "step": "vegetal_decoration"
     },
     "data/stellaeomphalos/tags/worldgen/biome/has_structure/ancient_shrine.json": {
@@ -5835,7 +5374,7 @@
         {
           "processor_type": "stellaeomphalos:placeholder",
           "replacement": {
-            "Name": "stellaeomphalos:stone_set_bricks"
+            "Name": "stellaeomphalos:marble_bricks"
           }
         }
       ]
@@ -5901,9 +5440,9 @@
     "data/stellaeomphalos/tags/blocks/stone_pillars.json": {
       "replace": false,
       "values": [
-        "stellaeomphalos:stone_set_pillar",
-        "stellaeomphalos:dark_stone_set_pillar",
-        "stellaeomphalos:infused_wood_set_pillar"
+        "stellaeomphalos:marble",
+        "stellaeomphalos:black_marble",
+        "stellaeomphalos:infused_wood"
       ]
     },
     "data/stellaeomphalos/stellaeomphalos/surface_cover/fallback.json": {
@@ -5913,7 +5452,7 @@
     "assets/stellaeomphalos/models/item/geode_shard.json": {
       "parent": "minecraft:item/generated",
       "textures": {
-        "layer0": "stellaeomphalos:item/gem_crystal_shard"
+        "layer0": "stellaeomphalos:item/prism_shard"
       }
     },
     "assets/stellaeomphalos/models/item/molten_lumen_bucket.json": {
@@ -5928,8 +5467,8 @@
     "assets/stellaeomphalos/models/block/infused_log.json": {
       "parent": "minecraft:block/cube_column",
       "textures": {
-        "end": "stellaeomphalos:block/infused_wood_set",
-        "side": "stellaeomphalos:block/infused_wood_set_pillar"
+        "end": "stellaeomphalos:block/infused_wood",
+        "side": "stellaeomphalos:block/infused_wood_pillar"
       }
     },
     "assets/stellaeomphalos/blockstates/infused_log.json": {
@@ -5947,120 +5486,510 @@
           "x": 90
         }
       }
+    },
+    "data/stellaeomphalos/recipes/world/frame_shell.json": {
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "SSS",
+        "SAS",
+        "SSS"
+      ],
+      "key": {
+        "S": {
+          "item": "stellaeomphalos:marble"
+        },
+        "A": {
+          "item": "minecraft:iron_ingot"
+        }
+      },
+      "result": {
+        "item": "stellaeomphalos:frame_shell",
+        "count": 4
+      }
+    },
+    "data/stellaeomphalos/recipes/world/mirage_shell.json": {
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        "SSS",
+        "SAS",
+        "SSS"
+      ],
+      "key": {
+        "S": {
+          "item": "stellaeomphalos:marble"
+        },
+        "A": {
+          "item": "minecraft:amethyst_shard"
+        }
+      },
+      "result": {
+        "item": "stellaeomphalos:mirage_shell",
+        "count": 4
+      }
+    },
+    "assets/stellaeomphalos/models/item/resonance_gem.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "minecraft:item/amethyst_shard"
+      }
+    },
+    "assets/stellaeomphalos/models/item/parchment.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "minecraft:item/paper"
+      }
+    },
+    "assets/stellaeomphalos/models/item/sky_crystal.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/sky_crystal"
+      }
+    },
+    "assets/stellaeomphalos/models/item/resonant_sky_crystal.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/resonant_sky_crystal"
+      }
+    },
+    "assets/stellaeomphalos/models/item/boon_gem_sky.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/boon_gem_sky"
+      }
+    },
+    "assets/stellaeomphalos/models/item/boon_gem_day.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/boon_gem_day"
+      }
+    },
+    "assets/stellaeomphalos/models/item/boon_gem_night.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/boon_gem_night"
+      }
+    },
+    "assets/stellaeomphalos/models/item/boon_seal.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/boon_seal"
+      }
+    },
+    "assets/stellaeomphalos/models/item/charged_geode_axe.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/charged_geode_axe"
+      }
+    },
+    "assets/stellaeomphalos/models/item/charged_geode_pickaxe.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/charged_geode_pickaxe"
+      }
+    },
+    "assets/stellaeomphalos/models/item/charged_geode_shovel.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/charged_geode_shovel"
+      }
+    },
+    "assets/stellaeomphalos/models/item/charged_geode_sword.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/charged_geode_sword"
+      }
+    },
+    "assets/stellaeomphalos/models/item/runed_wand.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/runed_wand"
+      }
+    },
+    "assets/stellaeomphalos/models/item/builder_rod.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/builder_rod"
+      }
+    },
+    "assets/stellaeomphalos/models/item/swapper_rod.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/swapper_rod"
+      }
+    },
+    "assets/stellaeomphalos/models/item/grapnel_rod.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/grapnel_rod"
+      }
+    },
+    "assets/stellaeomphalos/models/item/spyglass_handheld.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/spyglass_handheld"
+      }
+    },
+    "assets/stellaeomphalos/models/item/resonance_linker.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/resonance_linker"
+      }
+    },
+    "assets/stellaeomphalos/models/item/rosewood_bow.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/rosewood_bow"
+      }
+    },
+    "assets/stellaeomphalos/models/item/illumination_dust.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/illumination_dust"
+      }
+    },
+    "assets/stellaeomphalos/models/item/nocturnal_dust.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/nocturnal_dust"
+      }
+    },
+    "assets/stellaeomphalos/models/item/star_glass.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "stellaeomphalos:item/star_glass"
+      }
+    },
+    "assets/stellaeomphalos/models/block/astral_ore.json": {
+      "parent": "minecraft:block/cube_all",
+      "textures": {
+        "all": "stellaeomphalos:block/astral_ore"
+      }
+    },
+    "assets/stellaeomphalos/models/item/astral_ore.json": {
+      "parent": "stellaeomphalos:block/astral_ore"
+    },
+    "data/stellaeomphalos/worldgen/configured_feature/astral_ore.json": {
+      "type": "minecraft:ore",
+      "config": {
+        "targets": [
+          {
+            "target": {
+              "predicate_type": "minecraft:tag_match",
+              "tag": "stellaeomphalos:geode_host"
+            },
+            "state": {
+              "Name": "stellaeomphalos:geode_ore",
+              "Properties": {
+                "variant": "astral"
+              }
+            }
+          }
+        ],
+        "size": 4,
+        "discard_chance_on_air_exposure": 0
+      }
+    },
+    "data/stellaeomphalos/worldgen/placed_feature/astral_ore.json": {
+      "feature": "stellaeomphalos:astral_ore",
+      "placement": [
+        {
+          "type": "minecraft:rarity_filter",
+          "chance": 28
+        },
+        {
+          "type": "minecraft:in_square"
+        },
+        {
+          "height": {
+            "min_inclusive": {
+              "absolute": 8
+            },
+            "type": "minecraft:uniform",
+            "max_inclusive": {
+              "absolute": 40
+            }
+          },
+          "type": "minecraft:height_range"
+        },
+        {
+          "type": "minecraft:biome"
+        }
+      ]
+    },
+    "data/stellaeomphalos/forge/biome_modifier/astral_ore.json": {
+      "biomes": "#minecraft:is_overworld",
+      "features": "stellaeomphalos:astral_ore",
+      "type": "forge:add_features",
+      "step": "underground_ores"
+    },
+    "data/stellaeomphalos/recipes/world/astral_ore.json": {
+      "result": {
+        "item": "stellaeomphalos:geode_ore",
+        "count": 1
+      },
+      "type": "minecraft:crafting_shaped",
+      "pattern": [
+        " S ",
+        "SCS",
+        " S "
+      ],
+      "key": {
+        "S": {
+          "item": "minecraft:stone"
+        },
+        "C": {
+          "item": "minecraft:quartz"
+        }
+      }
+    },
+    "assets/stellaeomphalos/blockstates/bore_head.json": {
+      "variants": {
+        "mode=vortex,tier=stone": {
+          "model": "stellaeomphalos:block/bore_head_stone"
+        },
+        "mode=liquid,tier=stone": {
+          "model": "stellaeomphalos:block/bore_head_stone"
+        },
+        "mode=liquid,tier=iron": {
+          "model": "stellaeomphalos:block/bore_head_iron"
+        },
+        "mode=vortex,tier=diamond": {
+          "model": "stellaeomphalos:block/bore_head_diamond"
+        },
+        "mode=vortex,tier=iron": {
+          "model": "stellaeomphalos:block/bore_head_iron"
+        },
+        "mode=liquid,tier=diamond": {
+          "model": "stellaeomphalos:block/bore_head_diamond"
+        }
+      }
+    },
+    "data/stellaeomphalos/loot_tables/blocks/bore_head.json": {
+      "type": "minecraft:block",
+      "pools": [
+        {
+          "rolls": 1,
+          "entries": [
+            {
+              "name": "stellaeomphalos:bore_head_stone",
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "properties": {
+                    "tier": "stone"
+                  },
+                  "condition": "minecraft:block_state_property",
+                  "block": "stellaeomphalos:bore_head"
+                }
+              ],
+              "functions": [
+                {
+                  "function": "minecraft:explosion_decay"
+                }
+              ]
+            },
+            {
+              "name": "stellaeomphalos:bore_head_iron",
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "properties": {
+                    "tier": "iron"
+                  },
+                  "condition": "minecraft:block_state_property",
+                  "block": "stellaeomphalos:bore_head"
+                }
+              ],
+              "functions": [
+                {
+                  "function": "minecraft:explosion_decay"
+                }
+              ]
+            },
+            {
+              "name": "stellaeomphalos:bore_head_diamond",
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "properties": {
+                    "tier": "diamond"
+                  },
+                  "condition": "minecraft:block_state_property",
+                  "block": "stellaeomphalos:bore_head"
+                }
+              ],
+              "functions": [
+                {
+                  "function": "minecraft:explosion_decay"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "assets/stellaeomphalos/models/item/luminary_rod.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "minecraft:item/blaze_rod"
+      }
+    },
+    "assets/stellaeomphalos/models/item/sky_resonator.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "minecraft:item/compass_16"
+      }
+    },
+    "assets/stellaeomphalos/models/item/mantle.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "minecraft:item/leather_chestplate"
+      }
+    },
+    "assets/stellaeomphalos/models/item/sign_chart.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "minecraft:item/map"
+      }
+    },
+    "assets/stellaeomphalos/models/item/warp_star.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "minecraft:item/nether_star"
+      }
+    },
+    "assets/stellaeomphalos/models/item/warded_amulet.json": {
+      "parent": "minecraft:item/generated",
+      "textures": {
+        "layer0": "minecraft:item/totem_of_undying"
+      }
+    },
+    "assets/stellaeomphalos/blockstates/molten_lumen.json": {
+      "variants": {
+        "": {
+          "model": "stellaeomphalos:block/molten_lumen"
+        }
+      }
+    },
+    "assets/stellaeomphalos/models/block/molten_lumen.json": {
+      "textures": {
+        "particle": "minecraft:block/water_still"
+      },
+      "elements": []
     }
   },
   "languages": {
-    "block.stellaeomphalos.stone_set": [
+    "block.stellaeomphalos.marble": [
       "Stone Set",
-      "石材原块"
+      "浅石"
     ],
-    "block.stellaeomphalos.stone_set_bricks": [
+    "block.stellaeomphalos.marble_bricks": [
       "Stone Set Bricks",
-      "石材砖"
+      "浅石砖"
     ],
-    "block.stellaeomphalos.stone_set_pillar": [
+    "block.stellaeomphalos.marble_pillar": [
       "Stone Set Pillar",
-      "石材柱"
+      "浅石柱"
     ],
-    "block.stellaeomphalos.stone_set_arch": [
+    "block.stellaeomphalos.marble_arch": [
       "Stone Set Arch",
-      "石材拱块"
+      "浅石拱块"
     ],
-    "block.stellaeomphalos.stone_set_chiseled": [
+    "block.stellaeomphalos.marble_chiseled": [
       "Stone Set Chiseled",
-      "石材雕纹"
+      "浅石雕纹"
     ],
-    "block.stellaeomphalos.stone_set_engraved": [
+    "block.stellaeomphalos.marble_engraved": [
       "Stone Set Engraved",
-      "石材刻纹"
+      "浅石镌纹"
     ],
-    "block.stellaeomphalos.stone_set_runed": [
+    "block.stellaeomphalos.marble_runed": [
       "Stone Set Runed",
-      "石材符纹"
+      "浅石符文"
     ],
-    "block.stellaeomphalos.dark_stone_set": [
+    "block.stellaeomphalos.black_marble": [
       "Dark Stone Set",
-      "暗石材原块"
+      "黯石"
     ],
-    "block.stellaeomphalos.dark_stone_set_bricks": [
+    "block.stellaeomphalos.black_marble_bricks": [
       "Dark Stone Set Bricks",
-      "暗石材砖"
+      "黯石砖"
     ],
-    "block.stellaeomphalos.dark_stone_set_pillar": [
+    "block.stellaeomphalos.black_marble_pillar": [
       "Dark Stone Set Pillar",
-      "暗石材柱"
+      "黯石柱"
     ],
-    "block.stellaeomphalos.dark_stone_set_arch": [
+    "block.stellaeomphalos.black_marble_arch": [
       "Dark Stone Set Arch",
-      "暗石材拱块"
+      "黯石拱块"
     ],
-    "block.stellaeomphalos.dark_stone_set_chiseled": [
+    "block.stellaeomphalos.black_marble_chiseled": [
       "Dark Stone Set Chiseled",
-      "暗石材雕纹"
+      "黯石雕纹"
     ],
-    "block.stellaeomphalos.dark_stone_set_engraved": [
+    "block.stellaeomphalos.black_marble_engraved": [
       "Dark Stone Set Engraved",
-      "暗石材刻纹"
+      "黯石镌纹"
     ],
-    "block.stellaeomphalos.dark_stone_set_runed": [
+    "block.stellaeomphalos.black_marble_runed": [
       "Dark Stone Set Runed",
-      "暗石材符纹"
+      "黯石符文"
     ],
-    "block.stellaeomphalos.infused_wood_set": [
+    "block.stellaeomphalos.infused_wood": [
       "Infused Wood Set",
-      "注魔木原块"
+      "盈星木"
     ],
-    "block.stellaeomphalos.infused_wood_set_bricks": [
+    "block.stellaeomphalos.infused_wood_planks": [
       "Infused Wood Set Bricks",
-      "注魔木砖"
+      "盈星木砖"
     ],
-    "block.stellaeomphalos.infused_wood_set_pillar": [
+    "block.stellaeomphalos.infused_wood_pillar": [
       "Infused Wood Set Pillar",
-      "注魔木柱"
+      "盈星木柱"
     ],
-    "block.stellaeomphalos.infused_wood_set_arch": [
+    "block.stellaeomphalos.infused_wood_arch": [
       "Infused Wood Set Arch",
-      "注魔木拱块"
+      "盈星木拱块"
     ],
-    "block.stellaeomphalos.infused_wood_set_chiseled": [
+    "block.stellaeomphalos.infused_wood_enriched": [
       "Infused Wood Set Chiseled",
-      "注魔木雕纹"
+      "盈星木雕纹"
     ],
-    "block.stellaeomphalos.infused_wood_set_engraved": [
+    "block.stellaeomphalos.infused_wood_engraved": [
       "Infused Wood Set Engraved",
-      "注魔木刻纹"
+      "盈星木镌纹"
     ],
-    "block.stellaeomphalos.infused_wood_set_runed": [
+    "block.stellaeomphalos.infused_wood_infused": [
       "Infused Wood Set Runed",
-      "注魔木符纹"
+      "盈星木符文"
     ],
     "block.stellaeomphalos.geode_ore": [
       "Geode Ore",
-      "星枢·岩晶矿"
+      "片晶矿"
     ],
     "block.stellaeomphalos.star_metal_ore": [
       "Star Metal Ore",
-      "星枢·星金属矿"
+      "星钢矿石"
     ],
-    "block.stellaeomphalos.aquamarine_sand_ore": [
+    "block.stellaeomphalos.aquamarine_sand": [
       "Aquamarine Sand Ore",
-      "含海晶沙"
+      "海蓝宝石矿砂"
     ],
-    "block.stellaeomphalos.astral_crystal": [
+    "block.stellaeomphalos.sky_crystal_cluster": [
       "Astral Crystal",
-      "天晶簇"
+      "天晶"
     ],
-    "block.stellaeomphalos.gem_crystal": [
+    "block.stellaeomphalos.prism_crystal_cluster": [
       "Gem Crystal",
-      "宝晶簇"
+      "宝晶"
     ],
-    "block.stellaeomphalos.glow_flower": [
+    "block.stellaeomphalos.glowbloom": [
       "Glow Flower",
       "星枢·辉光花"
     ],
     "block.stellaeomphalos.rite_pedestal": [
       "Rite Pedestal",
-      "星枢·星仪基座"
+      "仪式基座"
     ],
     "block.stellaeomphalos.lumen_spring": [
       "Lumen Spring",
@@ -6068,57 +5997,57 @@
     ],
     "block.stellaeomphalos.rite_amplifier_crude": [
       "Rite Amplifier Crude",
-      "粗制星仪增幅器"
+      "粗制仪式增幅器"
     ],
     "block.stellaeomphalos.rite_amplifier_polished": [
       "Rite Amplifier Polished",
-      "精制星仪增幅器"
+      "精制仪式增幅器"
     ],
     "block.stellaeomphalos.rite_amplifier_resonant": [
       "Rite Amplifier Resonant",
-      "共振星仪增幅器"
+      "共振仪式增幅器"
     ],
     "block.stellaeomphalos.rite_amplifier_attuned": [
       "Rite Amplifier Attuned",
-      "共鸣星仪增幅器"
+      "共鸣仪式增幅器"
     ],
     "block.stellaeomphalos.frame_shell": [
       "Frame Shell",
       "构架壳"
     ],
-    "block.stellaeomphalos.ward_block": [
+    "block.stellaeomphalos.phase_barrier": [
       "Ward Block",
       "界障"
     ],
-    "block.stellaeomphalos.mimic_block": [
+    "block.stellaeomphalos.mirage_shell": [
       "Mimic Block",
       "拟态方块"
     ],
-    "block.stellaeomphalos.flare_light": [
+    "block.stellaeomphalos.glow_mote": [
       "Flare Light",
       "耀斑光源"
     ],
     "block.stellaeomphalos.gate_node": [
       "Gate Node",
-      "门枢节点"
+      "星门节点"
     ],
     "block.stellaeomphalos.gate_core": [
       "Gate Core",
-      "门枢核心"
+      "星门核"
     ],
-    "block.stellaeomphalos.world_lamp": [
+    "block.stellaeomphalos.luminaire": [
       "World Lamp",
       "世界灯"
     ],
     "block.stellaeomphalos.rite_link": [
       "Rite Link",
-      "星仪链接器"
+      "仪式连接器"
     ],
     "block.stellaeomphalos.observatory": [
       "Observatory",
-      "天文台"
+      "瞻星台"
     ],
-    "block.stellaeomphalos.bore_core": [
+    "block.stellaeomphalos.fountain": [
       "Bore Core",
       "钻孔机"
     ],
@@ -6134,7 +6063,7 @@
       "Bore Head Diamond",
       "钻石钻头"
     ],
-    "block.stellaeomphalos.mineral_regenerator": [
+    "block.stellaeomphalos.ore_regenerator": [
       "Mineral Regenerator",
       "矿物再生器"
     ],
@@ -6144,17 +6073,17 @@
     ],
     "item.stellaeomphalos.aquamarine": [
       "Aquamarine",
-      "海晶"
+      "海蓝宝石"
     ],
-    "item.stellaeomphalos.star_metal_ingot": [
+    "item.stellaeomphalos.astral_ingot": [
       "Star Metal Ingot",
-      "星金属锭"
+      "星钢锭"
     ],
-    "item.stellaeomphalos.astral_crystal_shard": [
+    "item.stellaeomphalos.star_dust": [
       "Astral Crystal Shard",
       "天晶碎片"
     ],
-    "item.stellaeomphalos.gem_crystal_shard": [
+    "item.stellaeomphalos.prism_shard": [
       "Gem Crystal Shard",
       "宝晶碎片"
     ],
@@ -6164,7 +6093,7 @@
     ],
     "itemGroup.stellaeomphalos.world_and_rites": [
       "World and Rites",
-      "星构与星仪"
+      "星构与仪式"
     ],
     "stellaeomphalos.astrolabe.fix": [
       "%s: bearing %s, distance band %s",
@@ -6184,15 +6113,15 @@
     ],
     "subtitles.stellaeomphalos.ritual_start": [
       "Ritual Start",
-      "星仪启动"
+      "仪式启动"
     ],
     "subtitles.stellaeomphalos.ritual_loop": [
       "Ritual Loop",
-      "星仪共鸣"
+      "仪式循环"
     ],
     "subtitles.stellaeomphalos.rite_output": [
       "Rite Output",
-      "星仪结算"
+      "仪式结算"
     ],
     "subtitles.stellaeomphalos.spring_draw": [
       "Spring Draw",

@@ -21,7 +21,7 @@ public final class WorldGeneration {
     public static final RegistrationGuard<SurfaceFeature>
             AQUAMARINE =
                     ModFeatures.ENTRIES.declare("aquamarine_sand", () -> new SurfaceFeature(true)),
-            FLOWER = ModFeatures.ENTRIES.declare("glow_flower", () -> new SurfaceFeature(false));
+            FLOWER = ModFeatures.ENTRIES.declare("glowbloom", () -> new SurfaceFeature(false));
     public static final RegistrationGuard<PlacementModifierType<InWaterPlacement>> IN_WATER =
             ModPlacementModifiers.ENTRIES.declare("in_water", () -> () -> InWaterPlacement.CODEC);
     public static final RegistrationGuard<StructureType<TempleStructure>> STRUCTURE =

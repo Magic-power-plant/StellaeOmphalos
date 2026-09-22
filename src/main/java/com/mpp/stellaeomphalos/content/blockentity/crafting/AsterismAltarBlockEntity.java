@@ -253,7 +253,7 @@ public final class AsterismAltarBlockEntity extends AbstractCraftingMachine {
         server.playSound(
                 null,
                 worldPosition,
-                CraftingContent.CRAFT_FINISH.get(),
+                com.mpp.stellaeomphalos.content.particle.ClientVisualContent.sound("altar_craft_complete"),
                 net.minecraft.sounds.SoundSource.BLOCKS,
                 0.7F,
                 1F);

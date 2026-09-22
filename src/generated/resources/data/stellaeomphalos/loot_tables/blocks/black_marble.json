@@ -1,0 +1,136 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stellaeomphalos:black_marble",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variant": "raw"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "stellaeomphalos:black_marble"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stellaeomphalos:black_marble",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variant": "bricks"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "stellaeomphalos:black_marble_bricks"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stellaeomphalos:black_marble",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variant": "pillar"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "stellaeomphalos:black_marble_pillar"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stellaeomphalos:black_marble",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variant": "arch"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "stellaeomphalos:black_marble_arch"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stellaeomphalos:black_marble",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variant": "chiseled"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "stellaeomphalos:black_marble_chiseled"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stellaeomphalos:black_marble",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variant": "engraved"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "stellaeomphalos:black_marble_engraved"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stellaeomphalos:black_marble",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "variant": "runed"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "stellaeomphalos:black_marble_runed"
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}

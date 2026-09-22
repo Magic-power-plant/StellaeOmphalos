@@ -38,6 +38,7 @@ public final class LightProximityRecipe implements CraftingRecipe, RecipeDefinit
                         .byId(getId())
                         .filter(r -> r == this)
                         .isEmpty()) return false;
+        if (!com.mpp.stellaeomphalos.OmphalosConfig.SERVER.flag("gameplay.lightProximityWandRecipe")) return true;
         for (var player : level.players())
             if (player.containerMenu instanceof WorkbenchAnchorMenu menu
                     && menu.owns(input)

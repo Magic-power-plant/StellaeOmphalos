@@ -10,7 +10,13 @@ import net.minecraft.world.level.block.state.BlockState;
 
 /** Owns persistence and client synchronization channels; inventory is never sent implicitly. */
 public abstract class SyncedBlockEntity extends BlockEntity {
-    protected SyncedBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) { super(type, pos, state); }
+    private final net.minecraft.world.phys.AABB visualBounds;
+    protected SyncedBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+        super(type, pos, state);
+        visualBounds = new net.minecraft.world.phys.AABB(pos.getX()-2, pos.getY()-1, pos.getZ()-2,
+                pos.getX()+3, pos.getY()+8, pos.getZ()+3);
+    }
+    @Override public net.minecraft.world.phys.AABB getRenderBoundingBox() { return visualBounds; }
     protected abstract void writePersistent(CompoundTag tag);
     protected abstract void readPersistent(CompoundTag tag);
     protected abstract void writeClientState(CompoundTag tag);

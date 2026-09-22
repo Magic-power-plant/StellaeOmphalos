@@ -134,28 +134,40 @@
       "air": true
     },
     "arch": {
-      "block": "stellaeomphalos:stone_set_arch"
+      "block": "stellaeomphalos:marble",
+      "properties": {
+        "variant": "arch"
+      }
     },
     "bricks": {
-      "block": "stellaeomphalos:stone_set_bricks"
+      "block": "stellaeomphalos:marble",
+      "properties": {
+        "variant": "bricks"
+      }
     },
     "cap": {
-      "block": "stellaeomphalos:stone_set_chiseled"
+      "block": "stellaeomphalos:marble",
+      "properties": {
+        "variant": "chiseled"
+      }
     },
     "core": {
       "tag": "stellaeomphalos:altar_core"
     },
     "dark": {
-      "block": "stellaeomphalos:dark_stone_set"
+      "block": "stellaeomphalos:black_marble"
     },
     "pillar": {
       "tag": "stellaeomphalos:stone_pillars"
     },
     "raw": {
-      "block": "stellaeomphalos:stone_set"
+      "block": "stellaeomphalos:marble"
     },
     "runed": {
-      "block": "stellaeomphalos:stone_set_runed"
+      "block": "stellaeomphalos:marble",
+      "properties": {
+        "variant": "runed"
+      }
     }
   },
   "unique": [

@@ -29,6 +29,10 @@ public final class RitePedestalBlockEntity extends LumenSinkBlockEntity
     private StructureState structure = StructureState.INDETERMINATE;
     private OutputHoldMode hold = OutputHoldMode.HELD;
     private int offlineTicks;
+    private RiteState clientRiteState = RiteState.IDLE;
+    private int clientProgress;
+    public RiteState displayedState() { return level != null && level.isClientSide ? clientRiteState : rite == null ? RiteState.IDLE : rite.state(); }
+    public int displayedProgress() { return level != null && level.isClientSide ? clientProgress : rite == null ? 0 : rite.progress(); }
     private long age;
     private final List<Amplifier> amplifiers = new ArrayList<>();
 
@@ -153,6 +157,9 @@ public final class RitePedestalBlockEntity extends LumenSinkBlockEntity
         if (action == 2) {
             hold = OutputHoldMode.values()[(hold.ordinal() + 1) % OutputHoldMode.values().length];
             markClientDirty();
+            player.displayClientMessage(net.minecraft.network.chat.Component.translatable(
+                    "stellaeomphalos.rite.hold_mode", net.minecraft.network.chat.Component.translatable(
+                            "stellaeomphalos.rite.hold." + hold.name().toLowerCase(java.util.Locale.ROOT))), true);
             return true;
         }
         if (action == 1) {
@@ -307,6 +314,10 @@ public final class RitePedestalBlockEntity extends LumenSinkBlockEntity
     public void serverTick() {
         if (!(level instanceof ServerLevel server)) return;
         age++;
+        if (rite != null && rite.state() == RiteState.RUNNING && age % 80 == 0) {
+            var sound = net.minecraftforge.registries.ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("stellaeomphalos", "ritual_loop"));
+            if (sound != null) server.playSound(null, worldPosition, sound, net.minecraft.sounds.SoundSource.BLOCKS, .35F, 1);
+        }
         structure = StructureIntegrityHub.of(server).query(worldPosition, blueprintId());
         if (age % 20 == 1) scanAmplifiers();
         if (rite == null && !crystal.isEmpty())
@@ -426,12 +437,18 @@ public final class RitePedestalBlockEntity extends LumenSinkBlockEntity
     protected void writeClientState(CompoundTag n) {
         super.writeClientState(n);
         n.putString("Structure", structure.name());
+        n.putString("HoldMode", hold.name());
         n.putString("RiteState", rite == null ? RiteState.IDLE.name() : rite.state().name());
         n.putInt("Progress", rite == null ? 0 : rite.progress());
     }
 
     protected void readClientState(CompoundTag n) {
         super.readClientState(n);
+        try { clientRiteState = RiteState.valueOf(n.getString("RiteState")); }
+        catch (IllegalArgumentException invalid) { clientRiteState = RiteState.IDLE; }
+        clientProgress = Math.max(0, n.getInt("Progress"));
+        try { hold = OutputHoldMode.valueOf(n.getString("HoldMode")); }
+        catch (IllegalArgumentException invalid) { hold = OutputHoldMode.HELD; }
         try {
             structure = StructureState.valueOf(n.getString("Structure"));
         } catch (IllegalArgumentException ex) {

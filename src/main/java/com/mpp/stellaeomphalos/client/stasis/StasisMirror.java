@@ -48,6 +48,8 @@ public final class StasisMirror {
     public static void attach() {
         if (!ATTACHED.compareAndSet(false, true)) return;
         ClientSessionCleaner.register("stasis_mirror", StasisMirror::reset);
+        net.minecraftforge.common.MinecraftForge.EVENT_BUS.addListener(
+                (net.minecraftforge.client.event.ClientPlayerNetworkEvent.Clone event) -> reset());
         OmphalosClient.handlers().register(PktStasisZone.class, (minecraft, packet) -> handle(packet));
     }
 }

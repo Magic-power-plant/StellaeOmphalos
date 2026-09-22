@@ -23,7 +23,7 @@ public final class AccelerationPolicy extends SavedData {
 
     public boolean blocked(BlockEntity be) {
         return failures.getOrDefault(ForgeRegistries.BLOCK_ENTITY_TYPES.getKey(be.getType()), 0)
-                >= 3;
+                >= 1;
     }
 
     public void record(BlockEntity be) {

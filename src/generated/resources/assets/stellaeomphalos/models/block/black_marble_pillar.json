@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "stellaeomphalos:block/black_marble_pillar",
+    "side": "stellaeomphalos:block/black_marble_pillar"
+  }
+}

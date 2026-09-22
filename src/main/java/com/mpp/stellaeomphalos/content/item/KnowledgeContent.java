@@ -11,10 +11,10 @@ public final class KnowledgeContent {
             ModItems.ENTRIES.declare("codex", CodexItem::new);
     public static final RegistrationGuard<LoreShardItem> SHARD =
             ModItems.ENTRIES.declare("lore_shard", LoreShardItem::new);
-    public static final RegistrationGuard<ShardCapsuleItem> CAPSULE =
-            ModItems.ENTRIES.declare("shard_capsule", ShardCapsuleItem::new);
-    public static final RegistrationGuard<InsightScrollItem> SCROLL =
-            ModItems.ENTRIES.declare("insight_scroll", InsightScrollItem::new);
+    public static final RegistrationGuard<LoreCapsuleItem> CAPSULE =
+            ModItems.ENTRIES.declare("lore_capsule", LoreCapsuleItem::new);
+    public static final RegistrationGuard<LoreScrollItem> SCROLL =
+            ModItems.ENTRIES.declare("lore_scroll", LoreScrollItem::new);
 
     private KnowledgeContent() {}
 
@@ -30,6 +30,7 @@ public final class KnowledgeContent {
                                 .displayItems(
                                         (parameters, output) -> {
                                             output.accept(CODEX.get());
+                                            output.accept(SHARD.get());
                                             output.accept(CAPSULE.get());
                                             output.accept(SCROLL.get());
                                         })

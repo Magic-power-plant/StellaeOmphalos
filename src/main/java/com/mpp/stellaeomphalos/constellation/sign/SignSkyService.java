@@ -71,8 +71,17 @@ public final class SignSkyService {
     static synchronized @Nullable SignSkyScheduler scheduler(ServerLevel level) { return SCHEDULERS.get(level.dimension()); }
 
     private static synchronized @Nullable SignSkyScheduler schedulerFor(Level level) {
-        if (!(level instanceof ServerLevel serverLevel)) return null;
+        if (!(level instanceof ServerLevel serverLevel) || !visibleDimension(level)) return null;
         return ensureDay(serverLevel, schedulerOf(serverLevel));
+    }
+
+    public static boolean visibleDimension(Level level) {
+        var tables = com.mpp.stellaeomphalos.data.loader.DataBootstrap.TABLES;
+        var visible = tables.entries(com.mpp.stellaeomphalos.data.loader.DataBootstrap.VISIBLE_DIMENSIONS);
+        var suppressed = tables.entries(com.mpp.stellaeomphalos.data.loader.DataBootstrap.SUPPRESSED_DIMENSIONS);
+        var id = level.dimension().location();
+        return (visible.isEmpty() || visible.values().stream().anyMatch(p -> p.enabled() && p.targets().contains(id)))
+                && suppressed.values().stream().noneMatch(p -> p.enabled() && p.targets().contains(id));
     }
 
     private static SignSkyScheduler schedulerOf(ServerLevel level) {
@@ -138,11 +147,7 @@ public final class SignSkyService {
         SCHEDULERS.clear();
         if (server == null) return;
         for (var player : server.getPlayerList().getPlayers()) {
-            int session = SESSIONS.current(player.getUUID());
-            var level = player.serverLevel();
-            var scheduler = ensureDay(level, schedulerOf(level));
-            sendLayout(player, session, level, scheduler);
-            sendActive(player, session, level, scheduler);
+            resync(player);
         }
         broadcastRenames(server);
     }
@@ -152,18 +157,18 @@ public final class SignSkyService {
     }
 
     private static void sendActive(ServerPlayer player, int session, ServerLevel level, SignSkyScheduler scheduler) {
-        var entries = scheduler.activeSigns().stream()
+        var entries = (visibleDimension(level) ? scheduler.activeSigns() : java.util.List.<Sign>of()).stream()
                 .map(sign -> new PktActiveSigns.Entry(SignRegistry.numericId(sign), scheduler.distribution(sign)))
                 .toList();
         OmphalosChannel.send(player, new PktActiveSigns(session, level.dimension(), (int) scheduler.day(), entries));
     }
 
     private static void sendLayout(ServerPlayer player, int session, ServerLevel level, SignSkyScheduler scheduler) {
-        var sorted = scheduler.activeSigns().stream()
+        var sorted = (visibleDimension(level) ? scheduler.activeSigns() : java.util.List.<Sign>of()).stream()
                 .sorted(Comparator.comparing(sign -> sign instanceof MajorSign ? 0 : 1))
                 .toList();
         var layout = SignSkyAnchorTable.layout(sorted);
-        if (layout.isEmpty()) return;
+
         var entries = layout.entrySet().stream()
                 .map(entry -> new PktSignSkyLayout.Entry(entry.getKey().id(), entry.getValue().asList()))
                 .toList();

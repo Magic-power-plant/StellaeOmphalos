@@ -1,0 +1,17 @@
+{
+  "body": "",
+  "kind": "recipe_altar",
+  "layout": "DISCOVERY",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "recipe_id": "stellaeomphalos:altar/lens_blank",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.recipe.altar.lens_blank.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "DISCOVERY"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "mode=liquid,tier=diamond": {
+      "model": "stellaeomphalos:block/bore_head_diamond"
+    },
+    "mode=liquid,tier=iron": {
+      "model": "stellaeomphalos:block/bore_head_iron"
+    },
+    "mode=liquid,tier=stone": {
+      "model": "stellaeomphalos:block/bore_head_stone"
+    },
+    "mode=vortex,tier=diamond": {
+      "model": "stellaeomphalos:block/bore_head_diamond"
+    },
+    "mode=vortex,tier=iron": {
+      "model": "stellaeomphalos:block/bore_head_iron"
+    },
+    "mode=vortex,tier=stone": {
+      "model": "stellaeomphalos:block/bore_head_stone"
+    }
+  }
+}

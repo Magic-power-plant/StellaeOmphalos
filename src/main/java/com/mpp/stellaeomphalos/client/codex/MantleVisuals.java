@@ -26,7 +26,7 @@ public final class MantleVisuals {
         if (!net.minecraft.core.registries.BuiltInRegistries.ITEM
                         .getKey(stack.getItem())
                         .toString()
-                        .equals("stellaeomphalos:star_mantle")
+                        .equals("stellaeomphalos:mantle")
                 || !stack.hasTag()) return;
         String sign = stack.getTag().getString("SignId");
         if (sign.endsWith(":vicio")
@@ -34,7 +34,7 @@ public final class MantleVisuals {
             var pos = mc.player.position().subtract(mc.player.getDeltaMovement().scale(1.5));
             int count = mc.options.getCameraType().isFirstPerson() ? 1 : 2;
             for (int i = 0; i < count; i++)
-                mc.level.addParticle(ParticleTypes.END_ROD, pos.x, pos.y + 1, pos.z, 0, .01, 0);
+                com.mpp.stellaeomphalos.client.particle.ParticleSpawner.spawn(com.mpp.stellaeomphalos.content.particle.ClientVisualContent.PARTICLES.get("mantle_trail").get(), pos.x, pos.y + 1, pos.z, 0, .01, 0);
         }
         if (!OmphalosConfig.CLIENT.flag("mantle.enableClientSideDetection")
                 || mc.player.tickCount % 10 != 0) return;
@@ -66,8 +66,8 @@ public final class MantleVisuals {
                 for (var be : chunk.getBlockEntities().values())
                     if (be instanceof net.minecraft.world.level.block.entity.SpawnerBlockEntity
                             && be.getBlockPos().distSqr(mc.player.blockPosition()) >= 36)
-                        mc.level.addParticle(
-                                ParticleTypes.ENCHANT,
+                        com.mpp.stellaeomphalos.client.particle.ParticleSpawner.spawn(
+                                com.mpp.stellaeomphalos.content.particle.ClientVisualContent.PARTICLES.get("sign_mote").get(),
                                 be.getBlockPos().getX() + .5,
                                 be.getBlockPos().getY() + .5,
                                 be.getBlockPos().getZ() + .5,
@@ -86,8 +86,8 @@ public final class MantleVisuals {
                                         mc.level.random.nextInt(9) - 4,
                                         mc.level.random.nextInt(17) - 8);
                 if (mc.level.hasChunkAt(p) && mc.level.getBlockState(p).is(block.getBlock()))
-                    mc.level.addParticle(
-                            ParticleTypes.ENCHANT,
+                    com.mpp.stellaeomphalos.client.particle.ParticleSpawner.spawn(
+                            com.mpp.stellaeomphalos.content.particle.ClientVisualContent.PARTICLES.get("sign_mote").get(),
                             p.getX() + .5,
                             p.getY() + .8,
                             p.getZ() + .5,

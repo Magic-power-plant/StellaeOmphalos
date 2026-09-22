@@ -22,7 +22,7 @@ public final class WandRecolorRecipe extends CustomRecipe {
         for (int i = 0; i < input.getContainerSize(); i++) {
             var s = input.getItem(i);
             if (s.isEmpty()) continue;
-            if (new ResourceLocation("stellaeomphalos", "illumination_wand")
+            if (new ResourceLocation("stellaeomphalos", "luminary_rod")
                     .equals(ForgeRegistries.ITEMS.getKey(s.getItem()))) wand++;
             else if (s.getItem() instanceof DyeItem) dye++;
             else return false;

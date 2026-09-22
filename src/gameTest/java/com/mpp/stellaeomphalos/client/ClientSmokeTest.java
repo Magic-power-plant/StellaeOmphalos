@@ -24,6 +24,10 @@ public final class ClientSmokeTest {
         if (!Boolean.getBoolean("stellaeomphalos.smokeTest") || event.phase != TickEvent.Phase.END)
             return;
         var minecraft = Minecraft.getInstance();
+        if (Boolean.getBoolean("stellaeomphalos.part7SmokeTest")) {
+            PartSevenClientSmoke.tick(minecraft);
+            return;
+        }
         if (minecraft.getOverlay() != null) return;
         if (!opened && minecraft.screen instanceof TitleScreen title) {
             minecraft.setScreen(new ConfigOverviewScreen(title));

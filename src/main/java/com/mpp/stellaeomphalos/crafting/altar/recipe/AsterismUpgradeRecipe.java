@@ -17,7 +17,6 @@ public final class AsterismUpgradeRecipe extends AsterismRecipe {
         super(id, "asterism_upgrade", json);
         target = AsterismTier.parse(RecipeJson.text(json, "to_tier", ""));
         if (target.ordinal() != tier().ordinal() + 1
-                || target == AsterismTier.RADIANCE
                 || !flag("night_only")
                 || !flag("no_item_output")) throw new JsonParseException("Invalid altar upgrade");
         display = RecipeJson.stack(RecipeJson.object(json, "result_display"));

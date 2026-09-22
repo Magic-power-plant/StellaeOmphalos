@@ -35,10 +35,10 @@ public final class CraftingContent {
     public static final RegistrationGuard<MachineBlock> ALTAR = block("asterism_altar", "asterism");
     public static final RegistrationGuard<MachineBlock>
             INFUSER = block("lumen_infuser", "lumen_infuser"),
-            GRINDWHEEL = block("grindwheel", "grindwheel"),
+            GRINDWHEEL = block("quern", "quern"),
             WELL = block("lumen_well", "lumen_well"),
-            CHALICE = block("lumen_chalice", "lumen_chalice"),
-            RELAY = block("crafting_relay", "crafting_relay");
+            CHALICE = block("chalice", "chalice"),
+            RELAY = block("beam_relay", "beam_relay");
     public static final RegistrationGuard<BlockEntityType<AsterismAltarBlockEntity>> ALTAR_ENTITY =
             ModBlockEntities.ENTRIES.declare(
                     "asterism_altar",
@@ -54,7 +54,7 @@ public final class CraftingContent {
     public static final RegistrationGuard<BlockEntityType<GrindwheelBlockEntity>>
             GRINDWHEEL_ENTITY =
                     ModBlockEntities.ENTRIES.declare(
-                            "grindwheel",
+                            "quern",
                             () ->
                                     BlockEntityType.Builder.of(
                                                     GrindwheelBlockEntity::new, GRINDWHEEL.get())
@@ -67,13 +67,13 @@ public final class CraftingContent {
                                     .build(null));
     public static final RegistrationGuard<BlockEntityType<LumenChaliceBlockEntity>> CHALICE_ENTITY =
             ModBlockEntities.ENTRIES.declare(
-                    "lumen_chalice",
+                    "chalice",
                     () ->
                             BlockEntityType.Builder.of(LumenChaliceBlockEntity::new, CHALICE.get())
                                     .build(null));
     public static final RegistrationGuard<BlockEntityType<CraftingRelayBlockEntity>> RELAY_ENTITY =
             ModBlockEntities.ENTRIES.declare(
-                    "crafting_relay",
+                    "beam_relay",
                     () ->
                             BlockEntityType.Builder.of(CraftingRelayBlockEntity::new, RELAY.get())
                                     .build(null));
@@ -109,56 +109,37 @@ public final class CraftingContent {
                             block.id().getPath(),
                             () -> new BlockItem(block.get(), new Item.Properties())));
         ITEMS.put("sign_focus", ModItems.ENTRIES.declare("sign_focus", FocusItem::new));
+        // Part-6 §6.2.2 owns the ids below that moved to dedicated item classes
+        // (`luminary_rod`, `sky_resonator`, `mantle`, `codex`, `sign_chart`, ...); they are registered by
+        // PartSixItems / KnowledgeContent instead of the generic loop, so only the plain materials remain here.
         for (String name :
                 List.of(
-                        "raw_crystal",
-                        "resonant_crystal",
-                        "star_lens",
+                        "geode",
+                        "resonant_geode",
+                        "lens_blank",
                         "prism_lens",
                         "star_sextant",
-                        "illumination_wand",
-                        "star_mantle",
-                        "sign_paper",
-                        "conversion_star",
-                        "enchant_charm",
                         "drill_head",
-                        "resonator",
                         "ritual_base",
                         "charged_tool",
                         "collector_crystal",
-                        "crystal_pickaxe",
-                        "crystal_axe",
-                        "crystal_shovel",
-                        "crystal_sword"))
+                        "geode_pickaxe",
+                        "geode_axe",
+                        "geode_shovel",
+                        "geode_sword"))
             ITEMS.put(
                     name,
                     ModItems.ENTRIES.declare(
                             name,
-                            () ->
-                                    name.equals("star_mantle")
-                                            ? new com.mpp.stellaeomphalos.content.item
-                                                    .StarMantleItem()
-                                            : name.equals("crystal_sword")
-                                                    ? new SwordItem(
-                                                            Tiers.DIAMOND,
-                                                            3,
-                                                            -2.4F,
-                                                            new Item.Properties())
-                                                    : new Item(
-                                                            new Item.Properties()
-                                                                    .stacksTo(
-                                                                            name.contains("crystal")
-                                                                                            || name
-                                                                                                    .contains(
-                                                                                                            "tool")
-                                                                                            || name
-                                                                                                    .contains(
-                                                                                                            "wand")
-                                                                                            || name
-                                                                                                    .contains(
-                                                                                                            "mantle")
-                                                                                    ? 1
-                                                                                    : 64))));
+                            () -> switch (name) {
+                                case "geode_pickaxe" -> new com.mpp.stellaeomphalos.content.item.CrystalTools.Pickaxe();
+                                case "geode_axe" -> new com.mpp.stellaeomphalos.content.item.CrystalTools.Axe();
+                                case "geode_shovel" -> new com.mpp.stellaeomphalos.content.item.CrystalTools.Shovel();
+                                case "geode_sword" -> new SwordItem(Tiers.DIAMOND, 3, -2.4F, new Item.Properties());
+                                default -> new Item(new Item.Properties().stacksTo(
+                                        name.contains("crystal") || name.contains("tool")
+                                                || name.contains("wand") ? 1 : 64));
+                            }));
         ModCreativeTabs.ENTRIES.declare(
                 "crafting",
                 () ->
@@ -173,9 +154,7 @@ public final class CraftingContent {
                                         (parameters, output) ->
                                                 ITEMS.forEach(
                                                         (id, item) -> {
-                                                            if (!id.equals(
-                                                                    "asterism_altar_radiance"))
-                                                                output.accept(item.get());
+                                                            output.accept(item.get());
                                                         }))
                                 .build());
         RecipeCatalog.initialize();
@@ -189,7 +168,7 @@ public final class CraftingContent {
     public static final RegistrationGuard<net.minecraft.sounds.SoundEvent> INFUSION_BUBBLE =
             sound("infusion_bubble");
     public static final RegistrationGuard<net.minecraft.sounds.SoundEvent> GRINDWHEEL_SPIN =
-            sound("grindwheel_spin");
+            sound("quern_spin");
 
     private static RegistrationGuard<net.minecraft.sounds.SoundEvent> sound(String name) {
         return ModSounds.ENTRIES.declare(
@@ -266,9 +245,9 @@ public final class CraftingContent {
             return switch (kind) {
                 case "asterism" -> new AsterismAltarBlockEntity(pos, state);
                 case "lumen_infuser" -> new LumenInfuserBlockEntity(pos, state);
-                case "grindwheel" -> new GrindwheelBlockEntity(pos, state);
+                case "quern" -> new GrindwheelBlockEntity(pos, state);
                 case "lumen_well" -> new LumenWellBlockEntity(pos, state);
-                case "lumen_chalice" -> new LumenChaliceBlockEntity(pos, state);
+                case "chalice" -> new LumenChaliceBlockEntity(pos, state);
                 case "light_transmuter" -> new TransmutationCoreBlockEntity(pos, state);
                 default -> new CraftingRelayBlockEntity(pos, state);
             };
@@ -306,14 +285,14 @@ public final class CraftingContent {
                 BlockHitResult hit) {
             if (!(level.getBlockEntity(pos) instanceof AbstractCraftingMachine machine))
                 return InteractionResult.PASS;
-            if (kind.equals("lumen_chalice") || kind.equals("lumen_well")) {
+            if (kind.equals("chalice") || kind.equals("lumen_well")) {
                 if (FluidUtil.interactWithFluidHandler(
                         player, hand, level, pos, hit.getDirection()))
                     return InteractionResult.sidedSuccess(level.isClientSide);
-                if (kind.equals("lumen_chalice")) return InteractionResult.SUCCESS;
+                if (kind.equals("chalice")) return InteractionResult.SUCCESS;
             }
             if (kind.equals("light_transmuter")) return InteractionResult.SUCCESS;
-            if (kind.equals("crafting_relay")) {
+            if (kind.equals("beam_relay")) {
                 if (!level.isClientSide) {
                     var held = player.getItemInHand(hand);
                     if (machine.inventory().getStackInSlot(0).isEmpty() && !held.isEmpty()) {

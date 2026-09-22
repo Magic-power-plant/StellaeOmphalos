@@ -1,0 +1,17 @@
+{
+  "body": "codex.stellaeomphalos.recipe.world.prism_crystal_cluster.body",
+  "kind": "text",
+  "layout": "",
+  "preview_shift": [
+    0,
+    0,
+    0
+  ],
+  "reference": "",
+  "sliceable": false,
+  "title": "codex.stellaeomphalos.recipe.world.prism_crystal_cluster.title",
+  "visible_when": {
+    "blocked": "SILHOUETTE",
+    "tier": "BASIC_CRAFT"
+  }
+}

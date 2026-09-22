@@ -64,6 +64,10 @@ public final class SignBootstrap {
     }
 
     public static void attach(IEventBus modBus) {
+        com.mpp.stellaeomphalos.lumen.transport.LumenDistributionBridge.registerProvider((level, id) -> {
+            var sign = SignRegistry.byId(id);
+            return sign == null ? 0 : SignSkyService.distribution(level, sign);
+        });
         var forge = MinecraftForge.EVENT_BUS;
         forge.addListener(SignBootstrap::addReloadListener);
         forge.addListener(SignBootstrap::levelTick);

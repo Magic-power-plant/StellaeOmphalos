@@ -30,7 +30,9 @@ public final class PendingGeodeRegistration {
             var chunk = level.getChunkSource().getChunkNow(pos.getX() >> 4, pos.getZ() >> 4);
             if (chunk == null) continue;
             QUEUE.remove(entry);
-            if (level.getBlockState(pos).is(WorldContent.GEODE_ORE.get()))
+            // 只有 GEODE 变体进运行期晶簇索引；ASTRAL 是星辉矿，不参与索引。
+            if (!com.mpp.stellaeomphalos.content.block.GeodeOreBlock.isAstral(level.getBlockState(pos))
+                    && level.getBlockState(pos).is(WorldContent.GEODE_ORE.get()))
                 chunk.getCapability(WorldCapabilities.GEODES).ifPresent(i -> i.add(pos));
             processed++;
         }

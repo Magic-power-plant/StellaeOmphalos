@@ -1,0 +1,64 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stellaeomphalos:bore_head",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "tier": "stone"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "stellaeomphalos:bore_head_stone"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stellaeomphalos:bore_head",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "tier": "iron"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "stellaeomphalos:bore_head_iron"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "stellaeomphalos:bore_head",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "tier": "diamond"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "stellaeomphalos:bore_head_diamond"
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}

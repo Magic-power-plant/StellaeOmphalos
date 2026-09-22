@@ -7,7 +7,7 @@
         "include_nbt": {
           "Attuned": true
         },
-        "item": "stellaeomphalos:resonant_crystal"
+        "item": "stellaeomphalos:resonant_geode"
       },
       "E": {
         "item": "minecraft:glass"

@@ -138,7 +138,7 @@ public final class NetworkBootstrap {
                 PayloadRegistry.Direction.TO_SERVER,
                 PktImprintEngrave.class,
                 PktImprintEngrave.CODEC,
-                0);
+                2);
         registry.register(
                 24,
                 PayloadRegistry.Direction.TO_CLIENT,
@@ -305,6 +305,12 @@ public final class NetworkBootstrap {
                 PktCodexPreview.class,
                 PktCodexPreview.CODEC,
                 1);
+        registry.register(53, PayloadRegistry.Direction.TO_SERVER, PktObserveSign.class, PktObserveSign.CODEC, 3);
+        registry.register(54, PayloadRegistry.Direction.TO_CLIENT, PktOpenObservation.class, PktOpenObservation.CODEC, 3);
+        registry.register(55, PayloadRegistry.Direction.TO_SERVER, PktChartDraw.class, PktChartDraw.CODEC, 3);
+        registry.register(56, PayloadRegistry.Direction.TO_CLIENT, PktViewSequence.class, PktViewSequence.CODEC, 3);
+        registry.register(57, PayloadRegistry.Direction.TO_CLIENT, PktGatewayTargets.class, PktGatewayTargets.CODEC, 3);
+        registry.register(58, PayloadRegistry.Direction.TO_SERVER, PktGatewayTravel.class, PktGatewayTravel.CODEC, 3);
         bus.addListener(NetworkBootstrap::setup);
     }
 

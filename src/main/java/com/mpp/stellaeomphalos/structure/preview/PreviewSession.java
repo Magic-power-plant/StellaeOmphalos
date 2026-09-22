@@ -11,6 +11,8 @@ public final class PreviewSession {
     private final BlockPos origin;
     private final long token;
     private int ttl;
+    private int revision;
+    public int revision(){return revision;}
     private final Map<Long, Integer> cells = new LinkedHashMap<>();
 
     public PreviewSession(ResourceLocation id, BlockPos origin, long token, int ttl) {
@@ -42,6 +44,7 @@ public final class PreviewSession {
 
     public void update(long token, boolean reset, List<Long> positions, List<Integer> states) {
         if (this.token != token) return;
+        revision++;
         if (reset) cells.clear();
         for (int i = 0; i < positions.size() && cells.size() < 4096; i++) {
             if (states.get(i) < 0) cells.remove(positions.get(i));

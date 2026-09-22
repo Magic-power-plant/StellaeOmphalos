@@ -21,30 +21,42 @@ public final class WorldContent {
             new LinkedHashMap<>();
     public static final Map<String, RegistrationGuard<? extends Item>> ITEMS =
             new LinkedHashMap<>();
-    public static final RegistrationGuard<Block> STONE =
-            block("stone_set", () -> new StoneSetBlock(false));
-    public static final RegistrationGuard<Block> GEODE_ORE = block("geode_ore", GeodeOreBlock::new),
-            STAR_METAL_ORE =
-                    block(
-                            "star_metal_ore",
-                            () ->
-                                    new Block(
-                                            BlockBehaviour.Properties.of()
-                                                    .strength(3, 9)
-                                                    .requiresCorrectToolForDrops())),
+    /**
+     * 晶簇矿：单个方块 + {@link GeodeOreBlock.Variant} 表达 GEODE / ASTRAL 两个变体（§6.2.1.3）。
+     *
+     * <p>{@link #STAR_METAL_ORE} 不再是独立注册 id，而是同一方块的 ASTRAL 变体访问器，
+     * 保留旧调用点的语义同时满足注册总账"一个 id 两个变体"的要求。
+     */
+    public static final RegistrationGuard<Block> GEODE_ORE =
+            blockWithItem("geode_ore", GeodeOreBlock::new, com.mpp.stellaeomphalos.content.item.GeodeOreItem::new);
+
+    /** ASTRAL 变体的注册守卫视图（与 {@link #GEODE_ORE} 同一方块，便于既有调用点过渡）。 */
+    public static RegistrationGuard<Block> starMetalOre() {
+        return GEODE_ORE;
+    }
+
+    /** 泉头方块（§6.2.1.2 `bore_head`）；物品有三个档位，方块只有一个 id。 */
+    public static RegistrationGuard<Block> BORE_HEAD;
+
+    /** 星辉矿（ASTRAL 变体）的方块状态。 */
+    public static net.minecraft.world.level.block.state.BlockState astralOreState() {
+        return GeodeOreBlock.astralState(GEODE_ORE.get());
+    }
+
+    public static final RegistrationGuard<Block>
             AQUAMARINE =
                     block(
-                            "aquamarine_sand_ore",
+                            "aquamarine_sand",
                             () ->
                                     new FallingBlock(
                                             BlockBehaviour.Properties.of()
                                                     .strength(0.5F)
                                                     .sound(SoundType.SAND))),
-            ASTRAL_CRYSTAL = block("astral_crystal", () -> new CrystalClusterBlock(false)),
-            GEM_CRYSTAL = block("gem_crystal", () -> new CrystalClusterBlock(true)),
+            ASTRAL_CRYSTAL = block("sky_crystal_cluster", () -> new CrystalClusterBlock(false)),
+            GEM_CRYSTAL = block("prism_crystal_cluster", () -> new CrystalClusterBlock(true)),
             GLOW_FLOWER =
                     block(
-                            "glow_flower",
+                            "glowbloom",
                             () ->
                                     new FlowerBlock(
                                             () ->
@@ -89,13 +101,6 @@ public final class WorldContent {
                             net.minecraft.sounds.SoundEvent.createVariableRangeEvent(
                                     new net.minecraft.resources.ResourceLocation(
                                             Omphalos.MODID, sound)));
-        for (String family : List.of("stone_set", "dark_stone_set", "infused_wood_set"))
-            for (String variant :
-                    List.of("raw", "bricks", "pillar", "arch", "chiseled", "engraved", "runed")) {
-                String id = variant.equals("raw") ? family : family + "_" + variant;
-                if (!BLOCKS.containsKey(id))
-                    block(id, () -> new StoneSetBlock(variant.equals("pillar")));
-            }
         for (String tier : List.of("crude", "polished", "resonant", "attuned"))
             block(
                     "rite_amplifier_" + tier,
@@ -103,20 +108,32 @@ public final class WorldContent {
         for (String technical :
                 List.of(
                         "frame_shell",
-                        "ward_block",
-                        "mimic_block",
-                        "flare_light",
+                        "phase_barrier",
+                        "proxy_foliage",
+                        "mirage_shell",
+                        "rupture_anchor",
                         "gate_node",
                         "gate_core",
-                        "world_lamp",
+                        "luminaire",
                         "rite_link",
                         "observatory",
-                        "bore_core",
-                        "bore_head_stone",
-                        "bore_head_iron",
-                        "bore_head_diamond",
-                        "mineral_regenerator",
+                        "fountain",
+                        "ore_regenerator",
                         "placeholder")) block(technical, () -> new TechnicalBlock(technical));
+        // §6.2.1.2 / D-4：泉头是**一个**方块，两个模式变体由 EnumProperty 承载。
+        BORE_HEAD = blockNoItem("bore_head", com.mpp.stellaeomphalos.content.block.BoreHeadBlock::new);
+        for (var tier : com.mpp.stellaeomphalos.content.block.BoreHeadBlock.Tier.values())
+            ITEMS.put(
+                    "bore_head_" + tier.getSerializedName(),
+                    ModItems.ENTRIES.declare(
+                            "bore_head_" + tier.getSerializedName(),
+                            () ->
+                                    new com.mpp.stellaeomphalos.content.item.BoreHeadItem(
+                                            BORE_HEAD.get(),
+                                            com.mpp.stellaeomphalos.content.block.BoreHeadBlock.BoreMode.LIQUID,
+                                            tier)));
+        blockNoItem("glow_mote", () -> new LightMoteBlock(false));
+        blockNoItem("ephemeral_light", () -> new LightMoteBlock(true));
         TECH_ENTITY =
                 ModBlockEntities.ENTRIES.declare(
                         "technical_frame",
@@ -128,13 +145,14 @@ public final class WorldContent {
                                                                 e ->
                                                                         Set.of(
                                                                                         "frame_shell",
-                                                                                        "mimic_block",
+                                                                                        "mirage_shell",
+                                                                                        "proxy_foliage",
                                                                                         "gate_core",
-                                                                                        "world_lamp",
+                                                                                        "luminaire",
                                                                                         "rite_link",
                                                                                         "observatory",
-                                                                                        "bore_core",
-                                                                                        "mineral_regenerator")
+                                                                                        "fountain",
+                                                                                        "ore_regenerator")
                                                                                 .contains(
                                                                                         e.getKey()))
                                                         .map(e -> e.getValue().get())
@@ -143,9 +161,14 @@ public final class WorldContent {
         for (String material :
                 List.of(
                         "aquamarine",
-                        "star_metal_ingot",
-                        "astral_crystal_shard",
-                        "gem_crystal_shard"))
+                        "astral_ingot",
+                        "star_dust",
+                        "prism_shard"))
+            ITEMS.put(
+                    material,
+                    ModItems.ENTRIES.declare(material, () -> new Item(new Item.Properties())));
+        // Part-6 §6.2.2.1：材料族的剩余两项（共鸣宝石、羊皮纸）与既有材料合并为六个独立物品。
+        for (String material : List.of("resonance_gem", "parchment"))
             ITEMS.put(
                     material,
                     ModItems.ENTRIES.declare(material, () -> new Item(new Item.Properties())));
@@ -160,7 +183,48 @@ public final class WorldContent {
                                 .icon(() -> new ItemStack(PEDESTAL.get()))
                                 .displayItems(
                                         (p, out) ->
-                                                ITEMS.values().forEach(i -> out.accept(i.get())))
+                                                {
+                                                    ITEMS.forEach((name, item) -> { if (!name.equals("placeholder")) out.accept(item.get()); });
+                                                    com.mpp.stellaeomphalos.content.block.DecorContent
+                                                            .ITEM_BY_ID
+                                                            .values()
+                                                            .forEach(item -> out.accept(item.get()));
+                                                    out.accept(
+                                                            new ItemStack(
+                                                                    com.mpp.stellaeomphalos.content.block
+                                                                            .PartSixBlocks.COSMETIC_ROCK_ITEM
+                                                                            .get()));
+                                                    out.accept(
+                                                            new ItemStack(
+                                                                    com.mpp.stellaeomphalos.content.block
+                                                                            .PartSixBlocks
+                                                                            .CONSTELLATION_FRAME_ITEM
+                                                                            .get()));
+                                                    com.mpp.stellaeomphalos.content.block
+                                                            .PartSixBlocks.MACHINES
+                                                            .forEach(
+                                                                    machine ->
+                                                                            out.accept(
+                                                                                    new ItemStack(
+                                                                                            machine
+                                                                                                    .get())));
+                                                    // Part-6 §6.2.2：物品总账的其余条目。
+                                                    // `rosewood_bow` 按规划**不进创造页**（遗留物品）。
+                                                    com.mpp.stellaeomphalos.content.item.PartSixItems
+                                                            .ITEMS
+                                                            .forEach(
+                                                                    (id, item) -> {
+                                                                        if (id.equals("rosewood_bow"))
+                                                                            return;
+                                                                        out.accept(
+                                                                                new ItemStack(
+                                                                                        item.get()));
+                                                                    });
+                                                    for (String id : List.of("collector", "lumen_relay", "lumen_battery",
+                                                            "molten_lumen_bucket", "geode_shard", "infused_log"))
+                                                        out.accept(net.minecraftforge.registries.ForgeRegistries.ITEMS.getValue(
+                                                                new net.minecraft.resources.ResourceLocation(Omphalos.MODID, id)));
+                                                })
                                 .build());
     }
 
@@ -194,6 +258,22 @@ public final class WorldContent {
         ITEMS.put(
                 id,
                 ModItems.ENTRIES.declare(id, () -> new BlockItem(b.get(), new Item.Properties())));
+        return b;
+    }
+
+    /** 不可获得的技术方块：只注册方块本体，不产生物品与创造页条目。 */
+    private static RegistrationGuard<Block> blockNoItem(String id, Supplier<Block> factory) {
+        var b = ModBlocks.ENTRIES.declare(id, factory);
+        BLOCKS.put(id, b);
+        return b;
+    }
+
+    /** 需要专用物品形态的方块：物品构造器由调用方给出（如晶簇矿的变体保持）。 */
+    private static <I extends net.minecraft.world.item.Item> RegistrationGuard<Block> blockWithItem(
+            String id, Supplier<Block> factory, java.util.function.Function<Block, I> itemFactory) {
+        var b = ModBlocks.ENTRIES.declare(id, factory);
+        BLOCKS.put(id, b);
+        ITEMS.put(id, ModItems.ENTRIES.declare(id, () -> itemFactory.apply(b.get())));
         return b;
     }
 }

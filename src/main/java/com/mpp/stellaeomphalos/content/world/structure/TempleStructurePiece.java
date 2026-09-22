@@ -55,7 +55,7 @@ public final class TempleStructurePiece extends TemplateStructurePiece {
                 .addProcessor(
                         new PlaceholderProcessor(
                                 WorldContent.BLOCKS
-                                        .get("stone_set_bricks")
+                                        .get("marble_bricks")
                                         .get()
                                         .defaultBlockState()));
     }
@@ -75,7 +75,7 @@ public final class TempleStructurePiece extends TemplateStructurePiece {
         if (!bounds.isInside(p)) return;
         if (marker.equals("treasure")) {
             level.setBlock(
-                    p, WorldContent.BLOCKS.get("mineral_regenerator").get().defaultBlockState(), 2);
+                    p, WorldContent.BLOCKS.get("ore_regenerator").get().defaultBlockState(), 2);
         } else if (marker.equals("gate"))
             level.setBlock(p, WorldContent.BLOCKS.get("gate_core").get().defaultBlockState(), 2);
     }

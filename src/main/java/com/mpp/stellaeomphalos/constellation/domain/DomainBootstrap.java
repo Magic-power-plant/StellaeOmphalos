@@ -35,6 +35,7 @@ public final class DomainBootstrap {
     }
 
     public static void attach(IEventBus modBus) {
+        DomainContent.initialize();
         var forge = MinecraftForge.EVENT_BUS;
         forge.addListener(DomainBootstrap::finalizeSpawn);
         forge.addListener(DomainBootstrap::serverStop);
@@ -64,6 +65,8 @@ public final class DomainBootstrap {
     }
 
     private static void serverStop(ServerStoppingEvent event) {
+        com.mpp.stellaeomphalos.constellation.effect.DomainEffectSoar.revokeAll(event.getServer());
+        com.mpp.stellaeomphalos.constellation.effect.DomainEffectChronos.clearBlacklist();
         DomainSpawnDeny.clear();
         DomainParticles.resetGates();
     }

@@ -83,6 +83,6 @@ public final class FluidInteractionRecipe extends AbstractMachineRecipe {
 
     @Override
     public List<ResourceLocation> catalysts() {
-        return List.of(new ResourceLocation("stellaeomphalos", "lumen_chalice"));
+        return List.of(new ResourceLocation("stellaeomphalos", "chalice"));
     }
 }

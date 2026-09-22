@@ -1,0 +1,487 @@
+{
+  "altar_craft_complete": {
+    "subtitle": "subtitles.stellaeomphalos.altar_craft_complete",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/altar_craft_complete_0",
+        "stream": false,
+        "attenuation_distance": 16
+      },
+      {
+        "name": "stellaeomphalos:event/altar_craft_complete_1",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "altar_craft_loop": {
+    "subtitle": "subtitles.stellaeomphalos.altar_craft_loop",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:machine/altar_craft_loop",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "astrolabe_found": {
+    "subtitle": "subtitles.stellaeomphalos.astrolabe_found",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/astrolabe_found",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "astrolabe_ping": {
+    "subtitle": "subtitles.stellaeomphalos.astrolabe_ping",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/astrolabe_ping",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "attunement": {
+    "subtitle": "subtitles.stellaeomphalos.attunement",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:machine/attunement",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "book_close": {
+    "subtitle": "subtitles.stellaeomphalos.book_close",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/book_close",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "book_flip": {
+    "subtitle": "subtitles.stellaeomphalos.book_flip",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/book_flip",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "boon_seal_break": {
+    "subtitle": "subtitles.stellaeomphalos.boon_seal_break",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/boon_seal_break",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "boon_unlock": {
+    "subtitle": "subtitles.stellaeomphalos.boon_unlock",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/boon_unlock",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "clip_switch": {
+    "subtitle": "subtitles.stellaeomphalos.clip_switch",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/clip_switch",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "codex_close": {
+    "subtitle": "subtitles.stellaeomphalos.codex_close",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/codex_close",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "codex_open": {
+    "subtitle": "subtitles.stellaeomphalos.codex_open",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/codex_open",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "codex_page_turn": {
+    "subtitle": "subtitles.stellaeomphalos.codex_page_turn",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/codex_page_turn",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "codex_search_type": {
+    "subtitle": "subtitles.stellaeomphalos.codex_search_type",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/codex_search_type",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "craft_finish": {
+    "subtitle": "subtitles.stellaeomphalos.craft_finish",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/craft_finish",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "craft_loop": {
+    "subtitle": "subtitles.stellaeomphalos.craft_loop",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:machine/craft_loop",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "crystal_fracture": {
+    "subtitle": "subtitles.stellaeomphalos.crystal_fracture",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/crystal_fracture_0",
+        "stream": false,
+        "attenuation_distance": 16
+      },
+      {
+        "name": "stellaeomphalos:event/crystal_fracture_1",
+        "stream": false,
+        "attenuation_distance": 16
+      },
+      {
+        "name": "stellaeomphalos:event/crystal_fracture_2",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "crystal_grow": {
+    "subtitle": "subtitles.stellaeomphalos.crystal_grow",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/crystal_grow_0",
+        "stream": false,
+        "attenuation_distance": 16
+      },
+      {
+        "name": "stellaeomphalos:event/crystal_grow_1",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "gateway_charge": {
+    "subtitle": "subtitles.stellaeomphalos.gateway_charge",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:machine/gateway_charge",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "gateway_teleport": {
+    "subtitle": "subtitles.stellaeomphalos.gateway_teleport",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/gateway_teleport",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "grindstone_complete": {
+    "subtitle": "subtitles.stellaeomphalos.grindstone_complete",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/grindstone_complete_0",
+        "stream": false,
+        "attenuation_distance": 16
+      },
+      {
+        "name": "stellaeomphalos:event/grindstone_complete_1",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "grindstone_grind_loop": {
+    "subtitle": "subtitles.stellaeomphalos.grindstone_grind_loop",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:machine/grindstone_grind_loop",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "infuser_craft_loop": {
+    "subtitle": "subtitles.stellaeomphalos.infuser_craft_loop",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:machine/infuser_craft_loop",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "infusion_bubble": {
+    "subtitle": "subtitles.stellaeomphalos.infusion_bubble",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/infusion_bubble",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "lumen_collect_loop": {
+    "subtitle": "subtitles.stellaeomphalos.lumen_collect_loop",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:machine/lumen_collect_loop",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "mantle_activate": {
+    "subtitle": "subtitles.stellaeomphalos.mantle_activate",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/mantle_activate",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "meteor_fall": {
+    "subtitle": "subtitles.stellaeomphalos.meteor_fall",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:machine/meteor_fall",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "meteor_impact": {
+    "subtitle": "subtitles.stellaeomphalos.meteor_impact",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/meteor_impact_0",
+        "stream": false,
+        "attenuation_distance": 64
+      },
+      {
+        "name": "stellaeomphalos:event/meteor_impact_1",
+        "stream": false,
+        "attenuation_distance": 64
+      }
+    ]
+  },
+  "quern_spin": {
+    "subtitle": "subtitles.stellaeomphalos.quern_spin",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/quern_spin",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "relay_link": {
+    "subtitle": "subtitles.stellaeomphalos.relay_link",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/relay_link",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "relay_unlink": {
+    "subtitle": "subtitles.stellaeomphalos.relay_unlink",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/relay_unlink",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "resonance_attune": {
+    "subtitle": "subtitles.stellaeomphalos.resonance_attune",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/resonance_attune",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "rite_output": {
+    "subtitle": "subtitles.stellaeomphalos.rite_output",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/rite_output",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "ritual_end": {
+    "subtitle": "subtitles.stellaeomphalos.ritual_end",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/ritual_end",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "ritual_fail": {
+    "subtitle": "subtitles.stellaeomphalos.ritual_fail",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/ritual_fail",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "ritual_loop": {
+    "subtitle": "subtitles.stellaeomphalos.ritual_loop",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:machine/ritual_loop",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "ritual_start": {
+    "subtitle": "subtitles.stellaeomphalos.ritual_start",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/ritual_start",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "shard_reveal": {
+    "subtitle": "subtitles.stellaeomphalos.shard_reveal",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/shard_reveal_0",
+        "stream": false,
+        "attenuation_distance": 16
+      },
+      {
+        "name": "stellaeomphalos:event/shard_reveal_1",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "sign_discover": {
+    "subtitle": "subtitles.stellaeomphalos.sign_discover",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/sign_discover",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "spring_draw": {
+    "subtitle": "subtitles.stellaeomphalos.spring_draw",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/spring_draw",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "structure_break": {
+    "subtitle": "subtitles.stellaeomphalos.structure_break",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/structure_break",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "structure_formed": {
+    "subtitle": "subtitles.stellaeomphalos.structure_formed",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/structure_formed",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "view_sequence_whoosh": {
+    "subtitle": "subtitles.stellaeomphalos.view_sequence_whoosh",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/view_sequence_whoosh",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "wand_augment_switch": {
+    "subtitle": "subtitles.stellaeomphalos.wand_augment_switch",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:event/wand_augment_switch",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  },
+  "well_liquid_loop": {
+    "subtitle": "subtitles.stellaeomphalos.well_liquid_loop",
+    "sounds": [
+      {
+        "name": "stellaeomphalos:machine/well_liquid_loop",
+        "stream": false,
+        "attenuation_distance": 16
+      }
+    ]
+  }
+}

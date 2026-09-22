@@ -23,6 +23,10 @@ import java.util.*;
 
 /** One screen, two disposable pages, one overlay. Opening an overlay leaves the viewport intact. */
 public final class CodexScreen extends Screen {
+    private static final ResourceLocation TEXTURE =
+            new ResourceLocation("stellaeomphalos", "textures/gui/codex.png");
+    private static final int TEXTURE_SIZE = 656;
+
     private record Hit(int x, int y, int width, int height, Runnable action, Component tooltip) {
         boolean contains(double px, double py) {
             return px >= x && py >= y && px < x + width && py < y + height;
@@ -30,12 +34,13 @@ public final class CodexScreen extends Screen {
     }
 
     private final List<Hit> hits = new ArrayList<>();
-    private final CodexRibbonRegistry ribbons = CodexRibbonRegistry.defaults();
-    private final List<String> overlayLines = new ArrayList<>();
+    private final List<net.minecraft.util.FormattedCharSequence> overlayLines = new ArrayList<>();
     private final CodexLookupIndex lookup = new CodexLookupIndex();
     private final String initialRoute;
     private StandardCodexPageView leftPage, rightPage;
     private boolean overview = true, unread, initialized;
+    private long turnStarted;
+    private int pendingTurn;
     private String overlay = "", shardId = "", branchFilter = "", language = "";
     private StudyBranch focused;
     private EditBox query;
@@ -46,6 +51,7 @@ public final class CodexScreen extends Screen {
     public CodexScreen(String route) {
         super(Component.translatable("stellaeomphalos.codex.title"));
         initialRoute = route;
+        com.mpp.stellaeomphalos.client.sound.UiSounds.play("codex_open");
     }
 
     private static Component label(String name) {
@@ -141,6 +147,7 @@ public final class CodexScreen extends Screen {
     }
 
     public boolean navigate(CodexRoute route, boolean history) {
+        if (history && turnStarted == 0) com.mpp.stellaeomphalos.client.sound.UiSounds.play("codex_page_turn");
         if (!readable(route)) return false;
         if (history) ClientKnowledgeCache.NAVIGATOR.push(route);
         else ClientKnowledgeCache.NAVIGATOR.replace(route);
@@ -203,15 +210,9 @@ public final class CodexScreen extends Screen {
                 .find(id)
                 .ifPresent(
                         s -> {
-                            overlayLines.add(I18n.get(s.nameKey()));
-                            overlayLines.add("");
-                            for (String paragraph : I18n.get(s.bodyKey()).split("<NL>"))
-                                font.getSplitter()
-                                        .splitLines(
-                                                paragraph,
-                                                325,
-                                                net.minecraft.network.chat.Style.EMPTY)
-                                        .forEach(line -> overlayLines.add(line.getString()));
+                            overlayLines.add(Component.translatable(s.nameKey()).getVisualOrderText());
+                            overlayLines.add(net.minecraft.util.FormattedCharSequence.EMPTY);
+                            if (I18n.exists(s.bodyKey())) overlayLines.addAll(CodexTextLayout.layout(font,Component.translatable(s.bodyKey()),267).lines());
                         });
     }
 
@@ -224,27 +225,25 @@ public final class CodexScreen extends Screen {
         pose.pushPose();
         pose.scale(uiScale, uiScale, 1);
         pose.translate(left, top, 0);
-        graphics.fill(-3, -3, 397, 273, 0xff201d31);
-        graphics.fill(0, 0, 393, 270, 0xffd7c9a4);
-        graphics.fill(195, 8, 198, 258, 0xff8d795c);
+        graphics.blit(TEXTURE, 0, 0, 393, 270, 0, 0, 393, 270, TEXTURE_SIZE, TEXTURE_SIZE);
         hits.clear();
         if (overview) drawOverview(graphics, mx, my);
-        else drawPages(graphics, mx, my);
-        int y = 20;
-        for (var ribbon : ribbons.all()) {
-            int yy = y;
-            button(
-                    graphics,
-                    397,
-                    yy,
-                    32,
-                    22,
-                    label(ribbon.name()),
-                    () -> ribbon(ribbon.name()),
-                    mx,
-                    my);
-            y += CodexLayout.RIBBON_STEP;
+        else {
+            float scale=1;
+            if (turnStarted!=0) {
+                double phase=Math.min(1,(net.minecraft.Util.getMillis()-turnStarted)/320.0);
+                if(phase>=.5&&pendingTurn!=0){int delta=pendingTurn;pendingTurn=0;applyTurn(delta);}
+                scale=(float)Math.max(.02,Math.abs(phase*2-1));
+                if(phase>=1)turnStarted=0;
+            }
+            pose.pushPose();pose.translate(196,0,0);pose.scale(scale,1,1);pose.translate(-196,0,0);
+            drawPages(graphics,mx,my);pose.popPose();
         }
+        graphics.blit(TEXTURE, 160, 0, 48, 304, 160, 289, 48, 304, TEXTURE_SIZE, TEXTURE_SIZE);
+        mark(graphics, "study", false, 32, mx, my);
+        mark(graphics, "signs", false, 80, mx, my);
+        mark(graphics, "boons", true, 32, mx, my);
+        mark(graphics, "lore", true, 80, mx, my);
         button(
                 graphics,
                 5,
@@ -269,6 +268,8 @@ public final class CodexScreen extends Screen {
                 mx,
                 my);
         button(graphics, 331, 249, 57, 16, label("close"), this::onClose, mx, my);
+        button(graphics, 240, 249, 42, 16, label("search"), () -> ribbon("search"), mx, my);
+        button(graphics, 286, 249, 42, 16, label("milestones"), () -> ribbon("milestones"), mx, my);
         if (!overview && overlay.isEmpty()) {
             button(graphics, 155, 249, 24, 16, Component.literal("<"), () -> turn(-2), mx, my);
             button(graphics, 213, 249, 24, 16, Component.literal(">"), () -> turn(2), mx, my);
@@ -291,7 +292,7 @@ public final class CodexScreen extends Screen {
     }
 
     private void drawPages(GuiGraphics g, double mx, double my) {
-        long tick = System.nanoTime() / 50000000L;
+        long tick = OmphalosConfig.CLIENT.flag("codex.animations") ? System.nanoTime() / 50000000L : 0;
         if (leftPage != null)
             leftPage.draw(
                     new CodexDrawContext(g, CodexLayout.LEFT, CodexLayout.TOP, (int) mx, (int) my),
@@ -462,12 +463,8 @@ public final class CodexScreen extends Screen {
                 overview = true;
                 closeOverlay();
             }
-            case "signs" -> {
-                branchFilter = "ATTUNEMENT";
-                openOverlay("search");
-                query.setValue(I18n.get("stellaeomphalos.codex.sign_search"));
-            }
-            case "boons" -> openOverlay("boons");
+            case "signs" -> minecraft.setScreen(new com.mpp.stellaeomphalos.client.screen.CelestialScreen(this, com.mpp.stellaeomphalos.client.screen.CelestialScreen.Mode.SIGN_LIST));
+            case "boons" -> minecraft.setScreen(new com.mpp.stellaeomphalos.client.screen.BoonTreeScreen(this));
             case "lore" -> openOverlay("lore");
             case "milestones" -> {
                 OmphalosClient.sendDependent(new PktKnowledgeQuery("gauges"));
@@ -566,9 +563,11 @@ public final class CodexScreen extends Screen {
                 hits.add(new Hit(20, y, 335, 10, () -> shard(id.toString()), Component.empty()));
             }
         } else if (overlay.equals("shard")) {
+            g.blit(TEXTURE, 22, 20, 48, 156, 160, 289, 48, 156, TEXTURE_SIZE, TEXTURE_SIZE);
+            g.blit(TEXTURE, 22, 176, 48, 63, 160, 530, 48, 63, TEXTURE_SIZE, TEXTURE_SIZE);
             int row = 0;
             for (var line : overlayLines.stream().skip(scroll).limit(18).toList())
-                g.drawString(font, line, 23, 45 + row++ * 10, 0xff463351, false);
+                g.drawString(font, line, 80, 45 + row++ * 10, 0xff463351, false);
         } else if (overlay.equals("gauges")) {
             g.drawString(font, label("gauges"), 24, 26, 0xff463351, false);
             var list =
@@ -651,6 +650,20 @@ public final class CodexScreen extends Screen {
         }
     }
 
+    private void mark(GuiGraphics g, String name, boolean leftSide, int y, double mx, double my) {
+        var hit =
+                new Hit(
+                        leftSide ? -17 : 386, y + 16, leftSide ? 25 : 23, 22,
+                        () -> ribbon(name), label(name));
+        hits.add(hit);
+        boolean stretched =
+                hit.contains(mx, my) || (overview ? name.equals("study") : name.equals(overlay));
+        int w = stretched ? 66 : 34;
+        int u = leftSide ? (stretched ? 542 : 622) : (stretched ? 448 : 400);
+        int x = leftSide ? (stretched ? -49 : -17) : 376;
+        g.blit(TEXTURE, x, y, w, 48, u, y, w, 48, TEXTURE_SIZE, TEXTURE_SIZE);
+    }
+
     private void button(
             GuiGraphics g,
             int x,
@@ -672,7 +685,15 @@ public final class CodexScreen extends Screen {
         g.pose().popPose();
     }
 
+    @Override public void onClose() {
+        com.mpp.stellaeomphalos.client.sound.UiSounds.play("codex_close");super.onClose();
+    }
     private void turn(int delta) {
+        if(turnStarted!=0)return;
+        if(OmphalosConfig.CLIENT.flag("codex.animations")){pendingTurn=delta;turnStarted=net.minecraft.Util.getMillis();com.mpp.stellaeomphalos.client.sound.UiSounds.play("codex_page_turn");}
+        else applyTurn(delta);
+    }
+    private void applyTurn(int delta) {
         ClientKnowledgeCache.NAVIGATOR
                 .current()
                 .ifPresent(

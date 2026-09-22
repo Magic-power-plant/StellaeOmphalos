@@ -4,7 +4,7 @@
   "grid": {
     "key": {
       "C": {
-        "item": "stellaeomphalos:star_lens"
+        "item": "stellaeomphalos:lens_blank"
       },
       "E": {
         "item": "minecraft:green_dye"
@@ -19,7 +19,7 @@
   "lumen": 1400,
   "result": {
     "fallback": {
-      "item": "stellaeomphalos:star_lens"
+      "item": "stellaeomphalos:lens_blank"
     },
     "kind": "inherit",
     "ops": [

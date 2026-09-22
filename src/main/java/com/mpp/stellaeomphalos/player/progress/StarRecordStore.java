@@ -15,6 +15,8 @@ public final class StarRecordStore extends SavedData {
     private final Map<String, Tag> preserved = new LinkedHashMap<>();
     private final StarRecordIO io;
     private final java.util.function.Consumer<String> notices;
+    private final CompoundTag futureArchive;
+    private final StarRecord unavailable = new FakeStarRecord();
     private int failures;
     private long seedCounter;
     private long poolSeed;
@@ -23,10 +25,14 @@ public final class StarRecordStore extends SavedData {
 
     public StarRecordStore(
             CompoundTag tag, StarRecordIO io, java.util.function.Consumer<String> notices) {
-        if (tag.getInt("DataVersion") > 1)
-            throw new IllegalArgumentException("Future star archive version; file preserved");
         this.io = io;
         this.notices = notices;
+        futureArchive = tag.getInt("DataVersion") > 1 ? tag.copy() : null;
+        if (futureArchive != null) {
+            LogUtils.getLogger().warn("Future star archive version {}; opened read-only", tag.getInt("DataVersion"));
+            notices.accept("future_version");
+            return;
+        }
         seedCounter = tag.getLong("SeedCounter");
         poolSeed =
                 tag.contains("ShardPoolSeed")
@@ -60,6 +66,7 @@ public final class StarRecordStore extends SavedData {
     }
 
     public StarRecord record(UUID id) {
+        if (futureArchive != null) return unavailable;
         if (preserved.containsKey(id.toString())) return new FakeStarRecord();
         return records.computeIfAbsent(
                 id,
@@ -70,7 +77,7 @@ public final class StarRecordStore extends SavedData {
     }
 
     public boolean contains(UUID id) {
-        return records.containsKey(id) || preserved.containsKey(id.toString());
+        return futureArchive != null || records.containsKey(id) || preserved.containsKey(id.toString());
     }
 
     public long poolSeed() {
@@ -82,21 +89,25 @@ public final class StarRecordStore extends SavedData {
     }
 
     public void claim(net.minecraft.resources.ResourceLocation id) {
+        if (futureArchive != null) return;
         if (publicClaims.add(id)) setDirty();
     }
 
     public void renewPool(Collection<net.minecraft.resources.ResourceLocation> eligible) {
+        if (futureArchive != null) return;
         publicClaims.removeAll(eligible);
         setDirty();
     }
 
     public long nextSeed() {
+        if (futureArchive != null) return seedCounter;
         setDirty();
         return ++seedCounter;
     }
 
     @Override
     public CompoundTag save(CompoundTag tag) {
+        if (futureArchive != null) return futureArchive.copy();
         var players = new CompoundTag();
         records.forEach((id, record) -> players.put(id.toString(), record.save()));
         preserved.forEach((key, value) -> players.put(key, value.copy()));
@@ -110,7 +121,7 @@ public final class StarRecordStore extends SavedData {
 
     @Override
     public void save(File file) {
-        if (!isDirty()) return;
+        if (futureArchive != null || !isDirty()) return;
         if (io.write(file.toPath(), save(new CompoundTag()))) {
             failures = 0;
             setDirty(false);

@@ -15,16 +15,42 @@ import java.util.*;
 /** No recursive loads. Missing neighbors defer a phase, successful phases alone receive stamps. */
 public final class RetroGenPlan {
     private final ServerLevel level;
-    private final Map<ChunkPos, Integer> queue = new LinkedHashMap<>();
+    private final QueueData saved;
+    private final Map<ChunkPos, Integer> queue;
+
+    /** Pending work is separate from the per-chunk completed-phase stamps. */
+    public static final class QueueData extends net.minecraft.world.level.saveddata.SavedData {
+        private final Map<ChunkPos, Integer> entries = new LinkedHashMap<>();
+        public static QueueData load(net.minecraft.nbt.CompoundTag tag) {
+            var data = new QueueData();
+            for (var value : tag.getList("Pending", net.minecraft.nbt.Tag.TAG_COMPOUND)) {
+                if (data.entries.size() >= 16384) break;
+                var entry = (net.minecraft.nbt.CompoundTag) value;
+                data.entries.put(new ChunkPos(entry.getLong("Chunk")), Math.max(0, Math.min(40, entry.getInt("Retries"))));
+            }
+            return data;
+        }
+        @Override public net.minecraft.nbt.CompoundTag save(net.minecraft.nbt.CompoundTag tag) {
+            var list = new net.minecraft.nbt.ListTag();
+            entries.forEach((pos, retries) -> {
+                var entry = new net.minecraft.nbt.CompoundTag();
+                entry.putLong("Chunk", pos.toLong()); entry.putInt("Retries", retries); list.add(entry);
+            });
+            tag.put("Pending", list);
+            return tag;
+        }
+    }
     private boolean running;
     private int processed, skipped;
 
     public RetroGenPlan(ServerLevel level) {
         this.level = level;
+        saved = level.getDataStorage().computeIfAbsent(QueueData::load, QueueData::new, "stellaeomphalos_retrogen_queue");
+        queue = saved.entries;
     }
 
     public void enqueue(ChunkPos p) {
-        if (queue.size() < 16384) queue.putIfAbsent(p, 0);
+        if (queue.size() < 16384 && queue.putIfAbsent(p, 0) == null) saved.setDirty();
     }
 
     public int queued() {
@@ -61,15 +87,14 @@ public final class RetroGenPlan {
                                             .min()
                                             .orElse(0)));
             for (var p : candidates) {
-                if (budget-- <= 0 || System.nanoTime() >= deadline) break;
-                int retries = queue.remove(p);
+                if (budget <= 0 || System.nanoTime() >= deadline) break;
                 var chunk = level.getChunkSource().getChunkNow(p.x, p.z);
-                if (chunk == null) {
-                    skipped++;
-                    continue;
-                }
+                if (chunk == null) continue;
                 var stamp = chunk.getCapability(WorldCapabilities.STAMP).orElse(null);
-                if (stamp == null || !stamp.terrainPopulated()) continue;
+                if (stamp == null || !stamp.terrainPopulated() || !neighbors(p)) continue;
+                budget--;
+                int retries = queue.remove(p);
+                saved.setDirty();
                 boolean deferred = false;
                 for (var phase : WorldGenPhase.values()) {
                     if (!stamp.missing(phase)) continue;
@@ -172,8 +197,8 @@ public final class RetroGenPlan {
         List<String> names =
                 phase == WorldGenPhase.ORES
                         ? List.of(
-                                "geode_ore", "star_metal_ore", "aquamarine_sand_ore", "marble_vein")
-                        : List.of("glow_flower_patch", "astral_crystal_patch", "gem_crystal_patch");
+                                "geode_ore", "astral_ore", "aquamarine_sand", "marble_vein")
+                        : List.of("glowbloom_patch", "sky_crystal_cluster_patch", "prism_crystal_cluster_patch");
         for (var name : names) {
             var feature = registry.get(new ResourceLocation("stellaeomphalos", name));
             if (feature != null)

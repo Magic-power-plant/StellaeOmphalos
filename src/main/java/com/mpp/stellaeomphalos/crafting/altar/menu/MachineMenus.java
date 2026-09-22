@@ -15,7 +15,7 @@ public final class MachineMenus {
     public static final RegistrationGuard<MenuType<WorkbenchAnchorMenu>> WORKBENCH;
 
     static {
-        for (String name : List.of("asterism", "lumen_infuser", "grindwheel", "lumen_well"))
+        for (String name : List.of("asterism", "lumen_infuser", "quern", "lumen_well"))
             TYPES.put(
                     name,
                     ModMenus.ENTRIES.declare(

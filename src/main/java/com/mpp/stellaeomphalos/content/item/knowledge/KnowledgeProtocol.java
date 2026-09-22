@@ -43,7 +43,16 @@ public final class KnowledgeProtocol {
         services.throttlePolicy(PktKnowledgeQuery.class, 49, 2, .1);
         services.throttlePolicy(PktBoonAction.class, 51, 2, .1);
         services.throttlePolicy(PktCodexPreview.class, 52, 1, .1);
+        services.throttlePolicy(PktObserveSign.class, 53, 1, .1);
+        services.throttlePolicy(PktChartDraw.class, 55, 1, .1);
         var handlers = services.handlers();
+        handlers.register(PktObserveSign.class, (player, packet) -> ObservationProtocol.observe(player, packet));
+        handlers.register(PktChartDraw.class, (player, packet) -> {
+            if (player.containerMenu instanceof com.mpp.stellaeomphalos.content.menu.PartSixMenus.StarChartTableMenu menu
+                    && menu.containerId==packet.container() && menu.pos().equals(packet.origin()) && menu.stillValid(player)
+                    && player.level().getBlockEntity(packet.origin()) instanceof com.mpp.stellaeomphalos.content.block.PartSixBlocks.MachineBlockEntity machine)
+                machine.drawChart(player, packet.strokes());
+        });
         handlers.register(
                 PktRevealShard.class,
                 (p, packet) ->
@@ -86,9 +95,29 @@ public final class KnowledgeProtocol {
                         case "unlock" -> progress.unlock(p, packet.node());
                         case "seal" -> progress.setSealed(p, packet.node(), true);
                         case "unseal" -> progress.setSealed(p, packet.node(), false);
+                        case "socket" -> socketHeld(p, packet.node());
+                        case "unsocket" -> progress.unsocket(p, packet.node());
                         default -> {}
                     }
                 });
+    }
+
+    /** Consume exactly one server-held gem only after validation; occupied sockets reject replacement. */
+    public static boolean socketHeld(net.minecraft.server.level.ServerPlayer player, net.minecraft.resources.ResourceLocation nodeId) {
+        var progress = BoonProgress.getServer(player);
+        if (player instanceof FakePlayer || !StarRecords.get(player).valid()
+                || !com.mpp.stellaeomphalos.constellation.boon.BoonTree.ready()
+                || !progress.hasNode(nodeId) || progress.isSealed(nodeId)) return false;
+        var node = com.mpp.stellaeomphalos.constellation.boon.BoonTree.get().node(nodeId);
+        if (!(node instanceof com.mpp.stellaeomphalos.constellation.boon.SocketBoonNode socket)
+                || !socket.contained(progress.nodeData(nodeId)).isEmpty()) return false;
+        var held = player.getMainHandItem();
+        if (!socket.accepts(held)) return false;
+        if (!progress.socket(player, nodeId, held)) return false;
+        held.shrink(1);
+        player.getInventory().setChanged();
+        player.containerMenu.broadcastChanges();
+        return true;
     }
 
     public static void clear() {
@@ -263,6 +292,21 @@ public final class KnowledgeProtocol {
                 signs.put(sign.id().toString(), stars);
             }
             definitions.put("Signs", signs);
+            var geometry=new CompoundTag();
+            for(var sign:com.mpp.stellaeomphalos.constellation.sign.SignRegistry.all()) {
+                var entry=new CompoundTag();entry.putInt("Number",com.mpp.stellaeomphalos.constellation.sign.SignRegistry.numericId(sign));
+                entry.putInt("Color",sign.renderColor());entry.putBoolean("Major",sign instanceof com.mpp.stellaeomphalos.constellation.sign.MajorSign);
+                entry.put("Stars",signs.getList(sign.id().toString(),Tag.TAG_COMPOUND).copy());
+                var edges=new ListTag();for(var edge:sign.lines()){
+                    var value=new CompoundTag();value.putInt("AX",edge.a().x());value.putInt("AY",edge.a().y());value.putInt("BX",edge.b().x());value.putInt("BY",edge.b().y());edges.add(value);
+                }
+                entry.put("Edges",edges);geometry.put(sign.id().toString(),entry);
+            }
+            definitions.put("SignGeometry",geometry);
+            var signIds = new CompoundTag();
+            for (var sign : com.mpp.stellaeomphalos.constellation.sign.SignRegistry.all())
+                signIds.putInt(sign.id().toString(), com.mpp.stellaeomphalos.constellation.sign.SignRegistry.numericId(sign));
+            definitions.put("SignIds", signIds);
             var blueprints = new CompoundTag();
             com.mpp.stellaeomphalos.structure.pattern.BlueprintRegistry.all()
                     .forEach(
@@ -321,14 +365,18 @@ public final class KnowledgeProtocol {
         if (!net.minecraft.core.registries.BuiltInRegistries.ITEM
                 .getKey(player.getMainHandItem().getItem())
                 .getPath()
-                .equals("resonator")) return;
+                .equals("sky_resonator")) return;
+        var upgrades = player.getMainHandItem().getOrCreateTag().getList("Upgrades", Tag.TAG_STRING);
+        boolean extended = upgrades.contains(StringTag.valueOf("stellaeomphalos:range"));
+        boolean precise = upgrades.contains(StringTag.valueOf("stellaeomphalos:precision"));
+        int sectors = precise ? 16 : 8;
         var entries = new ListTag();
         for (var entity :
                 player
                         .serverLevel()
                         .getEntitiesOfClass(
                                 net.minecraft.world.entity.LivingEntity.class,
-                                player.getBoundingBox().inflate(24),
+                                player.getBoundingBox().inflate(extended ? 48 : 24),
                                 e -> e != player && e.isAlive())
                         .stream()
                         .limit(64)
@@ -338,7 +386,8 @@ public final class KnowledgeProtocol {
             entry.putString("Kind", "LIVING");
             entry.putInt(
                     "Direction",
-                    Math.floorMod((int) Math.round(Math.atan2(dz, dx) / Math.PI * 4), 8));
+                    Math.floorMod((int) Math.round(Math.atan2(dz, dx) / Math.PI * sectors / 2), sectors));
+            entry.putInt("Sectors", sectors);
             entry.putString(
                     "Distance",
                     entity.distanceToSqr(player) < 64

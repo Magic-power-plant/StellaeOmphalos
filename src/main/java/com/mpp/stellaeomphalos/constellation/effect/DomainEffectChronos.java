@@ -50,6 +50,8 @@ public final class DomainEffectChronos extends DomainPositionCache<SimplePosEntr
         whitelist = java.util.Objects.requireNonNull(predicate);
     }
 
+    public static void clearBlacklist() { BLACKLIST.clear(); }
+
     public static boolean blacklisted(ResourceLocation blockEntityType) {
         return BLACKLIST.contains(blockEntityType);
     }
@@ -111,6 +113,7 @@ public final class DomainEffectChronos extends DomainPositionCache<SimplePosEntr
             } catch (RuntimeException exception) {
                 var id = ForgeRegistries.BLOCK_ENTITY_TYPES.getKey(entity.getType());
                 if (id != null) {
+                    BLACKLIST.add(id);
                     com.mpp.stellaeomphalos.core.platform.WorldBehaviorBridge.tables()
                             .failedAcceleration(level, entity, exception);
                     LogUtils.getLogger()

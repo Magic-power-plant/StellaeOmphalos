@@ -1,0 +1,44 @@
+{
+  "variants": {
+    "variant=arch": {
+      "model": "stellaeomphalos:block/infused_wood_arch"
+    },
+    "variant=bricks": {
+      "model": "stellaeomphalos:block/infused_wood"
+    },
+    "variant=chiseled": {
+      "model": "stellaeomphalos:block/infused_wood"
+    },
+    "variant=engraved": {
+      "model": "stellaeomphalos:block/infused_wood_engraved"
+    },
+    "variant=enriched": {
+      "model": "stellaeomphalos:block/infused_wood_enriched"
+    },
+    "variant=infused": {
+      "model": "stellaeomphalos:block/infused_wood_infused"
+    },
+    "variant=pillar,top=false,bottom=false": {
+      "model": "stellaeomphalos:block/infused_wood_pillar"
+    },
+    "variant=pillar,top=false,bottom=true": {
+      "model": "stellaeomphalos:block/infused_wood_pillar"
+    },
+    "variant=pillar,top=true,bottom=false": {
+      "model": "stellaeomphalos:block/infused_wood_pillar",
+      "x": 180
+    },
+    "variant=pillar,top=true,bottom=true": {
+      "model": "stellaeomphalos:block/infused_wood_pillar"
+    },
+    "variant=planks": {
+      "model": "stellaeomphalos:block/infused_wood_planks"
+    },
+    "variant=raw": {
+      "model": "stellaeomphalos:block/infused_wood"
+    },
+    "variant=runed": {
+      "model": "stellaeomphalos:block/infused_wood"
+    }
+  }
+}

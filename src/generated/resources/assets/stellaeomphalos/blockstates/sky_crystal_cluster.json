@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "stage=0,aspect=0": {
+      "model": "stellaeomphalos:block/sky_crystal_cluster_0"
+    },
+    "stage=0,aspect=1": {
+      "model": "stellaeomphalos:block/sky_crystal_cluster_0"
+    },
+    "stage=0,aspect=2": {
+      "model": "stellaeomphalos:block/sky_crystal_cluster_0"
+    },
+    "stage=1,aspect=0": {
+      "model": "stellaeomphalos:block/sky_crystal_cluster_1"
+    },
+    "stage=1,aspect=1": {
+      "model": "stellaeomphalos:block/sky_crystal_cluster_1"
+    },
+    "stage=1,aspect=2": {
+      "model": "stellaeomphalos:block/sky_crystal_cluster_1"
+    },
+    "stage=2,aspect=0": {
+      "model": "stellaeomphalos:block/sky_crystal_cluster_2"
+    },
+    "stage=2,aspect=1": {
+      "model": "stellaeomphalos:block/sky_crystal_cluster_2"
+    },
+    "stage=2,aspect=2": {
+      "model": "stellaeomphalos:block/sky_crystal_cluster_2"
+    },
+    "stage=3,aspect=0": {
+      "model": "stellaeomphalos:block/sky_crystal_cluster_3"
+    },
+    "stage=3,aspect=1": {
+      "model": "stellaeomphalos:block/sky_crystal_cluster_3"
+    },
+    "stage=3,aspect=2": {
+      "model": "stellaeomphalos:block/sky_crystal_cluster_3"
+    },
+    "stage=4,aspect=0": {
+      "model": "stellaeomphalos:block/sky_crystal_cluster_4"
+    },
+    "stage=4,aspect=1": {
+      "model": "stellaeomphalos:block/sky_crystal_cluster_4"
+    },
+    "stage=4,aspect=2": {
+      "model": "stellaeomphalos:block/sky_crystal_cluster_4"
+    }
+  }
+}

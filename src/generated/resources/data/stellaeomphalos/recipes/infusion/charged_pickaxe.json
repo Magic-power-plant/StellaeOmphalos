@@ -2,11 +2,11 @@
   "type": "stellaeomphalos:lumen_infusion",
   "duration": 200,
   "input": {
-    "item": "stellaeomphalos:crystal_pickaxe"
+    "item": "stellaeomphalos:geode_pickaxe"
   },
   "result": {
     "fallback": {
-      "item": "stellaeomphalos:crystal_pickaxe"
+      "item": "stellaeomphalos:geode_pickaxe"
     },
     "kind": "inherit",
     "ops": [

@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "rotation=0": {
+      "model": "stellaeomphalos:block/spyglass_0",
+      "y": 180
+    },
+    "rotation=1": {
+      "model": "stellaeomphalos:block/spyglass_1",
+      "y": 180
+    },
+    "rotation=2": {
+      "model": "stellaeomphalos:block/spyglass_0",
+      "y": 270
+    },
+    "rotation=3": {
+      "model": "stellaeomphalos:block/spyglass_1",
+      "y": 270
+    },
+    "rotation=4": {
+      "model": "stellaeomphalos:block/spyglass_0",
+      "y": 0
+    },
+    "rotation=5": {
+      "model": "stellaeomphalos:block/spyglass_1",
+      "y": 0
+    },
+    "rotation=6": {
+      "model": "stellaeomphalos:block/spyglass_0",
+      "y": 90
+    },
+    "rotation=7": {
+      "model": "stellaeomphalos:block/spyglass_1",
+      "y": 90
+    }
+  }
+}
