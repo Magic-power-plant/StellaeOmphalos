@@ -86,7 +86,7 @@ public final class CodexScreen extends Screen {
             initialized = true;
             var route = CodexRoute.parse(initialRoute);
             if (route.isPresent()) navigate(route.get(), false);
-            else ClientKnowledgeCache.NAVIGATOR.current().ifPresent(r -> navigate(r, false));
+            else restoreView();
         }
         layoutPages();
         layoutOverlay();
@@ -96,6 +96,24 @@ public final class CodexScreen extends Screen {
     public void refresh() {
         refreshedRevision = -1;
         refreshedEpoch = -1;
+    }
+
+    /** Reopen where the player left off: live view state first, persisted route only on first open. */
+    private void restoreView() {
+        var view = ClientKnowledgeCache.codexOverview();
+        if (view.isPresent()) {
+            if (view.get()) {
+                overview = true;
+                return;
+            }
+            var current = ClientKnowledgeCache.NAVIGATOR.current();
+            if (current.isPresent()) {
+                navigate(current.get(), false);
+                return;
+            }
+        }
+        CodexRoute.parse(ClientKnowledgeCache.record().lastRoute())
+                .ifPresent(r -> navigate(r, false));
     }
 
     private GateContext context() {
@@ -296,18 +314,15 @@ public final class CodexScreen extends Screen {
     }
 
     private void drawOverview(GuiGraphics g, double mx, double my) {
-        g.fill(12, 18, 380, 241, 0xff191a31);
         g.enableScissor(
                 (int) ((left + 12) * uiScale),
                 (int) ((top + 18) * uiScale),
                 (int) ((left + 380) * uiScale),
                 (int) ((top + 241) * uiScale));
-        // Original deterministic stars, shared by every zoom stage so the canvas never exposes
-        // blank margins.
-        for (int i = 0; i < 80; i++) {
-            int sx = 15 + Math.floorMod(i * 137, 361), sy = 22 + Math.floorMod(i * 83, 213);
-            g.fill(sx, sy, sx + 1, sy + 1, 0xff585a83);
-        }
+        if (overlay.isEmpty())
+            com.mpp.stellaeomphalos.client.screen.StarfieldBackdrop.renderRegion(
+                    g, 12, 18, 368, 223, (int) mx, (int) my, uiScale);
+        else g.fill(12, 18, 380, 241, 0xff070b14);
         var canvas = ClientKnowledgeCache.CANVAS;
         canvas.bounds(512, 512, 368, 223);
         canvas.centerStep(
@@ -474,7 +489,18 @@ public final class CodexScreen extends Screen {
                                 && hit.x() + hit.width() > 14
                                 && hit.y() < 239
                                 && hit.y() + hit.height() > 20);
-        g.fill(14, 20, 379, 239, 0xffeee0bb);
+        boolean starry = overlay.equals("signs") || overlay.equals("sign");
+        if (starry) {
+            g.enableScissor(
+                    (int) ((left + 14) * uiScale),
+                    (int) ((top + 20) * uiScale),
+                    (int) ((left + 379) * uiScale),
+                    (int) ((top + 239) * uiScale));
+            com.mpp.stellaeomphalos.client.screen.StarfieldBackdrop.renderRegion(
+                    g, 14, 20, 365, 219, (int) mx, (int) my, uiScale);
+        } else {
+            g.fill(14, 20, 379, 239, 0xffeee0bb);
+        }
         button(g, 330, 22, 46, 16, label("close"), this::closeOverlay, mx, my);
         if (overlay.equals("search")) {
             button(
@@ -595,7 +621,7 @@ public final class CodexScreen extends Screen {
                 hits.add(new Hit(20, y, 335, 11, () -> {}, detail));
             }
         } else if (overlay.equals("signs")) {
-            g.drawString(font, label("signs"), 24, 26, 0xff463351, false);
+            g.drawString(font, label("signs"), 24, 26, 0xe8d9b8, false);
             var ids = new TreeSet<ResourceLocation>(ClientKnowledgeCache.record().knownSigns());
             ids.addAll(ClientKnowledgeCache.record().seenSigns());
             int cell = 0;
@@ -604,27 +630,18 @@ public final class CodexScreen extends Screen {
                 if (sign == null) continue;
                 int x = 20 + (cell % 4) * 88, y = 42 + (cell / 4) * 94;
                 cell++;
-                g.fill(x + 1, y + 1, x + 83, y + 79, 0xffe2cfa2);
-                int extent = 66;
-                for (var line : sign.lines())
-                    com.mpp.stellaeomphalos.client.screen.CelestialScreen.line(
-                            g,
-                            x + 9 + line.a().x() * extent / 31,
-                            y + 6 + line.a().y() * extent / 31,
-                            x + 9 + line.b().x() * extent / 31,
-                            y + 6 + line.b().y() * extent / 31,
-                            0xff8a7ab8);
-                for (var point : sign.stars()) {
-                    int sx = x + 9 + point.x() * extent / 31, sy = y + 6 + point.y() * extent / 31;
-                    g.fill(sx - 1, sy - 1, sx + 2, sy + 2, 0xff584a80);
-                }
+                boolean hover = mx >= x && mx < x + 84 && my >= y && my < y + 92;
+                com.mpp.stellaeomphalos.client.screen.CelestialScreen.chartPanel(
+                        g, x + 3, y + 3, 78, hover ? 0xffb8a7d8 : 0xff857397);
+                com.mpp.stellaeomphalos.client.screen.CelestialScreen.chart(
+                        g, sign, x + 9, y + 6, 66);
                 g.drawCenteredString(
                         font,
                         Component.literal(
                                 font.plainSubstrByWidth(sign.displayName().getString(), 80)),
                         x + 42,
                         y + 83,
-                        0xff463351);
+                        0xffd5c6a8);
                 hits.add(
                         new Hit(
                                 x,
@@ -644,25 +661,15 @@ public final class CodexScreen extends Screen {
                             : com.mpp.stellaeomphalos.client.sign.SignDefinitionMirror.byId(
                                     signFocus);
             if (sign == null) {
-                g.drawString(font, label("missing"), 24, 26, 0xff772222, false);
+                g.drawString(font, label("missing"), 24, 26, 0xffca5f70, false);
             } else {
-                g.drawCenteredString(font, sign.displayName(), 196, 27, 0xff463351);
+                g.drawCenteredString(font, sign.displayName(), 196, 27, 0xbddaff);
                 int size = 168;
                 int sx = 196 - size / 2, sy = 42;
-                g.fill(sx - 3, sy - 3, sx + size + 3, sy + size + 3, 0xff857397);
-                g.fill(sx, sy, sx + size, sy + size, 0xb8111827);
-                for (var point : sign.stars()) {
-                    int px = sx + point.x() * size / 31, py = sy + point.y() * size / 31;
-                    g.fill(px - 1, py - 1, px + 2, py + 2, 0xffdfedff);
-                }
-                for (var line : sign.lines())
-                    com.mpp.stellaeomphalos.client.screen.CelestialScreen.line(
-                            g,
-                            sx + line.a().x() * size / 31,
-                            sy + line.a().y() * size / 31,
-                            sx + line.b().x() * size / 31,
-                            sy + line.b().y() * size / 31,
-                            0xffa2bfe4);
+                com.mpp.stellaeomphalos.client.screen.CelestialScreen.chartPanel(
+                        g, sx, sy, size, 0xff857397);
+                com.mpp.stellaeomphalos.client.screen.CelestialScreen.chart(
+                        g, sign, sx, sy, size);
             }
         } else if (overlay.equals("boons")) {
             var boon = BoonMirror.view();
@@ -712,6 +719,7 @@ public final class CodexScreen extends Screen {
                                 Component.empty()));
             }
         }
+        if (starry) g.disableScissor();
     }
 
     private String activeMark() {
@@ -761,6 +769,7 @@ public final class CodexScreen extends Screen {
     }
 
     @Override public void onClose() {
+        ClientKnowledgeCache.codexOverview(overview);
         com.mpp.stellaeomphalos.client.sound.UiSounds.play("codex_close");super.onClose();
     }
     private void goBack() {

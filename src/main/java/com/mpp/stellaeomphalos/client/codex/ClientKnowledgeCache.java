@@ -32,6 +32,7 @@ public final class ClientKnowledgeCache {
     private static int session = Integer.MIN_VALUE;
     private static long revision, epoch = -1;
     private static float hudFade;
+    private static Boolean codexOverview;
     private static String lastShard = "";
     private static net.minecraft.network.chat.Component notice = net.minecraft.network.chat.Component.empty();
     public static net.minecraft.network.chat.Component notice() { return notice; }
@@ -43,7 +44,7 @@ public final class ClientKnowledgeCache {
     public static void attach() {
         ClientSessionCleaner.register("knowledge", ClientKnowledgeCache::clear);
         KnowledgeBridge.installOpener(
-                p -> Minecraft.getInstance().setScreen(new CodexScreen(record.lastRoute())));
+                p -> Minecraft.getInstance().setScreen(new CodexScreen("")));
         var handlers = OmphalosClient.handlers();
         handlers.register(PktStarRecord.class, (mc, p) -> apply(p));
         handlers.register(
@@ -264,6 +265,15 @@ public final class ClientKnowledgeCache {
         return epoch;
     }
 
+    /** Live codex view state for this session; empty until the book is closed once. */
+    public static Optional<Boolean> codexOverview() {
+        return Optional.ofNullable(codexOverview);
+    }
+
+    public static void codexOverview(boolean overview) {
+        codexOverview = overview;
+    }
+
     public static float hudFade() {
         return hudFade;
     }
@@ -284,6 +294,7 @@ public final class ClientKnowledgeCache {
         revision = 0;
         epoch = -1;
         hudFade = 0;
+        codexOverview = null;
         lastShard = "";
         notice = net.minecraft.network.chat.Component.empty();
         NAVIGATOR.reset();

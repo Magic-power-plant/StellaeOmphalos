@@ -234,6 +234,28 @@ public final class CelestialScreen extends Screen {
         }
     }
 
+    /** Standard chart chrome: bordered translucent panel that lets the starfield show through. */
+    public static void chartPanel(GuiGraphics g, int left, int top, int size, int borderColor) {
+        g.fill(left - 3, top - 3, left + size + 3, top + size + 3, borderColor);
+        g.fill(left, top, left + size, top + size, 0xb8111827);
+    }
+
+    /** Standard sign geometry: 3x3 stars and 1px lines in the shared chart palette. */
+    public static void chart(GuiGraphics g, Sign sign, int left, int top, int size) {
+        for (var p : sign.stars()) {
+            int x = left + p.x() * size / 31, y = top + p.y() * size / 31;
+            g.fill(x - 1, y - 1, x + 2, y + 2, 0xffdfedff);
+        }
+        for (var edge : sign.lines())
+            line(
+                    g,
+                    left + edge.a().x() * size / 31,
+                    top + edge.a().y() * size / 31,
+                    left + edge.b().x() * size / 31,
+                    top + edge.b().y() * size / 31,
+                    0xffa2bfe4);
+    }
+
     @Override
     public void render(GuiGraphics g, int mx, int my, float partial) {
         StarfieldBackdrop.render(g, width, height, mx, my);
@@ -244,8 +266,7 @@ public final class CelestialScreen extends Screen {
             super.render(g, mx, my, partial);
             return;
         }
-        g.fill(left - 3, top - 3, left + size + 3, top + size + 3, feedbackTicks>0?0xffca5f70:0xff857397);
-        g.fill(left, top, left + size, top + size, 0xb8111827);
+        chartPanel(g, left, top, size, feedbackTicks > 0 ? 0xffca5f70 : 0xff857397);
         if (!observing() || usable())
             for (var p : canvas.stars()) {
                 int x = left + p.x() * size / 31, y = top + p.y() * size / 31;

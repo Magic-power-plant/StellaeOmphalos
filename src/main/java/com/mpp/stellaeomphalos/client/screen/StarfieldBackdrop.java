@@ -133,6 +133,35 @@ public final class StarfieldBackdrop {
         g.pose().popPose();
     }
 
+    /**
+     * Renders the same backdrop inside the current pose at ({@code x},{@code y}), in physical
+     * pixels like {@link #render} so stars stay 1-2 device px. {@code poseScale} is the factor
+     * from current pose units to GUI-scaled units (the codex passes its uiScale). The caller is
+     * responsible for scissoring the target rectangle, since nebulae and meteors spill past it.
+     */
+    public static void renderRegion(
+            GuiGraphics g,
+            int x,
+            int y,
+            int width,
+            int height,
+            int mx,
+            int my,
+            float poseScale) {
+        double gs = Math.max(1, Minecraft.getInstance().getWindow().getGuiScale());
+        float unit = (float) (1 / (gs * poseScale));
+        g.pose().pushPose();
+        g.pose().translate(x, y, 0);
+        g.pose().scale(unit, unit, 1);
+        renderPhysical(
+                g,
+                (int) Math.round(width * gs * poseScale),
+                (int) Math.round(height * gs * poseScale),
+                (int) Math.round((mx - x) * gs * poseScale),
+                (int) Math.round((my - y) * gs * poseScale));
+        g.pose().popPose();
+    }
+
     private static void renderPhysical(GuiGraphics g, int width, int height, int mx, int my) {
         long now = net.minecraft.Util.getMillis();
         float t = now / 1000f;
