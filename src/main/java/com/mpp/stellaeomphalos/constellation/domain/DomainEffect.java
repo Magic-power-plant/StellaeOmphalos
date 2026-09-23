@@ -18,9 +18,9 @@ import javax.annotation.Nullable;
  * instance); implementations must throttle/dedupe themselves via {@link #strengthGate} and the
  * frequency declared per effect.
  *
- * <p>Relay resolution: if the origin position hosts a "star-structure link block" (Part-4), the
+ * <p>Relay resolution: if the origin position hosts a "star-structure link block" (《星构多方块与星仪世界生成》), the
  * registered relay resolver redirects the origin to the linked target. The resolver defaults to
- * identity; Part-4 installs it through {@link #registerRelayResolver}.
+ * identity; 《星构多方块与星仪世界生成》 installs it through {@link #registerRelayResolver}.
  */
 public abstract class DomainEffect {
     protected final @Nullable MajorSign owner;
@@ -58,7 +58,7 @@ public abstract class DomainEffect {
         return strength >= 1.0F || random.nextFloat() < Math.max(strength, 0.0F);
     }
 
-    /** Part-4 hook: redirect origins standing on star-structure link blocks. Must be total. */
+    /** 《星构多方块与星仪世界生成》 hook: redirect origins standing on star-structure link blocks. Must be total. */
     public static void registerRelayResolver(Function<DomainOrigin, DomainOrigin> resolver) {
         relayResolver = java.util.Objects.requireNonNull(resolver);
     }

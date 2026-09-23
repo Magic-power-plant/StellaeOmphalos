@@ -11,7 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 
 /**
- * Simplified star-structure ledger (plan 2.7.15: worldgen itself belongs to Part-4): per dimension,
+ * Simplified star-structure ledger (plan 2.7.15: worldgen itself belongs to 《星构多方块与星仪世界生成》): per dimension,
  * structure type id -> known positions, plus a nearest-distance query used to space structures.
  * Persisted per dimension under {@code stellaeomphalos_star_structures}.
  */

@@ -5,7 +5,7 @@ import net.minecraft.server.level.ServerPlayer;
 
 import java.util.Objects;
 
-/** Part-5 can install knowledge queries without an upward structure -> player dependency. */
+/** 《星典知识与玩家进度》 can install knowledge queries without an upward structure -> player dependency. */
 public final class StructureAccess {
     public interface Progress {
         boolean canPreview(ServerPlayer player, ResourceLocation blueprint);

@@ -3,8 +3,8 @@ package com.mpp.stellaeomphalos.content.item.knowledge;
 import com.mpp.stellaeomphalos.constellation.sign.*;
 import com.mpp.stellaeomphalos.constellation.starmap.StarLine;
 import com.mpp.stellaeomphalos.constellation.starmap.StarPoint;
-import com.mpp.stellaeomphalos.content.item.PartSixItems;
-import com.mpp.stellaeomphalos.content.menu.PartSixMenus;
+import com.mpp.stellaeomphalos.content.item.CatalogItems;
+import com.mpp.stellaeomphalos.content.menu.StationMenus;
 import com.mpp.stellaeomphalos.network.toServer.PktObserveSign;
 import com.mpp.stellaeomphalos.player.boon.BoonProgress;
 import com.mpp.stellaeomphalos.player.progress.StarRecords;
@@ -35,7 +35,7 @@ public final class ObservationProtocol {
                         || StarRecords.get(player).seenSigns().contains(sign.id()))
                 || !SignSkyService.activeSigns(level).contains(sign)) return false;
         if (packet.handheld()) {
-            if (!player.getMainHandItem().is(PartSixItems.HAND_SPYGLASS.get())
+            if (!player.getMainHandItem().is(CatalogItems.HAND_SPYGLASS.get())
                     || player.getXRot() > -45
                     || !(sign instanceof MajorSign)
                     || !level.canSeeSky(player.blockPosition())) return false;
@@ -50,8 +50,8 @@ public final class ObservationProtocol {
                     player.getYRot(),
                     player.getXRot())) return false;
         } else {
-            if (!(player.containerMenu instanceof PartSixMenus.StationMenu menu)
-                    || menu instanceof PartSixMenus.StarChartTableMenu
+            if (!(player.containerMenu instanceof StationMenus.StationMenu menu)
+                    || menu instanceof StationMenus.StarChartTableMenu
                     || !menu.pos().equals(packet.origin())
                     || !menu.stillValid(player)
                     || !level.hasChunkAt(packet.origin())
@@ -59,7 +59,7 @@ public final class ObservationProtocol {
         }
         if (!matches(packet.edges(), sign.lines())) return false;
         progress.discover(player, sign.id());
-        com.mpp.stellaeomphalos.knowledge.advancement.PartSixTriggers.discoverSign(
+        com.mpp.stellaeomphalos.knowledge.advancement.AdvancementTriggers.discoverSign(
                 player, sign.id());
         var sound =
                 net.minecraftforge.registries.ForgeRegistries.SOUND_EVENTS.getValue(

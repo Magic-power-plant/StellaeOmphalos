@@ -41,9 +41,9 @@ public final class WorldBootstrap {
         WorldContent.initialize();
         WorldGeneration.initialize();
         com.mpp.stellaeomphalos.content.block.DecorContent.initialize();
-        com.mpp.stellaeomphalos.content.block.PartSixBlocks.initialize();
-        com.mpp.stellaeomphalos.content.item.PartSixItems.initialize();
-        com.mpp.stellaeomphalos.content.menu.PartSixMenus.initialize();
+        com.mpp.stellaeomphalos.content.block.MachineContent.initialize();
+        com.mpp.stellaeomphalos.content.item.CatalogItems.initialize();
+        com.mpp.stellaeomphalos.content.menu.StationMenus.initialize();
         bus.addListener(WorldCapabilities::register);
         bus.addListener(WorldDataProvider::gather);
         bus.addListener(com.mpp.stellaeomphalos.content.block.DecorDataProvider::gather);

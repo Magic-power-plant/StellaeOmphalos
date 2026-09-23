@@ -1,7 +1,7 @@
 package com.mpp.stellaeomphalos.constellation.effect;
 
 /**
- * Luminary (illuminator) orbit profile parameters (machine orbit visuals; pure data for Part-7).
+ * Luminary (illuminator) orbit profile parameters (machine orbit visuals; pure data for 《客户端渲染界面与音效》).
  */
 public final class LuminaryOrbitProfile {
     public static final int COLOR = 0xFFF9E27D;

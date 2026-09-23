@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mpp.stellaeomphalos.client.render.model.MachineMeshes;
 import com.mpp.stellaeomphalos.client.render.util.WorldDraw;
 import com.mpp.stellaeomphalos.content.item.ClientRenderedItem;
-import com.mpp.stellaeomphalos.content.item.PartSixItems;
+import com.mpp.stellaeomphalos.content.item.CatalogItems;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -25,7 +25,7 @@ public final class StackRenderBypass {
     public static void install() {
         var mc = Minecraft.getInstance();
         var renderer = new TelescopeItemRenderer(mc);
-        ((ClientRenderedItem) PartSixItems.HAND_SPYGLASS.get())
+        ((ClientRenderedItem) CatalogItems.HAND_SPYGLASS.get())
                 .installClientExtensions(
                         new IClientItemExtensions() {
                             @Override
@@ -36,7 +36,7 @@ public final class StackRenderBypass {
     }
 
     public static void bake(ModelEvent.ModifyBakingResult event) {
-        var id = new ModelResourceLocation(PartSixItems.HAND_SPYGLASS.id(), "inventory");
+        var id = new ModelResourceLocation(CatalogItems.HAND_SPYGLASS.id(), "inventory");
         var original = event.getModels().get(id);
         if (original != null) event.getModels().put(id, new CodeModel(original));
     }

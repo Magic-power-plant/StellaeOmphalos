@@ -48,9 +48,9 @@ public final class KnowledgeProtocol {
         var handlers = services.handlers();
         handlers.register(PktObserveSign.class, (player, packet) -> ObservationProtocol.observe(player, packet));
         handlers.register(PktChartDraw.class, (player, packet) -> {
-            if (player.containerMenu instanceof com.mpp.stellaeomphalos.content.menu.PartSixMenus.StarChartTableMenu menu
+            if (player.containerMenu instanceof com.mpp.stellaeomphalos.content.menu.StationMenus.StarChartTableMenu menu
                     && menu.containerId==packet.container() && menu.pos().equals(packet.origin()) && menu.stillValid(player)
-                    && player.level().getBlockEntity(packet.origin()) instanceof com.mpp.stellaeomphalos.content.block.PartSixBlocks.MachineBlockEntity machine)
+                    && player.level().getBlockEntity(packet.origin()) instanceof com.mpp.stellaeomphalos.content.block.MachineContent.MachineBlockEntity machine)
                 machine.drawChart(player, packet.strokes());
         });
         handlers.register(

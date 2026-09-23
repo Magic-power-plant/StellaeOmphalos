@@ -70,7 +70,7 @@ public final class ReviewGameTests {
         var p = player(h); var pos = h.absolutePos(BlockPos.ZERO);
         h.getLevel().setBlockAndUpdate(pos, WorldContent.BLOCKS.get("observatory").get().defaultBlockState());
         p.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.ENCHANTED_BOOK));
-        p.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(com.mpp.stellaeomphalos.content.item.PartSixItems.SIGN_CHART.get(), 2));
+        p.setItemInHand(InteractionHand.OFF_HAND, new ItemStack(com.mpp.stellaeomphalos.content.item.CatalogItems.SIGN_CHART.get(), 2));
         BoonProgress.getServer(p).discover(p, id("aevitas"));
         int session = SignSkyService.sessionId(p);
         var strokes = List.of(new PktImprintEngrave.Stroke(SignRegistry.numericId(SignRegistry.byId(id("aevitas"))), 0, 0));

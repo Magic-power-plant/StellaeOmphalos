@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Part-6 §6.2.1.4 技术方块族：不可获得、无掉落、特殊渲染。
+ * 《方块物品实体完整清单》§6.2.1.4 技术方块族：不可获得、无掉落、特殊渲染。
  *
  * <p>`frame_shell` 把音效/硬度/抗性/拾取/碰撞/拆除粒子转发给下方宿主；`phase_barrier` 保留满格碰撞并屏蔽一切视觉；
  * `proxy_foliage` / `mirage_shell` 转发被伪装的方块状态；`rupture_anchor` 每 60 tick 校验结构并自毁。

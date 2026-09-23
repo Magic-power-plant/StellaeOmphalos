@@ -1,6 +1,6 @@
 package com.mpp.stellaeomphalos.client.screen;
 
-import com.mpp.stellaeomphalos.content.menu.PartSixMenus;
+import com.mpp.stellaeomphalos.content.menu.StationMenus;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -14,7 +14,7 @@ import net.minecraft.world.entity.player.Inventory;
 public final class StationScreens {
     private StationScreens() {}
 
-    public static class Station<T extends PartSixMenus.StationMenu>
+    public static class Station<T extends StationMenus.StationMenu>
             extends AbstractContainerScreen<T> {
         private boolean observationOpen;
 
@@ -27,7 +27,7 @@ public final class StationScreens {
             minecraft.setScreen(
                     new CelestialScreen(
                             this,
-                            menu instanceof PartSixMenus.SpyglassMenu
+                            menu instanceof StationMenus.SpyglassMenu
                                     ? CelestialScreen.Mode.TELESCOPE
                                     : CelestialScreen.Mode.OBSERVATORY));
         }
@@ -52,7 +52,7 @@ public final class StationScreens {
                                     b -> observe())
                             .bounds(leftPos + 48, topPos + 56, 80, 18)
                             .build());
-            if (menu instanceof PartSixMenus.SpyglassMenu) {
+            if (menu instanceof StationMenus.SpyglassMenu) {
                 addRenderableWidget(
                         Button.builder(Component.literal("<"), b -> rotate(0))
                                 .bounds(leftPos + 22, topPos + 56, 20, 18)
@@ -101,19 +101,19 @@ public final class StationScreens {
         }
     }
 
-    public static final class Spyglass extends Station<PartSixMenus.SpyglassMenu> {
-        public Spyglass(PartSixMenus.SpyglassMenu m, Inventory i, Component t) {
+    public static final class Spyglass extends Station<StationMenus.SpyglassMenu> {
+        public Spyglass(StationMenus.SpyglassMenu m, Inventory i, Component t) {
             super(m, i, t);
         }
     }
 
-    public static final class Observatory extends Station<PartSixMenus.ObservatoryMenu> {
-        public Observatory(PartSixMenus.ObservatoryMenu m, Inventory i, Component t) {
+    public static final class Observatory extends Station<StationMenus.ObservatoryMenu> {
+        public Observatory(StationMenus.ObservatoryMenu m, Inventory i, Component t) {
             super(m, i, t);
         }
     }
 
-    public static final class Chart extends Station<PartSixMenus.StarChartTableMenu> {
+    public static final class Chart extends Station<StationMenus.StarChartTableMenu> {
         private final java.util.List<net.minecraft.resources.ResourceLocation> signs =
                 new java.util.ArrayList<>();
         private final java.util.List<
@@ -123,7 +123,7 @@ public final class StationScreens {
         private boolean dragging;
         private Button submit;
 
-        public Chart(PartSixMenus.StarChartTableMenu m, Inventory i, Component t) {
+        public Chart(StationMenus.StarChartTableMenu m, Inventory i, Component t) {
             super(m, i, t);
             imageWidth = 336;
         }

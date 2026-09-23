@@ -19,7 +19,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
- * Part-6 §6.3.5 / §6.4.4 护符动态附魔修正的纯 JVM 验收。
+ * 《方块物品实体完整清单》§6.3.5 / §6.4.4 护符动态附魔修正的纯 JVM 验收。
  *
  * <p>覆盖：Codec 往返、同类项合并与全局修正上限、三类语义的适用判定、
  * 掷骰的确定性与概率边界、以及上下文桥的应用与清理。

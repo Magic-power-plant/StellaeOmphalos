@@ -109,9 +109,9 @@ public final class CraftingContent {
                             block.id().getPath(),
                             () -> new BlockItem(block.get(), new Item.Properties())));
         ITEMS.put("sign_focus", ModItems.ENTRIES.declare("sign_focus", FocusItem::new));
-        // Part-6 §6.2.2 owns the ids below that moved to dedicated item classes
+        // 《方块物品实体完整清单》§6.2.2 owns the ids below that moved to dedicated item classes
         // (`luminary_rod`, `sky_resonator`, `mantle`, `codex`, `sign_chart`, ...); they are registered by
-        // PartSixItems / KnowledgeContent instead of the generic loop, so only the plain materials remain here.
+        // CatalogItems / KnowledgeContent instead of the generic loop, so only the plain materials remain here.
         for (String name :
                 List.of(
                         "geode",

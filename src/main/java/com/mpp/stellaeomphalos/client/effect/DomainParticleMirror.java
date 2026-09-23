@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Client-side queue of domain particle requests (rendering data for Part-7; this part performs no
- * rendering). Parameters are stored verbatim and drained by the Part-7 consumer each frame. Cleanup
+ * Client-side queue of domain particle requests (rendering data for 《客户端渲染界面与音效》; this part performs no
+ * rendering). Parameters are stored verbatim and drained by the 《客户端渲染界面与音效》 consumer each frame. Cleanup
  * action ("domain_particle_mirror"): drop the queue and reset the session so late packets from a
  * previous session are discarded.
  */
@@ -43,7 +43,7 @@ public final class DomainParticleMirror {
         }
     }
 
-    /** Part-7 drains this once per frame; the list is cleared in the process. */
+    /** 《客户端渲染界面与音效》 drains this once per frame; the list is cleared in the process. */
     public static List<Request> drain() {
         synchronized (QUEUE) {
             var out = new ArrayList<Request>(QUEUE);

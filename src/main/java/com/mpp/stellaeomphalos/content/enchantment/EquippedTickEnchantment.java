@@ -3,10 +3,10 @@ package com.mpp.stellaeomphalos.content.enchantment;
 import net.minecraft.server.level.ServerPlayer;
 
 /**
- * Part-6 的"装备时每 tick 生效"标记接口（对应原模组的 {@code EnchantmentPlayerWornTick}）。
+ * 《方块物品实体完整清单》的"装备时每 tick 生效"标记接口（对应原模组的 {@code EnchantmentPlayerWornTick}）。
  *
- * <p>{@link PartSixEnchantments} 在注册期把所有实现了本接口的附魔实例收集进列表，
- * 由 {@code PartSixEffects} 注册的 {@code PlayerTickEvent.End} 监听器遍历玩家装备槽后逐个回调。
+ * <p>{@link EnchantmentContent} 在注册期把所有实现了本接口的附魔实例收集进列表，
+ * 由 {@code ContentEffects} 注册的 {@code PlayerTickEvent.End} 监听器遍历玩家装备槽后逐个回调。
  */
 public interface EquippedTickEnchantment {
 

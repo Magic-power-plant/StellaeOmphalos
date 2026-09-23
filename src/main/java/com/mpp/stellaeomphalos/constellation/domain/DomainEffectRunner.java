@@ -6,7 +6,7 @@ import com.mpp.stellaeomphalos.constellation.sign.TraitSign;
 import javax.annotation.Nullable;
 
 /**
- * The tool Part-4 pedestal schedulers call: given the pedestal position and the driving sign,
+ * The tool 《星构多方块与星仪世界生成》 pedestal schedulers call: given the pedestal position and the driving sign,
  * executes one {@code play}. Discipline guaranteed here (plan 2.2.6.4): the {@link DomainProperties}
  * base is constructed and {@code modify} applied exactly once per invocation — callers must invoke
  * {@link #run} at most once per tick per pedestal.

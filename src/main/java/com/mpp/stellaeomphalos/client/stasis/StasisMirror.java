@@ -15,7 +15,7 @@ import net.minecraft.core.BlockPos;
 
 /**
  * Client-side read-only mirror of stasis zones of the current dimension (rendering data for
- * Part-7). Cleanup action ("stasis_mirror"): drop all zones and reset the session so late
+ * 《客户端渲染界面与音效》). Cleanup action ("stasis_mirror"): drop all zones and reset the session so late
  * packets from a previous session are discarded (session_id mismatch).
  */
 public final class StasisMirror {

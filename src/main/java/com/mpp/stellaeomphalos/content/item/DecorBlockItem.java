@@ -5,7 +5,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
-/** 装饰变体的专用 BlockItem：把变体编码进物品，使方块状态在放置时确定（Part-6 §6.3.1 D-1）。 */
+/** 装饰变体的专用 BlockItem：把变体编码进物品，使方块状态在放置时确定（《方块物品实体完整清单》§6.3.1 D-1）。 */
 public class DecorBlockItem extends BlockItem {
     private final DecorFamily family;
     private final DecorFamily.DecorVariant variant;

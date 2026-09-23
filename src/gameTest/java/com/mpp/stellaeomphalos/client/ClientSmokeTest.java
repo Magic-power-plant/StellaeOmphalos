@@ -25,7 +25,7 @@ public final class ClientSmokeTest {
             return;
         var minecraft = Minecraft.getInstance();
         if (Boolean.getBoolean("stellaeomphalos.part7SmokeTest")) {
-            PartSevenClientSmoke.tick(minecraft);
+            ClientRenderSmoke.tick(minecraft);
             return;
         }
         if (minecraft.getOverlay() != null) return;
@@ -41,7 +41,7 @@ public final class ClientSmokeTest {
                     minecraft.getMainRenderTarget(),
                     text -> LogUtils.getLogger().info("Smoke screenshot: {}", text.getString()));
         if (Boolean.getBoolean("stellaeomphalos.part5SmokeTest")) {
-            PartFiveClientSmoke.tick(minecraft, ticks);
+            CodexClientSmoke.tick(minecraft, ticks);
             return;
         }
         if (ticks == 80) {

@@ -13,7 +13,7 @@ public final class EntitySoundHost {
         if(mc.level==null||mc.player==null)return;
         for(var entity:mc.level.entitiesForRendering()){
             if(SOUNDS.size()>=8)break;
-            if(!(entity instanceof com.mpp.stellaeomphalos.content.entity.p6.FallingStarEntity || entity instanceof com.mpp.stellaeomphalos.content.entity.StarfallEntity)
+            if(!(entity instanceof com.mpp.stellaeomphalos.content.entity.catalog.FallingStarEntity || entity instanceof com.mpp.stellaeomphalos.content.entity.StarfallEntity)
                     ||SOUNDS.containsKey(entity)||!active(entity))continue;
             var sound=new LoopingMachineSound(com.mpp.stellaeomphalos.content.particle.ClientVisualContent.sound("meteor_fall"),entity.blockPosition(),()->active(entity)).follow(entity::position);
             SOUNDS.put(entity,sound);mc.getSoundManager().play(sound);

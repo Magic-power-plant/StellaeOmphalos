@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 /**
- * Orbital particle driver parameters (pure data; rendering belongs to Part-7). Period and lifetime
+ * Orbital particle driver parameters (pure data; rendering belongs to 《客户端渲染界面与音效》). Period and lifetime
  * are separate fields — the original implementation reused one {@code maxAge} for both, which was
  * misleading. {@link #tick()} advances the orbit; a persistence callback fires when the emitter
  * would serialize, and a per-tick adjustment hook may mutate the angular phase.

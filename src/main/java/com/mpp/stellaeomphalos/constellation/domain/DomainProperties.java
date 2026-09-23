@@ -9,7 +9,7 @@ import javax.annotation.Nullable;
  *
  * <p>{@link #modify(TraitSign)} applies the trait-sign multiplier row from the {@code domain_traits}
  * data table. <b>Warning: repeated {@code modify} calls accumulate multiplicatively</b> — the caller
- * (Part-4 pedestal scheduler or {@link DomainEffectRunner}) must construct the base record and call
+ * (《星构多方块与星仪世界生成》 pedestal scheduler or {@link DomainEffectRunner}) must construct the base record and call
  * {@code modify} exactly once per tick; chaining twice would square the trait scales.
  */
 public record DomainProperties(double size, double potency, double effectAmplifier,

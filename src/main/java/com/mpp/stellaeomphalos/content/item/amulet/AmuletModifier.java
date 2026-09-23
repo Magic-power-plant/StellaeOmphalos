@@ -7,7 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
 
 /**
- * 附魔护符的单条修正（Part-6 §6.3.5 / §6.4.4）。
+ * 附魔护符的单条修正（《方块物品实体完整清单》§6.3.5 / §6.4.4）。
  *
  * <p>三类语义：`ADD_SPECIFIC` 给指定附魔叠加等级；`ADD_TO_EXISTING_SPECIFIC` 只在该附魔已存在时叠加；
  * `ADD_TO_EXISTING_ALL` 对**全部**已存在附魔叠加（全局修正，上限 {@link #GLOBAL_MODIFIER_LIMIT} 次）。

@@ -316,7 +316,7 @@ public final class FoundationDataProvider implements DataProvider {
                 "Molten Lumen Bucket",
                 "星流桶");
         raw(en, zh, "item.stellaeomphalos.geode_shard", "Geode Shard", "片晶碎片");
-        // Part-6 §6.2.2.1：材料族补全的两个条目。
+        // 《方块物品实体完整清单》§6.2.2.1：材料族补全的两个条目。
         raw(en, zh, "item.stellaeomphalos.resonance_gem", "Resonance Gem", "共鸣宝石");
         raw(en, zh, "item.stellaeomphalos.parchment", "Parchment", "羊皮纸");
         raw(en, zh, "block.stellaeomphalos.infused_log", "Infused Log", "\u704c\u6ce8\u539f\u6728");

@@ -13,7 +13,7 @@ import java.util.Optional;
 import net.minecraft.core.BlockPos;
 
 /**
- * Read-only client mirror of the lumen link topology (LumenLinkView semantics for Part-7 beam
+ * Read-only client mirror of the lumen link topology (LumenLinkView semantics for 《客户端渲染界面与音效》 beam
  * rendering) plus sink stored/capacity snapshots for GUIs. Session-guarded: payloads carrying a
  * stale session id are dropped; a newer session id wipes the cache and takes over.
  * Cleanup action registered by attachClient(): ClientSessionCleaner "lumen_link_mirror" -> clear().

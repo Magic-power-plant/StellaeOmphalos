@@ -20,7 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * 装饰变体族注册（Part-6 §6.2.1.1）。
+ * 装饰变体族注册（《方块物品实体完整清单》§6.2.1.1）。
  *
  * <p>注册 id：`marble` / `black_marble` / `infused_wood` 三个族 Block，每个族 7 个可获得变体物品，
  * 外加 `marble_slab` / `marble_double_slab` / `marble_stairs`。柱体（PILLAR）变体由

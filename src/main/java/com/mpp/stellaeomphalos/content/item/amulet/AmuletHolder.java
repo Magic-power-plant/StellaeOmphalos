@@ -13,7 +13,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 
 /**
- * 护符修正的持久载体（Part-6 §6.3.5 / §6.4.4）。
+ * 护符修正的持久载体（《方块物品实体完整清单》§6.3.5 / §6.4.4）。
  *
  * <p>修正列表按 §6.4.4 的第一行放在物品 NBT 的 `Amulet` 子标签下、由 {@link AmuletModifier#CODEC} 序列化；
  * `owner` 同样落在该子标签内（原模组挂在 `ItemStack` 能力上，但本项目暂无 `owner` 消费方，

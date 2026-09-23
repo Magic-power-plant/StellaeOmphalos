@@ -167,7 +167,7 @@ public final class WorldContent {
             ITEMS.put(
                     material,
                     ModItems.ENTRIES.declare(material, () -> new Item(new Item.Properties())));
-        // Part-6 §6.2.2.1：材料族的剩余两项（共鸣宝石、羊皮纸）与既有材料合并为六个独立物品。
+        // 《方块物品实体完整清单》§6.2.2.1：材料族的剩余两项（共鸣宝石、羊皮纸）与既有材料合并为六个独立物品。
         for (String material : List.of("resonance_gem", "parchment"))
             ITEMS.put(
                     material,
@@ -192,25 +192,25 @@ public final class WorldContent {
                                                     out.accept(
                                                             new ItemStack(
                                                                     com.mpp.stellaeomphalos.content.block
-                                                                            .PartSixBlocks.COSMETIC_ROCK_ITEM
+                                                                            .MachineContent.COSMETIC_ROCK_ITEM
                                                                             .get()));
                                                     out.accept(
                                                             new ItemStack(
                                                                     com.mpp.stellaeomphalos.content.block
-                                                                            .PartSixBlocks
+                                                                            .MachineContent
                                                                             .CONSTELLATION_FRAME_ITEM
                                                                             .get()));
                                                     com.mpp.stellaeomphalos.content.block
-                                                            .PartSixBlocks.MACHINES
+                                                            .MachineContent.MACHINES
                                                             .forEach(
                                                                     machine ->
                                                                             out.accept(
                                                                                     new ItemStack(
                                                                                             machine
                                                                                                     .get())));
-                                                    // Part-6 §6.2.2：物品总账的其余条目。
+                                                    // 《方块物品实体完整清单》§6.2.2：物品总账的其余条目。
                                                     // `rosewood_bow` 按规划**不进创造页**（遗留物品）。
-                                                    com.mpp.stellaeomphalos.content.item.PartSixItems
+                                                    com.mpp.stellaeomphalos.content.item.CatalogItems
                                                             .ITEMS
                                                             .forEach(
                                                                     (id, item) -> {

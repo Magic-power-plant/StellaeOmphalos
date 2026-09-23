@@ -46,7 +46,7 @@ public final class BoonTreeLayout {
     }
 
     /**
-     * Coordinate contract with the codex star map (Part-5 owns codex regions): boon grid
+     * Coordinate contract with the codex star map (《星典知识与玩家进度》 owns codex regions): boon grid
      * coordinates map 1:1 onto codex space. Kept as one conversion point so a future scale
      * change touches a single method.
      */

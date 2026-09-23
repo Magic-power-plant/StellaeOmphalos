@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
 
-/** 大理石砖台阶（Part-6 §6.2.1.1 `marble_slab`）。 */
+/** 大理石砖台阶（《方块物品实体完整清单》§6.2.1.1 `marble_slab`）。 */
 public class DecorSlabBlock extends SlabBlock {
     private final boolean fullByDefault;
 

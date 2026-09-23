@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 
 /**
- * 附魔护符的修正掷骰器（Part-6 §6.3.5 / §6.4.4）。
+ * 附魔护符的修正掷骰器（《方块物品实体完整清单》§6.3.5 / §6.4.4）。
  *
  * <p>原模组把 5 个概率写成类内常量，本项目全部改为可配置（{@link Probabilities#fromConfig()}），
  * 并把"最多 2 次全局修正"保留为硬编码常量。掷骰结果按同类项合并，最多 3 条修正。

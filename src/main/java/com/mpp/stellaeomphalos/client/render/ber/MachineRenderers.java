@@ -3,7 +3,7 @@ package com.mpp.stellaeomphalos.client.render.ber;
 import com.mpp.stellaeomphalos.client.render.OmphalosRenderTypes.Kind;
 import com.mpp.stellaeomphalos.client.render.model.MachineMeshes;
 import com.mpp.stellaeomphalos.client.render.util.WorldDraw;
-import com.mpp.stellaeomphalos.content.block.PartSixBlocks.MachineBlockEntity;
+import com.mpp.stellaeomphalos.content.block.MachineContent.MachineBlockEntity;
 import com.mpp.stellaeomphalos.content.blockentity.crafting.*;
 import com.mpp.stellaeomphalos.content.blockentity.lumen.LumenContent;
 import com.mpp.stellaeomphalos.content.blockentity.rite.*;
@@ -243,7 +243,7 @@ public final class MachineRenderers {
                                             b.getBlockState()
                                                     .getValue(
                                                             com.mpp.stellaeomphalos.content.block
-                                                                    .PartSixBlocks.FACING)
+                                                                    .MachineContent.FACING)
                                                     .toYRot()),
                             0));
             MachineMeshes.LENS.emit(d, d.solid(), 0xff8a8ba1);

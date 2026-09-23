@@ -15,8 +15,8 @@ import net.minecraft.world.phys.BlockHitResult;
 
 /** Shared technical host lifecycle; links are bounded, loaded-only and never recursive. */
 public final class TechnicalBlockEntity extends BlockEntity
-        implements com.mpp.stellaeomphalos.content.item.PartSixRodItems.WandInteractable,
-                com.mpp.stellaeomphalos.content.item.PartSixRodItems.LinkHandler {
+        implements com.mpp.stellaeomphalos.content.item.RodItems.WandInteractable,
+                com.mpp.stellaeomphalos.content.item.RodItems.LinkHandler {
     private BlockPos host;
     private BlockPos link;
     private BlockState mimic = Blocks.STONE.defaultBlockState();
@@ -129,12 +129,12 @@ public final class TechnicalBlockEntity extends BlockEntity
                         server,
                         new net.minecraft.world.SimpleMenuProvider(
                                 (id, inventory, ignored) ->
-                                        new com.mpp.stellaeomphalos.content.menu.PartSixMenus
+                                        new com.mpp.stellaeomphalos.content.menu.StationMenus
                                                 .ObservatoryMenu(id, inventory, worldPosition),
                                 net.minecraft.network.chat.Component.translatable(
                                         "container.stellaeomphalos.observatory")),
                         buffer ->
-                                com.mpp.stellaeomphalos.content.menu.PartSixMenus.writePos(
+                                com.mpp.stellaeomphalos.content.menu.StationMenus.writePos(
                                         buffer, worldPosition));
             }
             return InteractionResult.sidedSuccess(level.isClientSide);
@@ -259,11 +259,11 @@ public final class TechnicalBlockEntity extends BlockEntity
     }
 
     /** §6.4.2：解析观星辅助实体；id 失效时返回 null。 */
-    private com.mpp.stellaeomphalos.content.entity.p6.ObservatorySeatEntity findSeat() {
+    private com.mpp.stellaeomphalos.content.entity.catalog.ObservatorySeatEntity findSeat() {
         if (!(level instanceof ServerLevel server) || seatId < 0) return null;
         return server.getEntity(seatId)
                         instanceof
-                        com.mpp.stellaeomphalos.content.entity.p6.ObservatorySeatEntity seat
+                        com.mpp.stellaeomphalos.content.entity.catalog.ObservatorySeatEntity seat
                 ? seat
                 : null;
     }
@@ -311,11 +311,11 @@ public final class TechnicalBlockEntity extends BlockEntity
     }
 
     /** §6.4.2：维持观星辅助实体；缺失时在方块位置重建。 */
-    private com.mpp.stellaeomphalos.content.entity.p6.ObservatorySeatEntity spawnSeat(
+    private com.mpp.stellaeomphalos.content.entity.catalog.ObservatorySeatEntity spawnSeat(
             ServerLevel server) {
         var seat =
-                new com.mpp.stellaeomphalos.content.entity.p6.ObservatorySeatEntity(
-                        com.mpp.stellaeomphalos.content.entity.p6.PartSixEntities.OBSERVATORY_SEAT
+                new com.mpp.stellaeomphalos.content.entity.catalog.ObservatorySeatEntity(
+                        com.mpp.stellaeomphalos.content.entity.catalog.CatalogEntities.OBSERVATORY_SEAT
                                 .get(),
                         server);
         seat.setFixed(worldPosition);
@@ -444,7 +444,7 @@ public final class TechnicalBlockEntity extends BlockEntity
                 entity.setDeltaMovement(entity.getDeltaMovement().add(pull.normalize().scale(0.12D)));
             entity.addEffect(
                     new net.minecraft.world.effect.MobEffectInstance(
-                            com.mpp.stellaeomphalos.content.effect.PartSixEffects.TIME_FREEZE.get(),
+                            com.mpp.stellaeomphalos.content.effect.ContentEffects.TIME_FREEZE.get(),
                             80,
                             0,
                             false,

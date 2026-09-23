@@ -1,7 +1,7 @@
 package com.mpp.stellaeomphalos.constellation.effect;
 
 /**
- * Resonance altar orbit profile parameters (machine orbit visuals; pure data for Part-7).
+ * Resonance altar orbit profile parameters (machine orbit visuals; pure data for 《客户端渲染界面与音效》).
  */
 public final class ResonanceOrbitProfile {
     public static final int COLOR = 0xFF3FD8CE;

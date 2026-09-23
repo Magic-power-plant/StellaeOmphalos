@@ -5,7 +5,7 @@ import java.util.Locale;
 import net.minecraft.util.StringRepresentable;
 
 /**
- * 装饰建材族（Part-6 §6.2.1.1 / 决策 D-1）。
+ * 装饰建材族（《方块物品实体完整清单》§6.2.1.1 / 决策 D-1）。
  *
  * <p>1.20.1 禁止 meta，故三个族各自只注册**一个** Block，变体由 {@code EnumProperty} 表达；每个可获得变体配一个独立
  * {@code BlockItem}。柱体变体额外使用 {@code top}/{@code bottom} 两个布尔属性实现自动连接（§6.3.2）。
@@ -76,7 +76,7 @@ public enum DecorFamily implements StringRepresentable {
         return "block.stellaeomphalos." + id;
     }
 
-    /** 变体形态（Part-6 §6.2.1.1）：7 个可获得变体。 */
+    /** 变体形态（《方块物品实体完整清单》§6.2.1.1）：7 个可获得变体。 */
     public enum DecorVariant implements StringRepresentable {
         RAW,
         BRICKS,

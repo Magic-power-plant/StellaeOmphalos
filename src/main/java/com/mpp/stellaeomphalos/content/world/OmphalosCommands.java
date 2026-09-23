@@ -43,7 +43,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.storage.LevelResource;
 import net.minecraftforge.event.RegisterCommandsEvent;
 
-/** The single Part-8 administrative command surface. Legacy command branches remain registered elsewhere. */
+/** The single 《服务端机制数据存储与网络协议》 administrative command surface. Legacy command branches remain registered elsewhere. */
 public final class OmphalosCommands {
     private static final List<String> SUBCOMMANDS = List.of(
             "help", "signs", "research", "progress", "reset", "boons", "attune", "build",

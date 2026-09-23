@@ -13,7 +13,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.common.util.FakePlayer;
 
 /**
- * Part-6 进度触发器的公共骨架：沿用原版 1.20.1 的 GSON 反序列化路径
+ * 《方块物品实体完整清单》进度触发器的公共骨架：沿用原版 1.20.1 的 GSON 反序列化路径
  * （{@code SimpleCriterionTrigger#createInstance}），并把原版解析出的
  * {@link ContextAwarePredicate} 原样交给子类构造条件实例（避免丢失玩家的额外条件）。
  *

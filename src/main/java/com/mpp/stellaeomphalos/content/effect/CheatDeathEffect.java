@@ -4,8 +4,8 @@ import net.minecraft.world.effect.MobEffectCategory;
 
 /**
  * 免死效果本体（id {@code cheat_death}）。效果自身不承载逻辑：拦截死亡的监听器由
- * {@link PartSixEffects} 注册，见 {@code PartSixEffects#onLethalDamage} / {@code PartSixEffects#onDeath}。
- * 放大等级越高，触发后保留的生命越多（见 {@code PartSixEffects#tryCheatDeath}）。
+ * {@link ContentEffects} 注册，见 {@code ContentEffects#onLethalDamage} / {@code ContentEffects#onDeath}。
+ * 放大等级越高，触发后保留的生命越多（见 {@code ContentEffects#tryCheatDeath}）。
  */
 public final class CheatDeathEffect extends CustomIconEffect {
 

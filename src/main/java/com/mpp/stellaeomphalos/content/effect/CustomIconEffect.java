@@ -5,7 +5,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 
 /**
- * Part-6 药水的公共基类。该类**刻意不覆写** {@code hasStatusIcon()}：原版图集图标保留，
+ * 《方块物品实体完整清单》药水的公共基类。该类**刻意不覆写** {@code hasStatusIcon()}：原版图集图标保留，
  * 客户端渲染工作流可另行读取 {@link #iconTexture(ResourceLocation)} 指向的 18×18 自定义贴图，
  * 顶点色取原版 {@code getColor()}（即构造时传入的颜色）自动染色，因此子类只需一张底图。
  */

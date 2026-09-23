@@ -34,12 +34,12 @@ public final class GameplayHud {
         }
         var mantle = ClientKnowledgeCache.mantle(mc.player.getUUID());
         if (mc.player.getItemBySlot(net.minecraft.world.entity.EquipmentSlot.CHEST).is(
-                com.mpp.stellaeomphalos.content.item.PartSixItems.MANTLE.get())
+                com.mpp.stellaeomphalos.content.item.CatalogItems.MANTLE.get())
                 && mantle.contains("Stacks")) {
             g.drawString(mc.font, Component.translatable("stellaeomphalos.hud.mantle", mantle.getInt("Stacks")), 8, y, 0xBBDFFF);
             y += 11;
         }
-        if (mc.player.getMainHandItem().is(com.mpp.stellaeomphalos.content.item.PartSixItems.SKY_RESONATOR.get())) {
+        if (mc.player.getMainHandItem().is(com.mpp.stellaeomphalos.content.item.CatalogItems.SKY_RESONATOR.get())) {
             int rows = 0;
             for (var entry : ClientKnowledgeCache.projections().getList("Entries", Tag.TAG_COMPOUND)) {
                 if (rows++ == 8) break;

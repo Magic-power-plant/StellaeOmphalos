@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * 装饰变体族的资源生产（Part-6 §6.3.3）。
+ * 装饰变体族的资源生产（《方块物品实体完整清单》§6.3.3）。
  *
  * <p>blockstate 由 {@code variant × top × bottom} 展开（§6.3.2），模型与掉落表按注册总账逐项生成；
  * 贴图资源由 {@code src/main/part4/assets} 提供，全部为项目原创占位资源。
@@ -70,7 +70,7 @@ public final class DecorDataProvider implements DataProvider {
         }
     }
 
-    /** Part-6 §6.2.1.2 / §6.2.1.3 / §6.2.1.4 / §6.2.1.5 中普通 cube_all 方块的资源。 */
+    /** 《方块物品实体完整清单》§6.2.1.2 / §6.2.1.3 / §6.2.1.4 / §6.2.1.5 中普通 cube_all 方块的资源。 */
     private void emitSimpleBlocks(CachedOutput cache, List<CompletableFuture<?>> out) {
         for (String id : SIMPLE_BLOCKS) {
             var blockstate = new JsonObject();
@@ -156,7 +156,7 @@ public final class DecorDataProvider implements DataProvider {
         return part;
     }
 
-    /** 需要自动生成 cube_all 资源与掉落表的 Part-6 方块 id。 */
+    /** 需要自动生成 cube_all 资源与掉落表的《方块物品实体完整清单》方块 id。 */
     private static final List<String> SIMPLE_BLOCKS =
             List.of(
                     "cosmetic_rock",

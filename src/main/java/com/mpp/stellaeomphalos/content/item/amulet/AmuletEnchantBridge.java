@@ -1,6 +1,6 @@
 package com.mpp.stellaeomphalos.content.item.amulet;
 
-import com.mpp.stellaeomphalos.content.item.PartSixItems;
+import com.mpp.stellaeomphalos.content.item.CatalogItems;
 import com.mpp.stellaeomphalos.core.platform.api.EnchantmentQueryEvent;
 
 import net.minecraft.resources.ResourceLocation;
@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * 护符修正注入原版附魔查询的桥（Part-6 §6.3.5，对应已登记的 Mixin **M-1 / M-2**）。
+ * 护符修正注入原版附魔查询的桥（《方块物品实体完整清单》§6.3.5，对应已登记的 Mixin **M-1 / M-2**）。
  *
  * <p>1.12.2 的 ASM 三入口在 1.20.1 由 `EnchantmentHelperMixin` 接管：它对
  * `EnchantmentHelper#getItemEnchantmentLevel`（M-1）与 `#getEnchantments`（M-2）注入 `@At("RETURN")`，
@@ -85,7 +85,7 @@ public final class AmuletEnchantBridge {
     public static List<AmuletModifier> equippedModifiers(Player player) {
         if (player == null) return List.of();
         for (var stack : candidateSlots(player))
-            if (stack.is(PartSixItems.WARDED_AMULET.get())) {
+            if (stack.is(CatalogItems.WARDED_AMULET.get())) {
                 var modifiers = AmuletHolder.modifiers(stack);
                 if (!modifiers.isEmpty()) return modifiers;
             }

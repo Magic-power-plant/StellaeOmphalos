@@ -15,7 +15,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
 /**
- * 星图玻璃（Part-6 §6.2.2.5 / §6.4.4）。
+ * 星图玻璃（《方块物品实体完整清单》§6.2.2.5 / §6.4.4）。
  *
  * <p>把已雕刻星图存在专用子标签 `Chart` 下（星象 id 列表 + 种子）；`hasFoil` 由"是否已雕刻"决定，
  * 等价原模组把"已激活"复用为附魔光效的做法。耐久损耗走 30%/级的自定义规则（配置键

@@ -16,7 +16,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
- * 充能水晶工具族（Part-6 §6.2.2.3 / §6.4.4）。
+ * 充能水晶工具族（《方块物品实体完整清单》§6.2.2.3 / §6.4.4）。
  *
  * <p>器相（`ToolTraits`）即耐久，磨损阈值与普通工具族一致；额外维护 `ChCount` 回退计数，
  * 计数达到 {@link #REVERT_START} 后每 tick 以 1/{@link #REVERT_CHANCE} 的概率退化为惰性变体。
@@ -111,7 +111,7 @@ public final class ChargedCrystalTools {
             var stack = player.getItemInHand(hand);
             if (!level.isClientSide && player instanceof ServerPlayer server) {
                 // §6.2.2.3 / §6.3.6：1.12.2 的裸线程改为**受控分片**扫描，单次有硬预算，
-                // 不做无界世界读写；结果消费方（高亮结果包）归 Part-8。
+                // 不做无界世界读写；结果消费方（高亮结果包）归《服务端机制数据存储与网络协议》。
                 var center = player.blockPosition();
                 var scanner =
                         new com.mpp.stellaeomphalos.core.util.world.OreColumnScanner(

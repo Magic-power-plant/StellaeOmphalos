@@ -2,7 +2,7 @@ package com.mpp.stellaeomphalos.client.render.model;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mpp.stellaeomphalos.client.render.util.WorldDraw;
-import com.mpp.stellaeomphalos.content.item.PartSixItems;
+import com.mpp.stellaeomphalos.content.item.CatalogItems;
 
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -34,7 +34,7 @@ public final class MantlePlayerLayer
             float yaw,
             float pitch) {
         if (player.isInvisible()
-                || !player.getItemBySlot(EquipmentSlot.CHEST).is(PartSixItems.MANTLE.get())) return;
+                || !player.getItemBySlot(EquipmentSlot.CHEST).is(CatalogItems.MANTLE.get())) return;
         draw.pose = pose;
         draw.buffers = buffers;
         draw.light = light;

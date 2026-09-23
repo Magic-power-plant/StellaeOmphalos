@@ -12,7 +12,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
 /**
- * 天空共鸣器（Part-6 §6.2.2.5 / §6.6.2）：三模式侦察器。
+ * 天空共鸣器（《方块物品实体完整清单》§6.2.2.5 / §6.6.2）：三模式侦察器。
  *
  * <p>潜行右键在已解锁模式间轮换：`STARLIGHT` 无条件可用，`FLUID_FIELDS` 需要研习进度，
  * `AREA_SIZE` 需要共鸣。**越界或权限不足一律回退 `STARLIGHT`**，与规划要求的六重容错回退一致。

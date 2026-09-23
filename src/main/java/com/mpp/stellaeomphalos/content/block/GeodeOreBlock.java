@@ -18,7 +18,7 @@ import net.minecraftforge.common.util.FakePlayer;
 import java.util.*;
 
 /**
- * 晶簇矿（Part-6 §6.2.1.3）。
+ * 晶簇矿（《方块物品实体完整清单》§6.2.1.3）。
  *
  * <p>一个方块承载两个变体（§6.2.1.3 的 `GEODE` / `ASTRAL`），取代 1.12.2 的 meta：
  * `GEODE` 掉落随机晶簇，`ASTRAL`（星辉矿）掉落自身并且是水晶簇加速生长的判据。

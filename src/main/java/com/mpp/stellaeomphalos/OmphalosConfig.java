@@ -53,7 +53,7 @@ public final class OmphalosConfig {
         COMMON.integer("performance.lumenMaxHops", 32, 4, 128);
         COMMON.integer("performance.lumenProximityOpsPerTick", 32, 1, 1024);
         COMMON.bool("compat.enchantmentAmplification", true);
-        // Part-6 §6.4.4：护符掷骰概率全部可配置（原模组为类内常量）。
+        // 《方块物品实体完整清单》§6.4.4：护符掷骰概率全部可配置（原模组为类内常量）。
         COMMON.decimal("amulet.chanceSecondRoll", 0.8, 0, 1);
         COMMON.decimal("amulet.chanceThirdRoll", 0.25, 0, 1);
         COMMON.decimal("amulet.chanceExtraLevel", 0.15, 0, 1);
@@ -78,7 +78,7 @@ public final class OmphalosConfig {
         SERVER.decimal("gameplay.weaponOilMultiplier", 0.25, 0, 1);
         SERVER.bool("gameplay.mobSpawnDenyAll", false);
         SERVER.decimal("gameplay.wandChainBreakChance", 0.1, 0, 1);
-        // Part-6 §6.6.2：置换杖的可替换硬度门槛（基岩类恒放弃）。
+        // 《方块物品实体完整清单》§6.6.2：置换杖的可替换硬度门槛（基岩类恒放弃）。
         SERVER.decimal("gameplay.blockRodHardnessLimit", 3.0, 0, 100);
         SERVER.integer("gameplay.inactivityThresholdMs", 300000, 1000, 3600000);
         SERVER.integer("progression.maxBoonLevel", 30, 1, 1000);

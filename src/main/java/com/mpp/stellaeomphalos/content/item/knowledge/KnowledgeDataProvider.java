@@ -10,7 +10,7 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
-/** All distributed Part-5 JSON is generated from the common catalogue, including localization. */
+/** All distributed 《星典知识与玩家进度》 JSON is generated from the common catalogue, including localization. */
 public final class KnowledgeDataProvider implements DataProvider {
     private final PackOutput output;
 

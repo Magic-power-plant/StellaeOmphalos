@@ -84,7 +84,7 @@ public final class BoonAttributeListeners {
         if (dodge > 0 && player.getRandom().nextDouble() < dodge) event.setCanceled(true);
     }
 
-    // #7 动态附魔：倍率通道 round 到整级；事件由附魔体系（Part-3/5）投递
+    // #7 动态附魔：倍率通道 round 到整级；事件由附魔体系（《星坛与制作系统》/《星典知识与玩家进度》）投递
     @SubscribeEvent
     public static void dynamicEnchant(DynamicEnchantEvent event) {
         double multiplier = BoonValueBridge.value(event.player(), BoonAttributes.DYNAMIC_ENCHANT);

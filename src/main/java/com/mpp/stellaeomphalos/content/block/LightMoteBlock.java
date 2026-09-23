@@ -17,7 +17,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 /**
- * Part-6 §6.2.1.4 光斑（`glow_mote`）与易逝光源（`ephemeral_light`）。
+ * 《方块物品实体完整清单》§6.2.1.4 光斑（`glow_mote`）与易逝光源（`ephemeral_light`）。
  *
  * <p>两者都是 {@code EnumProperty<DyeColor>} 的 16 色不可见光源：全亮度、无碰撞、不可选中、可被替换、
  * 不被活塞推动、零掉落。区别是易逝光源由照明器/辉光粉生成并自行消失，光斑由照明杖放置并需要玩家主动移除。

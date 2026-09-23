@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.*;
 
-/** Original editorial structure; recipe ids refer to the project's own Part-3/4 content. */
+/** Original editorial structure; recipe ids refer to the project's own 《星坛与制作系统》/《星构多方块与星仪世界生成》 content. */
 public final class KnowledgeCatalog {
     public static final CodexRegistry PAGES = new CodexRegistry();
     public static final StudyNodeRegistry NODES = new StudyNodeRegistry();

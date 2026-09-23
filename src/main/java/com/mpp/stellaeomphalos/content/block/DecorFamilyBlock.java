@@ -23,7 +23,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 /**
- * 装饰建材方块（Part-6 §6.2.1.1 / §6.3.1 D-1 / §6.3.2）。
+ * 装饰建材方块（《方块物品实体完整清单》§6.2.1.1 / §6.3.1 D-1 / §6.3.2）。
  *
  * <p>一个族 = 一个 Block + {@link DecorVariant} 枚举属性；柱体变体用 {@code top}/{@code bottom} 持久化连接状态，
  * 替代 1.12.2 的 {@code getActualState}。连接状态在放置、邻居变化与移除三处刷新，缺一会留下脏状态。

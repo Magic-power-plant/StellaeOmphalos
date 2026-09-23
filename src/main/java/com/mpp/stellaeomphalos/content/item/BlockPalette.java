@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
- * 符文杖族共用的方块收藏夹（Part-6 §6.4.4）。
+ * 符文杖族共用的方块收藏夹（《方块物品实体完整清单》§6.4.4）。
  *
  * <p>存储位置为物品持久数据，序列化使用 `BlockState` 的 NBT 形态并保持插入顺序；容量上限 27，
  * 与快捷栏轮换上限一致。三道过滤：**有方块实体不收**、**没有对应物品不收**、**硬度为 -1 不收**。
@@ -79,7 +79,7 @@ public final class BlockPalette {
 
     /** 清空全部临时星能缓存（放置/置换后调用，§6.2.2.4）。 */
     public static void clear(Player player) {
-        // 临时星能由 Part-2 的充能层持有；此处只提供稳定的调用点，避免杖类自行缓存。
+        // 临时星能由《星辉能量与星象星眷系统》的充能层持有；此处只提供稳定的调用点，避免杖类自行缓存。
     }
 
     /** 全客户端在约 2 秒窗口内一致的预览状态。 */

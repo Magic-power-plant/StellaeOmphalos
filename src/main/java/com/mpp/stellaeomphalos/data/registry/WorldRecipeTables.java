@@ -7,7 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.*;
 
-/** Reload snapshots replay through the established Part-3 recipe mutation contract. */
+/** Reload snapshots replay through the established 《星坛与制作系统》 recipe mutation contract. */
 public final class WorldRecipeTables {
     private static final Map<String, Map<ResourceLocation, JsonObject>> TABLES = new HashMap<>();
 

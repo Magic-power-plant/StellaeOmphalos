@@ -8,7 +8,7 @@ import net.minecraft.server.level.*;
 
 import java.util.*;
 
-/** Ambient sky scheduling is separate from the damaging Part-2 meteor effect. */
+/** Ambient sky scheduling is separate from the damaging 《星辉能量与星象星眷系统》 meteor effect. */
 public final class StarfallController {
     private static final Map<UUID, Long> DAYS = new HashMap<>();
 

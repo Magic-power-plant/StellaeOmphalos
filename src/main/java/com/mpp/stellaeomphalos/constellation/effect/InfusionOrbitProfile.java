@@ -1,7 +1,7 @@
 package com.mpp.stellaeomphalos.constellation.effect;
 
 /**
- * Infusion altar orbit profile parameters (machine orbit visuals; pure data for Part-7).
+ * Infusion altar orbit profile parameters (machine orbit visuals; pure data for 《客户端渲染界面与音效》).
  */
 public final class InfusionOrbitProfile {
     public static final int COLOR = 0xFFB57EDC;

@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
- * 泉头物品（Part-6 §6.2.2.7）。
+ * 泉头物品（《方块物品实体完整清单》§6.2.2.7）。
  *
  * <p>`bore_head` 方块只暴露 `LIQUID` / `VORTEX` 两个变体；钻头档位属于实现扩展，
  * 由放置用的物品决定（石 / 铁 / 钻石三个物品 id），放置时写进 {@link BoreHeadBlock#TIER}。

@@ -15,7 +15,7 @@ import net.minecraft.world.phys.Vec3;
  * "幸运类修正值"暴露给其他系统（星象效果体系）。
  *
  * <p>提供两处消费点：{@link #dropBonus(LivingEntity)} 供其它系统直接查询；
- * {@link #applyDropBonus(Collection, int)} 由 {@link PartSixEffects} 的
+ * {@link #applyDropBonus(Collection, int)} 由 {@link ContentEffects} 的
  * {@code LivingDropsEvent} 监听器调用，在击杀者携带该效果时，为每一件可堆叠掉落额外复制
  * {@code +amplifier} 份（独立 {@link ItemEntity}，避免与原掉落合并而被回收）。
  */
@@ -35,7 +35,7 @@ public final class DropModifierEffect extends CustomIconEffect {
      */
     public static int dropBonus(LivingEntity entity) {
         if (entity == null) return 0;
-        MobEffectInstance instance = entity.getEffect(PartSixEffects.DROP_MODIFIER.get());
+        MobEffectInstance instance = entity.getEffect(ContentEffects.DROP_MODIFIER.get());
         if (instance == null) return 0;
         return Math.min(MAX_BONUS, Math.max(0, instance.getAmplifier()));
     }

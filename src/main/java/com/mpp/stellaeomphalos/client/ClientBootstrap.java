@@ -2,7 +2,7 @@ package com.mpp.stellaeomphalos.client;
 
 import com.mpp.stellaeomphalos.Omphalos;
 import com.mpp.stellaeomphalos.client.render.ber.MachineRenderers.*;
-import com.mpp.stellaeomphalos.content.block.PartSixBlocks;
+import com.mpp.stellaeomphalos.content.block.MachineContent;
 import com.mpp.stellaeomphalos.content.blockentity.crafting.CraftingContent;
 import com.mpp.stellaeomphalos.content.world.WorldContent;
 import com.mpp.stellaeomphalos.core.bootstrap.RegistrationGuard;
@@ -51,13 +51,13 @@ public final class ClientBootstrap {
                         com.mpp.stellaeomphalos.content.blockentity.lumen.LumenContent.COLLECTOR),
                 c -> new CollectorRenderer());
         e.registerBlockEntityRenderer(
-                blockEntity(PartSixBlocks.RESONANCE_ENTITY), c -> new ResonanceAltarRenderer());
+                blockEntity(MachineContent.RESONANCE_ENTITY), c -> new ResonanceAltarRenderer());
         e.registerBlockEntityRenderer(
-                blockEntity(PartSixBlocks.BEAM_LENS_ENTITY), c -> new LensRenderer());
+                blockEntity(MachineContent.BEAM_LENS_ENTITY), c -> new LensRenderer());
         e.registerBlockEntityRenderer(
-                blockEntity(PartSixBlocks.BEAM_PRISM_ENTITY), c -> new PrismRenderer());
+                blockEntity(MachineContent.BEAM_PRISM_ENTITY), c -> new PrismRenderer());
         e.registerBlockEntityRenderer(
-                blockEntity(PartSixBlocks.STAR_CHART_ENTITY), c -> new StarChartTableRenderer());
+                blockEntity(MachineContent.STAR_CHART_ENTITY), c -> new StarChartTableRenderer());
         e.registerBlockEntityRenderer(
                 blockEntity(WorldContent.PEDESTAL_ENTITY), c -> new RitePedestalRenderer());
         e.registerBlockEntityRenderer(
@@ -161,13 +161,13 @@ public final class ClientBootstrap {
                                                             .sources(packet.signs()));
                                     });
                     net.minecraft.client.gui.screens.MenuScreens.register(
-                            com.mpp.stellaeomphalos.content.menu.PartSixMenus.SPYGLASS.get(),
+                            com.mpp.stellaeomphalos.content.menu.StationMenus.SPYGLASS.get(),
                             com.mpp.stellaeomphalos.client.screen.StationScreens.Spyglass::new);
                     net.minecraft.client.gui.screens.MenuScreens.register(
-                            com.mpp.stellaeomphalos.content.menu.PartSixMenus.OBSERVATORY.get(),
+                            com.mpp.stellaeomphalos.content.menu.StationMenus.OBSERVATORY.get(),
                             com.mpp.stellaeomphalos.client.screen.StationScreens.Observatory::new);
                     net.minecraft.client.gui.screens.MenuScreens.register(
-                            com.mpp.stellaeomphalos.content.menu.PartSixMenus.STAR_CHART_TABLE
+                            com.mpp.stellaeomphalos.content.menu.StationMenus.STAR_CHART_TABLE
                                     .get(),
                             com.mpp.stellaeomphalos.client.screen.StationScreens.Chart::new);
                 });

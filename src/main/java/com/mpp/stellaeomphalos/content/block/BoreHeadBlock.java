@@ -15,7 +15,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 /**
- * 星泉泉头（Part-6 §6.2.1.2，决策 D-4）。
+ * 星泉泉头（《方块物品实体完整清单》§6.2.1.2，决策 D-4）。
  *
  * <p>1.12.2 用 meta 表达的两个变体在 1.20.1 由 {@link EnumProperty}&lt;{@link BoreMode}&gt; 承载：
  * `LIQUID` 模式向下开挖倒锥井并按周期抽取区块流体，`VORTEX` 模式清空 7×7×7 并把非玩家生物拉入漩涡

@@ -1,6 +1,6 @@
 package com.mpp.stellaeomphalos.content.item;
 
-import com.mpp.stellaeomphalos.content.entity.p6.PartSixEntities;
+import com.mpp.stellaeomphalos.content.entity.catalog.CatalogEntities;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -10,7 +10,7 @@ import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 /**
- * 掉落物实体替换（Part-6 §6.6.2 的最后三行）。
+ * 掉落物实体替换（《方块物品实体完整清单》§6.6.2 的最后三行）。
  *
  * <p>“任意 {@link HighlightedItem} 掉落 → `highlighted_item`”、“水晶/宝石/工具掉落 → `geode_entity` /
  * `geode_tool_entity`”、“星屑 → `star_dust`”在 1.20.1 没有物品钩子可用，因此改为在实体加入世界时
@@ -44,13 +44,13 @@ public final class ItemEntityReplacement {
     static boolean isOwnType(ItemEntity item) {
         return item
                         instanceof
-                        com.mpp.stellaeomphalos.content.entity.p6.HighlightedItemEntity
+                        com.mpp.stellaeomphalos.content.entity.catalog.HighlightedItemEntity
                 || item
                         instanceof
-                        com.mpp.stellaeomphalos.content.entity.p6.ExplosionProofItemEntity
-                || item instanceof com.mpp.stellaeomphalos.content.entity.p6.StarDustEntity
-                || item instanceof com.mpp.stellaeomphalos.content.entity.p6.GeodeEntity
-                || item instanceof com.mpp.stellaeomphalos.content.entity.p6.GeodeToolEntity;
+                        com.mpp.stellaeomphalos.content.entity.catalog.ExplosionProofItemEntity
+                || item instanceof com.mpp.stellaeomphalos.content.entity.catalog.StarDustEntity
+                || item instanceof com.mpp.stellaeomphalos.content.entity.catalog.GeodeEntity
+                || item instanceof com.mpp.stellaeomphalos.content.entity.catalog.GeodeToolEntity;
     }
 
     /**
@@ -61,11 +61,11 @@ public final class ItemEntityReplacement {
     public static EntityType<? extends ItemEntity> replacementFor(ItemStack stack) {
         if (stack == null || stack.isEmpty()) return null;
         var item = stack.getItem();
-        if (item instanceof HighlightedItem) return PartSixEntities.HIGHLIGHTED_ITEM.get();
-        if (hasId(item, "lore_capsule")) return PartSixEntities.EXPLOSION_PROOF_ITEM.get();
-        if (isStarDust(item)) return PartSixEntities.STAR_DUST.get();
-        if (PartSixItems.isCrystalTool(item)) return PartSixEntities.GEODE_TOOL_ENTITY.get();
-        if (PartSixItems.isCrystalOrGem(item)) return PartSixEntities.GEODE_ENTITY.get();
+        if (item instanceof HighlightedItem) return CatalogEntities.HIGHLIGHTED_ITEM.get();
+        if (hasId(item, "lore_capsule")) return CatalogEntities.EXPLOSION_PROOF_ITEM.get();
+        if (isStarDust(item)) return CatalogEntities.STAR_DUST.get();
+        if (CatalogItems.isCrystalTool(item)) return CatalogEntities.GEODE_TOOL_ENTITY.get();
+        if (CatalogItems.isCrystalOrGem(item)) return CatalogEntities.GEODE_ENTITY.get();
         return null;
     }
 

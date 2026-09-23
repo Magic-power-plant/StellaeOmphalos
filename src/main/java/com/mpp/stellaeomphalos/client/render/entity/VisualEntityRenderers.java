@@ -3,7 +3,7 @@ package com.mpp.stellaeomphalos.client.render.entity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mpp.stellaeomphalos.client.render.OmphalosRenderTypes;
 import com.mpp.stellaeomphalos.client.render.util.WorldDraw;
-import com.mpp.stellaeomphalos.content.entity.p6.*;
+import com.mpp.stellaeomphalos.content.entity.catalog.*;
 import com.mpp.stellaeomphalos.content.world.WorldContent;
 import com.mpp.stellaeomphalos.core.bootstrap.RegistrationGuard;
 
@@ -30,22 +30,22 @@ public final class VisualEntityRenderers {
     }
 
     public static void register(EntityRenderersEvent.RegisterRenderers e) {
-        e.registerEntityRenderer(entity(PartSixEntities.HIGHLIGHTED_ITEM), Highlight::new);
+        e.registerEntityRenderer(entity(CatalogEntities.HIGHLIGHTED_ITEM), Highlight::new);
         e.registerEntityRenderer(
-                entity(PartSixEntities.EXPLOSION_PROOF_ITEM), ItemEntityRenderer::new);
-        e.registerEntityRenderer(entity(PartSixEntities.STAR_DUST), ItemEntityRenderer::new);
-        e.registerEntityRenderer(entity(PartSixEntities.GEODE_ENTITY), ItemEntityRenderer::new);
+                entity(CatalogEntities.EXPLOSION_PROOF_ITEM), ItemEntityRenderer::new);
+        e.registerEntityRenderer(entity(CatalogEntities.STAR_DUST), ItemEntityRenderer::new);
+        e.registerEntityRenderer(entity(CatalogEntities.GEODE_ENTITY), ItemEntityRenderer::new);
         e.registerEntityRenderer(
-                entity(PartSixEntities.GEODE_TOOL_ENTITY), ItemEntityRenderer::new);
-        e.registerEntityRenderer(entity(PartSixEntities.GRAPNEL), Grapple::new);
-        e.registerEntityRenderer(entity(PartSixEntities.LUCENT_SPARK), Glow::new);
-        e.registerEntityRenderer(entity(PartSixEntities.UMBRAL_SPARK), Glow::new);
-        e.registerEntityRenderer(entity(PartSixEntities.STAR_BOLT), Glow::new);
-        e.registerEntityRenderer(entity(PartSixEntities.FALLING_STAR), Glow::new);
-        e.registerEntityRenderer(entity(PartSixEntities.OBSERVATORY_SEAT), NoopRenderer::new);
-        e.registerEntityRenderer(entity(PartSixEntities.WISP), Glow::new);
-        e.registerEntityRenderer(entity(PartSixEntities.LUMEN_DROPLET), Glow::new);
-        e.registerEntityRenderer(entity(PartSixEntities.PHANTOM_TOOL), Phantom::new);
+                entity(CatalogEntities.GEODE_TOOL_ENTITY), ItemEntityRenderer::new);
+        e.registerEntityRenderer(entity(CatalogEntities.GRAPNEL), Grapple::new);
+        e.registerEntityRenderer(entity(CatalogEntities.LUCENT_SPARK), Glow::new);
+        e.registerEntityRenderer(entity(CatalogEntities.UMBRAL_SPARK), Glow::new);
+        e.registerEntityRenderer(entity(CatalogEntities.STAR_BOLT), Glow::new);
+        e.registerEntityRenderer(entity(CatalogEntities.FALLING_STAR), Glow::new);
+        e.registerEntityRenderer(entity(CatalogEntities.OBSERVATORY_SEAT), NoopRenderer::new);
+        e.registerEntityRenderer(entity(CatalogEntities.WISP), Glow::new);
+        e.registerEntityRenderer(entity(CatalogEntities.LUMEN_DROPLET), Glow::new);
+        e.registerEntityRenderer(entity(CatalogEntities.PHANTOM_TOOL), Phantom::new);
         e.registerEntityRenderer(entity(WorldContent.STARFALL), Glow::new);
     }
 
